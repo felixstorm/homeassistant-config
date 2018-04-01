@@ -1,0 +1,95 @@
+- platform: modbus
+  registers:
+
+    - name: Anlage OK?
+      register: 8204
+    - name: Nächste Wartung in
+      register: 8224
+      unit_of_measurement: h
+    - name: Außentemperatur
+      register: 8250
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+
+    - name: Kesselstatus
+      register: 8211
+    - name: Kesselleistung
+      register: 8207
+      scale: 0.1
+      unit_of_measurement: "%"
+    - name: Kesseltemperatur
+      register: 8197
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: Rücklauftemperatur
+      register: 8202
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: Abgastemperatur
+      register: 8231
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: Kesselpumpe
+      register: 8200
+      # fehlend: "EF2``[0``].AI_Fotozelle*"
+
+    - name: Puffer Temp 1
+      register: 8710
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: Puffer Temp 3
+      register: 8778
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: Puffer Temp 5
+      register: 8846
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: Puffer Anforderung
+      register: 8896
+
+    - name: HK1 Raumtemperatur Soll
+      register: 8538
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: HK1 Vorlauftemperatur
+      register: 8260
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: HK1 Vorlauftemperatur Soll
+      register: 8328
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: HK1 Pumpe
+      register: 8503
+    - name: HK2 Raumtemperatur Soll
+      register: 8539
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: HK2 Vorlauftemperatur
+      register: 8262
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: HK2 Vorlauftemperatur Soll
+      register: 8329
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: HK2 Pumpe
+      register: 8504
+      # fehlend: "HK``[3``].anforderung*"
+
+    - name: Pelletssauger
+      register: 8238

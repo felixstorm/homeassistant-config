@@ -1,0 +1,75 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - sensor.date
+    - sensor.time
+    - sun.sun
+    - sensor.yr_symbol
+    - group.heizung_uebersicht
+    - group.all_lights
+    - media_player.play_1
+    - media_player.wohnzimmer
+
+heizung:
+  view: yes
+  name: Heizung
+  entities:
+    - group.heizung_uebersicht
+    - group.heizung_kessel
+    - group.heizung_puffer
+    - group.heizung_hk1
+    - group.heizung_hk2
+    - history_graph.heizung_kessel
+    - history_graph.heizung_puffer
+    - history_graph.heizung_hk1
+    - history_graph.heizung_hk2
+
+heizung_uebersicht:
+  name: Heizung Übersicht
+  entities:
+    - sensor.anlage_ok
+    - sensor.nachste_wartung_in
+    - sensor.aussentemperatur
+    - sensor.kesselleistung
+    - sensor.puffer_temp_1
+    - sensor.puffer_temp_5
+    - sensor.hk1_vorlauftemperatur
+    - sensor.hk1_vorlauftemperatur_soll
+    - sensor.hk2_vorlauftemperatur
+    - sensor.hk2_vorlauftemperatur_soll
+
+heizung_kessel:
+  name: Kessel
+  entities:
+    - sensor.kesselstatus
+    - sensor.kesselleistung
+    - sensor.kesseltemperatur
+    - sensor.rucklauftemperatur
+    - sensor.abgastemperatur
+    - sensor.kesselpumpe
+    - sensor.pelletssauger
+
+heizung_puffer:
+  name: Puffer
+  entities:
+    - sensor.puffer_temp_1
+    - sensor.puffer_temp_3
+    - sensor.puffer_temp_5
+    - sensor.puffer_anforderung
+
+heizung_hk1:
+  name: FBH
+  entities:
+    - sensor.hk1_raumtemperatur_soll
+    - sensor.hk1_vorlauftemperatur
+    - sensor.hk1_vorlauftemperatur_soll
+    - sensor.hk1_pumpe
+
+heizung_hk2:
+  name: Heizkörper
+  entities:
+    - sensor.hk2_raumtemperatur_soll
+    - sensor.hk2_vorlauftemperatur
+    - sensor.hk2_vorlauftemperatur_soll
+    - sensor.hk2_pumpe

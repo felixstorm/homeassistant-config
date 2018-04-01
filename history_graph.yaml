@@ -1,0 +1,46 @@
+heizung_kessel:
+  name: Heizung Kessel
+  entities:
+    - sensor.aussentemperatur
+    - sensor.kesselstatus
+    - sensor.kesselleistung
+    - sensor.kesseltemperatur
+    - sensor.rucklauftemperatur
+    - sensor.abgastemperatur
+    - sensor.kesselpumpe
+    - sensor.pelletssauger
+  hours_to_show: 120
+  refresh: 60
+
+heizung_puffer:
+  name: Heizung Puffer
+  entities:
+    - sensor.aussentemperatur
+    - sensor.puffer_temp_1
+    - sensor.puffer_temp_3
+    - sensor.puffer_temp_5
+    - sensor.puffer_anforderung
+  hours_to_show: 120
+  refresh: 60
+
+heizung_hk1:
+  name: Heizung FBH
+  entities:
+    - sensor.aussentemperatur
+    - sensor.hk1_raumtemperatur_soll
+    - sensor.hk1_vorlauftemperatur
+    - sensor.hk1_vorlauftemperatur_soll
+    - sensor.hk1_pumpe
+  hours_to_show: 120
+  refresh: 60
+
+heizung_hk2:
+  name: Heizung Heizkörper
+  entities:
+    - sensor.aussentemperatur
+    - sensor.hk2_raumtemperatur_soll
+    - sensor.hk2_vorlauftemperatur
+    - sensor.hk2_vorlauftemperatur_soll
+    - sensor.hk2_pumpe
+  hours_to_show: 120
+  refresh: 60
