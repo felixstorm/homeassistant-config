@@ -1,0 +1,24 @@
+media_player.play_1:
+  name:
+  platform: sonos
+  unique_id: RINCON_000E58C4BEEC01400
+media_player.wohnzimmer:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFDA226FB01400
+sensor.rwl021_13_battery_level:
+  name:
+  platform: deconz
+  unique_id: 00:17:88:01:02:0d:b0:19-02-fc00
+light.dg_mitte:
+  name:
+  platform: deconz
+  unique_id: 00:17:88:01:02:48:1a:1c-0b
+light.d1r_flur_og:
+  name:
+  platform: deconz
+  unique_id: 00:1f:ee:00:00:00:1d:41-01
+light.philips_ltw001_02481a1c_11:
+  name:
+  platform: zha
+  unique_id: 00:17:88:01:02:48:1a:1c-11
