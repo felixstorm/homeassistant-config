@@ -1,7 +1,7 @@
 # Tab "Universal"
 - platform: modbus
   entity_namespace: heizung
-  scan_interval: 60
+  scan_interval: !secret heizung_scan_interval_slow
   registers:
     - name: sw_version_major
       register: 8192
@@ -17,19 +17,126 @@
       count: 2
 - platform: modbus
   entity_namespace: heizung
-  scan_interval: 10
+  scan_interval: !secret heizung_scan_interval_fast
   registers:
     - name: anlage_keine_stoerung
       register: 8204
     - name: anlage_stoerung
       register: 8205
-    - name: kesselstatus_anzeige
+    - name: kesselstatus
       register: 8208
+- platform: template
+  sensors:
+    heizung_sw_version_anzeige:
+      value_template: "{{ '%s.%s.%s'|format(states('sensor.heizung_sw_version_major'), states('sensor.heizung_sw_version_minor'), states('sensor.heizung_sw_version_patch')) }}"
+    heizung_alarme_anzeige:
+      value_template: "{{ '%s (offen: %s)'|format(states('sensor.heizung_alarme_total'), states('sensor.heizung_alarme_offen')) }}"
+    heizung_kesselstatus_anzeige:
+      value_template: >-
+        {% if is_state('sensor.heizung_kesselstatus', '0') %}
+          aus
+        {% elif is_state('sensor.heizung_kesselstatus', '1') %}
+          Messbetrieb
+        {% elif is_state('sensor.heizung_kesselstatus', '2') %}
+          Betrieb (Reinigung)
+        {% elif is_state('sensor.heizung_kesselstatus', '3') %}
+          Einmessen
+        {% elif is_state('sensor.heizung_kesselstatus', '4') %}
+          Betrieb
+        {% elif is_state('sensor.heizung_kesselstatus', '5') %}
+          Nachlauf
+        {% elif is_state('sensor.heizung_kesselstatus', '6') %}
+          Neustart
+        {% elif is_state('sensor.heizung_kesselstatus', '7') %}
+          Störung Nachlauf
+        {% elif is_state('sensor.heizung_kesselstatus', '8') %}
+          Störung Aus
+        {% elif is_state('sensor.heizung_kesselstatus', '9') %}
+          Wartung
+        {% elif is_state('sensor.heizung_kesselstatus', '10') %}
+          Bereit (-Zuendanf)
+        {% elif is_state('sensor.heizung_kesselstatus', '11') %}
+          Zünden Start Saugzug
+        {% elif is_state('sensor.heizung_kesselstatus', '12') %}
+          Zünden FS Füllen
+        {% elif is_state('sensor.heizung_kesselstatus', '13') %}
+          Zünden Einschieben 1
+        {% elif is_state('sensor.heizung_kesselstatus', '14') %}
+          Zünden Einschieben 3
+        {% elif is_state('sensor.heizung_kesselstatus', '15') %}
+          Zünden Heizen
+        {% elif is_state('sensor.heizung_kesselstatus', '16') %}
+          Heizen Durchzünden
+        {% elif is_state('sensor.heizung_kesselstatus', '17') %}
+          Zünden Einschieben 2
+        {% elif is_state('sensor.heizung_kesselstatus', '18') %}
+          Zünden Warten
+        {% elif is_state('sensor.heizung_kesselstatus', '19') %}
+          Durchzünden
+        {% elif is_state('sensor.heizung_kesselstatus', '20') %}
+          1. IB Betrieb
+        {% elif is_state('sensor.heizung_kesselstatus', '21') %}
+          Bereit (-Ext1)
+        {% elif is_state('sensor.heizung_kesselstatus', '22') %}
+          Bereit (-Zweitkessel)
+        {% elif is_state('sensor.heizung_kesselstatus', '23') %}
+          Bereit (-FS)
+        {% elif is_state('sensor.heizung_kesselstatus', '24') %}
+          Bereit (-Reinigung)
+        {% elif is_state('sensor.heizung_kesselstatus', '25') %}
+          Bereit (+Stop)
+        {% elif is_state('sensor.heizung_kesselstatus', '26') %}
+          Bereit (-Ext3)
+        {% elif is_state('sensor.heizung_kesselstatus', '30') %}
+          Bereit (-Anf)
+        {% elif is_state('sensor.heizung_kesselstatus', '31') %}
+          Bereit (+Wartezeit)
+        {% elif is_state('sensor.heizung_kesselstatus', '32') %}
+          Bereit (+Anf)
+        {% elif is_state('sensor.heizung_kesselstatus', '34') %}
+          Betrieb Leerschieben
+        {% elif is_state('sensor.heizung_kesselstatus', '35') %}
+          Aus
+        {% elif is_state('sensor.heizung_kesselstatus', '36') %}
+          Anheizen
+        {% elif is_state('sensor.heizung_kesselstatus', '37') %}
+          Warten Zündanf.
+        {% elif is_state('sensor.heizung_kesselstatus', '38') %}
+          Warten Zündfreig.
+        {% elif is_state('sensor.heizung_kesselstatus', '39') %}
+          Start Zündung
+        {% elif is_state('sensor.heizung_kesselstatus', '40') %}
+          Zünden
+        {% elif is_state('sensor.heizung_kesselstatus', '41') %}
+          Heizen
+        {% elif is_state('sensor.heizung_kesselstatus', '42') %}
+          Feuerhaltung
+        {% elif is_state('sensor.heizung_kesselstatus', '43') %}
+          Feuer aus
+        {% elif is_state('sensor.heizung_kesselstatus', '44') %}
+          Störung Feuer aus
+        {% elif is_state('sensor.heizung_kesselstatus', '45') %}
+          Tür offen
+        {% elif is_state('sensor.heizung_kesselstatus', '46') %}
+          Überhitzung
+        {% elif is_state('sensor.heizung_kesselstatus', '47') %}
+          Störung Feuerhaltung
+        {% elif is_state('sensor.heizung_kesselstatus', '50') %}
+          Start Pelletmodul
+        {% elif is_state('sensor.heizung_kesselstatus', '51') %}
+          Pelletmodul Gesperrt
+        {% elif is_state('sensor.heizung_kesselstatus', '52') %}
+          Wartung
+        {% else %}
+          {{ states('sensor.heizung_kesselstatus') }}
+        {% endif %}
+
+
 
 # Tab "KWB Easyfire" etc.
 - platform: modbus
   entity_namespace: heizung
-  scan_interval: 60
+  scan_interval: !secret heizung_scan_interval_slow
   registers:
     - name: sw_revision
       register: 8195
@@ -115,9 +222,10 @@
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
+  # fehlend: "EF2``[0``].AI_Fotozelle*"
 - platform: modbus
   entity_namespace: heizung
-  scan_interval: 10
+  scan_interval: !secret heizung_scan_interval_fast
   registers:
     - name: motor_foerdersystem
       register: 8226
@@ -125,12 +233,27 @@
       register: 8238
     - name: zuendung_heizung
       register: 8247
-      # fehlend: "EF2``[0``].AI_Fotozelle*"
+- platform: template
+  sensors:
+    heizung_kesselpumpe_anzeige:
+      value_template: "{% if is_state('sensor.heizung_kesselpumpe', '0') %} aus {% elif is_state('sensor.heizung_kesselpumpe', '1') %} ein {% else %} {{ states('sensor.heizung_kesselpumpe') }} {% endif %}"
+    heizung_verbraucher_anforderung_anzeige:
+      value_template: "{% if is_state('sensor.heizung_verbraucher_anforderung', '0') %} nein {% elif is_state('sensor.heizung_verbraucher_anforderung', '1') %} ja {% else %} {{ states('sensor.heizung_verbraucher_anforderung') }} {% endif %}"
+    heizung_anlage_ein_anzeige:
+      value_template: "{% if is_state('sensor.heizung_anlage_ein', '0') %} nein {% elif is_state('sensor.heizung_anlage_ein', '1') %} ja {% else %} {{ states('sensor.heizung_anlage_ein') }} {% endif %}"
+    # heizung_kesselprogramm_anzeige:
+    #   value_template: "{% if is_state('sensor.kesselprogramm', '0') %} nein {% elif is_state('sensor.kesselprogramm', '1') %} ja {% else %} {{ states('sensor.kesselprogramm') }} {% endif %}"
+    heizung_motor_foerdersystem_anzeige:
+      value_template: "{% if is_state('sensor.heizung_motor_foerdersystem', '0') %} aus {% elif is_state('sensor.heizung_motor_foerdersystem', '1') %} ein {% else %} {{ states('sensor.heizung_motor_foerdersystem') }} {% endif %}"
+    heizung_pelletssauger_anzeige:
+      value_template: "{% if is_state('sensor.heizung_pelletssauger', '0') %} aus {% elif is_state('sensor.heizung_pelletssauger', '1') %} ein {% else %} {{ states('sensor.heizung_pelletssauger') }} {% endif %}"
+    heizung_zuendung_heizung_anzeige:
+      value_template: "{% if is_state('sensor.heizung_zuendung_heizung', '0') %} aus {% elif is_state('sensor.heizung_zuendung_heizung', '1') %} ein {% else %} {{ states('sensor.heizung_zuendung_heizung') }} {% endif %}"
 
 # Tab "PUF"
 - platform: modbus
   entity_namespace: heizung_puffer
-  scan_interval: 60
+  scan_interval: !secret heizung_scan_interval_slow
   registers:
     - name: temperatur_1
       register: 8710
@@ -168,11 +291,21 @@
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
+- platform: template
+  sensors:
+    heizung_puffer_pumpe_anzeige:
+      value_template: "{% if is_state('sensor.heizung_puffer_pumpe', '0') %} aus {% elif is_state('sensor.heizung_puffer_pumpe', '1') %} ein {% else %} {{ states('sensor.heizung_puffer_pumpe') }} {% endif %}"
+    heizung_puffer_anforderung_anzeige:
+      value_template: "{% if is_state('sensor.heizung_puffer_anforderung', '0') %} nein {% elif is_state('sensor.heizung_puffer_anforderung', '1') %} ja {% else %} {{ states('sensor.heizung_puffer_anforderung') }} {% endif %}"
+    heizung_puffer_programm_anzeige:
+      value_template: >-
+        {% if is_state('sensor.heizung_puffer_programm', '0') %} Zeit {% elif is_state('sensor.heizung_puffer_programm', '1') %} Temperatur {% elif is_state('sensor.heizung_puffer_programm', '2') %} Aus 
+        {% elif is_state('sensor.heizung_puffer_programm', '3') %} Zeit+ {% elif is_state('sensor.heizung_puffer_programm', '4') %} Sommer {% else %} {{ states('sensor.heizung_puffer_programm') }} {% endif %}
 
 # Tab "HK"
 - platform: modbus
   entity_namespace: heizung_hk1
-  scan_interval: 60
+  scan_interval: !secret heizung_scan_interval_slow
   registers:
     - name: status
       register: 8573
@@ -210,9 +343,22 @@
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
+- platform: template
+  sensors:
+    heizung_hk1_status_anzeige:
+      value_template: >-
+        {% if is_state('sensor.heizung_hk1_status', '0') %} Absenk {% elif is_state('sensor.heizung_hk1_status', '1') %} Komfort {% elif is_state('sensor.heizung_hk1_status', '2') %} Frostschutz 
+        {% elif is_state('sensor.heizung_hk1_status', '3') %} Urlaub {% elif is_state('sensor.heizung_hk1_status', '4') %} Aus {% elif is_state('sensor.heizung_hk1_status', '5') %} Estrich 
+        {% elif is_state('sensor.heizung_hk1_status', '6') %} Extern {% elif is_state('sensor.heizung_hk1_status', '7') %} Max. Wärmeabnahme {% else %} {{ states('sensor.heizung_hk1_status') }} {% endif %}
+    heizung_hk1_pumpe_anzeige:
+      value_template: "{% if is_state('sensor.heizung_hk1_pumpe', '0') %} aus {% elif is_state('sensor.heizung_hk1_pumpe', '1') %} ein {% else %} {{ states('sensor.heizung_hk1_pumpe') }} {% endif %}"
+    heizung_hk1_programm_anzeige:
+      value_template: >-
+        {% if is_state('sensor.heizung_hk1_programm', '0') %} Automatik {% elif is_state('sensor.heizung_hk1_programm', '1') %} Frostschutz {% elif is_state('sensor.heizung_hk1_programm', '2') %} Aus 
+        {% elif is_state('sensor.heizung_hk1_programm', '3') %} Komfort {% elif is_state('sensor.heizung_hk1_programm', '4') %} Absenk {% else %} {{ states('sensor.heizung_hk1_programm') }} {% endif %}
 - platform: modbus
   entity_namespace: heizung_hk2
-  scan_interval: 60
+  scan_interval: !secret heizung_scan_interval_slow
   registers:
     - name: status
       register: 8574
@@ -250,3 +396,16 @@
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
+- platform: template
+  sensors:
+    heizung_hk2_status_anzeige:
+      value_template: >-
+        {% if is_state('sensor.heizung_hk2_status', '0') %} Absenk {% elif is_state('sensor.heizung_hk2_status', '1') %} Komfort {% elif is_state('sensor.heizung_hk2_status', '2') %} Frostschutz 
+        {% elif is_state('sensor.heizung_hk2_status', '3') %} Urlaub {% elif is_state('sensor.heizung_hk2_status', '4') %} Aus {% elif is_state('sensor.heizung_hk2_status', '5') %} Estrich 
+        {% elif is_state('sensor.heizung_hk2_status', '6') %} Extern {% elif is_state('sensor.heizung_hk2_status', '7') %} Max. Wärmeabnahme {% else %} {{ states('sensor.heizung_hk2_status') }} {% endif %}
+    heizung_hk2_pumpe_anzeige:
+      value_template: "{% if is_state('sensor.heizung_hk2_pumpe', '0') %} aus {% elif is_state('sensor.heizung_hk2_pumpe', '1') %} ein {% else %} {{ states('sensor.heizung_hk2_pumpe') }} {% endif %}"
+    heizung_hk2_programm_anzeige:
+      value_template: >-
+        {% if is_state('sensor.heizung_hk2_programm', '0') %} Automatik {% elif is_state('sensor.heizung_hk2_programm', '1') %} Frostschutz {% elif is_state('sensor.heizung_hk2_programm', '2') %} Aus 
+        {% elif is_state('sensor.heizung_hk2_programm', '3') %} Komfort {% elif is_state('sensor.heizung_hk2_programm', '4') %} Absenk {% else %} {{ states('sensor.heizung_hk2_programm') }} {% endif %}

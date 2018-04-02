@@ -17,6 +17,7 @@ sensor: !include_dir_merge_list sensor
 logger:
   default: critical
   logs:
+    homeassistant.config: error
     homeassistant.components.zha: debug
     homeassistant.components.light.zha: debug
     zigpy: debug

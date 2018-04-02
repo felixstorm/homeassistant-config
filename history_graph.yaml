@@ -1,46 +1,96 @@
+heizung_temperaturen:
+  name: Heizung Temperaturen
+  entities:
+    - sensor.heizung_aussen_temperatur
+    - sensor.heizung_kesselstatus_anzeige
+    - sensor.heizung_kesseltemp_ist
+    - sensor.heizung_kessel_ruecklauftemp_ist
+    - sensor.heizung_brennerleistung
+    - sensor.heizung_rauchgastemp_ist
+    - sensor.heizung_verbraucher_anforderung_anzeige
+    - sensor.heizung_pelletssauger_anzeige
+    - sensor.heizung_puffer_temperatur_1
+    - sensor.heizung_puffer_temperatur_3
+    - sensor.heizung_puffer_temperatur_5
+    - sensor.heizung_puffer_anforderung_anzeige
+    - sensor.heizung_puffer_pumpe_anzeige
+    - sensor.heizung_hk1_vorlauf_temperatur_soll
+    - sensor.heizung_hk2_vorlauf_temperatur_soll
+  hours_to_show: 36
+  refresh: 60
+
 heizung_kessel:
   name: Heizung Kessel
   entities:
-    - sensor.aussentemperatur
-    - sensor.kesselstatus
-    - sensor.kesselleistung
-    - sensor.kesseltemperatur
-    - sensor.rucklauftemperatur
-    - sensor.abgastemperatur
-    - sensor.kesselpumpe
-    - sensor.pelletssauger
-  hours_to_show: 120
+    - sensor.heizung_anlage_ein_anzeige
+    - sensor.heizung_serviceintervallreststunden
+    - sensor.heizung_aussen_temperatur
+    - sensor.heizung_alarme_anzeige
+    - sensor.heizung_sw_version_anzeige
+    - sensor.heizung_kesselstatus_anzeige
+    - sensor.heizung_brennerleistung
+    - sensor.heizung_kesseltemp_ist
+    - sensor.heizung_kesseltemp_soll
+    - sensor.heizung_kessel_ruecklauftemp_ist
+    - sensor.heizung_kessel_ruecklauftempmin
+    - sensor.heizung_kesselpumpe_anzeige
+    - sensor.heizung_kesselprogramm
+    - sensor.heizung_verbraucher_anforderung_anzeige
+    - sensor.heizung_zuendung_heizung_anzeige
+    - sensor.heizung_rauchgastemp_ist
+    - sensor.heizung_pelletsverbrauch
+    - sensor.heizung_pelletssauger_anzeige
+    - sensor.heizung_motor_foerdersystem_anzeige
+    - sensor.heizung_betriebsstunden_summe
+    - sensor.heizung_kesseltempsoll1
+    - sensor.heizung_kesseltempsoll2
+    - sensor.heizung_kesseltempsoll1_mf2
+    - sensor.heizung_kesseltempsoll2_mf2
+    - sensor.heizung_kesseltempsoll1_cf2
+  hours_to_show: 36
   refresh: 60
 
 heizung_puffer:
   name: Heizung Puffer
   entities:
-    - sensor.aussentemperatur
-    - sensor.puffer_temp_1
-    - sensor.puffer_temp_3
-    - sensor.puffer_temp_5
-    - sensor.puffer_anforderung
-  hours_to_show: 120
+    - sensor.heizung_puffer_programm_anzeige
+    - sensor.heizung_puffer_anforderung_anzeige
+    - sensor.heizung_puffer_temperatur_1
+    - sensor.heizung_puffer_temperatur_3
+    - sensor.heizung_puffer_temperatur_5
+    - sensor.heizung_puffer_pumpe_anzeige
+    - sensor.heizung_puffer_temperatur_grenzen_min
+    - sensor.heizung_puffer_temperatur_grenzen_max
+    - sensor.heizung_puffer_brauchwassertemp_min
+  hours_to_show: 36
   refresh: 60
 
 heizung_hk1:
   name: Heizung FBH
   entities:
-    - sensor.aussentemperatur
-    - sensor.hk1_raumtemperatur_soll
-    - sensor.hk1_vorlauftemperatur
-    - sensor.hk1_vorlauftemperatur_soll
-    - sensor.hk1_pumpe
-  hours_to_show: 120
+    - sensor.heizung_hk1_status_anzeige
+    - sensor.heizung_hk1_raum_temperatur_soll
+    - sensor.heizung_hk1_aussen_temperatur
+    - sensor.heizung_hk1_vorlauf_temperatur_soll
+    - sensor.heizung_hk1_vorlauf_temperatur
+    - sensor.heizung_hk1_pumpe_anzeige
+    - sensor.heizung_hk1_programm_anzeige
+    - sensor.heizung_hk1_raum_temperatur_soll_tag
+    - sensor.heizung_hk1_raum_temperatur_soll_nacht
+  hours_to_show: 36
   refresh: 60
 
 heizung_hk2:
   name: Heizung Heizkörper
   entities:
-    - sensor.aussentemperatur
-    - sensor.hk2_raumtemperatur_soll
-    - sensor.hk2_vorlauftemperatur
-    - sensor.hk2_vorlauftemperatur_soll
-    - sensor.hk2_pumpe
-  hours_to_show: 120
+    - sensor.heizung_hk2_status_anzeige
+    - sensor.heizung_hk2_raum_temperatur_soll
+    - sensor.heizung_hk2_aussen_temperatur
+    - sensor.heizung_hk2_vorlauf_temperatur_soll
+    - sensor.heizung_hk2_vorlauf_temperatur
+    - sensor.heizung_hk2_pumpe_anzeige
+    - sensor.heizung_hk2_programm_anzeige
+    - sensor.heizung_hk2_raum_temperatur_soll_tag
+    - sensor.heizung_hk2_raum_temperatur_soll_nacht
+  hours_to_show: 36
   refresh: 60

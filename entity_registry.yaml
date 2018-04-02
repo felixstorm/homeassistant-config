@@ -22,3 +22,11 @@ light.philips_ltw001_02481a1c_11:
   name:
   platform: zha
   unique_id: 00:17:88:01:02:48:1a:1c-11
+sensor.power_25:
+  name:
+  platform: deconz
+  unique_id: 00:1f:ee:00:00:00:1d:41-04-0b04
+sensor.consumption_24:
+  name:
+  platform: deconz
+  unique_id: 00:1f:ee:00:00:00:1d:41-04-0702
