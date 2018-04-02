@@ -1,95 +1,252 @@
+# Tab "Universal"
 - platform: modbus
+  entity_namespace: heizung
+  scan_interval: 60
   registers:
-
-    - name: Anlage OK?
+    - name: sw_version_major
+      register: 8192
+    - name: sw_version_minor
+      register: 8193
+    - name: sw_version_patch
+      register: 8194
+    - name: alarme_total
+      register: 8252
+      count: 2
+    - name: alarme_offen
+      register: 8254
+      count: 2
+- platform: modbus
+  entity_namespace: heizung
+  scan_interval: 10
+  registers:
+    - name: anlage_keine_stoerung
       register: 8204
-    - name: Nächste Wartung in
-      register: 8224
-      unit_of_measurement: h
-    - name: Außentemperatur
-      register: 8250
-      scale: 0.1
-      precision: 1
-      unit_of_measurement: °C
+    - name: anlage_stoerung
+      register: 8205
+    - name: kesselstatus_anzeige
+      register: 8208
 
-    - name: Kesselstatus
-      register: 8211
-    - name: Kesselleistung
-      register: 8207
-      scale: 0.1
-      unit_of_measurement: "%"
-    - name: Kesseltemperatur
+# Tab "KWB Easyfire" etc.
+- platform: modbus
+  entity_namespace: heizung
+  scan_interval: 60
+  registers:
+    - name: sw_revision
+      register: 8195
+      count: 2
+    - name: kesseltemp_ist
       register: 8197
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: Rücklauftemperatur
+    - name: kesseltemp_soll
+      register: 8199
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: kesselpumpe
+      register: 8200
+    - name: kessel_ruecklauftemp_ist
       register: 8202
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: Abgastemperatur
+    - name: verbraucher_anforderung
+      register: 8206
+    - name: brennerleistung
+      register: 8207
+      scale: 0.1
+      unit_of_measurement: "%"
+    - name: betriebsstunden_summe
+      register: 8209
+      count: 2
+      scale: 0.0166667
+      unit_of_measurement: h
+    - name: serviceintervallreststunden
+      register: 8224
+      unit_of_measurement: h
+    - name: rauchgastemp_ist
       register: 8231
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: Kesselpumpe
-      register: 8200
+    - name: pelletsverbrauch
+      register: 8233
+      count: 2
+      scale: 0.001
+      precision: 3
+      unit_of_measurement: t
+    - name: aussen_temperatur
+      register: 8250
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: anlage_ein
+      register: 24576
+    - name: kesseltempsoll1
+      register: 24577
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: kesseltempsoll2
+      register: 24578
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: kesseltempsoll1_mf2
+      register: 24579
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: kesseltempsoll2_mf2
+      register: 24580
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: kessel_ruecklauftempmin
+      register: 24581
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: kesselprogramm
+      register: 24584
+    - name: kesseltempsoll1_cf2
+      register: 24585
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+- platform: modbus
+  entity_namespace: heizung
+  scan_interval: 10
+  registers:
+    - name: motor_foerdersystem
+      register: 8226
+    - name: pelletssauger
+      register: 8238
+    - name: zuendung_heizung
+      register: 8247
       # fehlend: "EF2``[0``].AI_Fotozelle*"
 
-    - name: Puffer Temp 1
+# Tab "PUF"
+- platform: modbus
+  entity_namespace: heizung_puffer
+  scan_interval: 60
+  registers:
+    - name: temperatur_1
       register: 8710
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: Puffer Temp 3
+    - name: temperatur_3
       register: 8778
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: Puffer Temp 5
+    - name: temperatur_5
       register: 8846
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: Puffer Anforderung
+    - name: pumpe
+      register: 8879
+    - name: anforderung
       register: 8896
+    - name: programm
+      register: 24761
+    - name: temperatur_grenzen_min
+      register: 24779
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: temperatur_grenzen_max
+      register: 24780
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: brauchwassertemp_min
+      register: 24812
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
 
-    - name: HK1 Raumtemperatur Soll
+# Tab "HK"
+- platform: modbus
+  entity_namespace: heizung_hk1
+  scan_interval: 60
+  registers:
+    - name: status
+      register: 8573
+    - name: raum_temperatur_soll
       register: 8538
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: HK1 Vorlauftemperatur
-      register: 8260
+    - name: aussen_temperatur
+      register: 8435
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: HK1 Vorlauftemperatur Soll
+    - name: vorlauf_temperatur_soll
       register: 8328
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: HK1 Pumpe
+    - name: vorlauf_temperatur
+      register: 8260
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: pumpe
       register: 8503
-    - name: HK2 Raumtemperatur Soll
+    - name: programm
+      register: 24589
+    - name: raum_temperatur_soll_tag
+      register: 24624
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: raum_temperatur_soll_nacht
+      register: 24659
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+- platform: modbus
+  entity_namespace: heizung_hk2
+  scan_interval: 60
+  registers:
+    - name: status
+      register: 8574
+    - name: raum_temperatur_soll
       register: 8539
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: HK2 Vorlauftemperatur
-      register: 8262
+    - name: aussen_temperatur
+      register: 8437
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: HK2 Vorlauftemperatur Soll
+    - name: vorlauf_temperatur_soll
       register: 8329
       scale: 0.1
       precision: 1
       unit_of_measurement: °C
-    - name: HK2 Pumpe
+    - name: vorlauf_temperatur
+      register: 8262
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: pumpe
       register: 8504
-      # fehlend: "HK``[3``].anforderung*"
-
-    - name: Pelletssauger
-      register: 8238
+    - name: programm
+      register: 24590
+    - name: raum_temperatur_soll_tag
+      register: 24625
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
+    - name: raum_temperatur_soll_nacht
+      register: 24660
+      scale: 0.1
+      precision: 1
+      unit_of_measurement: °C
