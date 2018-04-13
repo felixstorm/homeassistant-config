@@ -6,7 +6,6 @@ heizung_temperaturen:
     - sensor.heizung_kesseltemp_ist
     - sensor.heizung_kessel_ruecklauftemp_ist
     - sensor.heizung_brennerleistung
-    - sensor.heizung_rauchgastemp_ist
     - sensor.heizung_verbraucher_anforderung_anzeige
     - sensor.heizung_pelletssauger_anzeige
     - sensor.heizung_puffer_temperatur_1
