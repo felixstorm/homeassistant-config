@@ -1,1 +1,43 @@
 - platform: yr
+
+- platform: rest
+  name: Wettersensor
+  resource: http://192.168.0.11/
+  json_attributes:
+    - readingAgeMs
+    - temperatureC
+    - sunSouthKlx
+    - sunWestKlx
+    - sunEastKlx
+    - isTwilight
+    - daylightLx
+    - windSpeedMs
+    - isRaining
+  scan_interval: 10
+- platform: template
+  sensors:
+    wettersensor_reading_age:
+      value_template: '{{ states.sensor.wettersensor.attributes["readingAgeMs"] }}'
+      unit_of_measurement: "ms"
+    wettersensor_temperature:
+      value_template: '{{ states.sensor.wettersensor.attributes["temperatureC"] }}'
+      unit_of_measurement: "°C"
+    wettersensor_sun_south:
+      value_template: '{{ states.sensor.wettersensor.attributes["sunSouthKlx"] }}'
+      unit_of_measurement: "klx"
+    wettersensor_sun_west:
+      value_template: '{{ states.sensor.wettersensor.attributes["sunWestKlx"] }}'
+      unit_of_measurement: "klx"
+    wettersensor_sun_east:
+      value_template: '{{ states.sensor.wettersensor.attributes["sunEastKlx"] }}'
+      unit_of_measurement: "klx"
+    wettersensor_is_twilight:
+      value_template: '{{ states.sensor.wettersensor.attributes["isTwilight"] }}'
+    wettersensor_daylight:
+      value_template: '{{ states.sensor.wettersensor.attributes["daylightLx"] }}'
+      unit_of_measurement: "lx"
+    wettersensor_wind_speed:
+      value_template: '{{ states.sensor.wettersensor.attributes["windSpeedMs"] }}'
+      unit_of_measurement: "m/s"
+    wettersensor_is_raining:
+      value_template: '{{ states.sensor.wettersensor.attributes["isRaining"] }}'

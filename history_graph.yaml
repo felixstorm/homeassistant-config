@@ -93,3 +93,18 @@ heizung_hk2:
     - sensor.heizung_hk2_raum_temperatur_soll_nacht
   hours_to_show: 36
   refresh: 60
+
+wetter_lokal:
+  name: Wetter lokal
+  entities:
+    - sensor.wettersensor_reading_age
+    - sensor.wettersensor_temperature
+    - sensor.wettersensor_sun_south
+    - sensor.wettersensor_sun_west
+    - sensor.wettersensor_sun_east
+    - sensor.wettersensor_is_twilight
+    - sensor.wettersensor_daylight
+    - sensor.wettersensor_wind_speed
+    - sensor.wettersensor_is_raining
+  hours_to_show: 72
+  refresh: 60

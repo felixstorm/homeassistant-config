@@ -8,10 +8,11 @@ default_view:
     - sensor.yr_symbol
     - group.heizung_uebersicht
     - group.all_lights
+    - group.wetter_lokal
     - media_player.play_1
     - media_player.wohnzimmer
 
-heizung:
+heizung_tab:
   view: yes
   name: Heizung
   entities:
@@ -25,6 +26,13 @@ heizung:
     - history_graph.heizung_puffer
     - history_graph.heizung_hk1
     - history_graph.heizung_hk2
+
+wetter_lokal_tab:
+  view: yes
+  name: Wetter lokal
+  entities:
+    - group.wetter_lokal
+    - history_graph.wetter_lokal
 
 heizung_uebersicht:
   name: Heizung Übersicht
@@ -105,3 +113,16 @@ heizung_hk2:
     - sensor.heizung_hk2_programm_anzeige
     - sensor.heizung_hk2_raum_temperatur_soll_tag
     - sensor.heizung_hk2_raum_temperatur_soll_nacht
+
+wetter_lokal:
+  name: Wetter lokal
+  entities:
+    - sensor.wettersensor_reading_age
+    - sensor.wettersensor_temperature
+    - sensor.wettersensor_sun_south
+    - sensor.wettersensor_sun_west
+    - sensor.wettersensor_sun_east
+    - sensor.wettersensor_is_twilight
+    - sensor.wettersensor_daylight
+    - sensor.wettersensor_wind_speed
+    - sensor.wettersensor_is_raining
