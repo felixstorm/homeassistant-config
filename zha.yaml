@@ -1,0 +1,3 @@
+usb_path: /dev/ttyUSB0
+database_path: /srv/homeassistant-config/zigbee.db
+zigpy_auto_form_network: false

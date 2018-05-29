@@ -8,6 +8,7 @@ default_view:
     - sensor.yr_symbol
     - group.heizung_uebersicht
     - group.all_lights
+    - group.all_covers
     - group.wetter_lokal
     - media_player.play_1
     - media_player.wohnzimmer

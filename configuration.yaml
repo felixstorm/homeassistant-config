@@ -15,13 +15,15 @@ script: !include scripts.yaml
 sensor: !include_dir_merge_list sensor
 
 logger:
-  default: critical
+  default: error
   logs:
-    homeassistant.config: error
+    homeassistant.config: warning
     homeassistant.components.zha: debug
     homeassistant.components.light.zha: debug
-    zigpy: debug
-    zigpy_xbee: debug
+    homeassistant.components.cover.zha: debug
+    bellows: info
+    zigpy: info
+    zigpy_xbee: info
 
 history:
 recorder:
@@ -33,11 +35,7 @@ frontend:
 # Enables configuration UI
 config:
 
-http:
-  api_password: !secret http_password
-  base_url: !secret http_base_url
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
+http: !include http.yaml
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -77,8 +75,4 @@ modbus:
   host: 192.168.0.37
   port: 502
 
-# zha:
-#   radio_type: xbee
-#   usb_path: /dev/ttyUSB0
-#   baudrate: 9600
-#   database_path: zigbee.db
+zha: !include zha.yaml
