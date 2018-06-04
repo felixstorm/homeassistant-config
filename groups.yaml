@@ -8,7 +8,7 @@ default_view:
     - sensor.yr_symbol
     - group.heizung_uebersicht
     - group.all_lights
-    - group.all_covers
+    - group.cover_uebersicht
     - group.wetter_lokal
     - media_player.play_1
     - media_player.wohnzimmer
@@ -34,6 +34,24 @@ wetter_lokal_tab:
   entities:
     - group.wetter_lokal
     - history_graph.wetter_lokal
+
+cover_uebersicht:
+  name: Beschattung Übersicht
+  entities:
+    - cover.ubisys_j1_5502_00000dc6_1
+    - cover.ubisys_j1_5502_00002c8c_1
+    - cover.ubisys_j1_5502_000024db_1
+    - cover.ubisys_j1_5502_00002415_1
+    - cover.ubisys_j1_5502_00000df3_1
+    - cover.ubisys_j1_5502_00000ded_1
+    - cover.ubisys_j1_5502_000024aa_1
+    - cover.ubisys_j1_5502_0000255e_1
+    - cover.ubisys_j1_5502_00000dec_1
+    - cover.ubisys_j1_5502_0000243e_1
+    - cover.ubisys_j1_5502_00002cc0_1
+    - cover.ubisys_j1_5502_0000240d_1
+    - cover.ubisys_j1_5502_00000dba_1
+    - cover.ubisys_j1_5502_00002cec_1
 
 heizung_uebersicht:
   name: Heizung Übersicht

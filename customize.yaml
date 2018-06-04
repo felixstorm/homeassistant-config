@@ -5,38 +5,38 @@ group.all_covers:
 
 # EG
 cover.ubisys_j1_5502_00000dc6_1:
-  friendly_name: EG Küche Raffstore Fenster
+  friendly_name: Küche Fenster
 cover.ubisys_j1_5502_00002c8c_1:
-  friendly_name: EG Küche Raffstore Tür
+  friendly_name: Küche Terrassentür
 cover.ubisys_j1_5502_000024db_1:
-  friendly_name: EG Esszimmer Raffstore Terrassentür
+  friendly_name: Wohnzimmer Terrassentür
 cover.ubisys_j1_5502_00002415_1:
-  friendly_name: EG Wohnzimmer Raffstore Sitzfenster
+  friendly_name: Wohnzimmer Sitzfenster
 
 # OG
 cover.ubisys_j1_5502_00000df3_1:
-  friendly_name: OG Florian Raffstore
+  friendly_name: Florian
 cover.ubisys_j1_5502_00000ded_1:
-  friendly_name: OG Jonathan Raffstore links
+  friendly_name: Jonathan links
 cover.ubisys_j1_5502_000024aa_1:
-  friendly_name: OG Jonathan Raffstore rechts
+  friendly_name: Jonathan rechts
 cover.ubisys_j1_5502_0000255e_1:
-  friendly_name: OG Schlafzimmer Raffstore
+  friendly_name: Schlafzimmer
 cover.ubisys_j1_5502_00000dec_1:
-  friendly_name: OG Bad Raffstore
+  friendly_name: Bad OG
 light.ubisys_d1r_5603_00001d41_1:
-  friendly_name: OG Flur Licht
+  friendly_name: Flur OG
 cover.ubisys_j1_5502_0000243e_1:
-  friendly_name: OG Flur Raffstore
+  friendly_name: Flur OG
 
 # DG
 light.philips_ltw001_02481a1c_11:
-  friendly_name: DG Studio Licht
+  friendly_name: Studio DG
 cover.ubisys_j1_5502_00002cc0_1:
-  friendly_name: DG Studio Raffstore links
+  friendly_name: Studio DG links
 cover.ubisys_j1_5502_0000240d_1:
-  friendly_name: DG Studio Raffstore rechts
+  friendly_name: Studio DG rechts
 cover.ubisys_j1_5502_00000dba_1:
-  friendly_name: DG Studio Sunshine Markise
+  friendly_name: Dachfenster groß
 cover.ubisys_j1_5502_00002cec_1:
-  friendly_name: DG Bad Markise
+  friendly_name: Bad DG
