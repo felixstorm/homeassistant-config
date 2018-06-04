@@ -21,8 +21,10 @@ logger:
     homeassistant.components.zha: debug
     homeassistant.components.light.zha: debug
     homeassistant.components.cover.zha: debug
+    custom_components.cover.zha: debug
     bellows: info
     zigpy: info
+    zigpy.zdo: debug
     zigpy_xbee: info
 
 history:
