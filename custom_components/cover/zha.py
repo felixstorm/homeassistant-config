@@ -2,6 +2,8 @@
 Covers on Zigbee Home Automation networks.
 """
 import logging
+import asyncio
+import random
 from homeassistant.components import cover, zha
 from homeassistant.const import STATE_UNKNOWN
 
@@ -17,6 +19,16 @@ async def async_setup_platform(hass, config, async_add_devices,
     if discovery_info is None:
         return
 
+    caps = await zha.safe_read(discovery_info['endpoint'].window_covering, 
+                               ['current_position_lift_percentage', 'current_position_tilt_percentage'], 
+                               allow_cache=True)
+    current_position_lift_percentage = caps.get('current_position_lift_percentage')
+    _LOGGER.debug("current_position_lift_percentage for %s is %s", discovery_info['unique_id'], current_position_lift_percentage)
+    discovery_info['supports_set_position'] = (current_position_lift_percentage is not None and current_position_lift_percentage <= 100)
+    current_position_tilt_percentage = caps.get('current_position_tilt_percentage')
+    _LOGGER.debug("current_position_tilt_percentage for %s is %s", discovery_info['unique_id'], current_position_tilt_percentage)
+    discovery_info['supports_set_tilt_position'] = (current_position_tilt_percentage is not None and current_position_tilt_percentage <= 100)
+
     async_add_devices([ZhaCover(**discovery_info)], update_before_add=True)
 
 
@@ -26,9 +38,14 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
     def __init__(self, **kwargs):
         """Initialize the ZHA cover."""
         super().__init__(**kwargs)
+        self._supported_features = cover.SUPPORT_OPEN | cover.SUPPORT_CLOSE | cover.SUPPORT_STOP
         self._current_position_lift = None
         self._current_position_tilt = None
 
+        if kwargs.get('supports_set_position'):
+            self._supported_features |= cover.SUPPORT_SET_POSITION
+        if kwargs.get('supports_set_tilt_position'):
+            self._supported_features |= cover.SUPPORT_SET_TILT_POSITION
 
     async def async_close_cover(self, **kwargs):
         """Close the cover."""
@@ -78,16 +95,14 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
     @property
     def supported_features(self):
         """Flag supported features."""
-        supported_features = cover.SUPPORT_OPEN | cover.SUPPORT_CLOSE | cover.SUPPORT_STOP
-        if self._current_position_lift is not None:
-            supported_features |= cover.SUPPORT_SET_POSITION
-        if self._current_position_tilt is not None:
-            supported_features |= cover.SUPPORT_SET_TILT_POSITION
-        return supported_features
+        return self._supported_features
 
     async def async_update(self):
         """Retrieve latest state."""
-        zha_attrs = await zha.safe_read(self._endpoint.window_covering, ['current_position_lift_percentage', 'current_position_tilt_percentage'])
+        await asyncio.sleep(random.uniform(0, 5.0))    # random delay to distribute load on zigbee stick & network as long as we poll devices
+        zha_attrs = await zha.safe_read(self._endpoint.window_covering, 
+                                        ['current_position_lift_percentage', 'current_position_tilt_percentage'], 
+                                        allow_cache=False)
         zha_position_lift = zha_attrs.get('current_position_lift_percentage')
         if zha_position_lift is not None:
             if zha_position_lift <= 100:
