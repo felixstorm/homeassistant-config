@@ -17,10 +17,6 @@ async def async_setup_platform(hass, config, async_add_devices,
     if discovery_info is None:
         return
 
-    # caps = await zha.safe_read(discovery_info['endpoint'].window_covering, ['window_covering_type', 'config_status'])
-    # discovery_info['window_covering_type'] = caps.get('window_covering_type')
-    # discovery_info['config_status'] = caps.get('config_status')
-
     async_add_devices([ZhaCover(**discovery_info)], update_before_add=True)
 
 
@@ -30,25 +26,8 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
     def __init__(self, **kwargs):
         """Initialize the ZHA cover."""
         super().__init__(**kwargs)
-        self._supported_features = 0
-        self._current_position = None
-
-        self._supported_features |= cover.SUPPORT_OPEN
-        self._supported_features |= cover.SUPPORT_CLOSE
-        self._supported_features |= cover.SUPPORT_STOP
-        self._supported_features |= cover.SUPPORT_SET_POSITION
-        self._supported_features |= cover.SUPPORT_SET_TILT_POSITION
-
-        # covering_type = kwargs.get('window_covering_type')
-        # config_status = kwargs.get('config_status')
-        # if covering_type in (0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x08, 0x09):
-        #     self._supported_features |= cover.SUPPORT_OPEN
-        #     self._supported_features |= cover.SUPPORT_CLOSE
-        #     self._supported_features |= cover.SUPPORT_STOP
-        #     if config_status & 0b1000:
-        #         self._supported_features |= cover.SUPPORT_SET_POSITION
-        # if covering_type in (0x06, 0x07, 0x08) and config_status & 0b10000:
-        #     self._supported_features |= cover.SUPPORT_SET_TILT_POSITION
+        self._current_position_lift = None
+        self._current_position_tilt = None
 
 
     async def async_close_cover(self, **kwargs):
@@ -65,35 +44,59 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
 
     async def async_set_cover_position(self, **kwargs):
         """Go to position."""
-        await self._endpoint.window_covering.go_to_lift_percentage(kwargs.get(ATTR_POSITION))
+        if cover.ATTR_POSITION not in kwargs:
+            return
+        await self._endpoint.window_covering.go_to_lift_percentage(100 - kwargs.get(cover.ATTR_POSITION))
 
+    async def async_set_cover_tilt_position(self, **kwargs):
+        """Move the cover tilt to a specific position."""
+        if cover.ATTR_TILT_POSITION not in kwargs:
+            return
+        await self._endpoint.window_covering.go_to_tilt_percentage(100 - kwargs.get(cover.ATTR_TILT_POSITION))
 
-    @property
-    def supported_features(self):
-        """Flag supported features."""
-        return self._supported_features
 
     @property
     def current_cover_position(self):
         """Return the current position of ZHA cover."""
-        if self._current_position is not None:
-            # if self._current_position <= 5:
-            #     return 0
-            # elif self._current_position >= 95:
-            #     return 100
-            return self._current_position
+        if self._current_position_lift is not None:
+            return self._current_position_lift
+        return STATE_UNKNOWN
+
+    @property
+    def current_cover_tilt_position(self):
+        """Return current position of ZHA cover tilt."""
+        if self._current_position_tilt is not None:
+            return self._current_position_tilt
+        return STATE_UNKNOWN
 
     @property
     def is_closed(self):
         """Return if the cover is closed."""
-        if self._current_position is not None:
+        if self._current_position_lift is not None:
             return bool(self.current_cover_position == 0)
+
+    @property
+    def supported_features(self):
+        """Flag supported features."""
+        supported_features = cover.SUPPORT_OPEN | cover.SUPPORT_CLOSE | cover.SUPPORT_STOP
+        if self._current_position_lift is not None:
+            supported_features |= cover.SUPPORT_SET_POSITION
+        if self._current_position_tilt is not None:
+            supported_features |= cover.SUPPORT_SET_TILT_POSITION
+        return supported_features
 
     async def async_update(self):
         """Retrieve latest state."""
-        zha_position = (await zha.safe_read(self._endpoint.window_covering, ['current_position_lift_percentage'])).get('current_position_lift_percentage')
-        if zha_position is not None:
-            if zha_position <= 100:
-                self._current_position = 100 - zha_position
+        zha_attrs = await zha.safe_read(self._endpoint.window_covering, ['current_position_lift_percentage', 'current_position_tilt_percentage'])
+        zha_position_lift = zha_attrs.get('current_position_lift_percentage')
+        if zha_position_lift is not None:
+            if zha_position_lift <= 100:
+                self._current_position_lift = 100 - zha_position_lift
             else:
-                self._current_position = None
+                self._current_position_lift = None
+        zha_position_tilt = zha_attrs.get('current_position_tilt_percentage')
+        if zha_position_tilt is not None:
+            if zha_position_tilt <= 100:
+                self._current_position_tilt = 100 - zha_position_tilt
+            else:
+                self._current_position_tilt = None
