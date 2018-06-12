@@ -5,14 +5,22 @@ group.all_lights:
 ####################
 ## ZHA
 ####################
-group.all_covers:
-  hidden: false
 
 # EG
 cover.ubisys_j1_5502_00000dc6_1:
   friendly_name: Küche Fenster
 cover.ubisys_j1_5502_00002c8c_1:
   friendly_name: Küche Terrassentür
+switch.ubisys_s1_5501_00001a89_1_6:
+  hidden: true  # managed by deCONZ
+binary_sensor.ubisys_s1_5501_00001a89_2:
+  hidden: true  # managed by deCONZ
+switch.ubisys_s1_5501_00001a95_1_6:
+  hidden: true  # managed by deCONZ
+binary_sensor.ubisys_s1_5501_00001a95_2:
+  hidden: true  # managed by deCONZ
+cover.ubisys_j1_5502_0000243d_1:
+  friendly_name: Wintergarten Markise
 cover.ubisys_j1_5502_000024db_1:
   friendly_name: Wohnzimmer Terrassentür
 cover.ubisys_j1_5502_00002415_1:
