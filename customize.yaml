@@ -40,3 +40,28 @@ cover.ubisys_j1_5502_00000dba_1:
   friendly_name: Dachfenster groß
 cover.ubisys_j1_5502_00002cec_1:
   friendly_name: Bad DG
+
+
+##############################
+## lokaler Wettersensor
+##############################
+sensor.wettersensor_reading_age:
+  friendly_name: Alter d. Messung
+sensor.wettersensor_temperature:
+  friendly_name: Außentemperatur
+sensor.wettersensor_sun_east:
+  friendly_name: Sonne von Osten
+sensor.wettersensor_sun_south:
+  friendly_name: Sonne von Süden
+sensor.wettersensor_sun_west:
+  friendly_name: Sonne von Westen
+sensor.wettersensor_daylight:
+  friendly_name: Helligkeit
+sensor.wettersensor_is_dark:
+  friendly_name: dunkel
+sensor.wettersensor_wind_speed:
+  friendly_name: Windgeschwindigkeit
+sensor.wettersensor_wind_speed_gusts:
+  friendly_name: Böen
+sensor.wettersensor_is_raining:
+  friendly_name: Regen
