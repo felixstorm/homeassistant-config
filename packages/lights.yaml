@@ -1,0 +1,14 @@
+group:
+
+  lights_uebersicht:
+    name: Beleuchtung Übersicht
+    entities:
+      - light.flur_og
+      - light.studio_dg
+
+  lights_kochfeld:
+    name: Kochfeld
+    entities:
+      - light.herd
+      - light.herd_links
+      - light.herd_rechts

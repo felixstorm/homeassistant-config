@@ -7,12 +7,13 @@ homeassistant:
   elevation: !secret homeassistant_elevation
   unit_system: metric
   time_zone: Europe/Berlin
+  packages: !include_dir_named packages
   customize: !include customize.yaml
 
-group: !include_dir_merge_named group
+group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
-sensor: !include_dir_merge_list sensor
+sensor: !include sensors.yaml
 
 logger:
   default: error
@@ -70,11 +71,5 @@ cloud:
 
 # Track the sun
 sun:
-
-# KWB Pelletheizung
-modbus:
-  type: tcp
-  host: 192.168.0.37
-  port: 502
 
 zha: !include zha.yaml

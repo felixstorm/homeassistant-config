@@ -1,8 +1,8 @@
 *
 !*.yaml
 !scenes
-!sensor
-!group
+!packages
+!packages/**
 !.gitignore
 secrets.yaml
 known_devices.yaml
