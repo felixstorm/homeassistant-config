@@ -1,6 +1,43 @@
-group:
+homeassistant:
+  customize:
+    # EG
+    cover.ubisys_j1_5502_00000dc6_1:
+      friendly_name: Küche Fenster
+    cover.ubisys_j1_5502_00002c8c_1:
+      friendly_name: Küche Terrassentür
+    cover.ubisys_j1_5502_0000243d_1:
+      friendly_name: Wintergarten Markise
+    cover.ubisys_j1_5502_000024db_1:
+      friendly_name: Wohnzimmer Terrassentür
+    cover.ubisys_j1_5502_00002415_1:
+      friendly_name: Wohnzimmer Sitzfenster
+    # OG
+    cover.ubisys_j1_5502_00000df3_1:
+      friendly_name: Florian
+    cover.ubisys_j1_5502_00000ded_1:
+      friendly_name: Jonathan links
+    cover.ubisys_j1_5502_000024aa_1:
+      friendly_name: Jonathan rechts
+    cover.ubisys_j1_5502_0000255e_1:
+      friendly_name: Schlafzimmer
+    cover.ubisys_j1_5502_00000dec_1:
+      friendly_name: Bad OG
+    cover.ubisys_j1_5502_0000243e_1:
+      friendly_name: Flur OG
+    # DG
+    cover.ubisys_j1_5502_00002cc0_1:
+      friendly_name: Studio DG links
+    cover.ubisys_j1_5502_0000240d_1:
+      friendly_name: Studio DG rechts
+    cover.ubisys_j1_5502_00000dba_1:
+      friendly_name: Dachfenster groß
+    cover.ubisys_j1_5502_00002cec_1:
+      friendly_name: Bad DG
 
-  covers_uebersicht:
+
+
+group:
+  covers_all:
     name: Beschattung Übersicht
     entities:
       - cover.ubisys_j1_5502_00000dc6_1

@@ -18,7 +18,7 @@ group:
       - group.lights_kochfeld
       - light.herd
       - light.herd_links
-      - group.covers_uebersicht
+      - group.covers_all
       - group.wetter_lokal
       - media_player.play_1
       - media_player.wohnzimmer
