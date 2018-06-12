@@ -23,6 +23,13 @@ group:
       - media_player.play_1
       - media_player.wohnzimmer
 
+  wetter_lokal_tab:
+    view: yes
+    name: Wetter lokal
+    entities:
+      - group.wetter_lokal
+      - history_graph.wetter_lokal
+
   heizung_tab:
     view: yes
     name: Heizung
@@ -37,10 +44,3 @@ group:
       - history_graph.heizung_puffer
       - history_graph.heizung_hk1
       - history_graph.heizung_hk2
-
-  wetter_lokal_tab:
-    view: yes
-    name: Wetter lokal
-    entities:
-      - group.wetter_lokal
-      - history_graph.wetter_lokal
