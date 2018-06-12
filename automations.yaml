@@ -1,1 +1,34 @@
-[]
+- alias: covers_down_at_dusk
+  trigger:
+    platform: time
+    minutes: /10
+    seconds: 0
+  condition:
+    - condition: time
+      after: '17:00:00'
+      before: '04:00:00'
+    - condition: numeric_state
+      entity_id: sensor.wettersensor_daylight
+      below: '10'
+  action:
+    - service: script.covers_automatic_close
+
+- alias: covers_up_in_the_morning
+  trigger:
+    platform: time
+    at: '07:00:00'
+  action:
+    - delay: '00:{{ (range(0, 59)|random|int) }}:00'
+    - service: script.covers_automatic_open
+
+- alias: covers_up_during_daytime
+  trigger:
+    platform: time
+    minutes: /10
+    seconds: 0
+  condition:
+    - condition: time
+      after: '08:00:00'
+      before: '14:00:00'
+  action:
+    - service: script.covers_automatic_open

@@ -13,6 +13,9 @@ group:
       - sensor.time
       - sun.sun
       - sensor.yr_symbol
+      - automation.covers_down_at_dusk
+      - automation.covers_up_in_the_morning
+      - automation.covers_up_during_daytime
       - group.heizung_uebersicht
       - group.lights_uebersicht
       - group.lights_kochfeld
@@ -44,3 +47,15 @@ group:
       - history_graph.heizung_puffer
       - history_graph.heizung_hk1
       - history_graph.heizung_hk2
+
+  automations_scripts_tab:
+    view: yes
+    name: Automations & Scripts
+    entities:
+      - group.all_automations
+      - automation.covers_down_at_dusk
+      - automation.covers_up_in_the_morning
+      - automation.covers_up_during_daytime
+      - group.all_scripts
+      - script.covers_automatic_open
+      - script.covers_automatic_close

@@ -34,6 +34,12 @@ homeassistant:
     cover.ubisys_j1_5502_00002cec_1:
       friendly_name: Bad DG
 
+    automation.covers_down_at_dusk:
+      friendly_name: Raffstore abends runter
+    automation.covers_up_in_the_morning:
+      friendly_name: Raffstore morgens rauf
+    automation.covers_up_during_daytime:
+      friendly_name: Raffstore tagsüber oben halten
 
 
 group:
@@ -55,3 +61,70 @@ group:
       - cover.ubisys_j1_5502_0000240d_1
       - cover.ubisys_j1_5502_00000dba_1
       - cover.ubisys_j1_5502_00002cec_1
+
+
+script:
+
+  covers_automatic_open:
+    sequence:
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00000dc6_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00002415_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00000df3_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00000ded_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_000024aa_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_0000255e_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00000dec_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_0000243e_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00002cc0_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_0000240d_1
+
+  covers_automatic_close:
+    sequence:
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00000dc6_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00002415_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00000df3_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00000ded_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_000024aa_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_0000255e_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00000dec_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_0000243e_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00002cc0_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_0000240d_1

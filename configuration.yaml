@@ -19,6 +19,8 @@ logger:
   default: error
   logs:
     homeassistant.config: warning
+    homeassistant.components.automation: debug
+    homeassistant.components.script: debug
     homeassistant.components.zha: debug
     homeassistant.components.light.zha: debug
     homeassistant.components.cover.zha: debug
