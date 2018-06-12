@@ -1,0 +1,39 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - sensor.date
+    - sensor.time
+    - sun.sun
+    - sensor.yr_symbol
+    - group.heizung_uebersicht
+    - group.lights_uebersicht
+    - group.lights_kochfeld
+    - light.herd
+    - light.herd_links
+    - group.covers_uebersicht
+    - group.wetter_lokal
+    - media_player.play_1
+    - media_player.wohnzimmer
+
+heizung_tab:
+  view: yes
+  name: Heizung
+  entities:
+    - group.heizung_uebersicht
+    - group.heizung_kessel
+    - group.heizung_puffer
+    - group.heizung_hk1
+    - group.heizung_hk2
+    - history_graph.heizung_temperaturen
+    - history_graph.heizung_kessel
+    - history_graph.heizung_puffer
+    - history_graph.heizung_hk1
+    - history_graph.heizung_hk2
+
+wetter_lokal_tab:
+  view: yes
+  name: Wetter lokal
+  entities:
+    - group.wetter_lokal
+    - history_graph.wetter_lokal

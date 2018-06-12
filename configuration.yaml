@@ -9,7 +9,7 @@ homeassistant:
   time_zone: Europe/Berlin
   customize: !include customize.yaml
 
-group: !include groups.yaml
+group: !include_dir_merge_named group
 automation: !include automations.yaml
 script: !include scripts.yaml
 sensor: !include_dir_merge_list sensor
