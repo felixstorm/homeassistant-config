@@ -1,66 +1,44 @@
-homeassistant:
-  customize:
-    # EG
-    cover.ubisys_j1_5502_00000dc6_1:
-      friendly_name: Küche Fenster
-    cover.ubisys_j1_5502_00002c8c_1:
-      friendly_name: Küche Terrassentür
-    cover.ubisys_j1_5502_0000243d_1:
-      friendly_name: Wintergarten Markise
-    cover.ubisys_j1_5502_000024db_1:
-      friendly_name: Wohnzimmer Terrassentür
-    cover.ubisys_j1_5502_00002415_1:
-      friendly_name: Wohnzimmer Sitzfenster
-    # OG
-    cover.ubisys_j1_5502_00000df3_1:
-      friendly_name: Florian
-    cover.ubisys_j1_5502_00000ded_1:
-      friendly_name: Jonathan links
-    cover.ubisys_j1_5502_000024aa_1:
-      friendly_name: Jonathan rechts
-    cover.ubisys_j1_5502_0000255e_1:
-      friendly_name: Schlafzimmer
-    cover.ubisys_j1_5502_00000dec_1:
-      friendly_name: Bad OG
-    cover.ubisys_j1_5502_0000243e_1:
-      friendly_name: Flur OG
-    # DG
-    cover.ubisys_j1_5502_00002cc0_1:
-      friendly_name: Studio DG links
-    cover.ubisys_j1_5502_0000240d_1:
-      friendly_name: Studio DG rechts
-    cover.ubisys_j1_5502_00000dba_1:
-      friendly_name: Dachfenster groß
-    cover.ubisys_j1_5502_00002cec_1:
-      friendly_name: Bad DG
+automation:
 
-    automation.covers_down_at_dusk:
-      friendly_name: Raffstore abends runter
-    automation.covers_up_in_the_morning:
-      friendly_name: Raffstore morgens rauf
-    automation.covers_up_during_daytime:
-      friendly_name: Raffstore tagsüber oben halten
+  - alias: covers_down_at_dusk
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.wettersensor_daylight
+        below: '500'
+        for:
+          minutes: 10
+      - platform: time
+        minutes: /30
+        seconds: 0
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.wettersensor_daylight
+        below: '500'
+      - condition: time
+        after: '17:00:00'
+        before: '04:00:00'
+    action:
+      - service: script.covers_automatic_close
 
+  - alias: covers_up_in_the_morning
+    trigger:
+      platform: time
+      at: '07:00:00'
+    action:
+      - delay: '00:{{ (range(0, 59)|random|int) }}:00'
+      - service: script.covers_automatic_open
 
-group:
-  covers_all:
-    name: Beschattung Übersicht
-    entities:
-      - cover.ubisys_j1_5502_00000dc6_1
-      - cover.ubisys_j1_5502_00002c8c_1
-      - cover.ubisys_j1_5502_0000243d_1
-      - cover.ubisys_j1_5502_000024db_1
-      - cover.ubisys_j1_5502_00002415_1
-      - cover.ubisys_j1_5502_00000df3_1
-      - cover.ubisys_j1_5502_00000ded_1
-      - cover.ubisys_j1_5502_000024aa_1
-      - cover.ubisys_j1_5502_0000255e_1
-      - cover.ubisys_j1_5502_00000dec_1
-      - cover.ubisys_j1_5502_0000243e_1
-      - cover.ubisys_j1_5502_00002cc0_1
-      - cover.ubisys_j1_5502_0000240d_1
-      - cover.ubisys_j1_5502_00000dba_1
-      - cover.ubisys_j1_5502_00002cec_1
+  - alias: covers_up_during_daytime
+    trigger:
+      platform: time
+      minutes: /30
+      seconds: 0
+    condition:
+      - condition: time
+        after: '08:15:00'
+        before: '14:00:00'
+    action:
+      - service: script.covers_automatic_open
 
 
 script:
@@ -128,3 +106,15 @@ script:
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
     - service: cover.close_cover
       entity_id: cover.ubisys_j1_5502_0000240d_1
+
+
+homeassistant:
+
+  customize:
+
+    automation.covers_down_at_dusk:
+      friendly_name: Raffstore abends runter
+    automation.covers_up_in_the_morning:
+      friendly_name: Raffstore morgens rauf
+    automation.covers_up_during_daytime:
+      friendly_name: Raffstore tagsüber oben halten
