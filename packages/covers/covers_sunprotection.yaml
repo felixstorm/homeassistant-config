@@ -1,0 +1,103 @@
+input_boolean:
+
+  sunprotection_required_east:
+    name: Sonnenschutz nötig Ostseite
+    icon: mdi:weather-sunny
+
+  sunprotection_required_south:
+    name: Sonnenschutz nötig Südseite
+    icon: mdi:weather-sunny
+
+  sunprotection_required_west:
+    name: Sonnenschutz nötig Westseite
+    icon: mdi:weather-sunny
+
+
+automation:
+
+  - alias: sunprotection_required_east_on
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.wettersensor_sun_east
+      above: 80
+      for: { minutes: 30 }
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.sunprotection_required_east
+
+  - alias: sunprotection_required_east_off
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.wettersensor_sun_east
+      below: 80
+      for:
+        minutes: 30
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.sunprotection_required_east
+
+  - alias: sunprotection_required_south_on
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.wettersensor_sun_south
+      above: 80
+      for:
+        minutes: 30
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.sunprotection_required_south
+
+  - alias: sunprotection_required_south_off
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.wettersensor_sun_south
+      below: 80
+      for:
+        minutes: 30
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.sunprotection_required_south
+
+  - alias: sunprotection_required_west_on
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.wettersensor_sun_west
+      above: 80
+      for:
+        minutes: 30
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.sunprotection_required_west
+
+  - alias: sunprotection_required_west_off
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.wettersensor_sun_west
+      below: 80
+      for:
+        minutes: 30
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.sunprotection_required_west
+
+
+history_graph:
+
+  sonnenschutz:
+    name: Sonnenschutz
+    entities:
+      - sensor.wettersensor_temperature
+      - sensor.wettersensor_sun_east
+      - input_boolean.sunprotection_required_east
+      - sensor.wettersensor_sun_south
+      - input_boolean.sunprotection_required_south
+      - sensor.wettersensor_sun_west
+      - input_boolean.sunprotection_required_west
+    hours_to_show: 72
+    refresh: 60

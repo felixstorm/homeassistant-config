@@ -54,3 +54,7 @@ group:
     entities:
       - group.all_automations
       - group.all_scripts
+      - input_boolean.sunprotection_required_east
+      - input_boolean.sunprotection_required_south
+      - input_boolean.sunprotection_required_west
+      - history_graph.sonnenschutz
