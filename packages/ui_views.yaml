@@ -53,9 +53,4 @@ group:
     name: Automations & Scripts
     entities:
       - group.all_automations
-      - automation.covers_down_at_dusk
-      - automation.covers_up_in_the_morning
-      - automation.covers_up_during_daytime
       - group.all_scripts
-      - script.covers_automatic_open
-      - script.covers_automatic_close

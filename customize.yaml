@@ -1,2 +1,6 @@
 group.all_lights:
   hidden: false
+group.all_automations:
+  hidden: false
+group.all_scripts:
+  hidden: false
