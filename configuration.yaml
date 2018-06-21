@@ -30,9 +30,18 @@ logger:
     zigpy.zdo: debug
     zigpy_xbee: info
 
+
 history:
+  exclude:
+    entities:
+      - sensor.heizung_sw_version_minor
+
 recorder:
   purge_keep_days: 60
+  exclude:
+    entities:
+      - sensor.heizung_sw_version_major
+
 history_graph: !include history_graph.yaml
 
 frontend:
@@ -59,6 +68,11 @@ conversation:
 
 # View all events in a logbook
 logbook:
+  exclude:
+    entities:
+      - sensor.date
+      - sensor.time
+      - sensor.wettersensor
 
 # Enables a map showing the location of tracked devices
 map:
