@@ -3,16 +3,18 @@ homeassistant:
   customize:
   
     # EG
-    cover.ubisys_j1_5502_00000dc6_1:
-      friendly_name: Küche Fenster
-    cover.ubisys_j1_5502_00002c8c_1:
-      friendly_name: Küche Terrassentür
-    cover.ubisys_j1_5502_0000243d_1:
-      friendly_name: Wintergarten Markise
-    cover.ubisys_j1_5502_000024db_1:
-      friendly_name: Wohnzimmer Terrassentür
     cover.ubisys_j1_5502_00002415_1:
       friendly_name: Wohnzimmer Sitzfenster
+    cover.ubisys_j1_5502_000024db_1:
+      friendly_name: Wohnzimmer Terrassentür
+    cover.ubisys_j1_5502_0000243d_1:
+      friendly_name: Wintergarten Markise
+    cover.ubisys_j1_5502_00002c8c_1:
+      friendly_name: Küche Terrassentür
+    cover.ubisys_j1_5502_00000dc6_1:
+      friendly_name: Küche Fenster
+    cover.ubisys_j1_5502_00001110_1:
+      friendly_name: Windfang
 
     # OG
     cover.ubisys_j1_5502_00000df3_1:
@@ -41,14 +43,25 @@ homeassistant:
 
 group:
 
+  covers_tab:
+    view: yes
+    name: Beschattung
+    entities:
+      - group.covers_all
+      - group.covers_sunprotection
+      - history_graph.sonnenschutz
+      - group.all_automations
+      - group.all_scripts
+
   covers_all:
     name: Beschattung Übersicht
     entities:
-      - cover.ubisys_j1_5502_00000dc6_1
-      - cover.ubisys_j1_5502_00002c8c_1
-      - cover.ubisys_j1_5502_0000243d_1
-      - cover.ubisys_j1_5502_000024db_1
       - cover.ubisys_j1_5502_00002415_1
+      - cover.ubisys_j1_5502_000024db_1
+      - cover.ubisys_j1_5502_0000243d_1
+      - cover.ubisys_j1_5502_00002c8c_1
+      - cover.ubisys_j1_5502_00000dc6_1
+      - cover.ubisys_j1_5502_00001110_1
       - cover.ubisys_j1_5502_00000df3_1
       - cover.ubisys_j1_5502_00000ded_1
       - cover.ubisys_j1_5502_000024aa_1
