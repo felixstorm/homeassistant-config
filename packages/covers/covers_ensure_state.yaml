@@ -20,11 +20,11 @@ script:
   covers_ensure_state_lift:
     sequence:
       - service: logbook.log
-        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_LIFT *** Started for cover {{ cover_id }}, is_lift: {{ state_attr(cover_id, 'current_position') }}, target_lift: {{ target_lift }} ***" }
+        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_LIFT *** Started for cover {{ cover_id }}, is_lift: {{ state_attr(cover_id, 'current_position') }}, target_lift: {{ target_lift }}, diff: {{ ((state_attr(cover_id, 'current_position') - (target_lift | int)) | abs) }} ***" }
       - condition: template
-        value_template: "{{ state_attr(cover_id, 'current_position') != (target_lift | int) }}"
+        value_template: "{{ state_attr(cover_id, 'current_position') != 0 and ((state_attr(cover_id, 'current_position') - (target_lift | int)) | abs) > 3 }}"
       - service: logbook.log
-        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_LIFT *** Setting lift position ***" }
+        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_LIFT *** Setting lift position for cover {{ cover_id }}, target_lift: {{ target_lift }} ***" }
       - service: cover.set_cover_position
         data_template:
           entity_id: "{{ cover_id }}"
@@ -34,11 +34,11 @@ script:
   covers_ensure_state_tilt:
     sequence:
       - service: logbook.log
-        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_TILT *** Started for cover {{ cover_id }}, is_tilt: {{ state_attr(cover_id, 'current_tilt_position') }}, target_tilt: {{ target_tilt }} ***" }
+        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_TILT *** Started for cover {{ cover_id }}, is_lift: {{ state_attr(cover_id, 'current_position') }}, is_tilt: {{ state_attr(cover_id, 'current_tilt_position') }}, target_tilt: {{ target_tilt }}, diff: {{ ((state_attr(cover_id, 'current_tilt_position') - (target_tilt | int)) | abs) }} ***" }
       - condition: template
-        value_template: "{{ state_attr(cover_id, 'current_tilt_position') != (target_tilt | int) }}"
+        value_template: "{{ state_attr(cover_id, 'current_position') != 0 and ((state_attr(cover_id, 'current_tilt_position') - (target_tilt | int)) | abs) > 3 }}"
       - service: logbook.log
-        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_TILT *** Setting tilt position ***" }
+        data_template: { name: "", message: "", errormessage: "*** COVERS_ENSURE_STATE_TILT *** Setting tilt position for cover {{ cover_id }}, target_tilt: {{ target_tilt }} ***" }
       - service: cover.set_cover_tilt_position
         data_template:
           entity_id: "{{ cover_id }}"
