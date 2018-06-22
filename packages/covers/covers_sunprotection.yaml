@@ -1,80 +1,203 @@
 input_boolean:
 
-  sunprotection_required_east:
+  sunprot_eastface_active:
     name: Sonnenschutz nötig Ostseite
     icon: mdi:weather-sunny
 
-  sunprotection_required_south:
+  sunprot_southface_active:
     name: Sonnenschutz nötig Südseite
     icon: mdi:weather-sunny
 
-  sunprotection_required_west:
+  sunprot_westface_active:
     name: Sonnenschutz nötig Westseite
     icon: mdi:weather-sunny
 
 
+sensor:
+
+  - platform: template
+    sensors:
+      sunprot_eastface_radlevel_current:
+        value_template: "{{ states('sensor.wettersensor_sun_east') }}"
+        unit_of_measurement: "%"
+  - platform: statistics
+    name: sunprot_eastface_radlevel
+    entity_id: sensor.sunprot_eastface_radlevel_current
+    sampling_size: 60
+    max_age: { minutes: 30 }
+
+  - platform: template
+    sensors:
+      sunprot_southface_radlevel_current:
+        value_template: "{{ states('sensor.wettersensor_sun_south') }}"
+        unit_of_measurement: "%"
+  - platform: statistics
+    name: sunprot_southface_radlevel
+    entity_id: sensor.sunprot_southface_radlevel_current
+    sampling_size: 60
+    max_age: { minutes: 30 }
+
+  - platform: template
+    sensors:
+      sunprot_westface_radlevel_current:
+        value_template: "{{ states('sensor.wettersensor_sun_west') }}"
+        unit_of_measurement: "%"
+  - platform: statistics
+    name: sunprot_westface_radlevel
+    entity_id: sensor.sunprot_westface_radlevel_current
+    sampling_size: 60
+    max_age: { minutes: 30 }
+
+
 automation:
 
-  - alias: sunprotection_required_east_on
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_east, above: 80, for: { minutes: 30 } }
-    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprotection_required_east } }
-  - alias: sunprotection_required_east_off
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_east, below: 80, for: { minutes: 30 } }
-    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprotection_required_east } }
+  - alias: sunprot_eastface_active_on
+    trigger: { platform: numeric_state, entity_id: sensor.sunprot_eastface_radlevel_mean, above: 80 }
+    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprot_eastface_active } }
+  - alias: sunprot_eastface_active_off
+    trigger: { platform: numeric_state, entity_id: sensor.sunprot_eastface_radlevel_mean, below: 60 }
+    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_eastface_active } }
 
-  - alias: sunprotection_required_south_on
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_south, above: 80, for: { minutes: 30 } }
-    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprotection_required_south } }
-  - alias: sunprotection_required_south_off
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_south, below: 80, for: { minutes: 30 } }
-    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprotection_required_south } }
+  - alias: sunprot_southface_active_on
+    trigger: { platform: numeric_state, entity_id: sensor.sunprot_southface_radlevel_mean, above: 80 }
+    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprot_southface_active } }
+  - alias: sunprot_southface_active_off
+    trigger: { platform: numeric_state, entity_id: sensor.sunprot_southface_radlevel_mean, below: 60 }
+    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_southface_active } }
 
-  - alias: sunprotection_required_west_on
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_west, above: 80, for: { minutes: 30 } }
-    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprotection_required_west } }
-  - alias: sunprotection_required_west_off
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_west, below: 80, for: { minutes: 30 } }
-    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprotection_required_west } }
+  - alias: sunprot_westface_active_on
+    trigger: { platform: numeric_state, entity_id: sensor.sunprot_westface_radlevel_mean, above: 80 }
+    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprot_westface_active } }
+  - alias: sunprot_westface_active_off
+    trigger: { platform: numeric_state, entity_id: sensor.sunprot_westface_radlevel_mean, below: 60 }
+    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_westface_active } }
 
-
-  - alias: sunprotection_east_turn_on
+  - alias: sunprot_eastface_turn_on
     trigger:
-      - { platform: state, entity_id: input_boolean.sunprotection_required_east, to: 'on' }
-      - { platform: time, minutes: /30, seconds: 0 }
+      - { platform: state, entity_id: input_boolean.sunprot_eastface_active, to: 'on' }
+      - { platform: time, minutes: /15, seconds: 0 }
     condition:
-      - { condition: state, entity_id: input_boolean.sunprotection_required_east, state: 'on' }
-      - { condition: time, after: '08:00:00', before: '19:00:00' }
+      - { condition: state, entity_id: input_boolean.sunprot_eastface_active, state: 'on' }
+      - { condition: time, after: '08:00:00', before: '20:00:00' }
     action:
-      - service: script.sunprotection_east_set
+      - service: script.sunprot_eastface_set_level
         data: { target_lift: 20, target_tilt: 50 }
-
-  - alias: sunprotection_east_turn_off
+  - alias: sunprot_eastface_turn_off
     trigger:
-      - { platform: state, entity_id: input_boolean.sunprotection_required_east, to: 'off' }
-      - { platform: time, minutes: /30, seconds: 0 }
+      - { platform: state, entity_id: input_boolean.sunprot_eastface_active, to: 'off' }
+      - { platform: time, minutes: /15, seconds: 0 }
     condition:
-      - { condition: state, entity_id: input_boolean.sunprotection_required_east, state: 'off' }
-      - { condition: time, after: '08:00:00', before: '19:00:00' }
+      - { condition: state, entity_id: input_boolean.sunprot_eastface_active, state: 'off' }
+      - { condition: time, after: '08:00:00', before: '20:00:00' }
     action:
-      - service: script.sunprotection_east_set
+      - service: script.sunprot_eastface_set_level
+        data: { target_lift: 100, target_tilt: 50 }
+
+  - alias: sunprot_southface_turn_on
+    trigger:
+      - { platform: state, entity_id: input_boolean.sunprot_southface_active, to: 'on' }
+      - { platform: time, minutes: /15, seconds: 0 }
+    condition:
+      - { condition: state, entity_id: input_boolean.sunprot_southface_active, state: 'on' }
+      - { condition: time, after: '08:00:00', before: '20:00:00' }
+    action:
+      - service: script.sunprot_southface_set_level
+        data: { target_lift: 20, target_tilt: 50 }
+  - alias: sunprot_southface_turn_off
+    trigger:
+      - { platform: state, entity_id: input_boolean.sunprot_southface_active, to: 'off' }
+      - { platform: time, minutes: /15, seconds: 0 }
+    condition:
+      - { condition: state, entity_id: input_boolean.sunprot_southface_active, state: 'off' }
+      - { condition: time, after: '08:00:00', before: '20:00:00' }
+    action:
+      - service: script.sunprot_southface_set_level
+        data: { target_lift: 100, target_tilt: 50 }
+
+  - alias: sunprot_westface_turn_on
+    trigger:
+      - { platform: state, entity_id: input_boolean.sunprot_westface_active, to: 'on' }
+      - { platform: time, minutes: /15, seconds: 0 }
+    condition:
+      - { condition: state, entity_id: input_boolean.sunprot_westface_active, state: 'on' }
+      - { condition: time, after: '08:00:00', before: '20:00:00' }
+    action:
+      - service: script.sunprot_westface_set_level
+        data: { target_lift: 20, target_tilt: 50 }
+  - alias: sunprot_westface_turn_off
+    trigger:
+      - { platform: state, entity_id: input_boolean.sunprot_westface_active, to: 'off' }
+      - { platform: time, minutes: /15, seconds: 0 }
+    condition:
+      - { condition: state, entity_id: input_boolean.sunprot_westface_active, state: 'off' }
+      - { condition: time, after: '08:00:00', before: '20:00:00' }
+    action:
+      - service: script.sunprot_westface_set_level
         data: { target_lift: 100, target_tilt: 50 }
 
 
 script:
 
-  sunprotection_east_set:
+  sunprot_eastface_set_level:
     sequence:
     - service: logbook.log
-      data_template: { name: "", message: "", errormessage: "*** SUNPROTECTION_EAST_SET *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
-    # - wait_template: "{{ is_state(script.covers_ensure_state, 'off') }}"
+      data_template: { name: "", message: "", errormessage: "*** SUNPROT_EASTFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
     - service: script.covers_ensure_state
-      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002415_1 }
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002415_1 }  # Wohnzimmer Sitzfenster
+    - delay: '00:00:10'
+    # - service: script.covers_ensure_state
+    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_000024db_1 }  # Wohnzimmer Terrassentür
+    # - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000df3_1 }  # Florian
     - delay: '00:00:10'
     - service: script.covers_ensure_state
-      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002cc0_1 }
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000ded_1 }  # Jonathan links
     - delay: '00:00:10'
     - service: script.covers_ensure_state
-      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_0000240d_1 }
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002cc0_1 }  # Studio DG links
+    - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_0000240d_1 }  # Studio DG rechts
+
+  sunprot_southface_set_level:
+    sequence:
+    - service: logbook.log
+      data_template: { name: "", message: "", errormessage: "*** SUNPROT_SOUTHFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
+    # - service: script.covers_ensure_state
+    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_0000243d_1 }  # Wintergarten Markise
+    # - delay: '00:00:10'
+    # - service: script.covers_ensure_state
+    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002c8c_1 }  # Küche Terrassentür
+    # - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_000024aa_1 }  # Jonathan rechts
+
+
+  sunprot_westface_set_level:
+    sequence:
+    - service: logbook.log
+      data_template: { name: "", message: "", errormessage: "*** SUNPROT_WESTFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
+    # - service: script.covers_ensure_state
+    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000dc6_1 }  # Windfang
+    # - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000dc6_1 }  # Küche Fenster
+    - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_0000255e_1 }  # Schlafzimmer
+    - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000dec_1 }  # Bad OG
+    - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_0000243e_1 }  # Flur OG
+    # - delay: '00:00:10'
+    # - service: script.covers_ensure_state
+    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000dba_1 }  # Dachfenster groß
+    # - delay: '00:00:10'
+    # - service: script.covers_ensure_state
+    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002cec_1 }  # Bad DG
 
 
 history_graph:
