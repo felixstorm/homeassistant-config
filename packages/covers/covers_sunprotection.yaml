@@ -18,7 +18,8 @@ sensor:
   - platform: template
     sensors:
       sunprot_eastface_radlevel_current:
-        value_template: "{{ states('sensor.wettersensor_sun_east') }}"
+        # dummy add wettersensor_reading_age to make sure we get new states every minute for the statistics sensor even value is always truncated at 99 klx
+        value_template: "{{ states('sensor.wettersensor_sun_east') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
         unit_of_measurement: "%"
   - platform: statistics
     name: sunprot_eastface_radlevel
@@ -29,7 +30,8 @@ sensor:
   - platform: template
     sensors:
       sunprot_southface_radlevel_current:
-        value_template: "{{ states('sensor.wettersensor_sun_south') }}"
+        # dummy add wettersensor_reading_age to make sure we get new states every minute for the statistics sensor even value is always truncated at 99 klx
+        value_template: "{{ states('sensor.wettersensor_sun_south') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
         unit_of_measurement: "%"
   - platform: statistics
     name: sunprot_southface_radlevel
@@ -40,7 +42,8 @@ sensor:
   - platform: template
     sensors:
       sunprot_westface_radlevel_current:
-        value_template: "{{ states('sensor.wettersensor_sun_west') }}"
+        # dummy add wettersensor_reading_age to make sure we get new states every minute for the statistics sensor even value is always truncated at 99 klx
+        value_template: "{{ states('sensor.wettersensor_sun_west') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
         unit_of_measurement: "%"
   - platform: statistics
     name: sunprot_westface_radlevel
