@@ -29,20 +29,20 @@ async def async_setup_platform(hass, config, async_add_devices,
     _LOGGER.debug("current_position_tilt_percentage for %s is %s", discovery_info['unique_id'], current_position_tilt_percentage)
     discovery_info['supports_set_tilt_position'] = (current_position_tilt_percentage is not None and current_position_tilt_percentage <= 100)
 
-    async def safe(coro):
-        """Run coro, catching ZigBee delivery errors, and ignoring them."""
-        import zigpy.exceptions
-        try:
-            await coro
-        except zigpy.exceptions.DeliveryError as exc:
-            _LOGGER.warning("Ignoring error during setup: %s", exc)
+    # async def safe(coro):
+    #     """Run coro, catching ZigBee delivery errors, and ignoring them."""
+    #     import zigpy.exceptions
+    #     try:
+    #         await coro
+    #     except zigpy.exceptions.DeliveryError as exc:
+    #         _LOGGER.warning("Ignoring error during setup: %s", exc)
 
-    from zigpy.zcl.clusters.closures import WindowCovering
-    in_clusters = discovery_info['in_clusters']
-    cluster = in_clusters[WindowCovering.cluster_id]
-    await safe(cluster.bind())
-    await safe(cluster.configure_reporting(0x0008, 1, 600, 1))    # current_position_lift_percentage
-    await safe(cluster.configure_reporting(0x0009, 1, 600, 1))    # current_position_tilt_percentage
+    # from zigpy.zcl.clusters.closures import WindowCovering
+    # in_clusters = discovery_info['in_clusters']
+    # cluster = in_clusters[WindowCovering.cluster_id]
+    # await safe(cluster.bind())
+    # await safe(cluster.configure_reporting(0x0008, 1, 600, 1))    # current_position_lift_percentage
+    # await safe(cluster.configure_reporting(0x0009, 1, 600, 1))    # current_position_tilt_percentage
 
     async_add_devices([ZhaCover(**discovery_info)], update_before_add=True)
 
@@ -63,7 +63,7 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
 
     def attribute_updated(self, attribute, value):
         """Handle attribute updates on this cluster."""
-        _LOGGER.debug("Attribute updated: %s %s %s", self, attribute, value)
+        _LOGGER.debug("Attribute updated: %s, 0x%04x = %s", self.entity_id, attribute, value)
         if attribute == 0x0008:    # current_position_lift_percentage
             self.update_lift(value)
         if attribute == 0x0009:    # current_position_tilt_percentage
@@ -96,10 +96,10 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
         await self._endpoint.window_covering.go_to_tilt_percentage(100 - kwargs.get(cover.ATTR_TILT_POSITION))
 
 
-    @property
-    def should_poll(self) -> bool:
-        """Let zha handle polling."""
-        return False
+    # @property
+    # def should_poll(self) -> bool:
+    #     """Let zha handle polling."""
+    #     return False
 
     @property
     def current_cover_position(self):
