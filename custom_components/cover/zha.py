@@ -29,6 +29,21 @@ async def async_setup_platform(hass, config, async_add_devices,
     _LOGGER.debug("current_position_tilt_percentage for %s is %s", discovery_info['unique_id'], current_position_tilt_percentage)
     discovery_info['supports_set_tilt_position'] = (current_position_tilt_percentage is not None and current_position_tilt_percentage <= 100)
 
+    async def safe(coro):
+        """Run coro, catching ZigBee delivery errors, and ignoring them."""
+        import zigpy.exceptions
+        try:
+            await coro
+        except zigpy.exceptions.DeliveryError as exc:
+            _LOGGER.warning("Ignoring error during setup: %s", exc)
+
+    from zigpy.zcl.clusters.closures import WindowCovering
+    in_clusters = discovery_info['in_clusters']
+    cluster = in_clusters[WindowCovering.cluster_id]
+    await safe(cluster.bind())
+    await safe(cluster.configure_reporting(0x0008, 1, 600, 1))    # current_position_lift_percentage
+    await safe(cluster.configure_reporting(0x0009, 1, 600, 1))    # current_position_tilt_percentage
+
     async_add_devices([ZhaCover(**discovery_info)], update_before_add=True)
 
 
@@ -38,14 +53,23 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
     def __init__(self, **kwargs):
         """Initialize the ZHA cover."""
         super().__init__(**kwargs)
-        self._supported_features = cover.SUPPORT_OPEN | cover.SUPPORT_CLOSE | cover.SUPPORT_STOP
         self._current_position_lift = None
         self._current_position_tilt = None
-
+        self._supported_features = cover.SUPPORT_OPEN | cover.SUPPORT_CLOSE | cover.SUPPORT_STOP
         if kwargs.get('supports_set_position'):
             self._supported_features |= cover.SUPPORT_SET_POSITION
         if kwargs.get('supports_set_tilt_position'):
             self._supported_features |= cover.SUPPORT_SET_TILT_POSITION
+
+    def attribute_updated(self, attribute, value):
+        """Handle attribute updates on this cluster."""
+        _LOGGER.debug("Attribute updated: %s %s %s", self, attribute, value)
+        if attribute == 0x0008:    # current_position_lift_percentage
+            self.update_lift(value)
+        if attribute == 0x0009:    # current_position_tilt_percentage
+            self.update_tilt(value)
+        self.async_schedule_update_ha_state()
+
 
     async def async_close_cover(self, **kwargs):
         """Close the cover."""
@@ -73,6 +97,11 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
 
 
     @property
+    def should_poll(self) -> bool:
+        """Let zha handle polling."""
+        return False
+
+    @property
     def current_cover_position(self):
         """Return the current position of ZHA cover."""
         if self._current_position_lift is not None:
@@ -97,21 +126,26 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
         """Flag supported features."""
         return self._supported_features
 
+
     async def async_update(self):
         """Retrieve latest state."""
         await asyncio.sleep(random.uniform(0, 5.0))    # random delay to distribute load on zigbee stick & network as long as we poll devices
         zha_attrs = await zha.safe_read(self._endpoint.window_covering, 
                                         ['current_position_lift_percentage', 'current_position_tilt_percentage'], 
                                         allow_cache=False)
-        zha_position_lift = zha_attrs.get('current_position_lift_percentage')
-        if zha_position_lift is not None:
-            if zha_position_lift <= 100:
-                self._current_position_lift = 100 - zha_position_lift
+        self.update_lift(zha_attrs.get('current_position_lift_percentage'))
+        self.update_tilt(zha_attrs.get('current_position_tilt_percentage'))
+
+    def update_lift(self, zha_position_lift_percentage):
+        if zha_position_lift_percentage is not None:
+            if zha_position_lift_percentage <= 100:
+                self._current_position_lift = 100 - zha_position_lift_percentage
             else:
                 self._current_position_lift = None
-        zha_position_tilt = zha_attrs.get('current_position_tilt_percentage')
-        if zha_position_tilt is not None:
-            if zha_position_tilt <= 100:
-                self._current_position_tilt = 100 - zha_position_tilt
+
+    def update_tilt(self, zha_position_tilt_percentage):
+        if zha_position_tilt_percentage is not None:
+            if zha_position_tilt_percentage <= 100:
+                self._current_position_tilt = 100 - zha_position_tilt_percentage
             else:
                 self._current_position_tilt = None
