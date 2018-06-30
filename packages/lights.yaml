@@ -12,3 +12,72 @@ group:
       - light.herd
       - light.herd_links
       - light.herd_rechts
+
+  random_lights_tab:
+    view: yes
+    name: Zufallslicht
+    entities:
+      - light.flur_og
+      - light.studio_dg
+      - automation.zufallslicht_flur_og_abends_ein
+      - automation.zufallslicht_flur_og_abends_aus
+      - automation.zufallslicht_studio_einaus
+      - automation.zufallslichter_abends_sicher_aus
+      - history_graph.zufallslicht
+
+
+history_graph:
+
+  zufallslicht:
+    name: Zufallslicht
+    entities:
+      - light.flur_og
+      - light.studio_dg
+    hours_to_show: 72
+    refresh: 60
+
+
+automation:
+
+  - alias: 'Zufallslicht Studio ein/aus'
+    trigger: { platform: time, minutes: /20, seconds: 0 }
+    condition:
+      - { condition: sun, after: sunset, after_offset: '-1:00:00' }
+      - { condition: time, before: '23:45:00' }
+    action:
+      - service_template: >
+          {% if (range(0, 2)|random|int) > 0 %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        entity_id: light.studio_dg
+
+  - alias: 'Zufallslicht Flur OG abends ein'
+    trigger:
+      platform: sun
+      event: sunset
+      offset: '-01:00:00'
+    action:
+    - delay: '00:{{ (range(0, 29)|random|int) }}:00'
+    - service: light.turn_on
+      entity_id: light.flur_og
+
+  - alias: 'Zufallslicht Flur OG abends aus'
+    trigger:
+      platform: time
+      at: '22:00:00'
+    action:
+    - delay: '00:{{ (range(0, 59)|random|int) }}:00'
+    - service: light.turn_off
+      entity_id: light.flur_og
+
+  - alias: 'Zufallslichter abends sicher aus'
+    trigger:
+      platform: time
+      at: '00:00:00'
+    action:
+      - service: light.turn_off
+        entity_id: light.flur_og
+      - service: light.turn_off
+        entity_id: light.studio_dg
