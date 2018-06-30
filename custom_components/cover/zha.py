@@ -24,10 +24,10 @@ async def async_setup_platform(hass, config, async_add_devices,
                                allow_cache=True)
     current_position_lift_percentage = caps.get('current_position_lift_percentage')
     _LOGGER.debug("current_position_lift_percentage for %s is %s", discovery_info['unique_id'], current_position_lift_percentage)
-    discovery_info['supports_set_position'] = (current_position_lift_percentage is not None and current_position_lift_percentage <= 100)
+    discovery_info['current_position_lift_percentage'] = current_position_lift_percentage
     current_position_tilt_percentage = caps.get('current_position_tilt_percentage')
     _LOGGER.debug("current_position_tilt_percentage for %s is %s", discovery_info['unique_id'], current_position_tilt_percentage)
-    discovery_info['supports_set_tilt_position'] = (current_position_tilt_percentage is not None and current_position_tilt_percentage <= 100)
+    discovery_info['current_position_tilt_percentage'] = current_position_tilt_percentage
 
     # async def safe(coro):
     #     """Run coro, catching ZigBee delivery errors, and ignoring them."""
@@ -44,7 +44,7 @@ async def async_setup_platform(hass, config, async_add_devices,
     # await safe(cluster.configure_reporting(0x0008, 1, 600, 1))    # current_position_lift_percentage
     # await safe(cluster.configure_reporting(0x0009, 1, 600, 1))    # current_position_tilt_percentage
 
-    async_add_devices([ZhaCover(**discovery_info)], update_before_add=True)
+    async_add_devices([ZhaCover(**discovery_info)])
 
 
 class ZhaCover(zha.Entity, cover.CoverDevice):
@@ -53,13 +53,19 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
     def __init__(self, **kwargs):
         """Initialize the ZHA cover."""
         super().__init__(**kwargs)
+        current_position_lift_percentage = kwargs.get('current_position_lift_percentage')
+        current_position_tilt_percentage = kwargs.get('current_position_tilt_percentage')
+
         self._current_position_lift = None
         self._current_position_tilt = None
         self._supported_features = cover.SUPPORT_OPEN | cover.SUPPORT_CLOSE | cover.SUPPORT_STOP
-        if kwargs.get('supports_set_position'):
+        if current_position_lift_percentage is not None and current_position_lift_percentage <= 100:
             self._supported_features |= cover.SUPPORT_SET_POSITION
-        if kwargs.get('supports_set_tilt_position'):
+        if current_position_tilt_percentage is not None and current_position_tilt_percentage <= 100:
             self._supported_features |= cover.SUPPORT_SET_TILT_POSITION
+
+        self.update_lift(current_position_lift_percentage)
+        self.update_tilt(current_position_tilt_percentage)
 
     def attribute_updated(self, attribute, value):
         """Handle attribute updates on this cluster."""
