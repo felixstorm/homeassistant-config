@@ -46,10 +46,19 @@ script:
   covers_automatic_open:
     sequence:
     - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00002415_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_000024db_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00002c8c_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
       entity_id: cover.ubisys_j1_5502_00000dc6_1
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
     - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00002415_1
+      entity_id: cover.ubisys_j1_5502_00001110_1
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
     - service: cover.open_cover
       entity_id: cover.ubisys_j1_5502_00000df3_1
@@ -78,10 +87,22 @@ script:
   covers_automatic_close:
     sequence:
     - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00002415_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    # - service: cover.close_cover
+    #   entity_id: cover.ubisys_j1_5502_000024db_1
+    # - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_0000243d_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_00002c8c_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
       entity_id: cover.ubisys_j1_5502_00000dc6_1
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
     - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00002415_1
+      entity_id: cover.ubisys_j1_5502_00001110_1
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
     - service: cover.close_cover
       entity_id: cover.ubisys_j1_5502_00000df3_1
@@ -106,6 +127,9 @@ script:
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
     - service: cover.close_cover
       entity_id: cover.ubisys_j1_5502_0000240d_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.open_cover
+      entity_id: cover.ubisys_j1_5502_00000dba_1
 
 
 homeassistant:
