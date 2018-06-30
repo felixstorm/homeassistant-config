@@ -155,9 +155,9 @@ script:
     - service: script.covers_ensure_state
       data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002415_1 }  # Wohnzimmer Sitzfenster
     - delay: '00:00:10'
-    # - service: script.covers_ensure_state
-    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_000024db_1 }  # Wohnzimmer Terrassentür
-    # - delay: '00:00:10'
+    - service: script.covers_ensure_state
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_000024db_1 }  # Wohnzimmer Terrassentür
+    - delay: '00:00:10'
     - service: script.covers_ensure_state
       data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000df3_1 }  # Florian
     - delay: '00:00:10'
@@ -176,9 +176,9 @@ script:
     - wait_template: "{{ is_state('script.sunprot_eastface_set_level', 'off') }}"
     - service: logbook.log
       data_template: { name: "", message: "", errormessage: "*** SUNPROT_SOUTHFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
-    - service: script.covers_ensure_state
-      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_0000243d_1 }  # Wintergarten Markise
-    - delay: '00:00:10'
+    # - service: script.covers_ensure_state
+    #   data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_0000243d_1 }  # Wintergarten Markise
+    # - delay: '00:00:10'
     - service: script.covers_ensure_state
       data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00002c8c_1 }  # Küche Terrassentür
     - delay: '00:00:10'
@@ -193,7 +193,7 @@ script:
     - service: logbook.log
       data_template: { name: "", message: "", errormessage: "*** SUNPROT_WESTFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
     - service: script.covers_ensure_state
-      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000dc6_1 }  # Windfang
+      data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00001110_1 }  # Windfang
     - delay: '00:00:10'
     - service: script.covers_ensure_state
       data_template: { target_lift: "{{ target_lift }}", target_tilt: "{{ target_tilt }}", cover_id: cover.ubisys_j1_5502_00000dc6_1 }  # Küche Fenster
