@@ -130,11 +130,14 @@ class ZhaCover(zha.Entity, cover.CoverDevice):
     async def async_update(self):
         """Retrieve latest state."""
         await asyncio.sleep(random.uniform(0, 5.0))    # random delay to distribute load on zigbee stick & network as long as we poll devices
+        _LOGGER.debug("*** update called for %s", self.entity_id)
+        _LOGGER.debug("      update delay done for %s", self.entity_id)
         zha_attrs = await zha.safe_read(self._endpoint.window_covering, 
                                         ['current_position_lift_percentage', 'current_position_tilt_percentage'], 
                                         allow_cache=False)
         self.update_lift(zha_attrs.get('current_position_lift_percentage'))
         self.update_tilt(zha_attrs.get('current_position_tilt_percentage'))
+        _LOGGER.debug("      update finished for %s", self.entity_id)
 
     def update_lift(self, zha_position_lift_percentage):
         if zha_position_lift_percentage is not None:
