@@ -150,7 +150,6 @@ script:
 
   sunprot_eastface_set_level:
     sequence:
-    - wait_template: "{{ is_state('script.sunprot_southface_set_level', 'off') and is_state('script.sunprot_westface_set_level', 'off') }}"
     - service: logbook.log
       data_template: { name: "", message: "", errormessage: "*** SUNPROT_EASTFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
     - service: script.covers_ensure_state
@@ -173,8 +172,8 @@ script:
 
   sunprot_southface_set_level:
     sequence:
-    - delay: '00:00:05'
-    - wait_template: "{{ is_state('script.sunprot_eastface_set_level', 'off') and is_state('script.sunprot_westface_set_level', 'off') }}"
+    - delay: '00:02:00'
+    - wait_template: "{{ is_state('script.sunprot_eastface_set_level', 'off') }}"
     - service: logbook.log
       data_template: { name: "", message: "", errormessage: "*** SUNPROT_SOUTHFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
     - service: script.covers_ensure_state
@@ -189,7 +188,7 @@ script:
 
   sunprot_westface_set_level:
     sequence:
-    - delay: '00:00:10'
+    - delay: '00:04:00'
     - wait_template: "{{ is_state('script.sunprot_eastface_set_level', 'off') and is_state('script.sunprot_southface_set_level', 'off') }}"
     - service: logbook.log
       data_template: { name: "", message: "", errormessage: "*** SUNPROT_WESTFACE_SET_LEVEL *** Started with target_tilt: {{ target_tilt }}, target_lift: {{ target_lift }} ***" }
