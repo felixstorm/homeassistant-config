@@ -90,9 +90,9 @@ script:
     - service: cover.close_cover
       entity_id: cover.ubisys_j1_5502_00002415_1
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    # - service: cover.close_cover
-    #   entity_id: cover.ubisys_j1_5502_000024db_1
-    # - delay: '00:00:{{ (range(10, 30)|random|int) }}'
+    - service: cover.close_cover
+      entity_id: cover.ubisys_j1_5502_000024db_1
+    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
     - service: cover.open_cover
       entity_id: cover.ubisys_j1_5502_0000243d_1
     - delay: '00:00:{{ (range(10, 30)|random|int) }}'
