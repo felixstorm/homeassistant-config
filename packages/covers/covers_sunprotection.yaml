@@ -81,7 +81,8 @@ automation:
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
       - { condition: state, entity_id: input_boolean.sunprot_eastface_active, state: 'on' }
-      - { condition: time, after: '08:00:00', before: '20:00:00' }
+      - { condition: time, after: '08:00:00' }
+      - { condition: sun, before: sunset }
     action:
       - service: script.sunprot_eastface_set_level
         data: { target_lift: 20, target_tilt: 50 }
@@ -91,7 +92,8 @@ automation:
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
       - { condition: state, entity_id: input_boolean.sunprot_eastface_active, state: 'off' }
-      - { condition: time, after: '08:00:00', before: '20:00:00' }
+      - { condition: time, after: '08:00:00' }
+      - { condition: sun, before: sunset }
     action:
       - service: script.sunprot_eastface_set_level
         data: { target_lift: 100, target_tilt: 50 }
@@ -102,7 +104,8 @@ automation:
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
       - { condition: state, entity_id: input_boolean.sunprot_southface_active, state: 'on' }
-      - { condition: time, after: '08:00:00', before: '20:00:00' }
+      - { condition: time, after: '08:00:00' }
+      - { condition: sun, before: sunset }
     action:
       - service: script.sunprot_southface_set_level
         data: { target_lift: 20, target_tilt: 50 }
@@ -112,7 +115,9 @@ automation:
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
       - { condition: state, entity_id: input_boolean.sunprot_southface_active, state: 'off' }
-      - { condition: time, after: '08:00:00', before: '20:00:00' }
+      - { condition: time, after: '08:00:00' }
+      - { condition: sun, before: sunset }
+
     action:
       - service: script.sunprot_southface_set_level
         data: { target_lift: 100, target_tilt: 50 }
@@ -123,7 +128,8 @@ automation:
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
       - { condition: state, entity_id: input_boolean.sunprot_westface_active, state: 'on' }
-      - { condition: time, after: '08:00:00', before: '20:00:00' }
+      - { condition: time, after: '08:00:00' }
+      - { condition: sun, before: sunset }
     action:
       - service: script.sunprot_westface_set_level
         data: { target_lift: 20, target_tilt: 50 }
@@ -133,7 +139,8 @@ automation:
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
       - { condition: state, entity_id: input_boolean.sunprot_westface_active, state: 'off' }
-      - { condition: time, after: '08:00:00', before: '20:00:00' }
+      - { condition: time, after: '08:00:00' }
+      - { condition: sun, before: sunset }
     action:
       - service: script.sunprot_westface_set_level
         data: { target_lift: 100, target_tilt: 50 }
