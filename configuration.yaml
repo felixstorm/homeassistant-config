@@ -16,18 +16,13 @@ script: !include scripts.yaml
 sensor: !include sensors.yaml
 
 logger:
-  default: error
+  default: warning
   logs:
     homeassistant.config: warning
-    homeassistant.components.automation: debug
-    homeassistant.components.script: debug
     homeassistant.components.zha: debug
-    homeassistant.components.light.zha: debug
-    homeassistant.components.cover.zha: debug
-    custom_components.cover.zha: debug
-    bellows: info
+    custom_components.cover.zha: info
     zigpy: info
-    zigpy.zdo: debug
+    zigpy.zcl: info
     zigpy_xbee: info
 
 
