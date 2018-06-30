@@ -23,19 +23,20 @@ automation:
   - alias: covers_up_in_the_morning
     trigger:
       platform: time
-      at: '07:00:00'
+      at: '07:30:00'
     action:
       - delay: '00:{{ (range(0, 59)|random|int) }}:00'
       - service: script.covers_automatic_open
 
   - alias: covers_up_during_daytime
+    initial_state: false
     trigger:
       platform: time
       minutes: /30
       seconds: 0
     condition:
       - condition: time
-        after: '08:15:00'
+        after: '08:45:00'
         before: '14:00:00'
     action:
       - service: script.covers_automatic_open
