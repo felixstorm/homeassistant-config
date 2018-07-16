@@ -3,6 +3,8 @@
 !scenes
 !packages
 !packages/**
+!python_scripts
+!python_scripts/**
 !.gitignore
 secrets.yaml
 known_devices.yaml
