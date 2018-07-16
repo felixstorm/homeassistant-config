@@ -19,6 +19,8 @@ logger:
   default: warning
   logs:
     homeassistant.config: warning
+    homeassistant.components.python_script: debug
+    homeassistant.components.python_script.covers_ensure_state.py: info
     homeassistant.components.zha: debug
     custom_components.cover.zha: info
     zigpy: info
@@ -84,3 +86,5 @@ cloud:
 sun:
 
 zha: !include zha.yaml
+
+python_script:
