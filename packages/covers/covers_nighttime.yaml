@@ -18,7 +18,12 @@ automation:
         after: '17:00:00'
         before: '04:00:00'
     action:
-      - service: script.covers_automatic_close
+      - service: python_script.covers_ensure_state
+        data: { "face": "east", "target_state": "nighttime" }
+      - service: python_script.covers_ensure_state
+        data: { "face": "south", "target_state": "nighttime" }
+      - service: python_script.covers_ensure_state
+        data: { "face": "west", "target_state": "nighttime" }
 
   - alias: covers_up_in_the_morning
     trigger:
@@ -26,7 +31,12 @@ automation:
       at: '07:30:00'
     action:
       - delay: '00:{{ (range(0, 59)|random|int) }}:00'
-      - service: script.covers_automatic_open
+      - service: python_script.covers_ensure_state
+        data: { "face": "east", "target_state": "morning" }
+      - service: python_script.covers_ensure_state
+        data: { "face": "south", "target_state": "morning" }
+      - service: python_script.covers_ensure_state
+        data: { "face": "west", "target_state": "morning" }
 
   - alias: covers_up_during_daytime
     initial_state: false
@@ -39,98 +49,12 @@ automation:
         after: '08:45:00'
         before: '14:00:00'
     action:
-      - service: script.covers_automatic_open
-
-
-script:
-
-  covers_automatic_open:
-    sequence:
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00002415_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_000024db_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00002c8c_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00000dc6_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00001110_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00000df3_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00000ded_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_000024aa_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_0000255e_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00000dec_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_0000243e_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00002cc0_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_0000240d_1
-
-  covers_automatic_close:
-    sequence:
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00002415_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_000024db_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_0000243d_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00002c8c_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00000dc6_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00001110_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00000df3_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00000ded_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_000024aa_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_0000255e_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00000dec_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_0000243e_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_00002cc0_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.close_cover
-      entity_id: cover.ubisys_j1_5502_0000240d_1
-    - delay: '00:00:{{ (range(10, 30)|random|int) }}'
-    - service: cover.open_cover
-      entity_id: cover.ubisys_j1_5502_00000dba_1
+      - service: python_script.covers_ensure_state
+        data: { "face": "east", "target_state": "morning" }
+      - service: python_script.covers_ensure_state
+        data: { "face": "south", "target_state": "morning" }
+      - service: python_script.covers_ensure_state
+        data: { "face": "west", "target_state": "morning" }
 
 
 homeassistant:
