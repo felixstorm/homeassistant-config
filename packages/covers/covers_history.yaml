@@ -1,0 +1,77 @@
+sensor:
+
+  - platform: template
+    sensors:
+      cover_lift_pos_ubisys_j1_5502_00002415_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00002415_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_000024db_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_000024db_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_0000243d_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_0000243d_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00002c8c_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00002c8c_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00000dc6_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00000dc6_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00001110_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00001110_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00000df3_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00000df3_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00000ded_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00000ded_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_000024aa_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_000024aa_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_0000255e_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_0000255e_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00000dec_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00000dec_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_0000243e_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_0000243e_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00002cc0_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00002cc0_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_0000240d_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_0000240d_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00000dba_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00000dba_1', 'current_position') }}"
+        unit_of_measurement: "%"
+      cover_lift_pos_ubisys_j1_5502_00002cec_1:
+        value_template: "{{ state_attr('cover.ubisys_j1_5502_00002cec_1', 'current_position') }}"
+        unit_of_measurement: "%"
+
+
+history_graph:
+
+  covers_lift_position:
+    name: covers_lift_position
+    entities:
+      - sensor.cover_lift_pos_ubisys_j1_5502_00002415_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_000024db_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_0000243d_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00002c8c_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00000dc6_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00001110_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00000df3_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00000ded_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_000024aa_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_0000255e_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00000dec_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_0000243e_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00002cc0_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_0000240d_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00000dba_1
+      - sensor.cover_lift_pos_ubisys_j1_5502_00002cec_1
+    hours_to_show: 72
+    refresh: 60
