@@ -28,7 +28,7 @@ automation:
   - alias: covers_up_in_the_morning
     trigger:
       platform: time
-      at: '07:30:00'
+      at: '08:00:00'
     action:
       - delay: '00:{{ (range(0, 59)|random|int) }}:00'
       - service: python_script.covers_ensure_state
@@ -46,7 +46,7 @@ automation:
       seconds: 0
     condition:
       - condition: time
-        after: '08:45:00'
+        after: '09:15:00'
         before: '14:00:00'
     action:
       - service: python_script.covers_ensure_state
