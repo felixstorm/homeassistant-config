@@ -19,10 +19,16 @@ sensor:
         value_template: "{{ states('sensor.wettersensor_sun_east') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
         unit_of_measurement: "%"
   - platform: statistics
-    name: sunprot_eastface_radlevel
+    name: sunprot_eastface_radlevel_temp
     entity_id: sensor.sunprot_eastface_radlevel_current
     sampling_size: 60
     max_age: { minutes: 30 }
+  - platform: template
+    sensors:
+      sunprot_eastface_radlevel_mean:
+        # just strip off statistics sensor attributes to save database space and performance
+        value_template: "{{ states('sensor.sunprot_eastface_radlevel_temp_mean') }}"
+        unit_of_measurement: "%"
 
   - platform: template
     sensors:
@@ -31,10 +37,16 @@ sensor:
         value_template: "{{ states('sensor.wettersensor_sun_south') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
         unit_of_measurement: "%"
   - platform: statistics
-    name: sunprot_southface_radlevel
+    name: sunprot_southface_radlevel_temp
     entity_id: sensor.sunprot_southface_radlevel_current
     sampling_size: 60
     max_age: { minutes: 30 }
+  - platform: template
+    sensors:
+      sunprot_southface_radlevel_mean:
+        # just strip off statistics sensor attributes to save database space and performance
+        value_template: "{{ states('sensor.sunprot_southface_radlevel_temp_mean') }}"
+        unit_of_measurement: "%"
 
   - platform: template
     sensors:
@@ -43,10 +55,16 @@ sensor:
         value_template: "{{ states('sensor.wettersensor_sun_west') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
         unit_of_measurement: "%"
   - platform: statistics
-    name: sunprot_westface_radlevel
+    name: sunprot_westface_radlevel_temp
     entity_id: sensor.sunprot_westface_radlevel_current
     sampling_size: 60
     max_age: { minutes: 30 }
+  - platform: template
+    sensors:
+      sunprot_westface_radlevel_mean:
+        # just strip off statistics sensor attributes to save database space and performance
+        value_template: "{{ states('sensor.sunprot_westface_radlevel_temp_mean') }}"
+        unit_of_measurement: "%"
 
 
 automation:
