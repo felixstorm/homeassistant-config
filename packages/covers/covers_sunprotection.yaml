@@ -1,15 +1,12 @@
 input_boolean:
 
   sunprot_eastface_active:
-    name: Sonnenschutz nötig Ostseite
     icon: mdi:weather-sunny
 
   sunprot_southface_active:
-    name: Sonnenschutz nötig Südseite
     icon: mdi:weather-sunny
 
   sunprot_westface_active:
-    name: Sonnenschutz nötig Westseite
     icon: mdi:weather-sunny
 
 
@@ -185,3 +182,41 @@ history_graph:
       - input_boolean.sunprot_westface_active
     hours_to_show: 72
     refresh: 60
+
+
+homeassistant:
+
+  customize:
+
+    input_boolean.sunprot_eastface_active:
+      friendly_name: Sonnenschutz nötig Ostseite
+    automation.sunprot_eastface_active_on:
+      friendly_name: Sonnenschutz nötig Ostseite einschalten
+    automation.sunprot_eastface_active_off:
+      friendly_name: Sonnenschutz nötig Ostseite ausschalten
+    automation.sunprot_eastface_turn_on:
+      friendly_name: Beschattung Ostseite in Sonnenschutz-Position
+    automation.sunprot_eastface_turn_off:
+      friendly_name: Beschattung Ostseite in normale Position
+
+    input_boolean.sunprot_southface_active:
+      friendly_name: Sonnenschutz nötig Südseite
+    automation.sunprot_southface_active_on:
+      friendly_name: Sonnenschutz nötig Südseite einschalten
+    automation.sunprot_southface_active_off:
+      friendly_name: Sonnenschutz nötig Südseite ausschalten
+    automation.sunprot_southface_turn_on:
+      friendly_name: Beschattung Südseite in Sonnenschutz-Position
+    automation.sunprot_southface_turn_off:
+      friendly_name: Beschattung Südseite in normale Position
+
+    input_boolean.sunprot_westface_active:
+      friendly_name: Sonnenschutz nötig Westseite
+    automation.sunprot_westface_active_on:
+      friendly_name: Sonnenschutz nötig Westseite einschalten
+    automation.sunprot_westface_active_off:
+      friendly_name: Sonnenschutz nötig Westseite ausschalten
+    automation.sunprot_westface_turn_on:
+      friendly_name: Beschattung Westseite in Sonnenschutz-Position
+    automation.sunprot_westface_turn_off:
+      friendly_name: Beschattung Westseite in normale Position
