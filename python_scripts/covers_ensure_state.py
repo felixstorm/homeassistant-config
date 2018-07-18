@@ -32,16 +32,21 @@ def ensure_state(hass, logger, target_state, entity_id):
     elif target_state == 'nighttime':
         target_lift = 0
         if 'ubisys_j1_5502_0000243d' in entity_id or 'ubisys_j1_5502_00000dba' in entity_id:    # Wintergarten Markise, Dachfenster groß
-            target_lift = 100   # Markisen nachts einfahren
+            target_lift = 100   # Markisen nachts einfahren, nicht ausfahren
     elif target_state == 'sunscreen':
         target_lift = 10
         target_tilt = 50
         ignore_fully_closed = True
         if 'ubisys_j1_5502_00002c8c' in entity_id:  # Küche Terrassentür
             target_lift = 60    # Platz (für die Kinder) zum Durchlaufen
+        if 'ubisys_j1_5502_0000243d' in entity_id:  # Wintergarten Markise
+            target_lift = 0             # komplett ausfahren
+            ignore_fully_closed = False # Markise dient nicht zur Verdunkelung
     elif target_state == 'no-sunscreen':
         target_lift = 100
         ignore_fully_closed = True
+        if 'ubisys_j1_5502_0000243d' in entity_id:  # Wintergarten Markise
+            ignore_fully_closed = False # Markise dient nicht zur Verdunkelung
     else:
         raise KeyError('Invalid face. Expected morning, nighttime, sunscreen or no-sunscreen, got: {}'.format(target_state))
 
