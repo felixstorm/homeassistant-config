@@ -1,10 +1,12 @@
 # Sample Service Data
 # { "face": "east", "target_state": "morning" }
 
-face = data.get('face')
+face = data.get('face', 'all')
+if face not in ['all', 'east', 'south', 'west']:
+    raise KeyError('Invalid face. Expected all (default), east, south or west, got: {}'.format(face))
 target_state = data.get('target_state')
 if target_state not in ['morning', 'nighttime', 'sunscreen', 'no-sunscreen']:
-    raise KeyError('Invalid face. Expected morning, nighttime, sunscreen or no-sunscreen, got: {}'.format(target_state))
+    raise KeyError('Invalid target_state. Expected morning, nighttime, sunscreen or no-sunscreen, got: {}'.format(target_state))
 
 
 def ensure_state(hass, logger, target_state, entity_id):
@@ -65,7 +67,7 @@ def ensure_state(hass, logger, target_state, entity_id):
         time.sleep(5)
 
 
-if face == 'east':
+if face in ['east', 'all']:
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00002415_1') # Wohnzimmer Sitzfenster
     # ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_000024db_1') # Wohnzimmer Terrassentür
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00000df3_1') # Florian
@@ -73,19 +75,16 @@ if face == 'east':
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00002cc0_1') # Studio DG links
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_0000240d_1') # Studio DG rechts
 
-elif face == 'south':
+if face in ['south', 'all']:
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_0000243d_1') # Wintergarten Markise
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00002c8c_1') # Küche Terrassentür
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_000024aa_1') # Jonathan rechts
+    ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00000dba_1') # Dachfenster groß
 
-elif face == 'west':
+if face in ['west', 'all']:
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00001110_1') # Windfang
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00000dc6_1') # Küche Fenster
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_0000255e_1') # Schlafzimmer
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00000dec_1') # Bad OG
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_0000243e_1') # Flur OG
-    ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00000dba_1') # Dachfenster groß
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00002cec_1') # Bad DG
-
-else:
-    raise KeyError('Invalid face. Expected east, south or west, got: {}'.format(face))
