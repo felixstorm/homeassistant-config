@@ -19,11 +19,7 @@ automation:
         before: '04:00:00'
     action:
       - service: python_script.covers_ensure_state
-        data: { "face": "east", "target_state": "nighttime" }
-      - service: python_script.covers_ensure_state
-        data: { "face": "south", "target_state": "nighttime" }
-      - service: python_script.covers_ensure_state
-        data: { "face": "west", "target_state": "nighttime" }
+        data: { "target_state": "nighttime" }
 
   - alias: covers_up_in_the_morning
     trigger:
@@ -32,29 +28,14 @@ automation:
     action:
       - delay: '00:{{ (range(0, 59)|random|int) }}:00'
       - service: python_script.covers_ensure_state
-        data: { "face": "east", "target_state": "morning" }
+        data: { "target_state": "morning" }
+      - delay: '00:05:00'
       - service: python_script.covers_ensure_state
-        data: { "face": "south", "target_state": "morning" }
+        data: { "target_state": "morning" }
+      - delay: '00:05:00'
       - service: python_script.covers_ensure_state
-        data: { "face": "west", "target_state": "morning" }
+        data: { "target_state": "morning" }
 
-  - alias: covers_up_during_daytime
-    initial_state: false
-    trigger:
-      platform: time
-      minutes: /30
-      seconds: 0
-    condition:
-      - condition: time
-        after: '09:15:00'
-        before: '14:00:00'
-    action:
-      - service: python_script.covers_ensure_state
-        data: { "face": "east", "target_state": "morning" }
-      - service: python_script.covers_ensure_state
-        data: { "face": "south", "target_state": "morning" }
-      - service: python_script.covers_ensure_state
-        data: { "face": "west", "target_state": "morning" }
 
 
 homeassistant:
