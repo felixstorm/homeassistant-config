@@ -5,6 +5,32 @@
 
 group:
 
+  heizung_on_default_view:
+    name: Heizung
+    entities:
+      - sensor.heizung_alarme_anzeige
+      - sensor.heizung_aussen_temperatur
+      - sensor.heizung_kesselstatus_anzeige
+      - sensor.heizung_puffer_temperatur_1
+      - sensor.heizung_puffer_temperatur_5
+      - sensor.heizung_hk1_vorlauf_temperatur
+      - sensor.heizung_hk2_vorlauf_temperatur
+
+  heizung_tab:
+    view: yes
+    name: Heizung
+    entities:
+      - group.heizung_uebersicht
+      - group.heizung_kessel
+      - group.heizung_puffer
+      - group.heizung_hk1
+      - group.heizung_hk2
+      - history_graph.heizung_temperaturen
+      - history_graph.heizung_kessel
+      - history_graph.heizung_puffer
+      - history_graph.heizung_hk1
+      - history_graph.heizung_hk2
+
   heizung_uebersicht:
     name: Heizung Übersicht
     entities:

@@ -16,7 +16,7 @@ group:
       - automation.covers_down_at_dusk
       - automation.covers_up_in_the_morning
       - automation.covers_up_during_daytime
-      - group.heizung_uebersicht
+      - group.heizung_on_default_view
       - group.lights_uebersicht
       - group.lights_kochfeld
       - light.herd
@@ -32,21 +32,6 @@ group:
     entities:
       - group.wetter_lokal
       - history_graph.wetter_lokal
-
-  heizung_tab:
-    view: yes
-    name: Heizung
-    entities:
-      - group.heizung_uebersicht
-      - group.heizung_kessel
-      - group.heizung_puffer
-      - group.heizung_hk1
-      - group.heizung_hk2
-      - history_graph.heizung_temperaturen
-      - history_graph.heizung_kessel
-      - history_graph.heizung_puffer
-      - history_graph.heizung_hk1
-      - history_graph.heizung_hk2
 
   automations_scripts_tab:
     view: yes
