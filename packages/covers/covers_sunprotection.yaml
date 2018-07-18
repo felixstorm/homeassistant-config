@@ -162,22 +162,34 @@ automation:
 
 group:
 
-  covers_sunprotection:
-    name: Sonnenschutz
+  sunprot_state:
     entities:
-      - sensor.wettersensor_temperature
+      - group.sunprot_automations
       - sensor.wettersensor_sun_east
-      - sensor.wettersensor_sun_south
-      - sensor.wettersensor_sun_west
-      - sensor.sunprot_eastface_radlevel_current
       - sensor.sunprot_eastface_radlevel_mean
       - input_boolean.sunprot_eastface_active
-      - sensor.sunprot_southface_radlevel_current
+      - sensor.wettersensor_sun_south
       - sensor.sunprot_southface_radlevel_mean
       - input_boolean.sunprot_southface_active
-      - sensor.sunprot_westface_radlevel_current
+      - sensor.wettersensor_sun_west
       - sensor.sunprot_westface_radlevel_mean
       - input_boolean.sunprot_westface_active
+      - sensor.wettersensor_temperature
+
+  sunprot_automations:
+    entities:
+      - automation.sunprot_eastface_active_on
+      - automation.sunprot_eastface_active_off
+      - automation.sunprot_eastface_turn_on
+      - automation.sunprot_eastface_turn_off
+      - automation.sunprot_southface_active_on
+      - automation.sunprot_southface_active_off
+      - automation.sunprot_southface_turn_on
+      - automation.sunprot_southface_turn_off
+      - automation.sunprot_westface_active_on
+      - automation.sunprot_westface_active_off
+      - automation.sunprot_westface_turn_on
+      - automation.sunprot_westface_turn_off
 
 
 history_graph:
@@ -206,6 +218,14 @@ homeassistant:
 
   customize:
 
+    group.sunprot_state:
+      friendly_name: Sonnenschutz Status
+    group.sunprot_automations:
+      friendly_name: Sonnenschutz autom.
+      icon: mdi:home-automation
+    sensor.sunprot_eastface_radlevel_mean:
+      friendly_name: Sonnenstrahlung Ostseite ø
+      icon: mdi:weather-sunny
     input_boolean.sunprot_eastface_active:
       friendly_name: Sonnenschutz nötig Ostseite
     automation.sunprot_eastface_active_on:
@@ -217,6 +237,9 @@ homeassistant:
     automation.sunprot_eastface_turn_off:
       friendly_name: Beschattung Ostseite in normale Position
 
+    sensor.sunprot_southface_radlevel_mean:
+      friendly_name: Sonnenstrahlung Südseite ø
+      icon: mdi:weather-sunny
     input_boolean.sunprot_southface_active:
       friendly_name: Sonnenschutz nötig Südseite
     automation.sunprot_southface_active_on:
@@ -228,6 +251,9 @@ homeassistant:
     automation.sunprot_southface_turn_off:
       friendly_name: Beschattung Südseite in normale Position
 
+    sensor.sunprot_westface_radlevel_mean:
+      friendly_name: Sonnenstrahlung Westseite ø
+      icon: mdi:weather-sunny
     input_boolean.sunprot_westface_active:
       friendly_name: Sonnenschutz nötig Westseite
     automation.sunprot_westface_active_on:

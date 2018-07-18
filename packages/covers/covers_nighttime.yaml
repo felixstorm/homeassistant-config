@@ -1,6 +1,6 @@
 automation:
 
-  - alias: covers_down_at_dusk
+  - alias: coversatnight_down_at_dusk
     trigger:
       - platform: numeric_state
         entity_id: sensor.wettersensor_daylight
@@ -21,7 +21,7 @@ automation:
       - service: python_script.covers_ensure_state
         data: { "target_state": "nighttime" }
 
-  - alias: covers_up_in_the_morning
+  - alias: coversatnight_up_in_the_morning
     trigger:
       platform: time
       at: '08:00:00'
@@ -37,14 +37,22 @@ automation:
         data: { "target_state": "morning" }
 
 
+group:
+
+  coversatnight_automations:
+    entities:
+      - automation.coversatnight_down_at_dusk
+      - automation.coversatnight_up_in_the_morning
+
 
 homeassistant:
 
   customize:
 
-    automation.covers_down_at_dusk:
+    group.coversatnight_automations:
+      friendly_name: Raffstore nachts autom.
+      icon: mdi:home-automation
+    automation.coversatnight_down_at_dusk:
       friendly_name: Raffstore abends runter
-    automation.covers_up_in_the_morning:
+    automation.coversatnight_up_in_the_morning:
       friendly_name: Raffstore morgens rauf
-    automation.covers_up_during_daytime:
-      friendly_name: Raffstore tagsüber oben halten

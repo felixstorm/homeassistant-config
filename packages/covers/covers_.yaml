@@ -78,19 +78,29 @@ homeassistant:
 
 group:
 
+  covers_on_default_view:
+    name: Beschattung
+    entities:
+      - group.coversatnight_automations
+      - group.sunprot_automations
+      - input_boolean.sunprot_eastface_active
+      - input_boolean.sunprot_southface_active
+      - input_boolean.sunprot_westface_active
+
   covers_tab:
     view: yes
     name: Beschattung
     entities:
       - group.covers_all
-      - group.covers_sunprotection
+      - group.sunprot_state
       - history_graph.sonnenschutz
+      - group.sunprot_automations
+      - group.coversatnight_automations
       - history_graph.covers_lift_position
-      - group.all_automations
-      - group.all_scripts
+      - group.coverprot
 
   covers_all:
-    name: Beschattung Übersicht
+    name: Beschattung
     entities:
       - cover.ubisys_j1_5502_00002415_1
       - cover.ubisys_j1_5502_000024db_1

@@ -13,15 +13,12 @@ group:
       - sensor.time
       - sun.sun
       - sensor.yr_symbol
-      - automation.covers_down_at_dusk
-      - automation.covers_up_in_the_morning
-      - automation.covers_up_during_daytime
       - group.heizung_on_default_view
       - group.lights_uebersicht
       - group.lights_kochfeld
       - light.herd
       - light.herd_links
-      - group.covers_all
+      - group.covers_on_default_view
       - group.wetter_lokal
       - media_player.play_1
       - media_player.wohnzimmer
