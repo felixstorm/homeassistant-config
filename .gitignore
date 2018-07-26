@@ -1,6 +1,8 @@
 *
 !*.yaml
 !scenes
+!custom_components
+!custom_components/**
 !packages
 !packages/**
 !python_scripts
@@ -9,3 +11,4 @@
 secrets.yaml
 known_devices.yaml
 entity_registry.yaml
+__pycache__
