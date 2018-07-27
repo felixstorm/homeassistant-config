@@ -31,7 +31,7 @@ def ensure_state(hass, logger, target_state, entity_id):
         target_lift = 100
     elif target_state == 'nighttime':
         target_lift = 0
-        if 'ubisys_j1_5502_0000243d' in entity_id or 'ubisys_j1_5502_00000dba' in entity_id:    # Wintergarten Markise, Dachfenster groß
+        if 'ubisys_j1_5502_0000243d' in entity_id:    # Wintergarten Markise
             target_lift = 100   # Markisen nachts einfahren, nicht ausfahren
     elif target_state == 'sunscreen':
         target_lift = 10
