@@ -10,154 +10,82 @@ input_boolean:
     icon: mdi:weather-sunny
 
 
-sensor:
-
-  - platform: template
-    sensors:
-      sunprot_eastface_radlevel_current:
-        # dummy add wettersensor_reading_age to make sure we get new states every minute for the statistics sensor even value is always truncated at 99 klx
-        value_template: "{{ states('sensor.wettersensor_sun_east') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
-        unit_of_measurement: "%"
-  - platform: statistics
-    name: sunprot_eastface_radlevel_temp
-    entity_id: sensor.sunprot_eastface_radlevel_current
-    sampling_size: 60
-    max_age: { minutes: 30 }
-  - platform: template
-    sensors:
-      sunprot_eastface_radlevel_mean:
-        # just strip off statistics sensor attributes to save database space and performance
-        value_template: "{{ states('sensor.sunprot_eastface_radlevel_temp_mean') }}"
-        unit_of_measurement: "%"
-
-  - platform: template
-    sensors:
-      sunprot_southface_radlevel_current:
-        # dummy add wettersensor_reading_age to make sure we get new states every minute for the statistics sensor even value is always truncated at 99 klx
-        value_template: "{{ states('sensor.wettersensor_sun_south') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
-        unit_of_measurement: "%"
-  - platform: statistics
-    name: sunprot_southface_radlevel_temp
-    entity_id: sensor.sunprot_southface_radlevel_current
-    sampling_size: 60
-    max_age: { minutes: 30 }
-  - platform: template
-    sensors:
-      sunprot_southface_radlevel_mean:
-        # just strip off statistics sensor attributes to save database space and performance
-        value_template: "{{ states('sensor.sunprot_southface_radlevel_temp_mean') }}"
-        unit_of_measurement: "%"
-
-  - platform: template
-    sensors:
-      sunprot_westface_radlevel_current:
-        # dummy add wettersensor_reading_age to make sure we get new states every minute for the statistics sensor even value is always truncated at 99 klx
-        value_template: "{{ states('sensor.wettersensor_sun_west') | int + states('sensor.wettersensor_reading_age') | int % 1000 / 1000 }}"
-        unit_of_measurement: "%"
-  - platform: statistics
-    name: sunprot_westface_radlevel_temp
-    entity_id: sensor.sunprot_westface_radlevel_current
-    sampling_size: 60
-    max_age: { minutes: 30 }
-  - platform: template
-    sensors:
-      sunprot_westface_radlevel_mean:
-        # just strip off statistics sensor attributes to save database space and performance
-        value_template: "{{ states('sensor.sunprot_westface_radlevel_temp_mean') }}"
-        unit_of_measurement: "%"
-
-
 automation:
 
   - alias: sunprot_eastface_active_on
-    trigger: { platform: numeric_state, entity_id: sensor.sunprot_eastface_radlevel_mean, above: 80 }
+    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_east, above: 80, for: { minutes: 10 } }
     action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprot_eastface_active } }
   - alias: sunprot_eastface_active_off
-    trigger: { platform: numeric_state, entity_id: sensor.sunprot_eastface_radlevel_mean, below: 60 }
+    trigger:
+      - { platform: numeric_state, entity_id: sensor.wettersensor_sun_east, below: 70, for: { minutes: 20 } }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_eastface_active } }
 
   - alias: sunprot_southface_active_on
-    trigger: { platform: numeric_state, entity_id: sensor.sunprot_southface_radlevel_mean, above: 80 }
+    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_south, above: 80, for: { minutes: 10 } }
     action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprot_southface_active } }
   - alias: sunprot_southface_active_off
-    trigger: { platform: numeric_state, entity_id: sensor.sunprot_southface_radlevel_mean, below: 60 }
+    trigger:
+      - { platform: numeric_state, entity_id: sensor.wettersensor_sun_south, below: 70, for: { minutes: 20 } }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_southface_active } }
 
   - alias: sunprot_westface_active_on
-    trigger: { platform: numeric_state, entity_id: sensor.sunprot_westface_radlevel_mean, above: 80 }
+    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_sun_west, above: 80, for: { minutes: 10 } }
     action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.sunprot_westface_active } }
   - alias: sunprot_westface_active_off
-    trigger: { platform: numeric_state, entity_id: sensor.sunprot_westface_radlevel_mean, below: 60 }
+    trigger:
+      - { platform: numeric_state, entity_id: sensor.wettersensor_sun_west, below: 70, for: { minutes: 20 } }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_westface_active } }
 
-  - alias: sunprot_eastface_turn_on
+  - alias: sunprot_eastface_update_covers
     trigger:
-      - { platform: state, entity_id: input_boolean.sunprot_eastface_active, to: 'on' }
+      - { platform: state, entity_id: input_boolean.sunprot_eastface_active }
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
-      - { condition: state, entity_id: input_boolean.sunprot_eastface_active, state: 'on' }
       - { condition: time, after: '08:00:00' }
       - { condition: sun, before: sunset }
     action:
-      - service: python_script.covers_ensure_state
-        data: { "face": "east", "target_state": "sunscreen" }
-  - alias: sunprot_eastface_turn_off
-    trigger:
-      - { platform: state, entity_id: input_boolean.sunprot_eastface_active, to: 'off' }
-      - { platform: time, minutes: /15, seconds: 0 }
-    condition:
-      - { condition: state, entity_id: input_boolean.sunprot_eastface_active, state: 'off' }
-      - { condition: time, after: '08:00:00' }
-      - { condition: sun, before: sunset }
-    action:
-      - service: python_script.covers_ensure_state
-        data: { "face": "east", "target_state": "no-sunscreen" }
+      - service: script.turn_on
+        entity_id: script.sunprot_eastface_update_covers
 
-  - alias: sunprot_southface_turn_on
+  - alias: sunprot_southface_update_covers
     trigger:
-      - { platform: state, entity_id: input_boolean.sunprot_southface_active, to: 'on' }
+      - { platform: state, entity_id: input_boolean.sunprot_southface_active }
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
-      - { condition: state, entity_id: input_boolean.sunprot_southface_active, state: 'on' }
       - { condition: time, after: '08:00:00' }
       - { condition: sun, before: sunset }
     action:
-      - service: python_script.covers_ensure_state
-        data: { "face": "south", "target_state": "sunscreen" }
-  - alias: sunprot_southface_turn_off
-    trigger:
-      - { platform: state, entity_id: input_boolean.sunprot_southface_active, to: 'off' }
-      - { platform: time, minutes: /15, seconds: 0 }
-    condition:
-      - { condition: state, entity_id: input_boolean.sunprot_southface_active, state: 'off' }
-      - { condition: time, after: '08:00:00' }
-      - { condition: sun, before: sunset }
-    action:
-      - service: python_script.covers_ensure_state
-        data: { "face": "south", "target_state": "no-sunscreen" }
+      - service: script.turn_on
+        entity_id: script.sunprot_southface_update_covers
 
-  - alias: sunprot_westface_turn_on
+  - alias: sunprot_westface_update_covers
     trigger:
-      - { platform: state, entity_id: input_boolean.sunprot_westface_active, to: 'on' }
+      - { platform: state, entity_id: input_boolean.sunprot_westface_active }
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
-      - { condition: state, entity_id: input_boolean.sunprot_westface_active, state: 'on' }
       - { condition: time, after: '08:00:00' }
       - { condition: sun, before: sunset }
     action:
+      - service: script.turn_on
+        entity_id: script.sunprot_southface_update_covers
+
+
+script:
+
+  sunprot_eastface_update_covers:
+    sequence:
       - service: python_script.covers_ensure_state
-        data: { "face": "west", "target_state": "sunscreen" }
-  - alias: sunprot_westface_turn_off
-    trigger:
-      - { platform: state, entity_id: input_boolean.sunprot_westface_active, to: 'off' }
-      - { platform: time, minutes: /15, seconds: 0 }
-    condition:
-      - { condition: state, entity_id: input_boolean.sunprot_westface_active, state: 'off' }
-      - { condition: time, after: '08:00:00' }
-      - { condition: sun, before: sunset }
-    action:
+        data_template: { "face": "east", "target_state": "{% if is_state('input_boolean.sunprot_eastface_active', 'on') %}sunscreen{% else %}no-sunscreen{% endif %}" }
+
+  sunprot_southface_update_covers:
+    sequence:
       - service: python_script.covers_ensure_state
-        data: { "face": "west", "target_state": "no-sunscreen" }
+        data_template: { "face": "south", "target_state": "{% if is_state('input_boolean.sunprot_southface_active', 'on') %}sunscreen{% else %}no-sunscreen{% endif %}" }
+
+  sunprot_westface_update_covers:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data_template: { "face": "west", "target_state": "{% if is_state('input_boolean.sunprot_westface_active', 'on') %}sunscreen{% else %}no-sunscreen{% endif %}" }
 
 
 group:
@@ -166,30 +94,27 @@ group:
     entities:
       - group.sunprot_automations
       - sensor.wettersensor_sun_east
-      - sensor.sunprot_eastface_radlevel_mean
       - input_boolean.sunprot_eastface_active
+      - script.sunprot_eastface_update_covers
       - sensor.wettersensor_sun_south
-      - sensor.sunprot_southface_radlevel_mean
       - input_boolean.sunprot_southface_active
+      - script.sunprot_southface_update_covers
       - sensor.wettersensor_sun_west
-      - sensor.sunprot_westface_radlevel_mean
       - input_boolean.sunprot_westface_active
+      - script.sunprot_westface_update_covers
       - sensor.wettersensor_temperature
 
   sunprot_automations:
     entities:
       - automation.sunprot_eastface_active_on
       - automation.sunprot_eastface_active_off
-      - automation.sunprot_eastface_turn_on
-      - automation.sunprot_eastface_turn_off
+      - automation.sunprot_eastface_update_covers
       - automation.sunprot_southface_active_on
       - automation.sunprot_southface_active_off
-      - automation.sunprot_southface_turn_on
-      - automation.sunprot_southface_turn_off
+      - automation.sunprot_southface_update_covers
       - automation.sunprot_westface_active_on
       - automation.sunprot_westface_active_off
-      - automation.sunprot_westface_turn_on
-      - automation.sunprot_westface_turn_off
+      - automation.sunprot_westface_update_covers
 
 
 history_graph:
@@ -199,16 +124,10 @@ history_graph:
     entities:
       - sensor.wettersensor_temperature
       - sensor.wettersensor_sun_east
-      - sensor.sunprot_eastface_radlevel_current
-      - sensor.sunprot_eastface_radlevel_mean
       - input_boolean.sunprot_eastface_active
       - sensor.wettersensor_sun_south
-      - sensor.sunprot_southface_radlevel_current
-      - sensor.sunprot_southface_radlevel_mean
       - input_boolean.sunprot_southface_active
       - sensor.wettersensor_sun_west
-      - sensor.sunprot_westface_radlevel_current
-      - sensor.sunprot_westface_radlevel_mean
       - input_boolean.sunprot_westface_active
     hours_to_show: 72
     refresh: 60
@@ -223,44 +142,35 @@ homeassistant:
     group.sunprot_automations:
       friendly_name: Sonnenschutz autom.
       icon: mdi:home-automation
-    sensor.sunprot_eastface_radlevel_mean:
-      friendly_name: Sonnenstrahlung Ostseite ø
-      icon: mdi:weather-sunny
     input_boolean.sunprot_eastface_active:
       friendly_name: Sonnenschutz nötig Ostseite
     automation.sunprot_eastface_active_on:
       friendly_name: Sonnenschutz nötig Ostseite einschalten
     automation.sunprot_eastface_active_off:
       friendly_name: Sonnenschutz nötig Ostseite ausschalten
-    automation.sunprot_eastface_turn_on:
-      friendly_name: Beschattung Ostseite in Sonnenschutz-Position
-    automation.sunprot_eastface_turn_off:
-      friendly_name: Beschattung Ostseite in normale Position
 
-    sensor.sunprot_southface_radlevel_mean:
-      friendly_name: Sonnenstrahlung Südseite ø
-      icon: mdi:weather-sunny
     input_boolean.sunprot_southface_active:
       friendly_name: Sonnenschutz nötig Südseite
     automation.sunprot_southface_active_on:
       friendly_name: Sonnenschutz nötig Südseite einschalten
     automation.sunprot_southface_active_off:
       friendly_name: Sonnenschutz nötig Südseite ausschalten
-    automation.sunprot_southface_turn_on:
-      friendly_name: Beschattung Südseite in Sonnenschutz-Position
-    automation.sunprot_southface_turn_off:
-      friendly_name: Beschattung Südseite in normale Position
 
-    sensor.sunprot_westface_radlevel_mean:
-      friendly_name: Sonnenstrahlung Westseite ø
-      icon: mdi:weather-sunny
     input_boolean.sunprot_westface_active:
       friendly_name: Sonnenschutz nötig Westseite
     automation.sunprot_westface_active_on:
       friendly_name: Sonnenschutz nötig Westseite einschalten
     automation.sunprot_westface_active_off:
       friendly_name: Sonnenschutz nötig Westseite ausschalten
-    automation.sunprot_westface_turn_on:
-      friendly_name: Beschattung Westseite in Sonnenschutz-Position
-    automation.sunprot_westface_turn_off:
-      friendly_name: Beschattung Westseite in normale Position
+
+  customize_glob:
+    
+    "script.sunprot_*face_update_covers":
+      icon: mdi:home-automation
+      can_cancel: false
+    "*.sunprot_eastface_update_covers":
+      friendly_name: Beschattung Ostseite jetzt aktualisieren
+    "*.sunprot_southface_update_covers":
+      friendly_name: Beschattung Südseite jetzt aktualisieren
+    "*.sunprot_westface_update_covers":
+      friendly_name: Beschattung Westseite jetzt aktualisieren
