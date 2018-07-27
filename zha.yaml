@@ -1,5 +1,5 @@
-usb_path: /dev/ttyUSB0
-database_path: zigbee.db
+usb_path: /dev/ttyS3
+database_path: /mnt/c/Data/Felix/Develop/HomeAutomation/home-assistant-config/zigbee.db
 zigpy_auto_form_network: false
 radio_type: xbee
 baudrate: 9600
