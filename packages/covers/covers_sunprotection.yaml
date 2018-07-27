@@ -94,6 +94,7 @@ script:
 group:
 
   sunprot_state:
+    control: hidden
     entities:
       - group.sunprot_automations
       - sensor.wettersensor_sun_east

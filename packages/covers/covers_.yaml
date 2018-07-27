@@ -79,6 +79,7 @@ homeassistant:
 group:
 
   covers_on_default_view:
+    control: hidden
     name: Beschattung
     entities:
       - group.sunprot_automations
@@ -99,9 +100,9 @@ group:
       - group.sunprot_state
       - history_graph.sonnenschutz
       - group.sunprot_automations
-      - history_graph.covers_lift_position
       - group.coversatnight
       - group.coverprot
+      - history_graph.covers_lift_position
 
   covers_all:
     name: Beschattung

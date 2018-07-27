@@ -28,6 +28,7 @@ automation:
 group:
 
   coverprot:
+    control: hidden
     entities:
       - sensor.wettersensor_wind_speed_gusts
       - input_boolean.coverprot_wind_active
