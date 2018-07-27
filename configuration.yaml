@@ -26,7 +26,7 @@ logger:
     homeassistant.components.zha: debug
     homeassistant.config: warning
     homeassistant.helpers.entity: error
-    custom_components.cover.zha: info
+    custom_components: info
     zigpy: info
     zigpy.zcl: info
     zigpy_xbee: info
