@@ -1,35 +1,17 @@
 group:
 
-  lights_uebersicht:
-    name: Beleuchtung Übersicht
+  randlights_automations:
     entities:
-      - light.flur_og
-      - light.studio_dg
-
-  lights_kochfeld:
-    name: Kochfeld
-    entities:
-      - light.herd
-      - light.herd_links
-      - light.herd_rechts
-
-  random_lights_tab:
-    view: yes
-    name: Zufallslicht
-    entities:
-      - light.flur_og
-      - light.studio_dg
       - automation.zufallslicht_flur_og_abends_ein
       - automation.zufallslicht_flur_og_abends_aus
       - automation.zufallslicht_studio_einaus
       - automation.zufallslichter_abends_sicher_aus
-      - history_graph.zufallslicht
 
 
 history_graph:
 
   zufallslicht:
-    name: Zufallslicht
+    name: zufallslicht
     entities:
       - light.flur_og
       - light.studio_dg
@@ -81,3 +63,15 @@ automation:
         entity_id: light.flur_og
       - service: light.turn_off
         entity_id: light.studio_dg
+
+
+homeassistant:
+
+  customize:
+
+    group.randlights_automations:
+      friendly_name: Zufallslicht autom.
+      icon: mdi:home-automation
+
+    history_graph.zufallslicht:
+      friendly_name: Zufallslicht Historie

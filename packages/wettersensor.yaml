@@ -40,6 +40,7 @@ sensor:
         unit_of_measurement: "lx"
       wettersensor_is_dark:
         value_template: "{% if is_state_attr('sensor.wettersensor', 'isDark', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'isDark', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'isDark') }}' {% endif %}"
+        icon_template: "{% if is_state_attr('sensor.wettersensor', 'isDark', 0) %} mdi:weather-sunny {% else %} mdi:weather-night {% endif %}"
       wettersensor_wind_speed:
         value_template: '{{ (states.sensor.wettersensor.attributes["windSpeedMs"] | float * 3.6) | int }}'
         unit_of_measurement: "km/h"
@@ -48,6 +49,7 @@ sensor:
         unit_of_measurement: "km/h"
       wettersensor_is_raining:
         value_template: "{% if is_state_attr('sensor.wettersensor', 'isRaining', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'isRaining', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'isRaining') }}' {% endif %}"
+        icon_template: "{% if is_state_attr('sensor.wettersensor', 'isRaining', 0) %} mdi:weather-sunny {% else %} mdi:weather-pouring {% endif %}"
 
 group:
   wetter_lokal:
@@ -89,17 +91,23 @@ homeassistant:
       friendly_name: Außentemperatur
     sensor.wettersensor_sun_east:
       friendly_name: Sonne von Osten
+      device_class: illuminance
     sensor.wettersensor_sun_south:
       friendly_name: Sonne von Süden
+      device_class: illuminance
     sensor.wettersensor_sun_west:
       friendly_name: Sonne von Westen
+      device_class: illuminance
     sensor.wettersensor_daylight:
       friendly_name: Helligkeit
+      device_class: illuminance
     sensor.wettersensor_is_dark:
       friendly_name: dunkel
     sensor.wettersensor_wind_speed:
       friendly_name: Windgeschwindigkeit
+      icon: mdi:weather-windy-variant
     sensor.wettersensor_wind_speed_gusts:
       friendly_name: Böen
+      icon: mdi:weather-windy
     sensor.wettersensor_is_raining:
       friendly_name: Regen

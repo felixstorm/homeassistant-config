@@ -1,0 +1,26 @@
+group:
+
+  lights_on_default_view:
+    control: hidden
+    name: Beleuchtung
+    entities:
+      - group.lights_kochfeld
+      - light.flur_og
+      - light.studio_dg
+      - group.randlights_automations
+
+  lights_tab:
+    view: yes
+    name: Beleuchtung
+    entities:
+      - group.lights_all
+      - group.lights_kochfeld
+      - group.randlights_automations
+      - history_graph.zufallslicht
+
+
+  lights_all:
+    name: Beleuchtung
+    entities:
+      - light.flur_og
+      - light.studio_dg

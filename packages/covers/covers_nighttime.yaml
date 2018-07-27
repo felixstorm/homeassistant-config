@@ -18,8 +18,8 @@ automation:
         after: '17:00:00'
         before: '04:00:00'
     action:
-      - service: python_script.covers_ensure_state
-        data: { "target_state": "nighttime" }
+      - service: script.turn_on
+        entity_id: script.coversatnight_covers_down
 
   - alias: coversatnight_up_in_the_morning
     trigger:
@@ -27,17 +27,36 @@ automation:
       at: '08:00:00'
     action:
       - delay: '00:{{ (range(0, 59)|random|int) }}:00'
-      - service: python_script.covers_ensure_state
-        data: { "target_state": "morning" }
+      - service: script.turn_on
+        entity_id: script.coversatnight_covers_up
       - delay: '00:05:00'
-      - service: python_script.covers_ensure_state
-        data: { "target_state": "morning" }
+      - service: script.turn_on
+        entity_id: script.coversatnight_covers_up
       - delay: '00:05:00'
+      - service: script.turn_on
+        entity_id: script.coversatnight_covers_up
+
+
+script:
+
+  coversatnight_covers_down:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "target_state": "nighttime" }
+
+  coversatnight_covers_up:
+    sequence:
       - service: python_script.covers_ensure_state
         data: { "target_state": "morning" }
 
 
 group:
+
+  coversatnight:
+    control: hidden
+    entities:
+      - script.coversatnight_covers_down
+      - script.coversatnight_covers_up
 
   coversatnight_automations:
     entities:
@@ -49,10 +68,22 @@ homeassistant:
 
   customize:
 
+    group.coversatnight:
+      friendly_name: Raffstore nachts
     group.coversatnight_automations:
       friendly_name: Raffstore nachts autom.
       icon: mdi:home-automation
     automation.coversatnight_down_at_dusk:
-      friendly_name: Raffstore abends runter
+      friendly_name: Raffstore abends autom. runter
     automation.coversatnight_up_in_the_morning:
-      friendly_name: Raffstore morgens rauf
+      friendly_name: Raffstore morgens autom. rauf
+    script.coversatnight_covers_down:
+      friendly_name: Raffstore jetzt runterfahren
+    script.coversatnight_covers_up:
+      friendly_name: Raffstore jetzt hochfahren
+
+  customize_glob:
+
+    "script.coversatnight_covers_*":
+      icon: mdi:home-automation
+      can_cancel: false

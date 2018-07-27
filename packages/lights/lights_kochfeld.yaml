@@ -1,0 +1,15 @@
+group:
+
+  lights_kochfeld:
+    entities:
+      - light.herd_links
+      - light.herd_rechts
+
+
+homeassistant:
+
+  customize:
+
+    group.lights_kochfeld:
+      friendly_name: Kochfeld
+      icon: mdi:power

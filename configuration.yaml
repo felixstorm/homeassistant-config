@@ -26,7 +26,7 @@ logger:
     homeassistant.components.zha: debug
     homeassistant.config: warning
     homeassistant.helpers.entity: error
-    custom_components.cover.zha: info
+    custom_components: info
     zigpy: info
     zigpy.zcl: info
     zigpy_xbee: info
@@ -42,9 +42,6 @@ recorder:
     entities:
       - sensor.date
       - sensor.power_4
-      - sensor.sunprot_eastface_radlevel_temp_mean
-      - sensor.sunprot_southface_radlevel_temp_mean
-      - sensor.sunprot_westface_radlevel_temp_mean
       - sensor.time
       - sensor.ubisys_d1r_5603_00001d41_4_2820
       - sensor.ubisys_j1_5502_00000dba_3_2820
