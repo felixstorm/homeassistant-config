@@ -81,11 +81,13 @@ group:
   covers_on_default_view:
     name: Beschattung
     entities:
-      - group.coversatnight_automations
       - group.sunprot_automations
       - input_boolean.sunprot_eastface_active
       - input_boolean.sunprot_southface_active
       - input_boolean.sunprot_westface_active
+      - group.coversatnight_automations
+      - script.coversatnight_covers_down
+      - script.coversatnight_covers_up
 
   covers_tab:
     view: yes
@@ -95,8 +97,8 @@ group:
       - group.sunprot_state
       - history_graph.sonnenschutz
       - group.sunprot_automations
-      - group.coversatnight_automations
       - history_graph.covers_lift_position
+      - group.coversatnight
       - group.coverprot
 
   covers_all:
