@@ -72,6 +72,9 @@ homeassistant:
     sensor.cover_lift_pos_ubisys_j1_5502_00002cec_1:
       friendly_name: Bad DG
 
+    history_graph.sonnenschutz:
+      friendly_name: Sonnenschutz Historie
+
     history_graph.covers_lift_position:
       friendly_name: Beschattung Position
 
@@ -97,11 +100,13 @@ group:
     name: Beschattung
     entities:
       - group.covers_all
-      - group.sunprot_state
+      - group.sunprot
       - history_graph.sonnenschutz
       - group.sunprot_automations
       - group.coversatnight
+      - group.coversatnight_automations
       - group.coverprot
+      - group.coverprot_automations
       - history_graph.covers_lift_position
 
   covers_all:

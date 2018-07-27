@@ -93,7 +93,7 @@ script:
 
 group:
 
-  sunprot_state:
+  sunprot:
     control: hidden
     entities:
       - group.sunprot_automations
@@ -141,11 +141,13 @@ homeassistant:
 
   customize:
 
-    group.sunprot_state:
-      friendly_name: Sonnenschutz Status
+    group.sunprot:
+      friendly_name: Sonnenschutz
+
     group.sunprot_automations:
       friendly_name: Sonnenschutz autom.
       icon: mdi:home-automation
+
     input_boolean.sunprot_eastface_active:
       friendly_name: Sonnenschutz nötig Ostseite
     automation.sunprot_eastface_active_on:

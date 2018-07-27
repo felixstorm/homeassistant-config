@@ -32,9 +32,6 @@ group:
     entities:
       - sensor.wettersensor_wind_speed_gusts
       - input_boolean.coverprot_wind_active
-      - automation.coverprot_wind_active_on
-      - automation.coverprot_wind_active_off
-      - automation.coverprot_turn_on
 
   coverprot_automations:
     entities:

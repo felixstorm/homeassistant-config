@@ -55,9 +55,6 @@ group:
   coversatnight:
     control: hidden
     entities:
-      - group.coversatnight_automations
-      - automation.coversatnight_down_at_dusk
-      - automation.coversatnight_up_in_the_morning
       - script.coversatnight_covers_down
       - script.coversatnight_covers_up
 
