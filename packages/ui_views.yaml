@@ -14,10 +14,8 @@ group:
       - sun.sun
       - sensor.yr_symbol
       - group.heizung_on_default_view
-      - group.lights_uebersicht
-      - group.lights_kochfeld
-      - light.herd
-      - light.herd_links
+      - group.lights_on_default_view
+      - group.kochfeld_on_default_view
       - group.covers_on_default_view
       - group.wetter_lokal
       - media_player.play_1
@@ -29,10 +27,3 @@ group:
     entities:
       - group.wetter_lokal
       - history_graph.wetter_lokal
-
-  automations_scripts_tab:
-    view: yes
-    name: Automations & Scripts
-    entities:
-      - group.all_automations
-      - group.all_scripts
