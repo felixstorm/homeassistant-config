@@ -1,7 +1,6 @@
 input_boolean:
 
   coverprot_wind_active:
-    icon: mdi:weather-windy
 
 
 automation:
@@ -35,3 +34,29 @@ group:
       - automation.coverprot_wind_active_on
       - automation.coverprot_wind_active_off
       - automation.coverprot_turn_on
+
+  coverprot_automations:
+    entities:
+      - automation.coverprot_wind_active_on
+      - automation.coverprot_wind_active_off
+      - automation.coverprot_turn_on
+
+
+homeassistant:
+
+  customize:
+
+    group.coverprot:
+      friendly_name: Markisenschutz
+    group.coverprot_automations:
+      friendly_name: Markisenschutz autom.
+      icon: mdi:home-automation
+    input_boolean.coverprot_wind_active:
+      friendly_name: Markisenschutz nötig
+      icon: mdi:weather-windy
+    automation.coverprot_wind_active_on:
+      friendly_name: Markisenschutz nötig einschalten
+    automation.coverprot_wind_active_off:
+      friendly_name: Markisenschutz nötig einschalten
+    automation.coverprot_turn_on:
+      friendly_name: Markisen einfahren wenn nötig

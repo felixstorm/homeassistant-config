@@ -88,6 +88,8 @@ group:
       - group.coversatnight_automations
       - script.coversatnight_covers_down
       - script.coversatnight_covers_up
+      - group.coverprot_automations
+      - input_boolean.coverprot_wind_active
 
   covers_tab:
     view: yes
