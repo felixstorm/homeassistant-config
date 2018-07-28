@@ -27,6 +27,7 @@ logger:
     homeassistant.config: warning
     homeassistant.helpers.entity: error
     custom_components: info
+    # custom_components.sensor.comfoconnect: debug
     zigpy: info
     zigpy.zcl: info
     zigpy_xbee: info
