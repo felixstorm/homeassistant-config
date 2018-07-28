@@ -23,6 +23,12 @@ def ensure_state(hass, logger, target_state, entity_id):
             logger.info(message_prefix + 'Cover protection is active, aborting.')
             return
 
+    if 'ubisys_j1_5502_000024db_1' in entity_id:    # Wohnzimmer Terrassentür
+        include_terrassentuer_in_automations = hass.states.get('input_boolean.covers_include_terrassentuer_in_automations').state == 'on'
+        if not include_terrassentuer_in_automations:
+            logger.debug(message_prefix + 'Cover Terrassentuer is not supposed to be controlled automatically, aborting.')
+            return
+
     target_lift = None
     target_tilt = None
     ignore_fully_closed = False
@@ -79,7 +85,7 @@ def ensure_state(hass, logger, target_state, entity_id):
 
 if face in ['east', 'all']:
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00002415_1') # Wohnzimmer Sitzfenster
-    # ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_000024db_1') # Wohnzimmer Terrassentür
+    ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_000024db_1') # Wohnzimmer Terrassentür
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00000df3_1') # Florian
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00000ded_1') # Jonathan links
     ensure_state(hass, logger, target_state, 'cover.ubisys_j1_5502_00002cc0_1') # Studio DG links
