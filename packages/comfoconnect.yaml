@@ -1,0 +1,76 @@
+comfoconnect:
+
+  host: 192.168.0.13
+
+
+sensor:
+
+  - platform: comfoconnect
+    resources:
+      - supply_temperature
+      - supply_humidity
+      - current_temperature
+      - current_humidity
+      - exhaust_temperature
+      - exhaust_humidity
+      - outside_temperature
+      - outside_humidity
+      - air_flow_supply
+      - air_flow_exhaust
+      - days_to_replace_filter
+      - bypass_state
+
+
+group:
+
+  comfoconnect_tab:
+    view: yes
+    name: Lüftung
+    entities:
+      - group.comfoconnect
+      - history_graph.comfoconnect
+
+  comfoconnect:
+    name: Lüftung
+    entities:
+      - fan.comfoairq
+      - sensor.comfoairq_supply_temperature
+      - sensor.comfoairq_supply_humidity
+      - sensor.comfoairq_inside_temperature
+      - sensor.comfoairq_inside_humidity
+      - sensor.comfoairq_exhaust_temperature
+      - sensor.comfoairq_exhaust_humidity
+      - sensor.comfoairq_outside_temperature
+      - sensor.comfoairq_outside_humidity
+      - sensor.comfoairq_air_flow_supply
+      - sensor.comfoairq_air_flow_exhaust
+      - sensor.comfoairq_days_to_replace_filter
+      - sensor.comfoairq_bypass_state
+
+history_graph:
+  comfoconnect:
+    name: comfoconnect
+    entities:
+      - fan.comfoairq
+      - sensor.comfoairq_supply_temperature
+      - sensor.comfoairq_supply_humidity
+      - sensor.comfoairq_inside_temperature
+      - sensor.comfoairq_inside_humidity
+      - sensor.comfoairq_exhaust_temperature
+      - sensor.comfoairq_exhaust_humidity
+      - sensor.comfoairq_outside_temperature
+      - sensor.comfoairq_outside_humidity
+      - sensor.comfoairq_air_flow_supply
+      - sensor.comfoairq_air_flow_exhaust
+      - sensor.comfoairq_days_to_replace_filter
+      - sensor.comfoairq_bypass_state
+    hours_to_show: 72
+    refresh: 60
+
+
+homeassistant:
+
+  customize:
+  
+    history_graph.comfoconnect:
+      friendly_name: Lüftung
