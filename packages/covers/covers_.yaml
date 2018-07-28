@@ -82,9 +82,10 @@ homeassistant:
 group:
 
   covers_on_default_view:
-    control: hidden
     name: Beschattung
+    control: hidden
     entities:
+      - input_boolean.covers_include_terrassentuer_in_automations
       - group.sunprot_automations
       - input_boolean.sunprot_eastface_active
       - input_boolean.sunprot_southface_active
@@ -111,7 +112,9 @@ group:
 
   covers_all:
     name: Beschattung
+    control: hidden
     entities:
+      - input_boolean.covers_include_terrassentuer_in_automations
       - cover.ubisys_j1_5502_00002415_1
       - cover.ubisys_j1_5502_000024db_1
       - cover.ubisys_j1_5502_0000243d_1
@@ -128,3 +131,10 @@ group:
       - cover.ubisys_j1_5502_0000240d_1
       - cover.ubisys_j1_5502_00000dba_1
       - cover.ubisys_j1_5502_00002cec_1
+
+
+input_boolean:
+
+  covers_include_terrassentuer_in_automations:
+    name: Raffstore Terrassentür autom. steuern
+    initial: off
