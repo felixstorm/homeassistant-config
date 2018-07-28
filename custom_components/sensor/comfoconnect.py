@@ -150,7 +150,7 @@ class ComfoConnectSensor(Entity):
         self._ccb.comfoconnect.register_sensor(self._sensor_id)
 
         def _handle_update(var):
-            if var == self._sensor_id:
+            if var == self._sensor_id and self.hass is not None:    # HACK: prevent errors if an update is signaled before Entity is fully initialized
                 _LOGGER.debug('Dispatcher update for %s.', var)
                 self.schedule_update_ha_state()
 
