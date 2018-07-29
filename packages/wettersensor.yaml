@@ -7,33 +7,35 @@ sensor:
     name: Wettersensor
     resource: http://192.168.0.11/
     json_attributes:
-      - readingAgeMs
-      - temperatureC
-      - sunEastKlx
-      - sunSouthKlx
-      - sunWestKlx
+      - readAgeMs
+      - tempC
+      - eastKlx
+      - southKlx
+      - westKlx
       - daylightLx
       - isDark
-      - windSpeedMs
-      - windSpeedGustsMs
-      - isRaining
+      - windMs
+      - windGustsMs
+      - isRain
+      - covProt1IsAct
+      - covProt2IsAct
     scan_interval: 60
   - platform: template
     sensors:
       wettersensor_reading_age:
-        value_template: '{{ states.sensor.wettersensor.attributes["readingAgeMs"] }}'
+        value_template: '{{ states.sensor.wettersensor.attributes["readAgeMs"] }}'
         unit_of_measurement: "ms"
       wettersensor_temperature:
-        value_template: '{{ states.sensor.wettersensor.attributes["temperatureC"] }}'
+        value_template: '{{ states.sensor.wettersensor.attributes["tempC"] }}'
         unit_of_measurement: "°C"
       wettersensor_sun_east:
-        value_template: '{{ states.sensor.wettersensor.attributes["sunEastKlx"] }}'
+        value_template: '{{ states.sensor.wettersensor.attributes["eastKlx"] }}'
         unit_of_measurement: "klx"
       wettersensor_sun_south:
-        value_template: '{{ states.sensor.wettersensor.attributes["sunSouthKlx"] }}'
+        value_template: '{{ states.sensor.wettersensor.attributes["southKlx"] }}'
         unit_of_measurement: "klx"
       wettersensor_sun_west:
-        value_template: '{{ states.sensor.wettersensor.attributes["sunWestKlx"] }}'
+        value_template: '{{ states.sensor.wettersensor.attributes["westKlx"] }}'
         unit_of_measurement: "klx"
       wettersensor_daylight:
         value_template: '{{ states.sensor.wettersensor.attributes["daylightLx"] }}'
@@ -42,14 +44,20 @@ sensor:
         value_template: "{% if is_state_attr('sensor.wettersensor', 'isDark', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'isDark', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'isDark') }}' {% endif %}"
         icon_template: "{% if is_state_attr('sensor.wettersensor', 'isDark', 0) %} mdi:weather-sunny {% else %} mdi:weather-night {% endif %}"
       wettersensor_wind_speed:
-        value_template: '{{ (states.sensor.wettersensor.attributes["windSpeedMs"] | float * 3.6) | int }}'
+        value_template: '{{ (states.sensor.wettersensor.attributes["windMs"] | float * 3.6) | int }}'
         unit_of_measurement: "km/h"
       wettersensor_wind_speed_gusts:
-        value_template: '{{ (states.sensor.wettersensor.attributes["windSpeedGustsMs"] | float * 3.6) | int }}'
+        value_template: '{{ (states.sensor.wettersensor.attributes["windGustsMs"] | float * 3.6) | int }}'
         unit_of_measurement: "km/h"
       wettersensor_is_raining:
-        value_template: "{% if is_state_attr('sensor.wettersensor', 'isRaining', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'isRaining', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'isRaining') }}' {% endif %}"
-        icon_template: "{% if is_state_attr('sensor.wettersensor', 'isRaining', 0) %} mdi:weather-sunny {% else %} mdi:weather-pouring {% endif %}"
+        value_template: "{% if is_state_attr('sensor.wettersensor', 'isRain', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'isRain', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'isRain') }}' {% endif %}"
+        icon_template: "{% if is_state_attr('sensor.wettersensor', 'isRain', 0) %} mdi:weather-sunny {% else %} mdi:weather-pouring {% endif %}"
+      wettersensor_coverprot1_is_active:
+        value_template: "{% if is_state_attr('sensor.wettersensor', 'covProt1IsAct', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'covProt1IsAct', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'covProt1IsAct') }}' {% endif %}"
+        icon_template: "{% if is_state_attr('sensor.wettersensor', 'covProt1IsAct', 0) %} mdi:weather-sunny {% else %} mdi:weather-windy {% endif %}"
+      wettersensor_coverprot2_is_active:
+        value_template: "{% if is_state_attr('sensor.wettersensor', 'covProt2IsAct', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'covProt2IsAct', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'covProt2IsAct') }}' {% endif %}"
+        icon_template: "{% if is_state_attr('sensor.wettersensor', 'covProt2IsAct', 0) %} mdi:weather-sunny {% else %} mdi:weather-windy {% endif %}"
 
 group:
   wetter_lokal:
@@ -65,6 +73,8 @@ group:
       - sensor.wettersensor_wind_speed
       - sensor.wettersensor_wind_speed_gusts
       - sensor.wettersensor_is_raining
+      - sensor.wettersensor_coverprot1_is_active
+      - sensor.wettersensor_coverprot2_is_active
 
 history_graph:
   wetter_lokal:
@@ -80,6 +90,8 @@ history_graph:
       - sensor.wettersensor_wind_speed
       - sensor.wettersensor_wind_speed_gusts
       - sensor.wettersensor_is_raining
+      - sensor.wettersensor_coverprot1_is_active
+      - sensor.wettersensor_coverprot2_is_active
     hours_to_show: 72
     refresh: 60
 
@@ -111,3 +123,7 @@ homeassistant:
       icon: mdi:weather-windy
     sensor.wettersensor_is_raining:
       friendly_name: Regen
+    sensor.wettersensor_coverprot1_is_active:
+      friendly_name: Cover Protection 1 aktiv
+    sensor.wettersensor_coverprot2_is_active:
+      friendly_name: Cover Protection 2 aktiv
