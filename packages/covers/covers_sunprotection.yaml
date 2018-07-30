@@ -70,7 +70,7 @@ automation:
       - { condition: sun, before: sunset }
     action:
       - service: script.turn_on
-        entity_id: script.sunprot_southface_update_covers
+        entity_id: script.sunprot_westface_update_covers
 
 
 script:
