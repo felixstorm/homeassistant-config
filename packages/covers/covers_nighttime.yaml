@@ -42,12 +42,12 @@ script:
   coversatnight_covers_down:
     sequence:
       - service: python_script.covers_ensure_state
-        data: { "target_state": "nighttime" }
+        data: { "situation": "nighttime" }
 
   coversatnight_covers_up:
     sequence:
       - service: python_script.covers_ensure_state
-        data: { "target_state": "morning" }
+        data: { "situation": "morning" }
 
 
 group:
