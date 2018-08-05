@@ -39,30 +39,10 @@ automation:
       - { platform: sun, event: sunset, offset: "-00:30:00" }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_westface_active } }
 
-  - alias: sunprot_eastface_update_covers
+  - alias: sunprot_update_covers
     trigger:
       - { platform: state, entity_id: input_boolean.sunprot_eastface_active }
-      - { platform: time, minutes: /15, seconds: 0 }
-    condition:
-      - { condition: time, after: '08:00:00' }
-      - { condition: sun, before: sunset }
-    action:
-      - service: script.turn_on
-        entity_id: script.sunprot_eastface_update_covers
-
-  - alias: sunprot_southface_update_covers
-    trigger:
       - { platform: state, entity_id: input_boolean.sunprot_southface_active }
-      - { platform: time, minutes: /15, seconds: 0 }
-    condition:
-      - { condition: time, after: '08:00:00' }
-      - { condition: sun, before: sunset }
-    action:
-      - service: script.turn_on
-        entity_id: script.sunprot_southface_update_covers
-
-  - alias: sunprot_westface_update_covers
-    trigger:
       - { platform: state, entity_id: input_boolean.sunprot_westface_active }
       - { platform: time, minutes: /15, seconds: 0 }
     condition:
@@ -70,25 +50,15 @@ automation:
       - { condition: sun, before: sunset }
     action:
       - service: script.turn_on
-        entity_id: script.sunprot_westface_update_covers
+        entity_id: script.sunprot_update_covers
 
 
 script:
 
-  sunprot_eastface_update_covers:
+  sunprot_update_covers:
     sequence:
       - service: python_script.covers_ensure_state
-        data_template: { "face": "east", "target_state": "{% if is_state('input_boolean.sunprot_eastface_active', 'on') %}sunscreen{% else %}no-sunscreen{% endif %}" }
-
-  sunprot_southface_update_covers:
-    sequence:
-      - service: python_script.covers_ensure_state
-        data_template: { "face": "south", "target_state": "{% if is_state('input_boolean.sunprot_southface_active', 'on') %}sunscreen{% else %}no-sunscreen{% endif %}" }
-
-  sunprot_westface_update_covers:
-    sequence:
-      - service: python_script.covers_ensure_state
-        data_template: { "face": "west", "target_state": "{% if is_state('input_boolean.sunprot_westface_active', 'on') %}sunscreen{% else %}no-sunscreen{% endif %}" }
+        data: { "situation": "daytime" }
 
 
 group:
@@ -99,26 +69,22 @@ group:
       - group.sunprot_automations
       - sensor.wettersensor_sun_east
       - input_boolean.sunprot_eastface_active
-      - script.sunprot_eastface_update_covers
       - sensor.wettersensor_sun_south
       - input_boolean.sunprot_southface_active
-      - script.sunprot_southface_update_covers
       - sensor.wettersensor_sun_west
       - input_boolean.sunprot_westface_active
-      - script.sunprot_westface_update_covers
+      - script.sunprot_update_covers
       - sensor.wettersensor_temperature
 
   sunprot_automations:
     entities:
       - automation.sunprot_eastface_active_on
       - automation.sunprot_eastface_active_off
-      - automation.sunprot_eastface_update_covers
       - automation.sunprot_southface_active_on
       - automation.sunprot_southface_active_off
-      - automation.sunprot_southface_update_covers
       - automation.sunprot_westface_active_on
       - automation.sunprot_westface_active_off
-      - automation.sunprot_westface_update_covers
+      - automation.sunprot_update_covers
 
 
 history_graph:
@@ -169,14 +135,9 @@ homeassistant:
     automation.sunprot_westface_active_off:
       friendly_name: Sonnenschutz nötig Westseite ausschalten
 
-  customize_glob:
-    
-    "script.sunprot_*face_update_covers":
+    automation.sunprot_update_covers:
+      friendly_name: Beschattung jetzt aktualisieren
+    script.sunprot_update_covers:
+      friendly_name: Beschattung jetzt aktualisieren
       icon: mdi:home-automation
       can_cancel: false
-    "*.sunprot_eastface_update_covers":
-      friendly_name: Beschattung Ostseite jetzt aktualisieren
-    "*.sunprot_southface_update_covers":
-      friendly_name: Beschattung Südseite jetzt aktualisieren
-    "*.sunprot_westface_update_covers":
-      friendly_name: Beschattung Westseite jetzt aktualisieren
