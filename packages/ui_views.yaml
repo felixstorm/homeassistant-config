@@ -12,7 +12,7 @@ group:
       - sensor.date
       - sensor.time
       - sun.sun
-      - sensor.yr_symbol
+      - sensor.yr_current_symbol
       - group.heizung_on_default_view
       - group.lights_on_default_view
       - group.kochfeld_on_default_view
@@ -20,6 +20,9 @@ group:
       - group.wetter_lokal
       - media_player.play_1
       - media_player.wohnzimmer
+      - group.weather_current
+      - group.weather_forecast
+      - group.weather_inside
 
   wetter_lokal_tab:
     view: yes
