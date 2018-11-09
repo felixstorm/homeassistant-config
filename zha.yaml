@@ -1,3 +1,0 @@
-usb_path: /dev/ttyS7
-database_path: /mnt/c/Data/Felix/Develop/HomeAutomation/home-assistant-config/zigbee-single.db
-zigpy_auto_form_network: false

@@ -20,9 +20,9 @@ automation:
       - { condition: state, entity_id: input_boolean.coverprot_wind_active, state: 'on' }
     action:
       - service: cover.open_cover
-        entity_id: cover.ubisys_j1_5502_0000243d_1
+        entity_id: cover.cov_wintergarten_markise
       - service: cover.open_cover
-        entity_id: cover.ubisys_j1_5502_00000dba_1
+        entity_id: cover.cov_dachfenster_gross
 
 
 group:
