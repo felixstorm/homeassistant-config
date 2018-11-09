@@ -1,0 +1,22 @@
+####################
+## ZHA
+####################
+
+# Devices managed by deCONZ have been removed from zigbee.db, so they will not show up in ZHA at all
+
+homeassistant:
+  customize_glob:
+
+    # ZHA power & consumption for covers
+    "sensor.ubisys_j1_5502_*_3_1794":
+      hidden: true
+    "sensor.ubisys_j1_5502_*_3_2820":
+      hidden: true
+
+    # deCONZ dummy covers
+    "light.cov_*":
+      hidden: true
+    "sensor.consumption_*":
+      hidden: true
+    "sensor.power_*":
+      hidden: true

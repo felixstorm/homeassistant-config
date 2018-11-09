@@ -34,39 +34,6 @@ logger:
     # zigpy_xbee.zigbee.application: debug
 
 
-history:
-
-recorder:
-  purge_keep_days: 60
-  exclude:
-    entities:
-      - sensor.date
-      - sensor.power_4
-      - sensor.time
-      - sensor.ubisys_d1r_5603_00001d41_4_2820
-      - sensor.ubisys_j1_5502_00000dba_3_2820
-      - sensor.ubisys_j1_5502_00000dc6_3_2820
-      - sensor.ubisys_j1_5502_00000dec_3_2820
-      - sensor.ubisys_j1_5502_00000ded_3_2820
-      - sensor.ubisys_j1_5502_00000df3_3_2820
-      - sensor.ubisys_j1_5502_00001110_3_2820
-      - sensor.ubisys_j1_5502_0000240d_3_2820
-      - sensor.ubisys_j1_5502_00002415_3_2820
-      - sensor.ubisys_j1_5502_0000243d_3_2820
-      - sensor.ubisys_j1_5502_0000243e_3_2820
-      - sensor.ubisys_j1_5502_000024aa_3_2820
-      - sensor.ubisys_j1_5502_000024db_3_2820
-      - sensor.ubisys_j1_5502_0000255e_3_2820
-      - sensor.ubisys_j1_5502_00002c8c_3_2820
-      - sensor.ubisys_j1_5502_00002cc0_3_2820
-      - sensor.ubisys_j1_5502_00002cec_3_2820
-      - sensor.ubisys_s1_5501_00001a89_3_2820
-      - sensor.ubisys_s1_5501_00001a95_3_2820
-      - sensor.wettersensor
-      - sun.sun
-
-history_graph: !include history_graph.yaml
-
 frontend:
 
 # Enables configuration UI
@@ -91,9 +58,6 @@ conversation:
 
 # View all events in a logbook
 logbook:
-
-# Enables a map showing the location of tracked devices
-map:
 
 # Text to speech
 tts:

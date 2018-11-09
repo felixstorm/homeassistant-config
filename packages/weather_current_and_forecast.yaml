@@ -1,0 +1,91 @@
+sensor:
+  - platform: yr
+    name: yr_current
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - windSpeed
+      - pressure
+      - windDirection
+      - humidity
+      - fog
+      - cloudiness
+      - lowClouds
+      - mediumClouds
+      - highClouds
+      - dewpointTemperature
+  - platform: yr
+    name: yr_forecast_24h
+    forecast: 24
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - windSpeed
+      - pressure
+      - windDirection
+      - humidity
+      - fog
+      - cloudiness
+      - lowClouds
+      - mediumClouds
+      - highClouds
+      - dewpointTemperature
+
+  - platform: yweather
+    woeid: 647082
+    monitored_conditions:
+      - weather
+      - weather_current
+      - temp_min
+      - temp_max
+      - wind_speed
+      - pressure
+      - visibility
+      - humidity
+      - temperature
+
+weather:
+  - platform: yweather
+    woeid: 647082
+
+
+
+group:
+
+  weather_current:
+    entities:
+      - sensor.wettersensor_is_raining
+      - sensor.yr_current_symbol
+      - sensor.yweather_current
+      - sensor.wettersensor_temperature
+      - sensor.heizung_aussen_temperatur
+      - sensor.yr_current_temperature
+      - sensor.yweather_temperature
+      - sensor.yr_current_humidity
+      - sensor.yweather_humidity
+      - sensor.pressure_38
+      - sensor.yr_current_pressure
+      - sensor.yweather_pressure
+      - sensor.wettersensor_wind_speed
+      - sensor.yr_current_windSpeed
+      - sensor.yweather_wind_speed
+
+  weather_forecast:
+    entities:
+      - sensor.yr_forecast_24h_symbol
+      - sensor.yweather_condition
+      - sensor.yr_forecast_24h_temperature
+      - sensor.yweather_temperature_max
+      - sensor.yweather_temperature_min
+      - weather.yweather
+
+  weather_inside:
+    entities:
+      - sensor.comfoairq_inside_temperature
+      - sensor.temperature_39
+      - sensor.temperature_37
+      - sensor.comfoairq_inside_humidity
+      - sensor.humidity_40
+      - sensor.humidity_36
