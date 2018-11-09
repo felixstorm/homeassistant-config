@@ -1,5 +1,0 @@
-usb_path: /dev/ttyUSB0
-database_path: zigbee.db
-zigpy_auto_form_network: false
-radio_type: xbee
-baudrate: 9600

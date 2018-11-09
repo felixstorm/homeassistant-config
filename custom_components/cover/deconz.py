@@ -9,14 +9,15 @@ from homeassistant.components.deconz.const import (
     DATA_DECONZ_UNSUB, DECONZ_DOMAIN, WINDOW_COVERS)
 from homeassistant.components.cover import (
     ATTR_POSITION, CoverDevice, SUPPORT_CLOSE, SUPPORT_OPEN, SUPPORT_STOP,
-    SUPPORT_SET_POSITION)
+    SUPPORT_SET_POSITION, ATTR_TILT_POSITION, SUPPORT_SET_TILT_POSITION)
+from homeassistant.const import STATE_UNKNOWN
 from homeassistant.core import callback
 from homeassistant.helpers.device_registry import CONNECTION_ZIGBEE
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 
 DEPENDENCIES = ['deconz']
 
-ZIGBEE_SPEC = ['lumi.curtain']
+ZIGBEE_SPEC = ['lumi.curtain', 'J1 (5502)']
 
 
 async def async_setup_platform(hass, config, async_add_entities,
@@ -58,6 +59,7 @@ class DeconzCover(CoverDevice):
         self._features |= SUPPORT_CLOSE
         self._features |= SUPPORT_STOP
         self._features |= SUPPORT_SET_POSITION
+        self._features |= SUPPORT_SET_TILT_POSITION
 
     async def async_added_to_hass(self):
         """Subscribe to covers events."""
@@ -77,9 +79,16 @@ class DeconzCover(CoverDevice):
     @property
     def current_cover_position(self):
         """Return the current position of the cover."""
-        if self.is_closed:
-            return 0
-        return int(self._cover.brightness / 255 * 100)
+        if self._cover.brightness is not None:
+            return int(self._cover.brightness / 255 * 100)
+        return STATE_UNKNOWN
+
+    @property
+    def current_cover_tilt_position(self):
+        """Return the current tilt position of the cover."""
+        if self._cover.sat is not None:
+            return int(self._cover.sat / 255 * 100)
+        return STATE_UNKNOWN
 
     @property
     def is_closed(self):
@@ -123,21 +132,24 @@ class DeconzCover(CoverDevice):
     async def async_set_cover_position(self, **kwargs):
         """Move the cover to a specific position."""
         position = kwargs[ATTR_POSITION]
-        data = {'on': False}
-        if position > 0:
-            data['on'] = True
-            data['bri'] = int(position / 100 * 255)
+        data = {'bri': int(position / 100 * 255)}
+        await self._cover.async_set_state(data)
+
+    async def async_set_cover_tilt_position(self, **kwargs):
+        """Move the cover tilt to a specific position."""
+        tilt_position = kwargs[ATTR_TILT_POSITION]
+        data = {'sat': int(tilt_position / 100 * 255)}
         await self._cover.async_set_state(data)
 
     async def async_open_cover(self, **kwargs):
         """Open cover."""
-        data = {ATTR_POSITION: 100}
-        await self.async_set_cover_position(**data)
+        data = {'on': False}
+        await self._cover.async_set_state(data)
 
     async def async_close_cover(self, **kwargs):
         """Close cover."""
-        data = {ATTR_POSITION: 0}
-        await self.async_set_cover_position(**data)
+        data = {'on': True}
+        await self._cover.async_set_state(data)
 
     async def async_stop_cover(self, **kwargs):
         """Stop cover."""
@@ -169,7 +181,16 @@ class DeconzCoverZigbeeSpec(DeconzCover):
     @property
     def current_cover_position(self):
         """Return the current position of the cover."""
-        return 100 - int(self._cover.brightness / 255 * 100)
+        if self._cover.brightness is not None:
+            return 100-int(self._cover.brightness / 255 * 100)
+        return STATE_UNKNOWN
+
+    @property
+    def current_cover_tilt_position(self):
+        """Return the current tilt position of the cover."""
+        if self._cover.sat is not None:
+            return 100-int(self._cover.sat / 255 * 100)
+        return STATE_UNKNOWN
 
     @property
     def is_closed(self):
@@ -179,8 +200,11 @@ class DeconzCoverZigbeeSpec(DeconzCover):
     async def async_set_cover_position(self, **kwargs):
         """Move the cover to a specific position."""
         position = kwargs[ATTR_POSITION]
-        data = {'on': False}
-        if position < 100:
-            data['on'] = True
-            data['bri'] = 255 - int(position / 100 * 255)
+        data = {'bri': 255 - int(position / 100 * 255)}
+        await self._cover.async_set_state(data)
+
+    async def async_set_cover_tilt_position(self, **kwargs):
+        """Move the cover tilt to a specific position."""
+        tilt_position = kwargs[ATTR_TILT_POSITION]
+        data = {'sat': 255 - int(tilt_position / 100 * 255)}
         await self._cover.async_set_state(data)
