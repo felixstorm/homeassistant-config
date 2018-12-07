@@ -13,8 +13,8 @@ group:
       - sensor.heizung_kesselstatus_anzeige
       - sensor.heizung_puffer_temperatur_1
       - sensor.heizung_puffer_temperatur_5
-      - sensor.heizung_hk1_vorlauf_temperatur
       - sensor.heizung_hk2_vorlauf_temperatur
+      - sensor.heizung_hk1_vorlauf_temperatur
 
   heizung_tab:
     view: yes
@@ -23,13 +23,13 @@ group:
       - group.heizung_uebersicht
       - group.heizung_kessel
       - group.heizung_puffer
-      - group.heizung_hk1
       - group.heizung_hk2
+      - group.heizung_hk1
       - history_graph.heizung_temperaturen
       - history_graph.heizung_kessel
       - history_graph.heizung_puffer
-      - history_graph.heizung_hk1
       - history_graph.heizung_hk2
+      - history_graph.heizung_hk1
 
   heizung_uebersicht:
     name: Heizung Übersicht
@@ -39,10 +39,10 @@ group:
       - sensor.heizung_brennerleistung
       - sensor.heizung_puffer_temperatur_1
       - sensor.heizung_puffer_temperatur_5
-      - sensor.heizung_hk1_vorlauf_temperatur_soll
-      - sensor.heizung_hk1_vorlauf_temperatur
       - sensor.heizung_hk2_vorlauf_temperatur_soll
       - sensor.heizung_hk2_vorlauf_temperatur
+      - sensor.heizung_hk1_vorlauf_temperatur_soll
+      - sensor.heizung_hk1_vorlauf_temperatur
       - sensor.heizung_aussen_temperatur
       - sensor.heizung_alarme_anzeige
       - sensor.heizung_sw_version_anzeige
@@ -86,7 +86,7 @@ group:
       - sensor.heizung_puffer_brauchwassertemp_min
 
   heizung_hk1:
-    name: FBH
+    name: Heizkörper
     entities:
       - sensor.heizung_hk1_status_anzeige
       - sensor.heizung_hk1_raum_temperatur_soll
@@ -99,7 +99,7 @@ group:
       - sensor.heizung_hk1_raum_temperatur_soll_nacht
 
   heizung_hk2:
-    name: Heizkörper
+    name: FBH
     entities:
       - sensor.heizung_hk2_status_anzeige
       - sensor.heizung_hk2_raum_temperatur_soll
@@ -129,8 +129,8 @@ history_graph:
       - sensor.heizung_puffer_temperatur_5
       - sensor.heizung_puffer_anforderung_anzeige
       - sensor.heizung_puffer_pumpe_anzeige
-      - sensor.heizung_hk1_vorlauf_temperatur_soll
       - sensor.heizung_hk2_vorlauf_temperatur_soll
+      - sensor.heizung_hk1_vorlauf_temperatur_soll
     hours_to_show: 36
     refresh: 60
 
