@@ -4,7 +4,7 @@ group:
     entities:
       - automation.zufallslicht_flur_og_abends_ein
       - automation.zufallslicht_flur_og_abends_aus
-      - automation.zufallslicht_studio_einaus
+      - automation.automation.zufallslicht_studio_ein_aus
       - automation.zufallslichter_abends_sicher_aus
 
 
@@ -22,7 +22,7 @@ history_graph:
 automation:
 
   - alias: 'Zufallslicht Studio ein/aus'
-    trigger: { platform: time, minutes: /20, seconds: 0 }
+    trigger: { platform: time_pattern, minutes: /20, seconds: 0 }
     condition:
       - { condition: sun, after: sunset, after_offset: '-1:00:00' }
       - { condition: time, before: '23:45:00' }

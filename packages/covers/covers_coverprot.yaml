@@ -15,7 +15,7 @@ automation:
   - alias: coverprot_turn_on
     trigger:
       - { platform: state, entity_id: input_boolean.coverprot_wind_active, to: 'on' }
-      - { platform: time, minutes: /2, seconds: 0 }
+      - { platform: time_pattern, minutes: /2, seconds: 0 }
     condition:
       - { condition: state, entity_id: input_boolean.coverprot_wind_active, state: 'on' }
     action:

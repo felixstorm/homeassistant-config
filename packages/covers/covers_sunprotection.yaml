@@ -44,7 +44,7 @@ automation:
       - { platform: state, entity_id: input_boolean.sunprot_eastface_active }
       - { platform: state, entity_id: input_boolean.sunprot_southface_active }
       - { platform: state, entity_id: input_boolean.sunprot_westface_active }
-      - { platform: time, minutes: /15, seconds: 0 }
+      - { platform: time_pattern, minutes: /15, seconds: 0 }
     condition:
       - { condition: time, after: '08:00:00' }
       - { condition: sun, before: sunset }

@@ -7,7 +7,7 @@ automation:
         below: '500'
         for:
           minutes: 10
-      - platform: time
+      - platform: time_pattern
         minutes: /30
         seconds: 0
     condition:
