@@ -33,23 +33,6 @@ sensor:
       - highClouds
       - dewpointTemperature
 
-  - platform: yweather
-    woeid: 647082
-    monitored_conditions:
-      - weather
-      - weather_current
-      - temp_min
-      - temp_max
-      - wind_speed
-      - pressure
-      - visibility
-      - humidity
-      - temperature
-
-weather:
-  - platform: yweather
-    woeid: 647082
-
 
 
 group:
@@ -57,29 +40,27 @@ group:
   weather_current:
     entities:
       - sensor.wettersensor_is_raining
+      - sensor.netatmo_public_oberursel_nord_rain
       - sensor.yr_current_symbol
-      - sensor.yweather_current
       - sensor.wettersensor_temperature
       - sensor.heizung_aussen_temperatur
+      - sensor.netatmo_public_oberursel_nord_temperature
       - sensor.yr_current_temperature
-      - sensor.yweather_temperature
+      - sensor.netatmo_public_oberursel_nord_humidity
       - sensor.yr_current_humidity
-      - sensor.yweather_humidity
       - sensor.pressure_38
+      - sensor.pressure_41
+      - sensor.netatmo_public_oberursel_nord_pressure
       - sensor.yr_current_pressure
-      - sensor.yweather_pressure
       - sensor.wettersensor_wind_speed
-      - sensor.yr_current_windSpeed
-      - sensor.yweather_wind_speed
+      - sensor.netatmo_public_oberursel_nord_wind_strength
+      - sensor.netatmo_public_oberursel_nord_gust_strength
+      - sensor.yr_current_wind_speed
 
   weather_forecast:
     entities:
       - sensor.yr_forecast_24h_symbol
-      - sensor.yweather_condition
       - sensor.yr_forecast_24h_temperature
-      - sensor.yweather_temperature_max
-      - sensor.yweather_temperature_min
-      - weather.yweather
 
   weather_inside:
     entities:

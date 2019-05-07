@@ -30,3 +30,5 @@ group:
     entities:
       - group.wetter_lokal
       - history_graph.wetter_lokal
+      - group.wetter_lokal_netatmo_public
+      - history_graph.wetter_lokal_netatmo_public
