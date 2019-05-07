@@ -24,7 +24,7 @@ automation:
   - alias: coversatnight_up_in_the_morning
     trigger:
       platform: time
-      at: '08:00:00'
+      at: '07:00:00'
     action:
       - delay: '00:{{ (range(0, 59)|random|int) }}:00'
       - service: script.turn_on
