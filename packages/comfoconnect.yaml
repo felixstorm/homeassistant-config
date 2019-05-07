@@ -42,8 +42,8 @@ group:
       - sensor.comfoairq_exhaust_humidity
       - sensor.comfoairq_outside_temperature
       - sensor.comfoairq_outside_humidity
-      - sensor.comfoairq_air_flow_supply
-      - sensor.comfoairq_air_flow_exhaust
+      - sensor.comfoairq_supply_airflow
+      - sensor.comfoairq_exhaust_airflow
       - sensor.comfoairq_days_to_replace_filter
       - sensor.comfoairq_bypass_state
 
@@ -60,8 +60,8 @@ history_graph:
       - sensor.comfoairq_exhaust_humidity
       - sensor.comfoairq_outside_temperature
       - sensor.comfoairq_outside_humidity
-      - sensor.comfoairq_air_flow_supply
-      - sensor.comfoairq_air_flow_exhaust
+      - sensor.comfoairq_supply_airflow
+      - sensor.comfoairq_exhaust_airflow
       - sensor.comfoairq_days_to_replace_filter
       - sensor.comfoairq_bypass_state
     hours_to_show: 72

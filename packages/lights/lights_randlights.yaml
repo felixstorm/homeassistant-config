@@ -4,7 +4,7 @@ group:
     entities:
       - automation.zufallslicht_flur_og_abends_ein
       - automation.zufallslicht_flur_og_abends_aus
-      - automation.automation.zufallslicht_studio_ein_aus
+      - automation.zufallslicht_studio_ein_aus
       - automation.zufallslichter_abends_sicher_aus
 
 
