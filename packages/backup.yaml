@@ -1,0 +1,25 @@
+automation:
+  - alias: backup_create_snapshot
+    trigger:
+      - { platform: time, at: '3:00:00' }
+    condition:
+      - { condition: time, weekday: [ sun ]}
+    action:
+    - service: hassio.snapshot_full
+      data_template:
+        name: Backup {{ now().strftime('%Y-%m-%d') }}
+  - alias: backup_upload_snapshots_to_dropbox
+    trigger:
+      - { platform: time, at: '5:00:00' }
+    action:
+    - service: hassio.addon_stdin
+      data: { addon: 7be23ff5_dropbox_sync,  input: { command: upload }}
+
+homeassistant:
+
+  customize:
+
+    automation.backup_create_snapshot:
+      friendly_name: Snapshot erstellen
+    automation.backup_upload_snapshots_to_dropbox:
+      friendly_name: Snapshots zu Dropbox hochladen

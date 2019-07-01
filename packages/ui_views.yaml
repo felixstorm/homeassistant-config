@@ -23,6 +23,8 @@ group:
       - group.weather_current
       - group.weather_forecast
       - group.weather_inside
+      - automation.backup_create_snapshot
+      - automation.backup_upload_snapshots_to_dropbox
 
   wetter_lokal_tab:
     view: yes
