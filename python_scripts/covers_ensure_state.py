@@ -66,8 +66,8 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
     current_lift = current_state.attributes.get('current_position')
     current_tilt = current_state.attributes.get('current_tilt_position')
 
-    set_lift = (current_lift is not 'unknown') and (target_lift is not None) and (not ignore_fully_closed or current_lift != 0) and (abs(current_lift - target_lift) > 3)
-    set_tilt = (current_tilt is not 'unknown') and (target_tilt is not None) and (not ignore_fully_closed or current_lift != 0) and (abs(current_tilt - target_tilt) > 3)
+    set_lift = (current_lift is not 'unknown') and (current_lift is not None) and (target_lift is not None) and (not ignore_fully_closed or current_lift != 0) and (abs(current_lift - target_lift) > 3)
+    set_tilt = (current_tilt is not 'unknown') and (current_tilt is not None) and (target_tilt is not None) and (not ignore_fully_closed or current_lift != 0) and (abs(current_tilt - target_tilt) > 3)
     
     message = 'target_lift = {}, target_tilt = {}, ignore_fully_closed = {}, current_lift = {}, current_tilt = {}, set_lift = {}, set_tilt = {}'.format(
         target_lift, target_tilt, ignore_fully_closed, current_lift, current_tilt, set_lift, set_tilt)
