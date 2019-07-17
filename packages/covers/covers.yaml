@@ -3,73 +3,77 @@ homeassistant:
   customize:
   
     # EG
-    cover.cov_wohnzimmer_sitzfenster:
+    cover.cov_wohnzimmer_sitzfenster_cover:
       friendly_name: Wohnzimmer Sitzfenster
-    sensor.cover_lift_pos_cov_wohnzimmer_sitzfenster:
+    sensor.cover_lift_pos_wohnzimmer_sitzfenster:
       friendly_name: Wohnzimmer Sitzfenster
-    cover.cov_wohnzimmer_terrassentur:
+    cover.cov_wohnzimmer_terrassentur_cover:
       friendly_name: Wohnzimmer Terrassentür
-    sensor.cover_lift_pos_cov_wohnzimmer_terrassentur:
+    sensor.cover_lift_pos_wohnzimmer_terrassentur:
       friendly_name: Wohnzimmer Terrassentür
-    cover.cov_wintergarten_markise:
+    cover.cov_terrasse_markise_cover:
+      friendly_name: Terrasse Markise
+    sensor.cover_lift_pos_terrass_markise:
+      friendly_name: Terrasse Markise
+    cover.cov_wintergarten_markise_cover:
       friendly_name: Wintergarten Markise
-    sensor.cover_lift_pos_cov_wintergarten_markise:
+    sensor.cover_lift_pos_wintergarten_markise:
       friendly_name: Wintergarten Markise
-    cover.cov_kuche_terrassentur:
+    cover.cov_kuche_terrassentur_cover:
       friendly_name: Küche Terrassentür
-    sensor.cover_lift_pos_cov_kuche_terrassentur:
+    sensor.cover_lift_pos_kuche_terrassentur:
       friendly_name: Küche Terrassentür
-    cover.cov_kuche_fenster:
+    cover.cov_kuche_fenster_cover:
       friendly_name: Küche Fenster
-    sensor.cover_lift_pos_cov_kuche_fenster:
+    sensor.cover_lift_pos_kuche_fenster:
       friendly_name: Küche Fenster
-    cover.cov_windfang:
+    cover.cov_windfang_cover:
       friendly_name: Windfang
-    sensor.cover_lift_pos_cov_windfang:
+    sensor.cover_lift_pos_windfang:
       friendly_name: Windfang
 
     # OG
-    cover.cov_florian:
+    cover.cov_florian_cover:
       friendly_name: Florian
-    sensor.cover_lift_pos_cov_florian:
+    sensor.cover_lift_pos_florian:
       friendly_name: Florian
-    cover.cov_jonathan_links:
+    cover.cov_jonathan_links_cover:
       friendly_name: Jonathan links
-    sensor.cover_lift_pos_cov_jonathan_links:
+    sensor.cover_lift_pos_jonathan_links:
       friendly_name: Jonathan links
-    cover.cov_jonathan_rechts:
+    cover.cov_jonathan_rechts_cover:
       friendly_name: Jonathan rechts
-    sensor.cover_lift_pos_cov_jonathan_rechts:
+    sensor.cover_lift_pos_jonathan_rechts:
       friendly_name: Jonathan rechts
-    cover.cov_schlafzimmer:
+    cover.cov_schlafzimmer_cover:
       friendly_name: Schlafzimmer
-    sensor.cover_lift_pos_cov_schlafzimmer:
+    sensor.cover_lift_pos_schlafzimmer:
       friendly_name: Schlafzimmer
-    cover.cov_bad_og:
+    cover.cov_bad_og_cover:
       friendly_name: Bad OG
-    sensor.cover_lift_pos_cov_bad_og:
+    sensor.cover_lift_pos_bad_og:
       friendly_name: Bad OG
-    cover.cov_flur_og:
+    cover.cov_flur_og_cover:
       friendly_name: Flur OG
-    sensor.cover_lift_pos_cov_flur_og:
+    sensor.cover_lift_pos_flur_og:
       friendly_name: Flur OG
 
     # DG
-    cover.cov_studio_dg_links:
+    cover.cov_studio_dg_links_cover:
       friendly_name: Studio DG links
-    sensor.cover_lift_pos_cov_studio_dg_links:
+    sensor.cover_lift_pos_studio_dg_links:
       friendly_name: Studio DG links
-    cover.cov_studio_dg_rechts:
+    cover.cov_studio_dg_rechts_cover:
       friendly_name: Studio DG rechts
-    sensor.cover_lift_pos_cov_studio_dg_rechts:
+    sensor.cover_lift_pos_studio_dg_rechts:
       friendly_name: Studio DG rechts
-    cover.cov_dachfenster_gross:
+    cover.cov_dachfenster_gross_cover:
       friendly_name: Dachfenster groß
-    sensor.cover_lift_pos_cov_dachfenster_gross:
+    sensor.cover_lift_pos_dachfenster_gross:
       friendly_name: Dachfenster groß
-    cover.cov_bad_dg:
+    cover.cov_bad_dg_cover:
       friendly_name: Bad DG
-    sensor.cover_lift_pos_cov_bad_dg:
+    sensor.cover_lift_pos_bad_dg:
       friendly_name: Bad DG
 
     history_graph.sonnenschutz:
@@ -117,22 +121,23 @@ group:
     entities:
       - input_boolean.covers_include_terrassentuer_in_automations
       - input_boolean.covers_include_kuechentuer_in_automations
-      - cover.cov_wohnzimmer_sitzfenster
-      - cover.cov_wohnzimmer_terrassentur
-      - cover.cov_wintergarten_markise
-      - cover.cov_kuche_terrassentur
-      - cover.cov_kuche_fenster
-      - cover.cov_windfang
-      - cover.cov_florian
-      - cover.cov_jonathan_links
-      - cover.cov_jonathan_rechts
-      - cover.cov_schlafzimmer
-      - cover.cov_bad_og
-      - cover.cov_flur_og
-      - cover.cov_studio_dg_links
-      - cover.cov_studio_dg_rechts
-      - cover.cov_dachfenster_gross
-      - cover.cov_bad_dg
+      - cover.cov_wohnzimmer_sitzfenster_cover
+      - cover.cov_wohnzimmer_terrassentur_cover
+      - cover.cov_terrasse_markise_cover
+      - cover.cov_wintergarten_markise_cover
+      - cover.cov_kuche_terrassentur_cover
+      - cover.cov_kuche_fenster_cover
+      - cover.cov_windfang_cover
+      - cover.cov_florian_cover
+      - cover.cov_jonathan_links_cover
+      - cover.cov_jonathan_rechts_cover
+      - cover.cov_schlafzimmer_cover
+      - cover.cov_bad_og_cover
+      - cover.cov_flur_og_cover
+      - cover.cov_studio_dg_links_cover
+      - cover.cov_studio_dg_rechts_cover
+      - cover.cov_dachfenster_gross_cover
+      - cover.cov_bad_dg_cover
 
 
 input_boolean:

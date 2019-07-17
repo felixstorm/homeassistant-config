@@ -23,15 +23,10 @@ logger:
     homeassistant.components.python_script: debug
     homeassistant.components.python_script.covers_ensure_state.py: info
     homeassistant.components.sensor: error
-    homeassistant.components.zha: debug
     homeassistant.config: warning
     homeassistant.helpers.entity: error
     custom_components: info
     # custom_components.sensor.comfoconnect: debug
-    zigpy: info
-    zigpy.zcl: info
-    zigpy_xbee: info
-    # zigpy_xbee.zigbee.application: debug
 
 
 frontend:

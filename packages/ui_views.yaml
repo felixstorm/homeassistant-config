@@ -15,7 +15,6 @@ group:
       - sensor.yr_current_symbol
       - group.heizung_on_default_view
       - group.lights_on_default_view
-      - group.kochfeld_on_default_view
       - group.covers_on_default_view
       - group.wetter_lokal
       - media_player.play_1
@@ -25,6 +24,12 @@ group:
       - group.weather_inside
       - automation.backup_create_snapshot
       - automation.backup_upload_snapshots_to_dropbox
+
+  system_tab:
+    view: yes
+    name: System
+    entities:
+      - group.zigbee2mqtt
 
   wetter_lokal_tab:
     view: yes

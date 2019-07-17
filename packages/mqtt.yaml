@@ -1,0 +1,11 @@
+mqtt:
+  broker: localhost
+  username: homeassistant_mqtt
+  password: !secret mqtt_password
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+  discovery: true

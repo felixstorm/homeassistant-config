@@ -2,53 +2,53 @@ sensor:
 
   - platform: template
     sensors:
-      cover_lift_pos_cov_wohnzimmer_sitzfenster:
-        value_template: "{{ state_attr('cover.cov_wohnzimmer_sitzfenster', 'current_position') }}"
+      cover_lift_pos_wohnzimmer_sitzfenster:
+        value_template: "{{ state_attr('cover.cov_wohnzimmer_sitzfenster_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_wohnzimmer_terrassentur:
-        value_template: "{{ state_attr('cover.cov_wohnzimmer_terrassentur', 'current_position') }}"
+      cover_lift_pos_wohnzimmer_terrassentur:
+        value_template: "{{ state_attr('cover.cov_wohnzimmer_terrassentur_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_wintergarten_markise:
-        value_template: "{{ state_attr('cover.cov_wintergarten_markise', 'current_position') }}"
+      cover_lift_pos_wintergarten_markise:
+        value_template: "{{ state_attr('cover.cov_wintergarten_markise_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_kuche_terrassentur:
-        value_template: "{{ state_attr('cover.cov_kuche_terrassentur', 'current_position') }}"
+      cover_lift_pos_kuche_terrassentur:
+        value_template: "{{ state_attr('cover.cov_kuche_terrassentur_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_kuche_fenster:
-        value_template: "{{ state_attr('cover.cov_kuche_fenster', 'current_position') }}"
+      cover_lift_pos_kuche_fenster:
+        value_template: "{{ state_attr('cover.cov_kuche_fenster_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_windfang:
-        value_template: "{{ state_attr('cover.cov_windfang', 'current_position') }}"
+      cover_lift_pos_windfang:
+        value_template: "{{ state_attr('cover.cov_windfang_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_florian:
-        value_template: "{{ state_attr('cover.cov_florian', 'current_position') }}"
+      cover_lift_pos_florian:
+        value_template: "{{ state_attr('cover.cov_florian_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_jonathan_links:
-        value_template: "{{ state_attr('cover.cov_jonathan_links', 'current_position') }}"
+      cover_lift_pos_jonathan_links:
+        value_template: "{{ state_attr('cover.cov_jonathan_links_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_jonathan_rechts:
-        value_template: "{{ state_attr('cover.cov_jonathan_rechts', 'current_position') }}"
+      cover_lift_pos_jonathan_rechts:
+        value_template: "{{ state_attr('cover.cov_jonathan_rechts_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_schlafzimmer:
-        value_template: "{{ state_attr('cover.cov_schlafzimmer', 'current_position') }}"
+      cover_lift_pos_schlafzimmer:
+        value_template: "{{ state_attr('cover.cov_schlafzimmer_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_bad_og:
-        value_template: "{{ state_attr('cover.cov_bad_og', 'current_position') }}"
+      cover_lift_pos_bad_og:
+        value_template: "{{ state_attr('cover.cov_bad_og_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_flur_og:
-        value_template: "{{ state_attr('cover.cov_flur_og', 'current_position') }}"
+      cover_lift_pos_flur_og:
+        value_template: "{{ state_attr('cover.cov_flur_og_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_studio_dg_links:
-        value_template: "{{ state_attr('cover.cov_studio_dg_links', 'current_position') }}"
+      cover_lift_pos_studio_dg_links:
+        value_template: "{{ state_attr('cover.cov_studio_dg_links_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_studio_dg_rechts:
-        value_template: "{{ state_attr('cover.cov_studio_dg_rechts', 'current_position') }}"
+      cover_lift_pos_studio_dg_rechts:
+        value_template: "{{ state_attr('cover.cov_studio_dg_rechts_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_dachfenster_gross:
-        value_template: "{{ state_attr('cover.cov_dachfenster_gross', 'current_position') }}"
+      cover_lift_pos_dachfenster_gross:
+        value_template: "{{ state_attr('cover.cov_dachfenster_gross_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_cov_bad_dg:
-        value_template: "{{ state_attr('cover.cov_bad_dg', 'current_position') }}"
+      cover_lift_pos_bad_dg:
+        value_template: "{{ state_attr('cover.cov_bad_dg_cover', 'current_position') }}"
         unit_of_measurement: "%"
 
 
@@ -57,21 +57,21 @@ history_graph:
   covers_lift_position:
     name: covers_lift_position
     entities:
-      - sensor.cover_lift_pos_cov_wohnzimmer_sitzfenster
-      - sensor.cover_lift_pos_cov_wohnzimmer_terrassentur
-      - sensor.cover_lift_pos_cov_wintergarten_markise
-      - sensor.cover_lift_pos_cov_kuche_terrassentur
-      - sensor.cover_lift_pos_cov_kuche_fenster
-      - sensor.cover_lift_pos_cov_windfang
-      - sensor.cover_lift_pos_cov_florian
-      - sensor.cover_lift_pos_cov_jonathan_links
-      - sensor.cover_lift_pos_cov_jonathan_rechts
-      - sensor.cover_lift_pos_cov_schlafzimmer
-      - sensor.cover_lift_pos_cov_bad_og
-      - sensor.cover_lift_pos_cov_flur_og
-      - sensor.cover_lift_pos_cov_studio_dg_links
-      - sensor.cover_lift_pos_cov_studio_dg_rechts
-      - sensor.cover_lift_pos_cov_dachfenster_gross
-      - sensor.cover_lift_pos_cov_bad_dg
+      - sensor.cover_lift_pos_wohnzimmer_sitzfenster
+      - sensor.cover_lift_pos_wohnzimmer_terrassentur
+      - sensor.cover_lift_pos_wintergarten_markise
+      - sensor.cover_lift_pos_kuche_terrassentur
+      - sensor.cover_lift_pos_kuche_fenster
+      - sensor.cover_lift_pos_windfang
+      - sensor.cover_lift_pos_florian
+      - sensor.cover_lift_pos_jonathan_links
+      - sensor.cover_lift_pos_jonathan_rechts
+      - sensor.cover_lift_pos_schlafzimmer
+      - sensor.cover_lift_pos_bad_og
+      - sensor.cover_lift_pos_flur_og
+      - sensor.cover_lift_pos_studio_dg_links
+      - sensor.cover_lift_pos_studio_dg_rechts
+      - sensor.cover_lift_pos_dachfenster_gross
+      - sensor.cover_lift_pos_bad_dg
     hours_to_show: 72
     refresh: 60

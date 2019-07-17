@@ -1,0 +1,36 @@
+sensor:
+
+  - platform: template
+    sensors:
+      herd_links_power:
+        value_template: "{{ state_attr('sensor.herd_links_linkquality', 'power') }}"
+        unit_of_measurement: "W"
+      herd_rechts_power:
+        value_template: "{{ state_attr('sensor.herd_rechts_linkquality', 'power') }}"
+        unit_of_measurement: "W"
+
+
+homeassistant:
+
+  customize:
+    group.switches_kochfeld:
+      friendly_name: Kochfeld
+      icon: mdi:power
+    switch.herd_links_switch:
+      friendly_name: Herd links
+    sensor.herd_links_power:
+      friendly_name: Herd links Leistung
+    switch.herd_rechts_switch:
+      friendly_name: Herd rechts
+    sensor.herd_rechts_power:
+      friendly_name: Herd rechts Leistung
+
+
+group:
+
+  switches_kochfeld:
+    entities:
+      - switch.herd_links_switch
+      - sensor.herd_links_power
+      - switch.herd_rechts_switch
+      - sensor.herd_rechts_power

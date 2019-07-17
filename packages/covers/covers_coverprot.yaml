@@ -6,10 +6,10 @@ input_boolean:
 automation:
 
   - alias: coverprot_wind_active_on
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_wind_speed_gusts, above: 35 }
+    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_wind_speed_gusts, above: 30 }
     action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.coverprot_wind_active } }
   - alias: coverprot_wind_active_off
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_wind_speed_gusts, below: 30, for: { minutes: 10 } }
+    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_wind_speed_gusts, below: 25, for: { minutes: 10 } }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.coverprot_wind_active } }
 
   - alias: coverprot_turn_on
@@ -20,9 +20,11 @@ automation:
       - { condition: state, entity_id: input_boolean.coverprot_wind_active, state: 'on' }
     action:
       - service: cover.open_cover
-        entity_id: cover.cov_wintergarten_markise
+        entity_id: cover.cov_terrasse_markise_cover
       - service: cover.open_cover
-        entity_id: cover.cov_dachfenster_gross
+        entity_id: cover.cov_wintergarten_markise_cover
+      - service: cover.open_cover
+        entity_id: cover.cov_dachfenster_gross_cover
 
 
 group:
