@@ -15,7 +15,7 @@ history_graph:
     name: zufallslicht
     entities:
       - light.flur_og_light
-      - light.studio_dg
+      - light.studio_dg_light
     hours_to_show: 72
     refresh: 60
 
@@ -34,7 +34,7 @@ automation:
           {% else %}
             light.turn_off
           {% endif %}
-        entity_id: light.studio_dg
+        entity_id: light.studio_dg_light
 
   - alias: 'Zufallslicht Flur OG abends ein'
     trigger:
@@ -63,7 +63,7 @@ automation:
       - service: light.turn_off
         entity_id: light.flur_og_light
       - service: light.turn_off
-        entity_id: light.studio_dg
+        entity_id: light.studio_dg_light
 
 
 homeassistant:

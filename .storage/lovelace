@@ -14,7 +14,7 @@
                             "entities": [
                                 "group.switches_kochfeld",
                                 "light.flur_og_light",
-                                "light.studio_dg",
+                                "light.studio_dg_light",
                                 "group.randlights_automations"
                             ],
                             "show_header_toggle": false,
@@ -521,7 +521,7 @@
                         {
                             "entities": [
                                 "light.flur_og_light",
-                                "light.studio_dg"
+                                "light.studio_dg_light"
                             ],
                             "hours_to_show": 72,
                             "refresh_interval": 60,
