@@ -1,6 +1,7 @@
 group:
 
   randlights_automations:
+    all: true
     entities:
       - automation.zufallslicht_flur_og_abends_ein
       - automation.zufallslicht_flur_og_abends_aus

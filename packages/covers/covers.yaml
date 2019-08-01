@@ -83,63 +83,6 @@ homeassistant:
       friendly_name: Beschattung Position
 
 
-group:
-
-  covers_on_default_view:
-    name: Beschattung
-    control: hidden
-    entities:
-      - input_boolean.covers_include_terrassentuer_in_automations
-      - input_boolean.covers_include_kuechentuer_in_automations
-      - group.sunprot_automations
-      - input_boolean.sunprot_eastface_active
-      - input_boolean.sunprot_southface_active
-      - input_boolean.sunprot_westface_active
-      - group.coversatnight_automations
-      - script.coversatnight_covers_down
-      - script.coversatnight_covers_up
-      - group.coverprot_automations
-      - input_boolean.coverprot_wind_active
-
-  covers_tab:
-    view: yes
-    name: Beschattung
-    entities:
-      - group.covers_all
-      - group.sunprot
-      - history_graph.sonnenschutz
-      - group.sunprot_automations
-      - group.coversatnight
-      - group.coversatnight_automations
-      - group.coverprot
-      - group.coverprot_automations
-      - history_graph.covers_lift_position
-
-  covers_all:
-    name: Beschattung
-    control: hidden
-    entities:
-      - input_boolean.covers_include_terrassentuer_in_automations
-      - input_boolean.covers_include_kuechentuer_in_automations
-      - cover.cov_wohnzimmer_sitzfenster_cover
-      - cover.cov_wohnzimmer_terrassentur_cover
-      - cover.cov_terrasse_markise_cover
-      - cover.cov_wintergarten_markise_cover
-      - cover.cov_kuche_terrassentur_cover
-      - cover.cov_kuche_fenster_cover
-      - cover.cov_windfang_cover
-      - cover.cov_florian_cover
-      - cover.cov_jonathan_links_cover
-      - cover.cov_jonathan_rechts_cover
-      - cover.cov_schlafzimmer_cover
-      - cover.cov_bad_og_cover
-      - cover.cov_flur_og_cover
-      - cover.cov_studio_dg_links_cover
-      - cover.cov_studio_dg_rechts_cover
-      - cover.cov_dachfenster_gross_cover
-      - cover.cov_bad_dg_cover
-
-
 input_boolean:
 
   covers_include_terrassentuer_in_automations:

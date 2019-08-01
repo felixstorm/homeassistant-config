@@ -1,0 +1,653 @@
+{
+    "data": {
+        "config": {
+            "title": "DW27",
+            "views": [
+                {
+                    "badges": [
+                        "sensor.date",
+                        "sensor.time",
+                        "sun.sun"
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                "group.switches_kochfeld",
+                                "light.flur_og_light",
+                                "light.studio_dg",
+                                "group.randlights_automations"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Beleuchtung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_alarme_anzeige",
+                                "sensor.heizung_aussen_temperatur",
+                                "sensor.heizung_kesselstatus_anzeige",
+                                "sensor.heizung_puffer_temperatur_1",
+                                "sensor.heizung_puffer_temperatur_5",
+                                "sensor.heizung_hk2_vorlauf_temperatur",
+                                "sensor.heizung_hk1_vorlauf_temperatur"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Heizung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.wettersensor_reading_age",
+                                "sensor.wettersensor_temperature",
+                                "sensor.wettersensor_sun_east",
+                                "sensor.wettersensor_sun_south",
+                                "sensor.wettersensor_sun_west",
+                                "sensor.wettersensor_daylight",
+                                "sensor.wettersensor_is_dark",
+                                "sensor.wettersensor_wind_speed",
+                                "sensor.wettersensor_wind_speed_gusts",
+                                "sensor.wettersensor_is_raining",
+                                "sensor.wettersensor_coverprot1_is_active",
+                                "sensor.wettersensor_coverprot2_is_active"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Wetter lokal",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "input_boolean.covers_include_terrassentuer_in_automations",
+                                "input_boolean.covers_include_kuechentuer_in_automations",
+                                "group.sunprot_automations",
+                                "input_boolean.sunprot_eastface_active",
+                                "input_boolean.sunprot_southface_active",
+                                "input_boolean.sunprot_westface_active",
+                                "group.coversatnight_automations",
+                                "script.coversatnight_covers_down",
+                                "script.coversatnight_covers_up",
+                                "group.coverprot_automations",
+                                "input_boolean.coverprot_wind_active"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Beschattung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.wettersensor_is_raining",
+                                "sensor.netatmo_public_oberursel_nord_rain",
+                                "sensor.yr_current_symbol",
+                                "sensor.wettersensor_temperature",
+                                "sensor.heizung_aussen_temperatur",
+                                "sensor.netatmo_public_oberursel_nord_temperature",
+                                "sensor.yr_current_temperature",
+                                "sensor.netatmo_public_oberursel_nord_humidity",
+                                "sensor.yr_current_humidity",
+                                "sensor.pressure_38",
+                                "sensor.pressure_41",
+                                "sensor.netatmo_public_oberursel_nord_pressure",
+                                "sensor.yr_current_pressure",
+                                "sensor.wettersensor_wind_speed",
+                                "sensor.netatmo_public_oberursel_nord_wind_strength",
+                                "sensor.netatmo_public_oberursel_nord_gust_strength",
+                                "sensor.yr_current_wind_speed"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "weather_current",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.yr_forecast_24h_symbol",
+                                "sensor.yr_forecast_24h_temperature"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "weather_forecast",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.comfoairq_inside_temperature",
+                                "sensor.temperature_39",
+                                "sensor.temperature_37",
+                                "sensor.comfoairq_inside_humidity",
+                                "sensor.humidity_40",
+                                "sensor.humidity_36"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "weather_inside",
+                            "type": "entities"
+                        }
+                    ],
+                    "icon": "mdi:home",
+                    "path": "default_view",
+                    "title": "default_view"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "input_boolean.covers_include_terrassentuer_in_automations",
+                                "input_boolean.covers_include_kuechentuer_in_automations",
+                                "cover.cov_wohnzimmer_sitzfenster_cover",
+                                "cover.cov_wohnzimmer_terrassentur_cover",
+                                "cover.cov_terrasse_markise_cover",
+                                "cover.cov_wintergarten_markise_cover",
+                                "cover.cov_kuche_terrassentur_cover",
+                                "cover.cov_kuche_fenster_cover",
+                                "cover.cov_windfang_cover",
+                                "cover.cov_florian_cover",
+                                "cover.cov_jonathan_links_cover",
+                                "cover.cov_jonathan_rechts_cover",
+                                "cover.cov_schlafzimmer_cover",
+                                "cover.cov_bad_og_cover",
+                                "cover.cov_flur_og_cover",
+                                "cover.cov_studio_dg_links_cover",
+                                "cover.cov_studio_dg_rechts_cover",
+                                "cover.cov_dachfenster_gross_cover",
+                                "cover.cov_bad_dg_cover"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Beschattung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "group.sunprot_automations",
+                                "sensor.wettersensor_sun_east",
+                                "input_boolean.sunprot_eastface_active",
+                                "sensor.wettersensor_sun_south",
+                                "input_boolean.sunprot_southface_active",
+                                "sensor.wettersensor_sun_west",
+                                "input_boolean.sunprot_westface_active",
+                                "script.sunprot_update_covers",
+                                "sensor.wettersensor_temperature"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Sonnenschutz",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "automation.sunprot_eastface_active_on",
+                                "automation.sunprot_eastface_active_off",
+                                "automation.sunprot_southface_active_on",
+                                "automation.sunprot_southface_active_off",
+                                "automation.sunprot_westface_active_on",
+                                "automation.sunprot_westface_active_off",
+                                "automation.sunprot_update_covers"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Sonnenschutz autom.",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "script.coversatnight_covers_down",
+                                "script.coversatnight_covers_up"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Raffstore nachts",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "automation.coversatnight_down_at_dusk",
+                                "automation.coversatnight_up_in_the_morning"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Raffstore nachts autom.",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.wettersensor_wind_speed_gusts",
+                                "input_boolean.coverprot_wind_active"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Markisenschutz",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "automation.coverprot_wind_active_on",
+                                "automation.coverprot_wind_active_off",
+                                "automation.coverprot_turn_on"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Markisenschutz autom.",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.wettersensor_temperature",
+                                "sensor.wettersensor_sun_east",
+                                "input_boolean.sunprot_eastface_active",
+                                "sensor.wettersensor_sun_south",
+                                "input_boolean.sunprot_southface_active",
+                                "sensor.wettersensor_sun_west",
+                                "input_boolean.sunprot_westface_active"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Sonnenschutz Historie",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.cover_lift_pos_wohnzimmer_sitzfenster",
+                                "sensor.cover_lift_pos_wohnzimmer_terrassentur",
+                                "sensor.cover_lift_pos_wintergarten_markise",
+                                "sensor.cover_lift_pos_kuche_terrassentur",
+                                "sensor.cover_lift_pos_kuche_fenster",
+                                "sensor.cover_lift_pos_windfang",
+                                "sensor.cover_lift_pos_florian",
+                                "sensor.cover_lift_pos_jonathan_links",
+                                "sensor.cover_lift_pos_jonathan_rechts",
+                                "sensor.cover_lift_pos_schlafzimmer",
+                                "sensor.cover_lift_pos_bad_og",
+                                "sensor.cover_lift_pos_flur_og",
+                                "sensor.cover_lift_pos_studio_dg_links",
+                                "sensor.cover_lift_pos_studio_dg_rechts",
+                                "sensor.cover_lift_pos_dachfenster_gross",
+                                "sensor.cover_lift_pos_bad_dg"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Beschattung Position",
+                            "type": "history-graph"
+                        }
+                    ],
+                    "path": "covers_tab",
+                    "title": "Beschattung"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "fan.comfoairq",
+                                "sensor.comfoairq_supply_temperature",
+                                "sensor.comfoairq_supply_humidity",
+                                "sensor.comfoairq_inside_temperature",
+                                "sensor.comfoairq_inside_humidity",
+                                "sensor.comfoairq_exhaust_temperature",
+                                "sensor.comfoairq_exhaust_humidity",
+                                "sensor.comfoairq_outside_temperature",
+                                "sensor.comfoairq_outside_humidity",
+                                "sensor.comfoairq_supply_airflow",
+                                "sensor.comfoairq_exhaust_airflow",
+                                "sensor.comfoairq_days_to_replace_filter",
+                                "sensor.comfoairq_bypass_state"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "L\u00fcftung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "fan.comfoairq",
+                                "sensor.comfoairq_supply_temperature",
+                                "sensor.comfoairq_supply_humidity",
+                                "sensor.comfoairq_inside_temperature",
+                                "sensor.comfoairq_inside_humidity",
+                                "sensor.comfoairq_exhaust_temperature",
+                                "sensor.comfoairq_exhaust_humidity",
+                                "sensor.comfoairq_outside_temperature",
+                                "sensor.comfoairq_outside_humidity",
+                                "sensor.comfoairq_supply_airflow",
+                                "sensor.comfoairq_exhaust_airflow",
+                                "sensor.comfoairq_days_to_replace_filter",
+                                "sensor.comfoairq_bypass_state"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "L\u00fcftung",
+                            "type": "history-graph"
+                        }
+                    ],
+                    "path": "comfoconnect_tab",
+                    "title": "L\u00fcftung"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "sensor.heizung_kesselstatus_anzeige",
+                                "sensor.heizung_serviceintervallreststunden",
+                                "sensor.heizung_brennerleistung",
+                                "sensor.heizung_puffer_temperatur_1",
+                                "sensor.heizung_puffer_temperatur_5",
+                                "sensor.heizung_hk2_vorlauf_temperatur_soll",
+                                "sensor.heizung_hk2_vorlauf_temperatur",
+                                "sensor.heizung_hk1_vorlauf_temperatur_soll",
+                                "sensor.heizung_hk1_vorlauf_temperatur",
+                                "sensor.heizung_aussen_temperatur",
+                                "sensor.heizung_alarme_anzeige",
+                                "sensor.heizung_sw_version_anzeige"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Heizung \u00dcbersicht",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_anlage_ein_anzeige",
+                                "sensor.heizung_kesselstatus_anzeige",
+                                "sensor.heizung_brennerleistung",
+                                "sensor.heizung_kesseltemp_ist",
+                                "sensor.heizung_kesseltemp_soll",
+                                "sensor.heizung_kessel_ruecklauftemp_ist",
+                                "sensor.heizung_kessel_ruecklauftempmin",
+                                "sensor.heizung_kesselpumpe_anzeige",
+                                "sensor.heizung_kesselprogramm",
+                                "sensor.heizung_verbraucher_anforderung_anzeige",
+                                "sensor.heizung_zuendung_heizung_anzeige",
+                                "sensor.heizung_rauchgastemp_ist",
+                                "sensor.heizung_pelletsverbrauch",
+                                "sensor.heizung_pelletssauger_anzeige",
+                                "sensor.heizung_motor_foerdersystem_anzeige",
+                                "sensor.heizung_betriebsstunden_summe",
+                                "sensor.heizung_kesseltempsoll1",
+                                "sensor.heizung_kesseltempsoll2",
+                                "sensor.heizung_kesseltempsoll1_mf2",
+                                "sensor.heizung_kesseltempsoll2_mf2",
+                                "sensor.heizung_kesseltempsoll1_cf2"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Kessel",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_puffer_programm_anzeige",
+                                "sensor.heizung_puffer_anforderung_anzeige",
+                                "sensor.heizung_puffer_temperatur_1",
+                                "sensor.heizung_puffer_temperatur_3",
+                                "sensor.heizung_puffer_temperatur_5",
+                                "sensor.heizung_puffer_pumpe_anzeige",
+                                "sensor.heizung_puffer_temperatur_grenzen_min",
+                                "sensor.heizung_puffer_temperatur_grenzen_max",
+                                "sensor.heizung_puffer_brauchwassertemp_min"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Puffer",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_hk2_status_anzeige",
+                                "sensor.heizung_hk2_raum_temperatur_soll",
+                                "sensor.heizung_hk2_aussen_temperatur",
+                                "sensor.heizung_hk2_vorlauf_temperatur_soll",
+                                "sensor.heizung_hk2_vorlauf_temperatur",
+                                "sensor.heizung_hk2_pumpe_anzeige",
+                                "sensor.heizung_hk2_programm_anzeige",
+                                "sensor.heizung_hk2_raum_temperatur_soll_tag",
+                                "sensor.heizung_hk2_raum_temperatur_soll_nacht"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "FBH",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_hk1_status_anzeige",
+                                "sensor.heizung_hk1_raum_temperatur_soll",
+                                "sensor.heizung_hk1_aussen_temperatur",
+                                "sensor.heizung_hk1_vorlauf_temperatur_soll",
+                                "sensor.heizung_hk1_vorlauf_temperatur",
+                                "sensor.heizung_hk1_pumpe_anzeige",
+                                "sensor.heizung_hk1_programm_anzeige",
+                                "sensor.heizung_hk1_raum_temperatur_soll_tag",
+                                "sensor.heizung_hk1_raum_temperatur_soll_nacht"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Heizk\u00f6rper",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_aussen_temperatur",
+                                "sensor.heizung_kesselstatus_anzeige",
+                                "sensor.heizung_kesseltemp_ist",
+                                "sensor.heizung_kessel_ruecklauftemp_ist",
+                                "sensor.heizung_brennerleistung",
+                                "sensor.heizung_verbraucher_anforderung_anzeige",
+                                "sensor.heizung_pelletssauger_anzeige",
+                                "sensor.heizung_puffer_temperatur_1",
+                                "sensor.heizung_puffer_temperatur_3",
+                                "sensor.heizung_puffer_temperatur_5",
+                                "sensor.heizung_puffer_anforderung_anzeige",
+                                "sensor.heizung_puffer_pumpe_anzeige",
+                                "sensor.heizung_hk2_vorlauf_temperatur_soll",
+                                "sensor.heizung_hk1_vorlauf_temperatur_soll"
+                            ],
+                            "hours_to_show": 36,
+                            "refresh_interval": 60,
+                            "title": "Heizung Temperaturen",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_anlage_ein_anzeige",
+                                "sensor.heizung_serviceintervallreststunden",
+                                "sensor.heizung_aussen_temperatur",
+                                "sensor.heizung_alarme_anzeige",
+                                "sensor.heizung_sw_version_anzeige",
+                                "sensor.heizung_kesselstatus_anzeige",
+                                "sensor.heizung_brennerleistung",
+                                "sensor.heizung_kesseltemp_ist",
+                                "sensor.heizung_kesseltemp_soll",
+                                "sensor.heizung_kessel_ruecklauftemp_ist",
+                                "sensor.heizung_kessel_ruecklauftempmin",
+                                "sensor.heizung_kesselpumpe_anzeige",
+                                "sensor.heizung_kesselprogramm",
+                                "sensor.heizung_verbraucher_anforderung_anzeige",
+                                "sensor.heizung_zuendung_heizung_anzeige",
+                                "sensor.heizung_rauchgastemp_ist",
+                                "sensor.heizung_pelletsverbrauch",
+                                "sensor.heizung_pelletssauger_anzeige",
+                                "sensor.heizung_motor_foerdersystem_anzeige",
+                                "sensor.heizung_betriebsstunden_summe",
+                                "sensor.heizung_kesseltempsoll1",
+                                "sensor.heizung_kesseltempsoll2",
+                                "sensor.heizung_kesseltempsoll1_mf2",
+                                "sensor.heizung_kesseltempsoll2_mf2",
+                                "sensor.heizung_kesseltempsoll1_cf2"
+                            ],
+                            "hours_to_show": 36,
+                            "refresh_interval": 60,
+                            "title": "Heizung Kessel",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.heizung_puffer_programm_anzeige",
+                                "sensor.heizung_puffer_anforderung_anzeige",
+                                "sensor.heizung_puffer_temperatur_1",
+                                "sensor.heizung_puffer_temperatur_3",
+                                "sensor.heizung_puffer_temperatur_5",
+                                "sensor.heizung_puffer_pumpe_anzeige",
+                                "sensor.heizung_puffer_temperatur_grenzen_min",
+                                "sensor.heizung_puffer_temperatur_grenzen_max",
+                                "sensor.heizung_puffer_brauchwassertemp_min"
+                            ],
+                            "hours_to_show": 36,
+                            "refresh_interval": 60,
+                            "title": "Heizung Puffer",
+                            "type": "history-graph"
+                        }
+                    ],
+                    "path": "heizung_tab",
+                    "title": "Heizung"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "light.flur_og_light",
+                                "light.studio_dg_light"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Beleuchtung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "switch.herd_links_switch",
+                                "sensor.herd_links_power",
+                                "switch.herd_rechts_switch",
+                                "sensor.herd_rechts_power"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Kochfeld",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "automation.zufallslicht_flur_og_abends_ein",
+                                "automation.zufallslicht_flur_og_abends_aus",
+                                "automation.zufallslicht_studio_ein_aus",
+                                "automation.zufallslichter_abends_sicher_aus"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Zufallslicht autom.",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.flur_og_light",
+                                "light.studio_dg"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Zufallslicht Historie",
+                            "type": "history-graph"
+                        }
+                    ],
+                    "path": "lights_tab",
+                    "title": "Beleuchtung"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "sensor.wettersensor_reading_age",
+                                "sensor.wettersensor_temperature",
+                                "sensor.wettersensor_sun_east",
+                                "sensor.wettersensor_sun_south",
+                                "sensor.wettersensor_sun_west",
+                                "sensor.wettersensor_daylight",
+                                "sensor.wettersensor_is_dark",
+                                "sensor.wettersensor_wind_speed",
+                                "sensor.wettersensor_wind_speed_gusts",
+                                "sensor.wettersensor_is_raining",
+                                "sensor.wettersensor_coverprot1_is_active",
+                                "sensor.wettersensor_coverprot2_is_active"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Wetter lokal",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.netatmo_public_oberursel_nord_temperature",
+                                "sensor.netatmo_public_oberursel_nord_pressure",
+                                "sensor.netatmo_public_oberursel_nord_humidity",
+                                "sensor.netatmo_public_oberursel_nord_rain",
+                                "sensor.netatmo_public_oberursel_nord_wind_strength",
+                                "sensor.netatmo_public_oberursel_nord_gust_strength"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Wetter lokal Netatmo Public",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.wettersensor_reading_age",
+                                "sensor.wettersensor_temperature",
+                                "sensor.wettersensor_sun_east",
+                                "sensor.wettersensor_sun_south",
+                                "sensor.wettersensor_sun_west",
+                                "sensor.wettersensor_daylight",
+                                "sensor.wettersensor_is_dark",
+                                "sensor.wettersensor_wind_speed",
+                                "sensor.wettersensor_wind_speed_gusts",
+                                "sensor.wettersensor_is_raining",
+                                "sensor.wettersensor_coverprot1_is_active",
+                                "sensor.wettersensor_coverprot2_is_active"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Wetter lokal",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.netatmo_public_oberursel_nord_temperature",
+                                "sensor.netatmo_public_oberursel_nord_pressure",
+                                "sensor.netatmo_public_oberursel_nord_humidity",
+                                "sensor.netatmo_public_oberursel_nord_rain",
+                                "sensor.netatmo_public_oberursel_nord_wind_strength",
+                                "sensor.netatmo_public_oberursel_nord_gust_strength"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Wetter lokal Netatmo Public",
+                            "type": "history-graph"
+                        }
+                    ],
+                    "path": "wetter_lokal_tab",
+                    "title": "Wetter lokal"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "media_player.play_1",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.wohnzimmer",
+                            "type": "media-control"
+                        }
+                    ],
+                    "title": "Media"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "input_boolean.zigbee_permit_join",
+                                "timer.zigbee_permit_join",
+                                "sensor.bridge_state",
+                                "sensor.philips_fb_battery"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "zigbee2mqtt",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "automation.backup_create_snapshot",
+                                "automation.backup_upload_snapshots_to_dropbox"
+                            ],
+                            "title": "Dropbox Snapshots",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "system_tab",
+                    "title": "System"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}

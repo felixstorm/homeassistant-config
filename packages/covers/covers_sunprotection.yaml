@@ -63,20 +63,8 @@ script:
 
 group:
 
-  sunprot:
-    control: hidden
-    entities:
-      - group.sunprot_automations
-      - sensor.wettersensor_sun_east
-      - input_boolean.sunprot_eastface_active
-      - sensor.wettersensor_sun_south
-      - input_boolean.sunprot_southface_active
-      - sensor.wettersensor_sun_west
-      - input_boolean.sunprot_westface_active
-      - script.sunprot_update_covers
-      - sensor.wettersensor_temperature
-
   sunprot_automations:
+    all: true
     entities:
       - automation.sunprot_eastface_active_on
       - automation.sunprot_eastface_active_off
@@ -106,9 +94,6 @@ history_graph:
 homeassistant:
 
   customize:
-
-    group.sunprot:
-      friendly_name: Sonnenschutz
 
     group.sunprot_automations:
       friendly_name: Sonnenschutz autom.

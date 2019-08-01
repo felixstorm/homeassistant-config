@@ -29,13 +29,8 @@ automation:
 
 group:
 
-  coverprot:
-    control: hidden
-    entities:
-      - sensor.wettersensor_wind_speed_gusts
-      - input_boolean.coverprot_wind_active
-
   coverprot_automations:
+    all: true
     entities:
       - automation.coverprot_wind_active_on
       - automation.coverprot_wind_active_off
@@ -46,8 +41,6 @@ homeassistant:
 
   customize:
 
-    group.coverprot:
-      friendly_name: Markisenschutz
     group.coverprot_automations:
       friendly_name: Markisenschutz autom.
       icon: mdi:home-automation

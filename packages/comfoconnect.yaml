@@ -21,32 +21,6 @@ sensor:
       - bypass_state
 
 
-group:
-
-  comfoconnect_tab:
-    view: yes
-    name: Lüftung
-    entities:
-      - group.comfoconnect
-      - history_graph.comfoconnect
-
-  comfoconnect:
-    name: Lüftung
-    entities:
-      - fan.comfoairq
-      - sensor.comfoairq_supply_temperature
-      - sensor.comfoairq_supply_humidity
-      - sensor.comfoairq_inside_temperature
-      - sensor.comfoairq_inside_humidity
-      - sensor.comfoairq_exhaust_temperature
-      - sensor.comfoairq_exhaust_humidity
-      - sensor.comfoairq_outside_temperature
-      - sensor.comfoairq_outside_humidity
-      - sensor.comfoairq_supply_airflow
-      - sensor.comfoairq_exhaust_airflow
-      - sensor.comfoairq_days_to_replace_filter
-      - sensor.comfoairq_bypass_state
-
 history_graph:
   comfoconnect:
     name: comfoconnect

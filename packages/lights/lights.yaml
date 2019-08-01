@@ -5,31 +5,3 @@ homeassistant:
       friendly_name: Flur OG
     light.studio_dg_light:
       friendly_name: Studio DG
-
-
-group:
-
-  lights_on_default_view:
-    control: hidden
-    name: Beleuchtung
-    entities:
-      - group.switches_kochfeld
-      - light.flur_og_light
-      - light.studio_dg
-      - group.randlights_automations
-
-  lights_tab:
-    view: yes
-    name: Beleuchtung
-    entities:
-      - group.lights_all
-      - group.switches_kochfeld
-      - group.randlights_automations
-      - history_graph.zufallslicht
-
-
-  lights_all:
-    name: Beleuchtung
-    entities:
-      - light.flur_og_light
-      - light.studio_dg_light

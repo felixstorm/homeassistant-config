@@ -59,23 +59,6 @@ sensor:
         value_template: "{% if is_state_attr('sensor.wettersensor', 'covProt2IsAct', 0) %} nein {% elif is_state_attr('sensor.wettersensor', 'covProt2IsAct', 1) %} ja {% else %} Invalid: '{{ state_attr('sensor.wettersensor', 'covProt2IsAct') }}' {% endif %}"
         icon_template: "{% if is_state_attr('sensor.wettersensor', 'covProt2IsAct', 0) %} mdi:weather-sunny {% else %} mdi:weather-windy {% endif %}"
 
-group:
-  wetter_lokal:
-    name: Wetter lokal
-    entities:
-      - sensor.wettersensor_reading_age
-      - sensor.wettersensor_temperature
-      - sensor.wettersensor_sun_east
-      - sensor.wettersensor_sun_south
-      - sensor.wettersensor_sun_west
-      - sensor.wettersensor_daylight
-      - sensor.wettersensor_is_dark
-      - sensor.wettersensor_wind_speed
-      - sensor.wettersensor_wind_speed_gusts
-      - sensor.wettersensor_is_raining
-      - sensor.wettersensor_coverprot1_is_active
-      - sensor.wettersensor_coverprot2_is_active
-
 history_graph:
   wetter_lokal:
     name: Wetter lokal

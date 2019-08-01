@@ -52,13 +52,8 @@ script:
 
 group:
 
-  coversatnight:
-    control: hidden
-    entities:
-      - script.coversatnight_covers_down
-      - script.coversatnight_covers_up
-
   coversatnight_automations:
+    all: true
     entities:
       - automation.coversatnight_down_at_dusk
       - automation.coversatnight_up_in_the_morning
@@ -68,8 +63,6 @@ homeassistant:
 
   customize:
 
-    group.coversatnight:
-      friendly_name: Raffstore nachts
     group.coversatnight_automations:
       friendly_name: Raffstore nachts autom.
       icon: mdi:home-automation
