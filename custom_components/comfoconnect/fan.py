@@ -39,7 +39,7 @@ class ComfoConnectFan(FanEntity):
         self._ccb.comfoconnect.register_sensor(SENSOR_FAN_SPEED_MODE)
 
         def _handle_update(var):
-            if var == SENSOR_FAN_SPEED_MODE:
+            if var == SENSOR_FAN_SPEED_MODE and self.hass is not None:    # HACK: prevent errors if an update is signaled before Entity is fully initialized
                 _LOGGER.debug("Dispatcher update for %s", var)
                 self.schedule_update_ha_state()
 
