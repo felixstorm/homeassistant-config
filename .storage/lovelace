@@ -57,6 +57,7 @@
                         {
                             "entities": [
                                 "input_boolean.covers_include_terrassentuer_in_automations",
+                                "input_boolean.covers_include_terrasse_markise_in_automations",
                                 "input_boolean.covers_include_kuechentuer_in_automations",
                                 "group.sunprot_automations",
                                 "input_boolean.sunprot_eastface_active",
@@ -175,6 +176,7 @@
                         {
                             "entities": [
                                 "input_boolean.covers_include_terrassentuer_in_automations",
+                                "input_boolean.covers_include_terrasse_markise_in_automations",
                                 "input_boolean.covers_include_kuechentuer_in_automations",
                                 "cover.cov_wohnzimmer_sitzfenster_cover",
                                 "cover.cov_wohnzimmer_terrassentur_cover",

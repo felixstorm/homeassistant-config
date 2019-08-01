@@ -29,6 +29,12 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
             logger.debug(message_prefix + 'Cover Terrassentuer is not supposed to be controlled automatically, aborting.')
             return
 
+    if 'terrasse_markise' in entity_id:
+        include_terrasse_markise_in_automations = hass.states.get('input_boolean.covers_include_terrasse_markise_in_automations').state == 'on'
+        if not include_terrasse_markise_in_automations:
+            logger.debug(message_prefix + 'Cover Terrasse Markise is not supposed to be controlled automatically, aborting.')
+            return
+
     if 'kuche_terrassentur' in entity_id:
         include_kuechentuer_in_automations = hass.states.get('input_boolean.covers_include_kuechentuer_in_automations').state == 'on'
         if not include_kuechentuer_in_automations:

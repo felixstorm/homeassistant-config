@@ -83,6 +83,10 @@ input_boolean:
     name: Raffstore Terrassentür autom. steuern
     initial: off
 
+  covers_include_terrasse_markise_in_automations:
+    name: Markise Terrasse autom. steuern
+    initial: on
+
   covers_include_kuechentuer_in_automations:
     name: Raffstore Küchentür autom. steuern
     initial: on
