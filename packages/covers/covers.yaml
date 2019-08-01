@@ -76,12 +76,6 @@ homeassistant:
     sensor.cover_lift_pos_bad_dg:
       friendly_name: Bad DG
 
-    history_graph.sonnenschutz:
-      friendly_name: Sonnenschutz Historie
-
-    history_graph.covers_lift_position:
-      friendly_name: Beschattung Position
-
 
 input_boolean:
 

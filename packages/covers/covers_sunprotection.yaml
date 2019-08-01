@@ -75,22 +75,6 @@ group:
       - automation.sunprot_update_covers
 
 
-history_graph:
-
-  sonnenschutz:
-    name: Sonnenschutz
-    entities:
-      - sensor.wettersensor_temperature
-      - sensor.wettersensor_sun_east
-      - input_boolean.sunprot_eastface_active
-      - sensor.wettersensor_sun_south
-      - input_boolean.sunprot_southface_active
-      - sensor.wettersensor_sun_west
-      - input_boolean.sunprot_westface_active
-    hours_to_show: 72
-    refresh: 60
-
-
 homeassistant:
 
   customize:

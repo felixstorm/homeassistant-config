@@ -50,28 +50,3 @@ sensor:
       cover_lift_pos_bad_dg:
         value_template: "{{ state_attr('cover.cov_bad_dg_cover', 'current_position') }}"
         unit_of_measurement: "%"
-
-
-history_graph:
-
-  covers_lift_position:
-    name: covers_lift_position
-    entities:
-      - sensor.cover_lift_pos_wohnzimmer_sitzfenster
-      - sensor.cover_lift_pos_wohnzimmer_terrassentur
-      - sensor.cover_lift_pos_wintergarten_markise
-      - sensor.cover_lift_pos_kuche_terrassentur
-      - sensor.cover_lift_pos_kuche_fenster
-      - sensor.cover_lift_pos_windfang
-      - sensor.cover_lift_pos_florian
-      - sensor.cover_lift_pos_jonathan_links
-      - sensor.cover_lift_pos_jonathan_rechts
-      - sensor.cover_lift_pos_schlafzimmer
-      - sensor.cover_lift_pos_bad_og
-      - sensor.cover_lift_pos_flur_og
-      - sensor.cover_lift_pos_studio_dg_links
-      - sensor.cover_lift_pos_studio_dg_rechts
-      - sensor.cover_lift_pos_dachfenster_gross
-      - sensor.cover_lift_pos_bad_dg
-    hours_to_show: 72
-    refresh: 60

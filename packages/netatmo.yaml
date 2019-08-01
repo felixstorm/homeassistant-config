@@ -13,16 +13,3 @@ sensor:
         lon_ne:  8.581
         lat_sw: 50.205
         lon_sw:  8.546
-
-history_graph:
-  wetter_lokal_netatmo_public:
-    name: Wetter lokal Netatmo Public
-    entities:
-      - sensor.netatmo_oberursel_nord_temperature
-      - sensor.netatmo_oberursel_nord_pressure
-      - sensor.netatmo_oberursel_nord_humidity
-      - sensor.netatmo_oberursel_nord_rain
-      - sensor.netatmo_oberursel_nord_wind_strength
-      - sensor.netatmo_oberursel_nord_gust_strength
-    hours_to_show: 72
-    refresh: 60

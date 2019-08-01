@@ -9,17 +9,6 @@ group:
       - automation.zufallslichter_abends_sicher_aus
 
 
-history_graph:
-
-  zufallslicht:
-    name: zufallslicht
-    entities:
-      - light.flur_og_light
-      - light.studio_dg_light
-    hours_to_show: 72
-    refresh: 60
-
-
 automation:
 
   - alias: 'Zufallslicht Studio ein/aus'
@@ -73,6 +62,3 @@ homeassistant:
     group.randlights_automations:
       friendly_name: Zufallslicht autom.
       icon: mdi:home-automation
-
-    history_graph.zufallslicht:
-      friendly_name: Zufallslicht Historie
