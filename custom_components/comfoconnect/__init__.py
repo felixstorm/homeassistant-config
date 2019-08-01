@@ -1,9 +1,4 @@
-"""
-Support to control a Zehnder ComfoAir Q350/450/600 ventilation unit.
-
-For more details about this component, please refer to the documentation at
-https://home-assistant.io/components/comfoconnect/
-"""
+"""Support to control a Zehnder ComfoAir Q350/450/600 ventilation unit."""
 import logging
 
 import voluptuous as vol
@@ -14,26 +9,18 @@ from homeassistant.helpers import discovery
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.dispatcher import dispatcher_send
 
-REQUIREMENTS = ['pycomfoconnect==0.3']
-
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'comfoconnect'
 
 SIGNAL_COMFOCONNECT_UPDATE_RECEIVED = 'comfoconnect_update_received'
 
-ATTR_SUPPLY_TEMPERATURE = 'supply_temperature'
-ATTR_SUPPLY_HUMIDITY = 'supply_humidity'
 ATTR_CURRENT_TEMPERATURE = 'current_temperature'
 ATTR_CURRENT_HUMIDITY = 'current_humidity'
-ATTR_EXHAUST_TEMPERATURE = 'exhaust_temperature'
-ATTR_EXHAUST_HUMIDITY = 'exhaust_humidity'
 ATTR_OUTSIDE_TEMPERATURE = 'outside_temperature'
 ATTR_OUTSIDE_HUMIDITY = 'outside_humidity'
 ATTR_AIR_FLOW_SUPPLY = 'air_flow_supply'
 ATTR_AIR_FLOW_EXHAUST = 'air_flow_exhaust'
-ATTR_DAYS_TO_REPLACE_FILTER = 'days_to_replace_filter'
-ATTR_BYPASS_STATE = 'bypass_state'
 
 CONF_USER_AGENT = 'user_agent'
 
@@ -94,7 +81,7 @@ def setup(hass, config):
     return True
 
 
-class ComfoConnectBridge(object):
+class ComfoConnectBridge:
     """Representation of a ComfoConnect bridge."""
 
     def __init__(self, hass, bridge, name, token, friendly_name, pin):
@@ -125,9 +112,9 @@ class ComfoConnectBridge(object):
         _LOGGER.debug("Got value from bridge: %d = %d", var, value)
 
         from pycomfoconnect import (
-            SENSOR_TEMPERATURE_SUPPLY, SENSOR_TEMPERATURE_EXTRACT, SENSOR_TEMPERATURE_OUTDOOR, SENSOR_TEMPERATURE_EXHAUST)
+            SENSOR_TEMPERATURE_EXTRACT, SENSOR_TEMPERATURE_OUTDOOR)
 
-        if var in [SENSOR_TEMPERATURE_SUPPLY, SENSOR_TEMPERATURE_EXTRACT, SENSOR_TEMPERATURE_OUTDOOR, SENSOR_TEMPERATURE_EXHAUST]:
+        if var in [SENSOR_TEMPERATURE_EXTRACT, SENSOR_TEMPERATURE_OUTDOOR]:
             self.data[var] = value / 10
         else:
             self.data[var] = value
