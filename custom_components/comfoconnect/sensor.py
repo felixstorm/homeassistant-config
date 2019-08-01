@@ -8,7 +8,9 @@ from homeassistant.helpers.entity import Entity
 from . import (
     ATTR_AIR_FLOW_EXHAUST, ATTR_AIR_FLOW_SUPPLY, ATTR_CURRENT_HUMIDITY,
     ATTR_CURRENT_TEMPERATURE, ATTR_OUTSIDE_HUMIDITY, ATTR_OUTSIDE_TEMPERATURE,
-    DOMAIN, SIGNAL_COMFOCONNECT_UPDATE_RECEIVED, ComfoConnectBridge)
+    DOMAIN, SIGNAL_COMFOCONNECT_UPDATE_RECEIVED, ComfoConnectBridge,
+    ATTR_SUPPLY_TEMPERATURE, ATTR_SUPPLY_HUMIDITY, ATTR_EXHAUST_TEMPERATURE,
+    ATTR_EXHAUST_HUMIDITY, ATTR_DAYS_TO_REPLACE_FILTER, ATTR_BYPASS_STATE)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -20,7 +22,10 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     from pycomfoconnect import (
         SENSOR_TEMPERATURE_EXTRACT, SENSOR_HUMIDITY_EXTRACT,
         SENSOR_TEMPERATURE_OUTDOOR, SENSOR_HUMIDITY_OUTDOOR,
-        SENSOR_FAN_SUPPLY_FLOW, SENSOR_FAN_EXHAUST_FLOW)
+        SENSOR_FAN_SUPPLY_FLOW, SENSOR_FAN_EXHAUST_FLOW,
+        SENSOR_TEMPERATURE_SUPPLY, SENSOR_HUMIDITY_SUPPLY,
+        SENSOR_TEMPERATURE_EXHAUST, SENSOR_HUMIDITY_EXHAUST,
+        SENSOR_DAYS_TO_REPLACE_FILTER, SENSOR_BYPASS_STATE)
 
     global SENSOR_TYPES
     SENSOR_TYPES = {
@@ -59,6 +64,42 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
             'm³/h',
             'mdi:air-conditioner',
             SENSOR_FAN_EXHAUST_FLOW
+        ],
+        ATTR_SUPPLY_TEMPERATURE: [
+            'Supply Temperature',
+            TEMP_CELSIUS,
+            'mdi:thermometer',
+            SENSOR_TEMPERATURE_SUPPLY
+        ],
+        ATTR_SUPPLY_HUMIDITY: [
+            'Supply Humidity',
+            '%',
+            'mdi:water-percent',
+            SENSOR_HUMIDITY_SUPPLY
+        ],
+        ATTR_EXHAUST_TEMPERATURE: [
+            'Exhaust Temperature',
+            TEMP_CELSIUS,
+            'mdi:thermometer',
+            SENSOR_TEMPERATURE_EXHAUST
+        ],
+        ATTR_EXHAUST_HUMIDITY: [
+            'Exhaust Humidity',
+            '%',
+            'mdi:water-percent',
+            SENSOR_HUMIDITY_EXHAUST
+        ],
+        ATTR_DAYS_TO_REPLACE_FILTER: [
+            'Days to replace filter',
+            'days',
+            None,
+            SENSOR_DAYS_TO_REPLACE_FILTER
+        ],
+        ATTR_BYPASS_STATE: [
+            'Bypass State',
+            '%',
+            'mdi:percent',
+            SENSOR_BYPASS_STATE
         ],
     }
 
