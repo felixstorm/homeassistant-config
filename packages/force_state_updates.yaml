@@ -1,0 +1,37 @@
+# Forcefully update certain states that change rarely every hour / every day in HA / InfluxDB to aid visualization in Grafana
+
+group:
+  force_state_updates_hourly:
+    entities:
+      - sensor.heizung_kesseltemp_soll
+      - sensor.heizung_brennerleistung
+      - sensor.heizung_pelletsverbrauch
+      - sensor.heizung_puffer_temperatur_grenzen_min
+      - sensor.heizung_puffer_temperatur_grenzen_max
+      - sensor.heizung_puffer_brauchwassertemp_min
+      - sensor.heizung_hk1_vorlauf_temperatur_soll
+      - sensor.heizung_hk2_vorlauf_temperatur_soll
+      - sensor.wettersensor_sun_east
+      - sensor.wettersensor_sun_south
+      - sensor.wettersensor_sun_west
+
+  force_state_updates_daily:
+    entities:
+      - sensor.heizung_kesselstatus
+      - sensor.heizung_kesselstatus_anzeige
+      - sensor.heizung_hk1_programm
+      - sensor.heizung_hk1_programm_anzeige
+      - sensor.heizung_hk1_status
+      - sensor.heizung_hk1_status_anzeige
+      - sensor.heizung_hk2_programm
+      - sensor.heizung_hk2_programm_anzeige
+      - sensor.heizung_hk2_status
+      - sensor.heizung_hk2_status_anzeige
+
+automation:
+  - alias: force_state_updates_hourly
+    trigger: { platform: time_pattern, minutes: 0, seconds: 0 }
+    action: { service: python_script.force_state_updates, data: { "group_name": "force_state_updates_hourly" } }
+  - alias: force_state_updates_daily
+    trigger: { platform: time_pattern, hours: 0, minutes: 0, seconds: 0 }
+    action: { service: python_script.force_state_updates, data: { "group_name": "force_state_updates_daily" } }

@@ -25,6 +25,7 @@ logger:
     homeassistant.components.media_player: error
     homeassistant.components.python_script: debug
     homeassistant.components.python_script.covers_ensure_state.py: info
+    homeassistant.components.python_script.force_state_updates.py: info
     homeassistant.components.sensor: error
     homeassistant.config: warning
     homeassistant.helpers.entity: error
