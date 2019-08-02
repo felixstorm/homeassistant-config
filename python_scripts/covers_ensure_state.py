@@ -104,12 +104,13 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
 sunprot_eastface_is_active = hass.states.get('input_boolean.sunprot_eastface_active').state == 'on'
 sunprot_southface_is_active = hass.states.get('input_boolean.sunprot_southface_active').state == 'on'
 sunprot_westface_is_active = hass.states.get('input_boolean.sunprot_westface_active').state == 'on'
+sunprot_wiga_is_active = hass.states.get('input_boolean.sunprot_wiga_active').state == 'on'
 logger.debug('*** ENSURE_STATE for covers: sunprot_eastface_is_active={}, sunprot_southface_is_active={}, sunprot_westface_is_active={}'.format(sunprot_eastface_is_active, sunprot_southface_is_active, sunprot_westface_is_active))
 
 ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_wohnzimmer_sitzfenster_cover')
 ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_wohnzimmer_terrassentur_cover')
 ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_terrasse_markise_cover')
-ensure_state(hass, logger, situation, sunprot_eastface_is_active or sunprot_southface_is_active or sunprot_westface_is_active, 'cover.cov_wintergarten_markise_cover')
+ensure_state(hass, logger, situation, sunprot_wiga_is_active, 'cover.cov_wintergarten_markise_cover')
 ensure_state(hass, logger, situation, sunprot_southface_is_active, 'cover.cov_kuche_terrassentur_cover')
 ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_windfang_cover')
 ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_kuche_fenster_cover')

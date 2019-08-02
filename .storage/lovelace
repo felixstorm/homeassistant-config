@@ -103,10 +103,10 @@
                                     "entity": "sensor.yr_current_humidity"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_2_temperature"
+                                    "entity": "sensor.aqara_thp_wiga_temperature"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_1_temperature"
+                                    "entity": "sensor.aqara_thp_dg_temperature"
                                 },
                                 {
                                     "entity": "sensor.netatmo_public_oberursel_nord_pressure"
@@ -146,19 +146,25 @@
                                     "entity": "sensor.comfoairq_inside_temperature"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_2_temperature"
+                                    "entity": "sensor.aqara_thp_wiga_temperature"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_1_temperature"
+                                    "entity": "sensor.aqara_thp_dg_temperature"
                                 },
                                 {
                                     "entity": "sensor.comfoairq_inside_humidity"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_2_humidity"
+                                    "entity": "sensor.aqara_thp_wiga_humidity"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_1_pressure"
+                                    "entity": "sensor.aqara_thp_dg_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_wiga_pressure"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_dg_pressure"
                                 }
                             ],
                             "show_header_toggle": true,
@@ -202,36 +208,6 @@
                         },
                         {
                             "entities": [
-                                "group.sunprot_automations",
-                                "sensor.wettersensor_sun_east",
-                                "input_boolean.sunprot_eastface_active",
-                                "sensor.wettersensor_sun_south",
-                                "input_boolean.sunprot_southface_active",
-                                "sensor.wettersensor_sun_west",
-                                "input_boolean.sunprot_westface_active",
-                                "script.sunprot_update_covers",
-                                "sensor.wettersensor_temperature"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Sonnenschutz",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "automation.sunprot_eastface_active_on",
-                                "automation.sunprot_eastface_active_off",
-                                "automation.sunprot_southface_active_on",
-                                "automation.sunprot_southface_active_off",
-                                "automation.sunprot_westface_active_on",
-                                "automation.sunprot_westface_active_off",
-                                "automation.sunprot_update_covers"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Sonnenschutz autom.",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
                                 "script.coversatnight_covers_down",
                                 "script.coversatnight_covers_up"
                             ],
@@ -269,21 +245,6 @@
                         },
                         {
                             "entities": [
-                                "sensor.wettersensor_temperature",
-                                "sensor.wettersensor_sun_east",
-                                "input_boolean.sunprot_eastface_active",
-                                "sensor.wettersensor_sun_south",
-                                "input_boolean.sunprot_southface_active",
-                                "sensor.wettersensor_sun_west",
-                                "input_boolean.sunprot_westface_active"
-                            ],
-                            "hours_to_show": 72,
-                            "refresh_interval": 60,
-                            "title": "Sonnenschutz Historie",
-                            "type": "history-graph"
-                        },
-                        {
-                            "entities": [
                                 "sensor.cover_lift_pos_wohnzimmer_sitzfenster",
                                 "sensor.cover_lift_pos_wohnzimmer_terrassentur",
                                 "sensor.cover_lift_pos_wintergarten_markise",
@@ -309,6 +270,220 @@
                     ],
                     "path": "covers_tab",
                     "title": "Beschattung"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.sunprot_automations"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_outside_temp_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_klx_limit_current"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_klx_limit_current_off"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_sun_east"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_sun_east_mean"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_east_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_east_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_eastface_active"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_sun_south"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_sun_south_mean"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_south_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_south_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_southface_active"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_sun_west"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_sun_west_mean"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_west_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_west_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_westface_active"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_inside_temp_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_klx_limit_current"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_klx_limit_current_off"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_sun_south"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_sun_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_sun_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_wiga_active"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "script.sunprot_update_covers"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Sonnenschutz",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "input_number.sunprot_temp_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_temp_1"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_1"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_temp_2"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_2"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_off_factor"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_delay_on"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_delay_off"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_temp_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_klx_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_temp_1"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_klx_1"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Sonnenschutz Settings",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.sunprot_outside_temp_ref",
+                                "sensor.sunprot_klx_limit_current",
+                                "sensor.sunprot_klx_limit_current_off",
+                                "sensor.wettersensor_sun_east",
+                                "sensor.wettersensor_sun_east_mean",
+                                "input_boolean.sunprot_eastface_active",
+                                "sensor.wettersensor_sun_south",
+                                "sensor.wettersensor_sun_south_mean",
+                                "input_boolean.sunprot_southface_active",
+                                "sensor.wettersensor_sun_west",
+                                "sensor.wettersensor_sun_west_mean",
+                                "input_boolean.sunprot_westface_active"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Sonnenschutz Historie",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.sunprot_wiga_inside_temp_ref",
+                                "sensor.sunprot_wiga_klx_limit_current",
+                                "sensor.sunprot_wiga_klx_limit_current_off",
+                                "sensor.wettersensor_sun_south",
+                                "input_boolean.sunprot_wiga_active"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Sonnenschutz WiGa Historie",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "automation.sunprot_eastface_active_on",
+                                "automation.sunprot_eastface_active_off",
+                                "automation.sunprot_southface_active_on",
+                                "automation.sunprot_southface_active_off",
+                                "automation.sunprot_westface_active_on",
+                                "automation.sunprot_westface_active_off",
+                                "automation.sunprot_wiga_active_on",
+                                "automation.sunprot_wiga_active_off",
+                                "automation.sunprot_off_before_sunset",
+                                "automation.sunprot_update_covers"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Sonnenschutz autom.",
+                            "type": "entities"
+                        }
+                    ],
+                    "title": "Sonnenschutz"
                 },
                 {
                     "badges": [],
@@ -677,10 +852,10 @@
                                 "sensor.bridge_state",
                                 "sensor.philips_fb_battery",
                                 "sensor.philips_fb_linkquality",
-                                "sensor.aqara_thp_2_battery",
-                                "sensor.aqara_thp_2_linkquality",
-                                "sensor.aqara_thp_1_battery",
-                                "sensor.aqara_thp_1_linkquality"
+                                "sensor.aqara_thp_wiga_battery",
+                                "sensor.aqara_thp_wiga_linkquality",
+                                "sensor.aqara_thp_dg_battery",
+                                "sensor.aqara_thp_dg_linkquality"
                             ],
                             "show_header_toggle": false,
                             "title": "zigbee2mqtt",

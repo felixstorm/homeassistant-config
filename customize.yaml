@@ -2,15 +2,15 @@ sensor.philips_fb_battery:
   friendly_name: Hue Dimmer Battery
 sensor.philips_fb_linkquality:
   friendly_name: Hue Dimmer Link Quality
-sensor.aqara_thp_1_temperature:
+sensor.aqara_thp_dg_temperature:
   friendly_name: Temperatur DG
-sensor.aqara_thp_1_battery:
+sensor.aqara_thp_dg_battery:
   friendly_name: Aqara DG Battery
-sensor.aqara_thp_1_linkquality:
+sensor.aqara_thp_dg_linkquality:
   friendly_name: Aqara DG Link Quality
-sensor.aqara_thp_2_temperature:
+sensor.aqara_thp_wiga_temperature:
   friendly_name: Temperatur WiGa
-sensor.aqara_thp_2_battery:
+sensor.aqara_thp_wiga_battery:
   friendly_name: Aqara WiGa Battery
-sensor.aqara_thp_2_linkquality:
+sensor.aqara_thp_wiga_linkquality:
   friendly_name: Aqara WiGa Link Quality
