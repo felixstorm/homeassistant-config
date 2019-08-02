@@ -56,18 +56,45 @@
                         },
                         {
                             "entities": [
-                                "input_boolean.covers_include_terrassentuer_in_automations",
-                                "input_boolean.covers_include_terrasse_markise_in_automations",
-                                "input_boolean.covers_include_kuechentuer_in_automations",
-                                "group.sunprot_automations",
-                                "input_boolean.sunprot_eastface_active",
-                                "input_boolean.sunprot_southface_active",
-                                "input_boolean.sunprot_westface_active",
-                                "group.coversatnight_automations",
-                                "script.coversatnight_covers_down",
-                                "script.coversatnight_covers_up",
-                                "group.coverprot_automations",
-                                "input_boolean.coverprot_wind_active"
+                                {
+                                    "entity": "input_boolean.covers_include_terrassentuer_in_automations"
+                                },
+                                {
+                                    "entity": "input_boolean.covers_include_terrasse_markise_in_automations"
+                                },
+                                {
+                                    "entity": "input_boolean.covers_include_kuechentuer_in_automations"
+                                },
+                                {
+                                    "entity": "group.sunprot_automations"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_eastface_active"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_southface_active"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_westface_active"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_wiga_active"
+                                },
+                                {
+                                    "entity": "group.coversatnight_automations"
+                                },
+                                {
+                                    "entity": "script.coversatnight_covers_down"
+                                },
+                                {
+                                    "entity": "script.coversatnight_covers_up"
+                                },
+                                {
+                                    "entity": "group.coverprot_automations"
+                                },
+                                {
+                                    "entity": "input_boolean.coverprot_wind_active"
+                                }
                             ],
                             "show_header_toggle": false,
                             "title": "Beschattung",
