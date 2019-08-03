@@ -14,7 +14,7 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
     if current_state is None:
         logger.error('Error getting current state for entity_id \'{}\' - aborting.'.format(entity_id))
         return
-    message_prefix = '*** ENSURE_STATE for cover {} ({}): '.format(current_state.attributes.get('friendly_name'), entity_id)
+    message_prefix = '*** ENSURE_STATE for {}:'.format(entity_id).ljust(61)
 
 
     if 'markise' in entity_id or 'dachfenster_gross' in entity_id:
@@ -44,23 +44,17 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
 
     target_lift = None
     target_tilt = None
-    ignore_fully_closed = False
+    skip_if_closed_completely = False
 
     if situation in ['morning', 'daytime']:
-        ignore_fully_closed = situation != 'morning'
+        skip_if_closed_completely = situation != 'morning'
         if sunprot_is_active:
-            target_lift = 10
+            target_lift = 5
             target_tilt = 50
-            if 'terrasse_markise' in entity_id:
-                target_lift = 5             # fast komplett ausfahren (damit sie auch z.B. nachmittags manuell voll ausgefahren bleiben kann)
-            if 'wintergarten_markise' in entity_id or 'bad_dg' in entity_id:
-                target_lift = 0             # komplett ausfahren
             if 'kuche_terrassentur' in entity_id:
-                target_lift = 60            # Platz (für die Kinder) zum Durchlaufen (und zum Kopf-Anhauen für die Erwachsenen...)
+                target_lift = 60    # Platz (für die Kinder) zum Durchlaufen (und zum Kopf-Anhauen für die Erwachsenen...)
         else:
             target_lift = 100
-            if 'wintergarten_markise' in entity_id:
-                ignore_fully_closed = False # Markise wird auch zum Sonnenschutz komplett ausgefahren und dient nicht zur Verdunkelung
 
     elif situation == 'nighttime':
         target_lift = 0
@@ -70,17 +64,29 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
     else:
         raise KeyError('Invalid situation. Expected morning, daytime or nighttime, got: {}'.format(situation))
 
-
+    # None (without quotes) = cover does not support function, 'unknown' (with quotes) = cover does support function, but current state is not known
     current_lift = current_state.attributes.get('current_position')
     current_tilt = current_state.attributes.get('current_tilt_position')
 
-    # Covers ohne Lift-Position ('None', nur Bad DG) immer aktualisieren
-    set_lift = (target_lift is not None) and (not ignore_fully_closed or current_lift != 0) and (current_lift in ['unknown', None] or abs(current_lift - target_lift) > 3)
-    # Wenn Cover Tilt kann, aber aktuell nicht bekannt ist ('unknown'), dann lieber nachjustieren (MQTT kann aktuell kein Tilt empfangen)
-    set_tilt = (target_tilt is not None) and (not ignore_fully_closed or current_lift != 0) and (current_tilt is not None) and (current_tilt is 'unknown' or abs(current_tilt - target_tilt) > 3)
+    set_lift = (
+        target_lift is not None
+        # only set if cover is not closed completely (to allow day-time naps for the kids) or if cover is exempt from it (e.g. in the morning or pure sun shades)
+        and (current_lift != 0 or not skip_if_closed_completely)
+        # set if current lift state is not known or if cover does not support lift position or if it is known and deviates by more than 3% from target
+        and (current_lift in ['unknown', None] or abs(current_lift - target_lift) > 3)
+    )
+    set_tilt = (
+        target_tilt is not None
+        # only set tilt if supported by cover
+        and (current_tilt is not None)
+        # only set if cover is not closed completely (to allow day-time naps for the kids) or if cover is exempt from it (e.g. in the morning or pure sun shades)
+        and (current_lift != 0 or not skip_if_closed_completely)
+        # set if current tilt state is not known or if it is known and deviates by more than 3% from target
+        and (current_tilt is 'unknown' or abs(current_tilt - target_tilt) > 3)
+    )
 
-    message = 'target_lift = {}, target_tilt = {}, ignore_fully_closed = {}, current_lift = {}, current_tilt = {}, set_lift = {}, set_tilt = {}'.format(
-        target_lift, target_tilt, ignore_fully_closed, current_lift, current_tilt, set_lift, set_tilt)
+    message = 'target_lift = {:>4}, target_tilt = {:>4}, skip_if_closed_completely = {:>4}, current_lift = {:>4}, current_tilt = {:>4}, set_lift = {:>5}, set_tilt = {:>5}'.format(
+        str(target_lift), str(target_tilt), str(skip_if_closed_completely), str(current_lift), str(current_tilt), str(set_lift), str(set_tilt))
     if set_lift or set_tilt:
         logger.info(message_prefix + message)
     else:
