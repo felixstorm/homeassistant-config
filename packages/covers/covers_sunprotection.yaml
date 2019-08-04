@@ -1,17 +1,17 @@
 input_number:
-  sunprot_temp_0:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C", initial:  12 }
-  sunprot_klx_0:          { min:  0, max: 100, step: 5, unit_of_measurement: klx,  initial: 100 }
-  sunprot_temp_1:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C", initial:  20 }
-  sunprot_klx_1:          { min:  0, max: 100, step: 5, unit_of_measurement: klx,  initial:  80 }
-  sunprot_temp_2:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C", initial:  30 }
-  sunprot_klx_2:          { min:  0, max: 100, step: 5, unit_of_measurement: klx,  initial:  60 }
-  sunprot_klx_off_factor: { min: 50, max:  90, step: 5, unit_of_measurement: "%",  initial:  80 }
-  sunprot_delay_on:       { min:  0, max:  60, step: 5, unit_of_measurement: Min,  initial:   5 }
-  sunprot_delay_off:      { min:  0, max:  60, step: 5, unit_of_measurement: Min,  initial:  15 }
-  sunprot_wiga_temp_0:    { min: 15, max:  35, step: 1, unit_of_measurement: "°C", initial:  20 }
-  sunprot_wiga_klx_0:     { min:  0, max: 100, step: 5, unit_of_measurement: klx,  initial: 100 }
-  sunprot_wiga_temp_1:    { min: 15, max:  35, step: 1, unit_of_measurement: "°C", initial:  30 }
-  sunprot_wiga_klx_1:     { min:  0, max: 100, step: 5, unit_of_measurement: klx,  initial:  40 }
+  sunprot_temp_0:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C" } # initial:  15
+  sunprot_klx_0:          { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial: 100
+  sunprot_temp_1:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C" } # initial:  18
+  sunprot_klx_1:          { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial:  80
+  sunprot_temp_2:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C" } # initial:  35
+  sunprot_klx_2:          { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial:  50
+  sunprot_klx_off_factor: { min: 50, max:  90, step: 5, unit_of_measurement: "%" }  # initial:  80
+  sunprot_delay_on:       { min:  0, max:  60, step: 5, unit_of_measurement: Min }  # initial:  10
+  sunprot_delay_off:      { min:  0, max:  60, step: 5, unit_of_measurement: Min }  # initial:  20
+  sunprot_wiga_temp_0:    { min: 15, max:  35, step: 1, unit_of_measurement: "°C" } # initial:  22
+  sunprot_wiga_klx_0:     { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial: 100
+  sunprot_wiga_temp_1:    { min: 15, max:  35, step: 1, unit_of_measurement: "°C" } # initial:  28
+  sunprot_wiga_klx_1:     { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial:  40
 
 sensor:
   - platform: statistics
