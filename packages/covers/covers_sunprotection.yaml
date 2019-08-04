@@ -171,6 +171,13 @@ automation:
       - service: script.turn_on
         entity_id: script.sunprot_update_covers
 
+  - alias: sunprot_evening_routine
+    trigger:
+      - { platform: sun, event: sunset }
+    action:
+      - service: script.turn_on
+        entity_id: script.sunprot_evening_routine
+
 
 script:
 
@@ -178,6 +185,11 @@ script:
     sequence:
       - service: python_script.covers_ensure_state
         data: { "situation": "daytime" }
+
+  sunprot_evening_routine:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "situation": "evening" }
 
 
 group:
@@ -195,6 +207,7 @@ group:
       - automation.sunprot_wiga_active_off
       - automation.sunprot_off_before_sunset
       - automation.sunprot_update_covers
+      - automation.sunprot_evening_routine
 
 
 homeassistant:
@@ -230,5 +243,12 @@ homeassistant:
       friendly_name: Beschattung jetzt aktualisieren
     script.sunprot_update_covers:
       friendly_name: Beschattung jetzt aktualisieren
+      icon: mdi:home-automation
+      can_cancel: false
+
+    automation.sunprot_evening_routine:
+      friendly_name: Abends alle Markisen einfahren
+    script.sunprot_evening_routine:
+      friendly_name: Abends alle Markisen einfahren
       icon: mdi:home-automation
       can_cancel: false

@@ -507,7 +507,8 @@
                                 "automation.sunprot_wiga_active_on",
                                 "automation.sunprot_wiga_active_off",
                                 "automation.sunprot_off_before_sunset",
-                                "automation.sunprot_update_covers"
+                                "automation.sunprot_update_covers",
+                                "automation.sunprot_evening_routine"
                             ],
                             "show_header_toggle": true,
                             "title": "Sonnenschutz autom.",

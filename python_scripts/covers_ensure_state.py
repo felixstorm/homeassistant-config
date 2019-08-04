@@ -2,8 +2,8 @@
 # { "situation": "morning" }
 
 situation = data.get('situation', 'daytime')
-if situation not in ['morning', 'daytime', 'nighttime']:
-    raise KeyError('Invalid situation. Expected morning, daytime or nighttime, got: {}'.format(situation))
+if situation not in ['morning', 'daytime', 'evening', 'nighttime']:
+    raise KeyError('Invalid situation. Expected morning, daytime, evening or nighttime, got: {}'.format(situation))
 
 
 
@@ -56,13 +56,11 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
         else:
             target_lift = 100
 
-    elif situation == 'nighttime':
-        target_lift = 0
+    elif situation in ['evening', 'nighttime']:
         if 'markise' in entity_id:
-            target_lift = 100   # Markisen nachts einfahren, nicht ausfahren
-
-    else:
-        raise KeyError('Invalid situation. Expected morning, daytime or nighttime, got: {}'.format(situation))
+            target_lift = 100       # Markisen abends/nachts einfahren
+        elif situation == 'nighttime':
+            target_lift = 0         # den Rest nachts ausfahren (abends ignorieren)
 
     # None (without quotes) = cover does not support function, 'unknown' (with quotes) = cover does support function, but current state is not known
     current_lift = current_state.attributes.get('current_position')
