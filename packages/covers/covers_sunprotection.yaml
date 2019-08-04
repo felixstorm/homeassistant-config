@@ -15,26 +15,39 @@ input_number:
 
 sensor:
   - platform: statistics
+    name: sunprot_outside_temp_ref
+    entity_id: sensor.wettersensor_temperature
+    max_age: { minutes: 5 }
+    precision: 1
+  - platform: statistics
+    name: sunprot_wiga_inside_temp_ref
+    entity_id: sensor.aqara_thp_wiga_temperature
+    max_age: { minutes: 5 }
+    precision: 1
+  - platform: statistics
     name: wettersensor_sun_east
     entity_id: sensor.wettersensor_sun_east
-    max_age: { minutes: 15 }
+    sampling_size: 30
+    max_age: { minutes: 20 }
+    precision: 0
   - platform: statistics
     name: wettersensor_sun_south
     entity_id: sensor.wettersensor_sun_south
-    max_age: { minutes: 15 }
+    sampling_size: 30
+    max_age: { minutes: 20 }
+    precision: 0
   - platform: statistics
     name: wettersensor_sun_west
     entity_id: sensor.wettersensor_sun_west
-    max_age: { minutes: 15 }
+    sampling_size: 30
+    max_age: { minutes: 20 }
+    precision: 0
   - platform: template
     sensors:
-      sunprot_outside_temp_ref:
-        value_template: "{{ states('sensor.wettersensor_temperature') | float }}"
-        unit_of_measurement: "°C"
       sunprot_klx_limit_current:
         value_template: >
           {%- set vars = {
-            "temp": states('sensor.sunprot_outside_temp_ref') | float,
+            "temp": states('sensor.sunprot_outside_temp_ref_mean') | float,
             "temp_0": states.input_number.sunprot_temp_0.state | int,
             "klx_0": states.input_number.sunprot_klx_0.state | int,
             "temp_1": states.input_number.sunprot_temp_1.state | int,
@@ -56,24 +69,21 @@ sensor:
         value_template: "{{ (states('sensor.sunprot_klx_limit_current') | int * states.input_number.sunprot_klx_off_factor.state | int / 100) | round(0) }}"
         unit_of_measurement: klx
       sunprot_sun_east_above_on_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_east') | int > states('sensor.sunprot_klx_limit_current') | int }}"
+        value_template: "{{ states('sensor.wettersensor_sun_east_mean') | int > states('sensor.sunprot_klx_limit_current') | int }}"
       sunprot_sun_east_below_off_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_east') | int < states('sensor.sunprot_klx_limit_current_off') | int }}"
+        value_template: "{{ states('sensor.wettersensor_sun_east_mean') | int < states('sensor.sunprot_klx_limit_current_off') | int }}"
       sunprot_sun_south_above_on_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_south') | int > states('sensor.sunprot_klx_limit_current') | int }}"
+        value_template: "{{ states('sensor.wettersensor_sun_south_mean') | int > states('sensor.sunprot_klx_limit_current') | int }}"
       sunprot_sun_south_below_off_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_south') | int < states('sensor.sunprot_klx_limit_current_off') | int }}"
+        value_template: "{{ states('sensor.wettersensor_sun_south_mean') | int < states('sensor.sunprot_klx_limit_current_off') | int }}"
       sunprot_sun_west_above_on_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_west') | int > states('sensor.sunprot_klx_limit_current') | int }}"
+        value_template: "{{ states('sensor.wettersensor_sun_west_mean') | int > states('sensor.sunprot_klx_limit_current') | int }}"
       sunprot_sun_west_below_off_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_west') | int < states('sensor.sunprot_klx_limit_current_off') | int }}"
-      sunprot_wiga_inside_temp_ref:
-        value_template: "{{ states('sensor.aqara_thp_wiga_temperature') | float }}"
-        unit_of_measurement: "°C"
+        value_template: "{{ states('sensor.wettersensor_sun_west_mean') | int < states('sensor.sunprot_klx_limit_current_off') | int }}"
       sunprot_wiga_klx_limit_current:
         value_template: >
           {%- set vars = {
-            "temp": states('sensor.sunprot_wiga_inside_temp_ref') | float,
+            "temp": states('sensor.sunprot_wiga_inside_temp_ref_mean') | float,
             "klx_0": states.input_number.sunprot_wiga_klx_0.state | int,
             "temp_0": states.input_number.sunprot_wiga_temp_0.state | int,
             "klx_1": states.input_number.sunprot_wiga_klx_1.state | int,
@@ -91,9 +101,9 @@ sensor:
         value_template: "{{ (states('sensor.sunprot_wiga_klx_limit_current') | int * states.input_number.sunprot_klx_off_factor.state | int / 100) | round(0) }}"
         unit_of_measurement: klx
       sunprot_wiga_sun_above_on_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_south') | int > states('sensor.sunprot_wiga_klx_limit_current') | int }}"
+        value_template: "{{ states('sensor.wettersensor_sun_south_mean') | int > states('sensor.sunprot_wiga_klx_limit_current') | int }}"
       sunprot_wiga_sun_below_off_limit:
-        value_template: "{{ states('sensor.wettersensor_sun_south') | int < states('sensor.sunprot_wiga_klx_limit_current_off') | int }}"
+        value_template: "{{ states('sensor.wettersensor_sun_south_mean') | int < states('sensor.sunprot_wiga_klx_limit_current_off') | int }}"
 
 
 input_boolean:
