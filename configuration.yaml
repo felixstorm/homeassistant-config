@@ -18,6 +18,8 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 sensor: !include sensors.yaml
 
+system_health:
+
 logger:
   default: warning
   logs:
