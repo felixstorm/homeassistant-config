@@ -1,49 +1,36 @@
-automation:
+input_number:
+  coversatnight_up_mins_after_6am:  { min: 0, max: 180, step: 15, unit_of_measurement: min }  # initial: 60
+  coversatnight_up_max_rand_delay:  { min: 0, max:  59, step:  5, unit_of_measurement: min }  # initial: 45
 
+automation:
+  - alias: coversatnight_up_in_the_morning
+    trigger:
+      platform: time
+      at: '06:00:00'
+    action:
+      - delay: '00:{{ states("input_number.coversatnight_up_mins_after_6am") }}:00'
+      - delay: '00:{{ (range(0, states("input_number.coversatnight_up_max_rand_delay"))|random|int) }}:00'
+      - service: script.turn_on
+        entity_id: script.coversatnight_covers_up
   - alias: coversatnight_down_at_dusk
     trigger:
       - platform: numeric_state
         entity_id: sensor.wettersensor_daylight
         below: '500'
-        for:
-          minutes: 10
-      - platform: time_pattern
-        minutes: /30
-        seconds: 0
-    condition:
-      - condition: numeric_state
-        entity_id: sensor.wettersensor_daylight
-        below: '500'
-      - condition: time
-        after: '17:00:00'
-        before: '04:00:00'
+        for: { minutes: 10 }
+      - platform: sun # just as a safety measure in case wettersensor_daylight is not working correctly
+        event: sunset
+        offset: '+01:00:00'
     action:
       - service: script.turn_on
         entity_id: script.coversatnight_covers_down
 
-  - alias: coversatnight_up_in_the_morning
-    trigger:
-      platform: time
-      at: '07:00:00'
-    action:
-      - delay: '00:{{ (range(0, 59)|random|int) }}:00'
-      - service: script.turn_on
-        entity_id: script.coversatnight_covers_up
-      - delay: '00:05:00'
-      - service: script.turn_on
-        entity_id: script.coversatnight_covers_up
-      - delay: '00:05:00'
-      - service: script.turn_on
-        entity_id: script.coversatnight_covers_up
-
 
 script:
-
   coversatnight_covers_down:
     sequence:
       - service: python_script.covers_ensure_state
         data: { "situation": "nighttime" }
-
   coversatnight_covers_up:
     sequence:
       - service: python_script.covers_ensure_state
@@ -51,32 +38,33 @@ script:
 
 
 group:
-
   coversatnight_automations:
     all: true
     entities:
-      - automation.coversatnight_down_at_dusk
       - automation.coversatnight_up_in_the_morning
+      - automation.coversatnight_down_at_dusk
 
 
 homeassistant:
-
   customize:
-
+    input_number.coversatnight_up_mins_after_6am:
+      friendly_name: morg. nach 6 Uhr hoch
+      icon: mdi:timer-sand
+    input_number.coversatnight_up_max_rand_delay:
+      friendly_name: morg. zus. Zufallsverz.
+      icon: mdi:timer-sand
+    automation.coversatnight_up_in_the_morning:
+      friendly_name: Raffstore morgens autom. hoch
+    automation.coversatnight_down_at_dusk:
+      friendly_name: Raffstore abends autom. runter
+    script.coversatnight_covers_up:
+      friendly_name: Raffstore jetzt hochfahren
+    script.coversatnight_covers_down:
+      friendly_name: Raffstore jetzt runterfahren
     group.coversatnight_automations:
       friendly_name: Raffstore nachts autom.
       icon: mdi:home-automation
-    automation.coversatnight_down_at_dusk:
-      friendly_name: Raffstore abends autom. runter
-    automation.coversatnight_up_in_the_morning:
-      friendly_name: Raffstore morgens autom. rauf
-    script.coversatnight_covers_down:
-      friendly_name: Raffstore jetzt runterfahren
-    script.coversatnight_covers_up:
-      friendly_name: Raffstore jetzt hochfahren
-
   customize_glob:
-
     "script.coversatnight_covers_*":
       icon: mdi:home-automation
       can_cancel: false

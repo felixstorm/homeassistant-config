@@ -235,8 +235,8 @@
                         },
                         {
                             "entities": [
-                                "script.coversatnight_covers_down",
-                                "script.coversatnight_covers_up"
+                                "script.coversatnight_covers_up",
+                                "script.coversatnight_covers_down"
                             ],
                             "show_header_toggle": false,
                             "title": "Raffstore nachts",
@@ -244,8 +244,18 @@
                         },
                         {
                             "entities": [
-                                "automation.coversatnight_down_at_dusk",
-                                "automation.coversatnight_up_in_the_morning"
+                                {
+                                    "entity": "input_number.coversatnight_up_mins_after_6am"
+                                },
+                                {
+                                    "entity": "input_number.coversatnight_up_max_rand_delay"
+                                },
+                                {
+                                    "entity": "automation.coversatnight_up_in_the_morning"
+                                },
+                                {
+                                    "entity": "automation.coversatnight_down_at_dusk"
+                                }
                             ],
                             "show_header_toggle": true,
                             "title": "Raffstore nachts autom.",
