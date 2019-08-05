@@ -245,10 +245,13 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "input_number.coversatnight_up_mins_after_6am"
+                                    "entity": "input_number.coversatnight_up_hours"
                                 },
                                 {
-                                    "entity": "input_number.coversatnight_up_max_rand_delay"
+                                    "entity": "input_number.coversatnight_up_mins"
+                                },
+                                {
+                                    "entity": "input_number.coversatnight_up_rand_delay"
                                 },
                                 {
                                     "entity": "automation.coversatnight_up_in_the_morning"
@@ -474,7 +477,7 @@
                         },
                         {
                             "entities": [
-                                "sensor.sunprot_outside_temp_ref",
+                                "sensor.sunprot_outside_temp_ref_mean",
                                 "sensor.sunprot_klx_limit_current",
                                 "sensor.sunprot_klx_limit_current_off",
                                 "sensor.wettersensor_sun_east",
@@ -494,7 +497,7 @@
                         },
                         {
                             "entities": [
-                                "sensor.sunprot_wiga_inside_temp_ref",
+                                "sensor.sunprot_wiga_inside_temp_ref_mean",
                                 "sensor.sunprot_wiga_klx_limit_current",
                                 "sensor.sunprot_wiga_klx_limit_current_off",
                                 "sensor.wettersensor_sun_south",

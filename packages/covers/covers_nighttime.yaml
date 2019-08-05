@@ -1,6 +1,7 @@
 input_number:
-  coversatnight_up_mins_after_6am:  { min: 0, max: 180, step: 15, unit_of_measurement: min }  # initial: 60
-  coversatnight_up_max_rand_delay:  { min: 0, max:  59, step:  5, unit_of_measurement: min }  # initial: 45
+  coversatnight_up_hours:       { min: 6, max: 11, step: 1, unit_of_measurement: hrs }  # initial: 07
+  coversatnight_up_mins:        { min: 0, max: 59, step: 5, unit_of_measurement: min }  # initial: 00
+  coversatnight_up_rand_delay:  { min: 0, max: 59, step: 5, unit_of_measurement: min }  # initial: 45
 
 automation:
   - alias: coversatnight_up_in_the_morning
@@ -8,8 +9,8 @@ automation:
       platform: time
       at: '06:00:00'
     action:
-      - delay: '00:{{ states("input_number.coversatnight_up_mins_after_6am") }}:00'
-      - delay: '00:{{ (range(0, states("input_number.coversatnight_up_max_rand_delay"))|random|int) }}:00'
+      - delay: '00:{{ states("input_number.coversatnight_up_hours")|int - 6 }}:{{ states("input_number.coversatnight_up_mins")|int - 6 }}'
+      - delay: '00:{{ range(0, states("input_number.coversatnight_up_rand_delay"))|random|int }}:00'
       - service: script.turn_on
         entity_id: script.coversatnight_covers_up
   - alias: coversatnight_down_at_dusk
@@ -20,7 +21,7 @@ automation:
         for: { minutes: 10 }
       - platform: sun # just as a safety measure in case wettersensor_daylight is not working correctly
         event: sunset
-        offset: '+01:00:00'
+        offset: '+00:30:00'
     action:
       - service: script.turn_on
         entity_id: script.coversatnight_covers_down
@@ -47,10 +48,13 @@ group:
 
 homeassistant:
   customize:
-    input_number.coversatnight_up_mins_after_6am:
-      friendly_name: morg. nach 6 Uhr hoch
+    input_number.coversatnight_up_hours:
+      friendly_name: Uhrzeit morg. hoch (hrs)
       icon: mdi:timer-sand
-    input_number.coversatnight_up_max_rand_delay:
+    input_number.coversatnight_up_mins:
+      friendly_name: Uhrzeit morg. hoch (min)
+      icon: mdi:timer-sand
+    input_number.coversatnight_up_rand_delay:
       friendly_name: morg. zus. Zufallsverz.
       icon: mdi:timer-sand
     automation.coversatnight_up_in_the_morning:
