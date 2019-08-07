@@ -1,4 +1,35 @@
 sensor:
+
+  - platform: influxdb
+    host: a0d7b954-influxdb
+    username: homeassistant
+    password: !secret influxdb_password
+    queries:
+      - name: sum_rain_24h
+        where: 'entity_id = ''netatmo_eichwaeldchen_sum_rain_1'' and time > now() - 24h'
+        measurement: 'mm'
+        group_function: sum
+        value_template: '{{ value | round(1) }}'
+        unit_of_measurement: 'mm'
+      - name: sum_rain_3d
+        where: 'entity_id = ''netatmo_eichwaeldchen_sum_rain_1'' and time > now() - 3d'
+        measurement: 'mm'
+        group_function: sum
+        value_template: '{{ value | round(1) }}'
+        unit_of_measurement: 'mm'
+      - name: sum_rain_7d
+        where: 'entity_id = ''netatmo_eichwaeldchen_sum_rain_1'' and time > now() - 7d'
+        measurement: 'mm'
+        group_function: sum
+        value_template: '{{ value | round(1) }}'
+        unit_of_measurement: 'mm'
+      - name: sum_rain_30d
+        where: 'entity_id = ''netatmo_eichwaeldchen_sum_rain_1'' and time > now() - 30d'
+        measurement: 'mm'
+        group_function: sum
+        value_template: '{{ value | round(1) }}'
+        unit_of_measurement: 'mm'
+
   - platform: yr
     name: yr_current
     monitored_conditions:

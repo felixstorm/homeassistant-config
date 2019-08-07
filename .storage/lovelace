@@ -11,48 +11,36 @@
                     ],
                     "cards": [
                         {
-                            "entities": [
-                                "group.switches_kochfeld",
-                                "light.flur_og_light",
-                                "light.studio_dg_light",
-                                "group.randlights_automations"
+                            "cards": [
+                                {
+                                    "entities": [
+                                        "sensor.wettersensor_temperature",
+                                        "sensor.heizung_aussen_temperatur",
+                                        "sensor.comfoairq_inside_temperature",
+                                        "sensor.aqara_thp_wiga_temperature",
+                                        "sensor.aqara_thp_dg_temperature",
+                                        "sensor.wettersensor_wind_speed_gusts",
+                                        "sensor.wettersensor_is_raining",
+                                        "sensor.sum_rain_24h",
+                                        "sensor.sum_rain_3d",
+                                        "sensor.sum_rain_7d",
+                                        "sensor.sum_rain_30d"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Wetter aktuell",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        "sensor.yr_forecast_24h_symbol",
+                                        "sensor.yr_forecast_24h_temperature"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Wettervorhersage",
+                                    "type": "entities"
+                                }
                             ],
-                            "show_header_toggle": false,
-                            "title": "Beleuchtung",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "sensor.heizung_alarme_anzeige",
-                                "sensor.heizung_aussen_temperatur",
-                                "sensor.heizung_kesselstatus_anzeige",
-                                "sensor.heizung_puffer_temperatur_1",
-                                "sensor.heizung_puffer_temperatur_5",
-                                "sensor.heizung_hk2_vorlauf_temperatur",
-                                "sensor.heizung_hk1_vorlauf_temperatur"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Heizung",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "sensor.wettersensor_reading_age",
-                                "sensor.wettersensor_temperature",
-                                "sensor.wettersensor_sun_east",
-                                "sensor.wettersensor_sun_south",
-                                "sensor.wettersensor_sun_west",
-                                "sensor.wettersensor_daylight",
-                                "sensor.wettersensor_is_dark",
-                                "sensor.wettersensor_wind_speed",
-                                "sensor.wettersensor_wind_speed_gusts",
-                                "sensor.wettersensor_is_raining",
-                                "sensor.wettersensor_coverprot1_is_active",
-                                "sensor.wettersensor_coverprot2_is_active"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Wetter lokal",
-                            "type": "entities"
+                            "type": "vertical-stack"
                         },
                         {
                             "entities": [
@@ -102,106 +90,42 @@
                         },
                         {
                             "entities": [
+                                "group.switches_kochfeld",
+                                "light.flur_og_light",
+                                "light.studio_dg_light",
+                                "group.randlights_automations"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Beleuchtung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
                                 {
-                                    "entity": "sensor.wettersensor_is_raining"
+                                    "entity": "sensor.heizung_alarme_anzeige"
                                 },
                                 {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_rain"
+                                    "entity": "sensor.heizung_kesselstatus_anzeige"
                                 },
                                 {
-                                    "entity": "sensor.yr_current_symbol"
+                                    "entity": "sensor.heizung_puffer_temperatur_1"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_temperature"
+                                    "entity": "sensor.heizung_puffer_temperatur_5"
                                 },
                                 {
-                                    "entity": "sensor.heizung_aussen_temperatur"
+                                    "entity": "sensor.heizung_hk2_vorlauf_temperatur"
                                 },
                                 {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_temperature"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_temperature"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_humidity"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_humidity"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_wiga_temperature"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_dg_temperature"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_pressure"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_pressure"
-                                },
-                                {
-                                    "entity": "sensor.wettersensor_wind_speed"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_wind_strength"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_gust_strength"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_wind_speed"
+                                    "entity": "sensor.heizung_hk1_vorlauf_temperatur"
                                 }
                             ],
                             "show_header_toggle": false,
-                            "title": "weather_current",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "sensor.yr_forecast_24h_symbol",
-                                "sensor.yr_forecast_24h_temperature"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "weather_forecast",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "sensor.comfoairq_inside_temperature"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_wiga_temperature"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_dg_temperature"
-                                },
-                                {
-                                    "entity": "sensor.comfoairq_inside_humidity"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_wiga_humidity"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_dg_humidity"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_wiga_pressure"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_dg_pressure"
-                                }
-                            ],
-                            "show_header_toggle": true,
-                            "title": "weather_inside",
+                            "title": "Heizung",
                             "type": "entities"
                         }
                     ],
-                    "icon": "mdi:home",
-                    "path": "default_view",
-                    "title": "default_view"
+                    "icon": "mdi:home"
                 },
                 {
                     "badges": [],
@@ -308,7 +232,6 @@
                             "type": "history-graph"
                         }
                     ],
-                    "path": "covers_tab",
                     "title": "Beschattung"
                 },
                 {
@@ -575,7 +498,6 @@
                             "type": "history-graph"
                         }
                     ],
-                    "path": "comfoconnect_tab",
                     "title": "L\u00fcftung"
                 },
                 {
@@ -749,7 +671,6 @@
                             "type": "history-graph"
                         }
                     ],
-                    "path": "heizung_tab",
                     "title": "Heizung"
                 },
                 {
@@ -797,81 +718,197 @@
                             "type": "history-graph"
                         }
                     ],
-                    "path": "lights_tab",
                     "title": "Beleuchtung"
                 },
                 {
                     "badges": [],
                     "cards": [
                         {
-                            "entities": [
-                                "sensor.wettersensor_reading_age",
-                                "sensor.wettersensor_temperature",
-                                "sensor.wettersensor_sun_east",
-                                "sensor.wettersensor_sun_south",
-                                "sensor.wettersensor_sun_west",
-                                "sensor.wettersensor_daylight",
-                                "sensor.wettersensor_is_dark",
-                                "sensor.wettersensor_wind_speed",
-                                "sensor.wettersensor_wind_speed_gusts",
-                                "sensor.wettersensor_is_raining",
-                                "sensor.wettersensor_coverprot1_is_active",
-                                "sensor.wettersensor_coverprot2_is_active"
+                            "cards": [
+                                {
+                                    "entities": [
+                                        "sensor.wettersensor_temperature",
+                                        "sensor.heizung_aussen_temperatur",
+                                        "sensor.wettersensor_sun_east",
+                                        "sensor.wettersensor_sun_south",
+                                        "sensor.wettersensor_sun_west",
+                                        "sensor.wettersensor_daylight",
+                                        "sensor.wettersensor_is_dark",
+                                        "sensor.wettersensor_wind_speed",
+                                        "sensor.wettersensor_wind_speed_gusts",
+                                        "sensor.wettersensor_is_raining",
+                                        "sensor.wettersensor_coverprot1_is_active",
+                                        "sensor.wettersensor_coverprot2_is_active",
+                                        "sensor.wettersensor_reading_age"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Wetter lokal",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.sum_rain_24h"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_3d"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_7d"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_30d"
+                                        }
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Regen",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        "sensor.wettersensor_temperature",
+                                        "sensor.wettersensor_sun_east",
+                                        "sensor.wettersensor_sun_south",
+                                        "sensor.wettersensor_sun_west",
+                                        "sensor.wettersensor_wind_speed",
+                                        "sensor.wettersensor_wind_speed_gusts",
+                                        "sensor.wettersensor_daylight",
+                                        "sensor.wettersensor_is_raining",
+                                        "sensor.wettersensor_coverprot1_is_active",
+                                        "sensor.wettersensor_coverprot2_is_active",
+                                        "sensor.wettersensor_is_dark"
+                                    ],
+                                    "hours_to_show": 72,
+                                    "refresh_interval": 60,
+                                    "title": "Wetter lokal",
+                                    "type": "history-graph"
+                                }
                             ],
-                            "show_header_toggle": false,
-                            "title": "Wetter lokal",
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.comfoairq_inside_temperature"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_wiga_temperature"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_dg_temperature"
+                                },
+                                {
+                                    "entity": "sensor.comfoairq_inside_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_wiga_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_dg_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_wiga_pressure"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_dg_pressure"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Innen",
                             "type": "entities"
                         },
                         {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        "sensor.netatmo_public_oberursel_nord_temperature",
+                                        "sensor.netatmo_public_oberursel_nord_pressure",
+                                        "sensor.netatmo_public_oberursel_nord_humidity",
+                                        "sensor.netatmo_public_oberursel_nord_rain",
+                                        "sensor.netatmo_public_oberursel_nord_wind_strength",
+                                        "sensor.netatmo_public_oberursel_nord_gust_strength"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Wetter lokal Netatmo Public",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        "sensor.netatmo_public_oberursel_nord_temperature",
+                                        "sensor.netatmo_public_oberursel_nord_pressure",
+                                        "sensor.netatmo_public_oberursel_nord_humidity",
+                                        "sensor.netatmo_public_oberursel_nord_rain",
+                                        "sensor.netatmo_public_oberursel_nord_wind_strength",
+                                        "sensor.netatmo_public_oberursel_nord_gust_strength"
+                                    ],
+                                    "hours_to_show": 72,
+                                    "refresh_interval": 60,
+                                    "title": "Wetter lokal Netatmo Public",
+                                    "type": "history-graph"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
                             "entities": [
-                                "sensor.netatmo_public_oberursel_nord_temperature",
-                                "sensor.netatmo_public_oberursel_nord_pressure",
-                                "sensor.netatmo_public_oberursel_nord_humidity",
-                                "sensor.netatmo_public_oberursel_nord_rain",
-                                "sensor.netatmo_public_oberursel_nord_wind_strength",
-                                "sensor.netatmo_public_oberursel_nord_gust_strength"
+                                {
+                                    "entity": "sensor.wettersensor_is_raining"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_public_oberursel_nord_rain"
+                                },
+                                {
+                                    "entity": "sensor.yr_current_symbol"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_temperature"
+                                },
+                                {
+                                    "entity": "sensor.heizung_aussen_temperatur"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_public_oberursel_nord_temperature"
+                                },
+                                {
+                                    "entity": "sensor.yr_current_temperature"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_public_oberursel_nord_humidity"
+                                },
+                                {
+                                    "entity": "sensor.yr_current_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_wiga_temperature"
+                                },
+                                {
+                                    "entity": "sensor.aqara_thp_dg_temperature"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_public_oberursel_nord_pressure"
+                                },
+                                {
+                                    "entity": "sensor.yr_current_pressure"
+                                },
+                                {
+                                    "entity": "sensor.wettersensor_wind_speed"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_public_oberursel_nord_wind_strength"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_public_oberursel_nord_gust_strength"
+                                },
+                                {
+                                    "entity": "sensor.yr_current_wind_speed"
+                                }
                             ],
                             "show_header_toggle": false,
-                            "title": "Wetter lokal Netatmo Public",
+                            "title": "weather_current",
                             "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "sensor.wettersensor_reading_age",
-                                "sensor.wettersensor_temperature",
-                                "sensor.wettersensor_sun_east",
-                                "sensor.wettersensor_sun_south",
-                                "sensor.wettersensor_sun_west",
-                                "sensor.wettersensor_daylight",
-                                "sensor.wettersensor_is_dark",
-                                "sensor.wettersensor_wind_speed",
-                                "sensor.wettersensor_wind_speed_gusts",
-                                "sensor.wettersensor_is_raining",
-                                "sensor.wettersensor_coverprot1_is_active",
-                                "sensor.wettersensor_coverprot2_is_active"
-                            ],
-                            "hours_to_show": 72,
-                            "refresh_interval": 60,
-                            "title": "Wetter lokal",
-                            "type": "history-graph"
-                        },
-                        {
-                            "entities": [
-                                "sensor.netatmo_public_oberursel_nord_temperature",
-                                "sensor.netatmo_public_oberursel_nord_pressure",
-                                "sensor.netatmo_public_oberursel_nord_humidity",
-                                "sensor.netatmo_public_oberursel_nord_rain",
-                                "sensor.netatmo_public_oberursel_nord_wind_strength",
-                                "sensor.netatmo_public_oberursel_nord_gust_strength"
-                            ],
-                            "hours_to_show": 72,
-                            "refresh_interval": 60,
-                            "title": "Wetter lokal Netatmo Public",
-                            "type": "history-graph"
                         }
                     ],
-                    "path": "wetter_lokal_tab",
-                    "title": "Wetter lokal"
+                    "title": "Wetter"
                 },
                 {
                     "badges": [],
@@ -915,7 +952,6 @@
                             "type": "entities"
                         }
                     ],
-                    "path": "system_tab",
                     "title": "System"
                 }
             ]
