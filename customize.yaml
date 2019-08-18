@@ -57,3 +57,13 @@ sensor.sum_rain_7d:
   friendly_name: Regen 7d
 sensor.sum_rain_30d:
   friendly_name: Regen 30d
+
+# Bewässerung
+switch.bewaesserung_timer:
+  friendly_name: Bewässerung Timer
+switch.bewaesserung:
+  friendly_name: Bewässerung Wasser läuft
+switch.bewaesserung_triggervalveopen:
+  friendly_name: Bewässerung Ventil öffnen
+switch.bewaesserung_triggervalveclose:
+  friendly_name: Bewässerung Ventil schließen

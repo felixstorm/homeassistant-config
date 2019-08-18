@@ -24,7 +24,9 @@
                                         "sensor.sum_rain_24h",
                                         "sensor.sum_rain_3d",
                                         "sensor.sum_rain_7d",
-                                        "sensor.sum_rain_30d"
+                                        "sensor.sum_rain_30d",
+                                        "switch.bewaesserung_timer",
+                                        "switch.bewaesserung"
                                     ],
                                     "show_header_toggle": false,
                                     "title": "Wetter aktuell",
@@ -785,6 +787,25 @@
                                 }
                             ],
                             "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.bewaesserung_timer"
+                                },
+                                {
+                                    "entity": "switch.bewaesserung"
+                                },
+                                {
+                                    "entity": "switch.bewaesserung_triggervalveopen"
+                                },
+                                {
+                                    "entity": "switch.bewaesserung_triggervalveclose"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Bew\u00e4sserung",
+                            "type": "entities"
                         },
                         {
                             "entities": [

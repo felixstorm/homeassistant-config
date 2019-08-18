@@ -1,0 +1,14 @@
+switch:
+  - platform: mqtt
+    name: bewaesserung_timer
+    command_topic: sonoff/bewaesserung/cmnd/timers
+    payload_on: 1
+    payload_off: 0
+    availability_topic: sonoff/bewaesserung/tele/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+automation:
+  - alias: bewaesserung_timer_reenable
+    trigger: { platform: state, entity_id: switch.bewaesserung_timer, to: "off", for: { hours: 36 } }
+    action: { service: switch.turn_on, data: { entity_id: switch.bewaesserung_timer } }
