@@ -12,8 +12,14 @@ group:
       - sensor.heizung_hk1_vorlauf_temperatur_soll
       - sensor.heizung_hk2_vorlauf_temperatur_soll
       - sensor.wettersensor_sun_east
+      - sensor.wettersensor_sun_east_mean
+      - sensor.sunprot_sun_east_ref
       - sensor.wettersensor_sun_south
+      - sensor.wettersensor_sun_south_mean
+      - sensor.sunprot_sun_south_ref
       - sensor.wettersensor_sun_west
+      - sensor.wettersensor_sun_west_mean
+      - sensor.sunprot_sun_west_ref
 
   force_state_updates_daily:
     entities:
