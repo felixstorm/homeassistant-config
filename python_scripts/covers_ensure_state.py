@@ -18,7 +18,7 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
 
 
     if 'markise' in entity_id or 'dachfenster_gross' in entity_id:
-        coverprot_is_active = hass.states.get('input_boolean.coverprot_wind_active').state != 'off'
+        coverprot_is_active = hass.states.get('binary_sensor.coverprot_active').state != 'off'
         if coverprot_is_active:
             logger.info(message_prefix + 'Cover protection is active, aborting.')
             return

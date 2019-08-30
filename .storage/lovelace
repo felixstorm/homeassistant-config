@@ -70,9 +70,9 @@
                                 {
                                     "entity": "group.coverprot_automations"
                                 },
-                                {
-                                    "entity": "input_boolean.coverprot_wind_active"
-                                }
+                                "input_boolean.coverprot_wind_active",
+                                "input_boolean.coverprot_rain_active",
+                                "binary_sensor.coverprot_active"
                             ],
                             "show_header_toggle": false,
                             "title": "Beschattung",
@@ -181,7 +181,10 @@
                         {
                             "entities": [
                                 "sensor.wettersensor_wind_speed_gusts",
-                                "input_boolean.coverprot_wind_active"
+                                "input_boolean.coverprot_wind_active",
+                                "sensor.wettersensor_is_raining",
+                                "input_boolean.coverprot_rain_active",
+                                "binary_sensor.coverprot_active"
                             ],
                             "show_header_toggle": false,
                             "title": "Markisenschutz",
@@ -191,7 +194,9 @@
                             "entities": [
                                 "automation.coverprot_wind_active_on",
                                 "automation.coverprot_wind_active_off",
-                                "automation.coverprot_turn_on"
+                                "automation.coverprot_rain_active_on",
+                                "automation.coverprot_rain_active_off",
+                                "automation.coverprot_execute"
                             ],
                             "show_header_toggle": true,
                             "title": "Markisenschutz autom.",

@@ -1,6 +1,12 @@
 input_boolean:
-
   coverprot_wind_active:
+  coverprot_rain_active:
+
+binary_sensor:
+  - platform: template
+    sensors:
+      coverprot_active:
+        value_template: "{{ is_state('input_boolean.coverprot_wind_active', 'on') or is_state('input_boolean.coverprot_rain_active', 'on') }}"
 
 
 automation:
@@ -12,12 +18,19 @@ automation:
     trigger: { platform: numeric_state, entity_id: sensor.wettersensor_wind_speed_gusts, below: 25, for: { minutes: 10 } }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.coverprot_wind_active } }
 
-  - alias: coverprot_turn_on
+  - alias: coverprot_rain_active_on
+    trigger: { platform: template, value_template: "{{ is_state_attr('sensor.wettersensor', 'isRain', 1) }}" }
+    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.coverprot_rain_active } }
+  - alias: coverprot_rain_active_off
+    trigger: { platform: template, value_template: "{{ is_state_attr('sensor.wettersensor', 'isRain', 0) }}" }
+    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.coverprot_rain_active } }
+
+  - alias: coverprot_execute
     trigger:
-      - { platform: state, entity_id: input_boolean.coverprot_wind_active, to: 'on' }
+      - { platform: state, entity_id: binary_sensor.coverprot_active, to: 'on' }
       - { platform: time_pattern, minutes: /2, seconds: 0 }
     condition:
-      - { condition: state, entity_id: input_boolean.coverprot_wind_active, state: 'on' }
+      - { condition: state, entity_id: binary_sensor.coverprot_active, state: 'on' }
     action:
       - service: cover.open_cover
         entity_id: cover.cov_terrasse_markise_cover
@@ -34,7 +47,9 @@ group:
     entities:
       - automation.coverprot_wind_active_on
       - automation.coverprot_wind_active_off
-      - automation.coverprot_turn_on
+      - automation.coverprot_rain_active_on
+      - automation.coverprot_rain_active_off
+      - automation.coverprot_execute
 
 
 homeassistant:
@@ -45,11 +60,21 @@ homeassistant:
       friendly_name: Markisenschutz autom.
       icon: mdi:home-automation
     input_boolean.coverprot_wind_active:
-      friendly_name: Markisenschutz nötig
+      friendly_name: Markisenschutz Wind aktiv
       icon: mdi:weather-windy
+    input_boolean.coverprot_rain_active:
+      friendly_name: Markisenschutz Regen aktiv
+      icon: mdi:weather-rainy
+    binary_sensor.coverprot_active:
+      friendly_name: Markisenschutz aktiv
+      device_class: safety
     automation.coverprot_wind_active_on:
-      friendly_name: Markisenschutz nötig einschalten
+      friendly_name: Markisenschutz Wind ein bei Bedarf
     automation.coverprot_wind_active_off:
-      friendly_name: Markisenschutz nötig einschalten
-    automation.coverprot_turn_on:
-      friendly_name: Markisen einfahren wenn nötig
+      friendly_name: Markisenschutz Wind aus bei Ruhe
+    automation.coverprot_rain_active_on:
+      friendly_name: Markisenschutz Regen ein bei Bedarf
+    automation.coverprot_rain_active_off:
+      friendly_name: Markisenschutz Regen aus bei Ruhe
+    automation.coverprot_execute:
+      friendly_name: Markisen einfahren wenn Schutz aktiv
