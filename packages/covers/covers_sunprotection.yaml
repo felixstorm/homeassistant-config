@@ -22,11 +22,22 @@ input_number:
   sunprot_wiga_klx_1:     { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial:  40
 
 sensor:
+  - platform: yr
+    name: sunprot_forecast_12h
+    forecast: 12
+    monitored_conditions:
+      - temperature
   - platform: statistics
-    name: sunprot_outside_temp_ref
-    entity_id: sensor.wettersensor_temperature
-    max_age: { minutes: 5 }
+    name: sunprot_forecast_12h_temperature
+    entity_id: sensor.sunprot_forecast_12h_temperature
+    sampling_size: 24
+    max_age: { hours: 12 }
     precision: 1
+  - platform: template
+    sensors:
+      sunprot_outside_temp_ref:
+        value_template: "{{ state_attr('sensor.sunprot_forecast_12h_temperature_mean', 'max_value')|float }}"
+        unit_of_measurement: "°"
   - platform: statistics
     name: sunprot_wiga_inside_temp_ref
     entity_id: sensor.aqara_thp_wiga_temperature
@@ -58,7 +69,7 @@ sensor:
       sunprot_klx_limit_current:
         value_template: >
           {%- set vars = {
-            "temp": states('sensor.sunprot_outside_temp_ref_mean') | float,
+            "temp": states('sensor.sunprot_outside_temp_ref') | float,
             "temp_0": states.input_number.sunprot_temp_0.state | int,
             "klx_0": states.input_number.sunprot_klx_0.state | int,
             "temp_1": states.input_number.sunprot_temp_1.state | int,
