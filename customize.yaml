@@ -55,6 +55,10 @@ sensor.sum_rain_3d:
   friendly_name: Regen 3d
 sensor.sum_rain_7d:
   friendly_name: Regen 7d
+sensor.sum_rain_14d:
+  friendly_name: Regen 14d
+sensor.sum_rain_21d:
+  friendly_name: Regen 21d
 sensor.sum_rain_30d:
   friendly_name: Regen 30d
 

@@ -23,6 +23,18 @@ sensor:
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
+      - name: sum_rain_14d
+        where: 'entity_id = ''netatmo_eichwaeldchen_sum_rain_1'' and time > now() - 14d'
+        measurement: 'mm'
+        group_function: sum
+        value_template: '{{ value | round(1) }}'
+        unit_of_measurement: 'mm'
+      - name: sum_rain_21d
+        where: 'entity_id = ''netatmo_eichwaeldchen_sum_rain_1'' and time > now() - 21d'
+        measurement: 'mm'
+        group_function: sum
+        value_template: '{{ value | round(1) }}'
+        unit_of_measurement: 'mm'
       - name: sum_rain_30d
         where: 'entity_id = ''netatmo_eichwaeldchen_sum_rain_1'' and time > now() - 30d'
         measurement: 'mm'
