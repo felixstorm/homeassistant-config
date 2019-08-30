@@ -129,4 +129,4 @@ ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_flu
 ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_studio_dg_links_cover')
 ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_studio_dg_rechts_cover')
 ensure_state(hass, logger, situation, sunprot_southface_is_active or sunprot_westface_is_active, 'cover.cov_dachfenster_gross_cover')
-# ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_bad_dg_cover')  # Do not control Bad DG automatically for now (to be able to keep it always down)
+ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_bad_dg_cover')
