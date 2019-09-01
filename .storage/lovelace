@@ -278,7 +278,7 @@
                                     "entity": "sensor.sunprot_forecast_12h_temperature"
                                 },
                                 {
-                                    "entity": "sensor.sunprot_forecast_12h_temperature_mean"
+                                    "entity": "sensor.sunprot_forecast_12h_temperature_stats"
                                 },
                                 {
                                     "entity": "sensor.sunprot_outside_temp_ref"
@@ -356,7 +356,7 @@
                                     "type": "divider"
                                 },
                                 {
-                                    "entity": "sensor.sunprot_wiga_inside_temp_ref_mean"
+                                    "entity": "sensor.sunprot_wiga_inside_temp_ref"
                                 },
                                 {
                                     "entity": "sensor.sunprot_wiga_klx_limit_current"
@@ -494,7 +494,7 @@
                         },
                         {
                             "entities": [
-                                "sensor.sunprot_wiga_inside_temp_ref_mean",
+                                "sensor.sunprot_wiga_inside_temp_ref",
                                 "sensor.sunprot_wiga_klx_limit_current",
                                 "sensor.sunprot_wiga_klx_limit_current_off",
                                 "sensor.wettersensor_sun_south",
