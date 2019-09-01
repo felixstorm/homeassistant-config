@@ -13,7 +13,7 @@ homeassistant:
       friendly_name: Wohnzimmer Terrassentür
     cover.cov_terrasse_markise_cover:
       friendly_name: Terrasse Markise
-    sensor.cover_lift_pos_terrass_markise:
+    sensor.cover_lift_pos_terrasse_markise:
       friendly_name: Terrasse Markise
     cover.cov_wintergarten_markise_cover:
       friendly_name: Wintergarten Markise

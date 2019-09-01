@@ -14,22 +14,17 @@
                             "entities": [
                                 "sensor.wettersensor_temperature",
                                 "sensor.heizung_aussen_temperatur",
-                                "sensor.comfoairq_inside_temperature",
-                                "sensor.aqara_thp_wiga_temperature",
-                                "sensor.aqara_thp_dg_temperature",
                                 "sensor.wettersensor_wind_speed_gusts",
                                 "sensor.wettersensor_is_raining",
-                                "sensor.sum_rain_24h",
-                                "sensor.sum_rain_3d",
-                                "sensor.sum_rain_7d",
-                                "sensor.sum_rain_14d",
-                                "sensor.sum_rain_21d",
-                                "sensor.sum_rain_30d",
-                                "switch.bewaesserung_timer",
-                                "switch.bewaesserung"
+                                {
+                                    "type": "divider"
+                                },
+                                "sensor.comfoairq_inside_temperature",
+                                "sensor.aqara_thp_wiga_temperature",
+                                "sensor.aqara_thp_dg_temperature"
                             ],
                             "show_header_toggle": false,
-                            "title": "Wetter aktuell",
+                            "title": "Wetter / Innentemperaturen aktuell",
                             "type": "entities"
                         },
                         {
@@ -42,6 +37,9 @@
                                 },
                                 {
                                     "entity": "input_boolean.covers_include_kuechentuer_in_automations"
+                                },
+                                {
+                                    "type": "divider"
                                 },
                                 {
                                     "entity": "group.sunprot_automations"
@@ -59,6 +57,12 @@
                                     "entity": "input_boolean.sunprot_wiga_active"
                                 },
                                 {
+                                    "entity": "script.sunprot_update_covers"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
                                     "entity": "group.coversatnight_automations"
                                 },
                                 {
@@ -66,6 +70,9 @@
                                 },
                                 {
                                     "entity": "script.coversatnight_covers_up"
+                                },
+                                {
+                                    "type": "divider"
                                 },
                                 {
                                     "entity": "group.coverprot_automations"
@@ -83,9 +90,33 @@
                         },
                         {
                             "entities": [
+                                "switch.bewaesserung_timer",
+                                "switch.bewaesserung",
+                                {
+                                    "type": "divider"
+                                },
+                                "sensor.sum_rain_24h",
+                                "sensor.sum_rain_3d",
+                                "sensor.sum_rain_7d",
+                                "sensor.sum_rain_14d",
+                                "sensor.sum_rain_21d",
+                                "sensor.sum_rain_30d"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Garten",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
                                 "group.switches_kochfeld",
+                                {
+                                    "type": "divider"
+                                },
                                 "light.flur_og_light",
                                 "light.studio_dg_light",
+                                {
+                                    "type": "divider"
+                                },
                                 "group.randlights_automations"
                             ],
                             "show_header_toggle": false,
@@ -128,6 +159,9 @@
                                 "input_boolean.covers_include_terrassentuer_in_automations",
                                 "input_boolean.covers_include_terrasse_markise_in_automations",
                                 "input_boolean.covers_include_kuechentuer_in_automations",
+                                {
+                                    "type": "divider"
+                                },
                                 "cover.cov_wohnzimmer_sitzfenster_cover",
                                 "cover.cov_wohnzimmer_terrassentur_cover",
                                 "cover.cov_terrasse_markise_cover",
@@ -153,29 +187,18 @@
                         {
                             "entities": [
                                 "script.coversatnight_covers_up",
-                                "script.coversatnight_covers_down"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Raffstore nachts",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
+                                "script.coversatnight_covers_down",
                                 {
-                                    "entity": "input_number.coversatnight_up_hours"
+                                    "type": "divider"
                                 },
+                                "input_number.coversatnight_up_hours",
+                                "input_number.coversatnight_up_mins",
+                                "input_number.coversatnight_up_rand_delay",
                                 {
-                                    "entity": "input_number.coversatnight_up_mins"
+                                    "type": "divider"
                                 },
-                                {
-                                    "entity": "input_number.coversatnight_up_rand_delay"
-                                },
-                                {
-                                    "entity": "automation.coversatnight_up_in_the_morning"
-                                },
-                                {
-                                    "entity": "automation.coversatnight_down_at_dusk"
-                                }
+                                "automation.coversatnight_up_in_the_morning",
+                                "automation.coversatnight_down_at_dusk"
                             ],
                             "show_header_toggle": true,
                             "title": "Raffstore nachts autom.",
@@ -194,14 +217,10 @@
                                 },
                                 {
                                     "entity": "input_boolean.coverprot_rain_active"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Markisenschutz",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
+                                },
+                                {
+                                    "type": "divider"
+                                },
                                 "automation.coverprot_wind_active_on",
                                 "automation.coverprot_wind_active_off",
                                 "automation.coverprot_rain_active_on",
@@ -217,6 +236,7 @@
                             "entities": [
                                 "sensor.cover_lift_pos_wohnzimmer_sitzfenster",
                                 "sensor.cover_lift_pos_wohnzimmer_terrassentur",
+                                "sensor.cover_lift_pos_terrasse_markise",
                                 "sensor.cover_lift_pos_wintergarten_markise",
                                 "sensor.cover_lift_pos_kuche_terrassentur",
                                 "sensor.cover_lift_pos_kuche_fenster",
@@ -801,32 +821,8 @@
                                 },
                                 {
                                     "entities": [
-                                        {
-                                            "entity": "sensor.sum_rain_24h"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_3d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_7d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_14d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_21d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_30d"
-                                        }
-                                    ],
-                                    "show_header_toggle": false,
-                                    "title": "Regen",
-                                    "type": "entities"
-                                },
-                                {
-                                    "entities": [
                                         "sensor.wettersensor_temperature",
+                                        "sensor.heizung_aussen_temperatur",
                                         "sensor.wettersensor_sun_east",
                                         "sensor.wettersensor_sun_south",
                                         "sensor.wettersensor_sun_west",
@@ -859,10 +855,31 @@
                                 },
                                 {
                                     "entity": "switch.bewaesserung_triggervalveclose"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.sum_rain_24h"
+                                },
+                                {
+                                    "entity": "sensor.sum_rain_3d"
+                                },
+                                {
+                                    "entity": "sensor.sum_rain_7d"
+                                },
+                                {
+                                    "entity": "sensor.sum_rain_14d"
+                                },
+                                {
+                                    "entity": "sensor.sum_rain_21d"
+                                },
+                                {
+                                    "entity": "sensor.sum_rain_30d"
                                 }
                             ],
                             "show_header_toggle": false,
-                            "title": "Bew\u00e4sserung",
+                            "title": "Garten",
                             "type": "entities"
                         },
                         {
@@ -897,94 +914,9 @@
                             "type": "entities"
                         },
                         {
-                            "cards": [
-                                {
-                                    "entities": [
-                                        "sensor.netatmo_public_oberursel_nord_temperature",
-                                        "sensor.netatmo_public_oberursel_nord_pressure",
-                                        "sensor.netatmo_public_oberursel_nord_humidity",
-                                        "sensor.netatmo_public_oberursel_nord_rain",
-                                        "sensor.netatmo_public_oberursel_nord_wind_strength",
-                                        "sensor.netatmo_public_oberursel_nord_gust_strength"
-                                    ],
-                                    "show_header_toggle": false,
-                                    "title": "Wetter lokal Netatmo Public",
-                                    "type": "entities"
-                                },
-                                {
-                                    "entities": [
-                                        "sensor.netatmo_public_oberursel_nord_temperature",
-                                        "sensor.netatmo_public_oberursel_nord_pressure",
-                                        "sensor.netatmo_public_oberursel_nord_humidity",
-                                        "sensor.netatmo_public_oberursel_nord_rain",
-                                        "sensor.netatmo_public_oberursel_nord_wind_strength",
-                                        "sensor.netatmo_public_oberursel_nord_gust_strength"
-                                    ],
-                                    "hours_to_show": 72,
-                                    "refresh_interval": 60,
-                                    "title": "Wetter lokal Netatmo Public",
-                                    "type": "history-graph"
-                                }
-                            ],
-                            "type": "vertical-stack"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "sensor.wettersensor_is_raining"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_rain"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_symbol"
-                                },
-                                {
-                                    "entity": "sensor.wettersensor_temperature"
-                                },
-                                {
-                                    "entity": "sensor.heizung_aussen_temperatur"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_temperature"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_temperature"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_humidity"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_humidity"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_wiga_temperature"
-                                },
-                                {
-                                    "entity": "sensor.aqara_thp_dg_temperature"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_pressure"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_pressure"
-                                },
-                                {
-                                    "entity": "sensor.wettersensor_wind_speed"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_wind_strength"
-                                },
-                                {
-                                    "entity": "sensor.netatmo_public_oberursel_nord_gust_strength"
-                                },
-                                {
-                                    "entity": "sensor.yr_current_wind_speed"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "weather_current",
-                            "type": "entities"
+                            "entity": "weather.met_no",
+                            "name": "Vorhersage (met.no)",
+                            "type": "weather-forecast"
                         }
                     ],
                     "title": "Wetter"

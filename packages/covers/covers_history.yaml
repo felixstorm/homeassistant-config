@@ -8,6 +8,9 @@ sensor:
       cover_lift_pos_wohnzimmer_terrassentur:
         value_template: "{{ state_attr('cover.cov_wohnzimmer_terrassentur_cover', 'current_position') }}"
         unit_of_measurement: "%"
+      cover_lift_pos_terrasse_markise:
+        value_template: "{{ state_attr('cover.cov_terrasse_markise_cover', 'current_position') }}"
+        unit_of_measurement: "%"
       cover_lift_pos_wintergarten_markise:
         value_template: "{{ state_attr('cover.cov_wintergarten_markise_cover', 'current_position') }}"
         unit_of_measurement: "%"

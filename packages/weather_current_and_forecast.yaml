@@ -1,3 +1,7 @@
+weather:
+  - platform: met
+
+
 sensor:
 
   - platform: influxdb
@@ -41,37 +45,3 @@ sensor:
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
-
-  - platform: yr
-    name: yr_current
-    monitored_conditions:
-      - temperature
-      - symbol
-      - precipitation
-      - windSpeed
-      - pressure
-      - windDirection
-      - humidity
-      - fog
-      - cloudiness
-      - lowClouds
-      - mediumClouds
-      - highClouds
-      - dewpointTemperature
-  - platform: yr
-    name: yr_forecast_24h
-    forecast: 24
-    monitored_conditions:
-      - temperature
-      - symbol
-      - precipitation
-      - windSpeed
-      - pressure
-      - windDirection
-      - humidity
-      - fog
-      - cloudiness
-      - lowClouds
-      - mediumClouds
-      - highClouds
-      - dewpointTemperature
