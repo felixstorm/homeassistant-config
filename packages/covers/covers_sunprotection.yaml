@@ -46,20 +46,20 @@ sensor:
   - platform: statistics
     name: wettersensor_sun_east
     entity_id: sensor.wettersensor_sun_east
-    sampling_size: 30
-    max_age: { minutes: 20 }
+    sampling_size: 90
+    max_age: { minutes: 60 }
     precision: 0
   - platform: statistics
     name: wettersensor_sun_south
     entity_id: sensor.wettersensor_sun_south
-    sampling_size: 30
-    max_age: { minutes: 20 }
+    sampling_size: 90
+    max_age: { minutes: 60 }
     precision: 0
   - platform: statistics
     name: wettersensor_sun_west
     entity_id: sensor.wettersensor_sun_west
-    sampling_size: 30
-    max_age: { minutes: 20 }
+    sampling_size: 90
+    max_age: { minutes: 60 }
     precision: 0
   - platform: template
     sensors:
