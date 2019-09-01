@@ -33,6 +33,10 @@ group:
       - sensor.heizung_hk2_programm_anzeige
       - sensor.heizung_hk2_status
       - sensor.heizung_hk2_status_anzeige
+      - switch.bewaesserung_timer
+      - switch.bewaesserung
+      - switch.bewaesserung_triggervalveopen
+      - switch.bewaesserung_triggervalveclose
 
 automation:
   - alias: force_state_updates_hourly

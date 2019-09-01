@@ -843,44 +843,69 @@
                             "type": "vertical-stack"
                         },
                         {
-                            "entities": [
+                            "cards": [
                                 {
-                                    "entity": "switch.bewaesserung_timer"
+                                    "entities": [
+                                        {
+                                            "entity": "switch.bewaesserung_timer"
+                                        },
+                                        {
+                                            "entity": "switch.bewaesserung"
+                                        },
+                                        {
+                                            "entity": "switch.bewaesserung_triggervalveopen"
+                                        },
+                                        {
+                                            "entity": "switch.bewaesserung_triggervalveclose"
+                                        },
+                                        {
+                                            "type": "divider"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_24h"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_3d"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_7d"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_14d"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_21d"
+                                        },
+                                        {
+                                            "entity": "sensor.sum_rain_30d"
+                                        }
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Garten",
+                                    "type": "entities"
                                 },
                                 {
-                                    "entity": "switch.bewaesserung"
-                                },
-                                {
-                                    "entity": "switch.bewaesserung_triggervalveopen"
-                                },
-                                {
-                                    "entity": "switch.bewaesserung_triggervalveclose"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "sensor.sum_rain_24h"
-                                },
-                                {
-                                    "entity": "sensor.sum_rain_3d"
-                                },
-                                {
-                                    "entity": "sensor.sum_rain_7d"
-                                },
-                                {
-                                    "entity": "sensor.sum_rain_14d"
-                                },
-                                {
-                                    "entity": "sensor.sum_rain_21d"
-                                },
-                                {
-                                    "entity": "sensor.sum_rain_30d"
+                                    "entities": [
+                                        {
+                                            "entity": "switch.bewaesserung_timer"
+                                        },
+                                        {
+                                            "entity": "switch.bewaesserung"
+                                        },
+                                        {
+                                            "entity": "switch.bewaesserung_triggervalveopen"
+                                        },
+                                        {
+                                            "entity": "switch.bewaesserung_triggervalveclose"
+                                        }
+                                    ],
+                                    "hours_to_show": 72,
+                                    "refresh_interval": 60,
+                                    "title": "Garten",
+                                    "type": "history-graph"
                                 }
                             ],
-                            "show_header_toggle": false,
-                            "title": "Garten",
-                            "type": "entities"
+                            "type": "vertical-stack"
                         },
                         {
                             "entities": [
