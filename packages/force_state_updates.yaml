@@ -11,15 +11,23 @@ group:
       - sensor.heizung_puffer_brauchwassertemp_min
       - sensor.heizung_hk1_vorlauf_temperatur_soll
       - sensor.heizung_hk2_vorlauf_temperatur_soll
+      - sensor.sunprot_klx_limit_current
+      - sensor.sunprot_klx_limit_current_off
       - sensor.wettersensor_sun_east
       - sensor.wettersensor_sun_east_mean
       - sensor.sunprot_sun_east_ref
+      - input_boolean.sunprot_eastface_active
       - sensor.wettersensor_sun_south
       - sensor.wettersensor_sun_south_mean
       - sensor.sunprot_sun_south_ref
+      - input_boolean.sunprot_southface_active
       - sensor.wettersensor_sun_west
       - sensor.wettersensor_sun_west_mean
       - sensor.sunprot_sun_west_ref
+      - input_boolean.sunprot_westface_active
+      - sensor.sunprot_wiga_klx_limit_current
+      - sensor.sunprot_wiga_klx_limit_current_off
+      - input_boolean.sunprot_wiga_active
 
   force_state_updates_daily:
     entities:
