@@ -66,7 +66,7 @@
                                     "entity": "group.coversatnight_automations"
                                 },
                                 {
-                                    "entity": "script.coversatnight_covers_down"
+                                    "entity": "script.coversatnight_covers_down_egog"
                                 },
                                 {
                                     "entity": "script.coversatnight_covers_up"
@@ -187,6 +187,7 @@
                         {
                             "entities": [
                                 "script.coversatnight_covers_up",
+                                "script.coversatnight_covers_down_egog",
                                 "script.coversatnight_covers_down",
                                 {
                                     "type": "divider"

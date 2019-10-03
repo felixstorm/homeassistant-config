@@ -32,6 +32,10 @@ script:
     sequence:
       - service: python_script.covers_ensure_state
         data: { "situation": "nighttime" }
+  coversatnight_covers_down_egog:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "situation": "nighttime-egog" }
   coversatnight_covers_up:
     sequence:
       - service: python_script.covers_ensure_state
@@ -64,7 +68,9 @@ homeassistant:
     script.coversatnight_covers_up:
       friendly_name: Raffstore jetzt hochfahren
     script.coversatnight_covers_down:
-      friendly_name: Raffstore jetzt runterfahren
+      friendly_name: Raffstore jetzt runter (alle)
+    script.coversatnight_covers_down_egog:
+      friendly_name: Raffstore jetzt runter (nur EG/OG)
     group.coversatnight_automations:
       friendly_name: Raffstore nachts autom.
       icon: mdi:home-automation
