@@ -4,7 +4,7 @@ sensor:
 
   - platform: rest
     name: Wettersensor
-    resource: http://192.168.0.11/
+    resource: http://192.168.42.60/
     json_attributes:
       - readAgeMs
       - tempC

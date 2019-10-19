@@ -1,6 +1,7 @@
 comfoconnect:
 
-  host: 192.168.0.13
+  host: 192.168.42.51
+  pin: !secret comfoconnect_pin
 
 
 sensor:
