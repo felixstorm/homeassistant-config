@@ -753,6 +753,7 @@
                     "cards": [
                         {
                             "entities": [
+                                "light.wohnzimmer_light",
                                 "light.flur_og_light",
                                 "light.studio_dg_light"
                             ],

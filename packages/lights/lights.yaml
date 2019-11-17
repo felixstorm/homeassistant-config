@@ -1,6 +1,8 @@
 homeassistant:
 
   customize:
+    light.wohnzimmer_light:
+      friendly_name: Wohnzimmer
     light.flur_og_light:
       friendly_name: Flur OG
     light.studio_dg_light:
