@@ -1,4 +1,8 @@
 # Zigbee Devices
+binary_sensor.aqara_winsens_terrassentur_contact:
+  friendly_name: Wohnzimmer Terrassentür
+sensor.aqara_winsens_terrassentur_battery:
+  friendly_name: Aqara WinSens Terrassentür Battery
 sensor.philips_fb_battery:
   friendly_name: Hue Dimmer Battery
 sensor.philips_fb_linkquality:

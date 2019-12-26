@@ -2,13 +2,23 @@
 # { "situation": "morning" }
 
 situation = data.get('situation', 'daytime')
-if situation not in ['morning', 'daytime', 'evening', 'nighttime', 'nighttime-egog']:
-    raise KeyError('Invalid situation. Expected morning, daytime, evening, nighttime or nighttime-egog, got: {}'.format(situation))
+if situation not in ['morning', 'daytime', 'evening', 'nighttime']:
+    raise KeyError('Invalid situation. Expected morning, daytime, evening or nighttime, got: {}'.format(situation))
+level = data.get('level', None)
+if level is not None:
+    level = level.split('-')
+
+coverprot_wind_is_active = hass.states.get('input_boolean.coverprot_wind_active').state != 'off'
+coverprot_rain_is_active = hass.states.get('input_boolean.coverprot_rain_active').state != 'off'
+terrassentuer_is_closed = hass.states.get('binary_sensor.aqara_winsens_terrassentur_contact').state == 'off'
+use_terrasse_markise = hass.states.get('input_boolean.covers_use_terrasse_markise_for_sunprotection').state == 'on'
+include_kuechentuer_in_automations = hass.states.get('input_boolean.covers_include_kuechentuer_in_automations').state == 'on'
 
 
 
 def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
 
+    global coverprot_wind_is_active, coverprot_rain_is_active, terrassentuer_is_closed, use_terrasse_markise, include_kuechentuer_in_automations
 
     current_state = hass.states.get(entity_id)
     if current_state is None:
@@ -17,36 +27,24 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
     message_prefix = '*** ENSURE_STATE for {}:'.format(entity_id).ljust(61)
 
 
-    if 'markise' in entity_id or 'dachfenster_gross' in entity_id:
-        coverprot_wind_is_active = hass.states.get('input_boolean.coverprot_wind_active').state != 'off'
-        if coverprot_wind_is_active:
-            logger.info(message_prefix + 'Cover protection wind is active, aborting.')
-            return
+    if ('markise' in entity_id or 'dachfenster_gross' in entity_id) and coverprot_wind_is_active:
+        logger.info(message_prefix + 'Cover protection wind is active, aborting.')
+        return
 
-    if 'markise' in entity_id:
-        coverprot_rain_is_active = hass.states.get('input_boolean.coverprot_rain_active').state != 'off'
-        if coverprot_rain_is_active:
-            logger.info(message_prefix + 'Cover protection rain is active, aborting.')
-            return
+    if 'markise' in entity_id and coverprot_rain_is_active:
+        logger.info(message_prefix + 'Cover protection rain is active, aborting.')
+        return
 
-    if 'wohnzimmer_terrassentur' in entity_id:
-        include_terrassentuer_in_automations = hass.states.get('input_boolean.covers_include_terrassentuer_in_automations').state == 'on'
-        if not include_terrassentuer_in_automations:
-            logger.debug(message_prefix + 'Cover Terrassentuer is not supposed to be controlled automatically, aborting.')
-            return
+    if 'wohnzimmer_terrassentur' in entity_id and not terrassentuer_is_closed:
+        logger.debug(message_prefix + 'Door Terrassentuer is not closed, aborting.')
+        return
 
-    if 'terrasse_markise' in entity_id:
-        include_terrasse_markise_in_automations = hass.states.get('input_boolean.covers_include_terrasse_markise_in_automations').state == 'on'
-        if not include_terrasse_markise_in_automations:
-            logger.debug(message_prefix + 'Cover Terrasse Markise is not supposed to be controlled automatically, aborting.')
-            return
+    if 'kuche_terrassentur' in entity_id and not include_kuechentuer_in_automations:
+        logger.debug(message_prefix + 'Cover Kuechentuer is not supposed to be controlled automatically, aborting.')
+        return
 
-    if 'kuche_terrassentur' in entity_id:
-        include_kuechentuer_in_automations = hass.states.get('input_boolean.covers_include_kuechentuer_in_automations').state == 'on'
-        if not include_kuechentuer_in_automations:
-            logger.debug(message_prefix + 'Cover Kuechentuer is not supposed to be controlled automatically, aborting.')
-            return
-
+    if ('wohnzimmer_terrassentur' in entity_id and use_terrasse_markise) or ('terrasse_markise' in entity_id and not use_terrasse_markise):
+        sunprot_is_active = False   # Für den Sonnenschutz werden entweder die Markise oder die Raffstore benötigt, aber nicht beides gleichzeitig.
 
     target_lift = None
     target_tilt = None
@@ -62,11 +60,11 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
         else:
             target_lift = 100
 
-    elif situation in ['evening', 'nighttime', 'nighttime-egog']:
+    elif situation in ['evening', 'nighttime']:
         if 'markise' in entity_id:
             target_lift = 100       # Markisen abends/nachts einfahren
-        elif situation == 'nighttime' or (situation == 'nighttime-egog' and '_dg_' not in entity_id and 'dachfenster' not in entity_id):
-            target_lift = 0         # den Rest (bzw. außer DG) nachts ausfahren (abends ignorieren)
+        elif situation == 'nighttime':
+            target_lift = 0         # den Rest nachts ausfahren (abends ignorieren)
 
     # None (without quotes) = cover does not support function, 'unknown' (with quotes) = cover does support function, but current state is not known
     current_lift = current_state.attributes.get('current_position')
@@ -107,7 +105,6 @@ def ensure_state(hass, logger, situation, sunprot_is_active, entity_id):
             hass.services.call('cover', 'close_cover', {'entity_id': entity_id}, False)
         else:
             hass.services.call('cover', 'set_cover_position', {'entity_id': entity_id, 'position': target_lift}, False)
-        time.sleep(5)
 
 
 
@@ -117,22 +114,25 @@ sunprot_westface_is_active = hass.states.get('input_boolean.sunprot_westface_act
 sunprot_wiga_is_active = hass.states.get('input_boolean.sunprot_wiga_active').state == 'on'
 logger.debug('*** ENSURE_STATE for covers: sunprot_eastface_is_active={}, sunprot_southface_is_active={}, sunprot_westface_is_active={}'.format(sunprot_eastface_is_active, sunprot_southface_is_active, sunprot_westface_is_active))
 
-ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_wohnzimmer_sitzfenster_cover')
-ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_wohnzimmer_terrassentur_cover')
-ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_terrasse_markise_cover')
-ensure_state(hass, logger, situation, sunprot_wiga_is_active, 'cover.cov_wintergarten_markise_cover')
-ensure_state(hass, logger, situation, sunprot_southface_is_active, 'cover.cov_kuche_terrassentur_cover')
-ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_windfang_cover')
-ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_kuche_fenster_cover')
+if level is None or 'eg' in level:
+    ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_wohnzimmer_sitzfenster_cover')
+    ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_wohnzimmer_terrassentur_cover')
+    ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_terrasse_markise_cover')
+    ensure_state(hass, logger, situation, sunprot_wiga_is_active, 'cover.cov_wintergarten_markise_cover')
+    ensure_state(hass, logger, situation, sunprot_southface_is_active, 'cover.cov_kuche_terrassentur_cover')
+    ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_windfang_cover')
+    ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_kuche_fenster_cover')
 
-ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_florian_cover')
-ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_jonathan_links_cover')
-ensure_state(hass, logger, situation, sunprot_southface_is_active, 'cover.cov_jonathan_rechts_cover')
-ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_schlafzimmer_cover')
-ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_bad_og_cover')
-ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_flur_og_cover')
+if level is None or 'og' in level:
+    ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_florian_cover')
+    ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_jonathan_links_cover')
+    ensure_state(hass, logger, situation, sunprot_southface_is_active, 'cover.cov_jonathan_rechts_cover')
+    ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_schlafzimmer_cover')
+    ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_bad_og_cover')
+    ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_flur_og_cover')
 
-ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_studio_dg_links_cover')
-ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_studio_dg_rechts_cover')
-ensure_state(hass, logger, situation, sunprot_southface_is_active or sunprot_westface_is_active, 'cover.cov_dachfenster_gross_cover')
-ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_bad_dg_cover')
+if level is None or 'dg' in level:
+    ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_studio_dg_links_cover')
+    ensure_state(hass, logger, situation, sunprot_eastface_is_active, 'cover.cov_studio_dg_rechts_cover')
+    ensure_state(hass, logger, situation, sunprot_southface_is_active or sunprot_westface_is_active, 'cover.cov_dachfenster_gross_cover')
+    ensure_state(hass, logger, situation, sunprot_westface_is_active, 'cover.cov_bad_dg_cover')

@@ -32,14 +32,34 @@ script:
     sequence:
       - service: python_script.covers_ensure_state
         data: { "situation": "nighttime" }
-  coversatnight_covers_down_egog:
+  coversatnight_covers_down_eg:
     sequence:
       - service: python_script.covers_ensure_state
-        data: { "situation": "nighttime-egog" }
+        data: { "situation": "nighttime", "level": "eg" }
+  coversatnight_covers_down_og:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "situation": "nighttime", "level": "og" }
+  coversatnight_covers_down_dg:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "situation": "nighttime", "level": "dg" }
   coversatnight_covers_up:
     sequence:
       - service: python_script.covers_ensure_state
         data: { "situation": "morning" }
+  coversatnight_covers_up_eg:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "situation": "morning", "level": "eg" }
+  coversatnight_covers_up_og:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "situation": "morning", "level": "og" }
+  coversatnight_covers_up_dg:
+    sequence:
+      - service: python_script.covers_ensure_state
+        data: { "situation": "morning", "level": "dg" }
 
 
 group:
@@ -66,11 +86,21 @@ homeassistant:
     automation.coversatnight_down_at_dusk:
       friendly_name: Raffstore abends autom. runter
     script.coversatnight_covers_up:
-      friendly_name: Raffstore jetzt hochfahren
+      friendly_name: Raffstore jetzt hoch (alle)
+    script.coversatnight_covers_up_eg:
+      friendly_name: Raffstore jetzt hoch (nur EG)
+    script.coversatnight_covers_up_og:
+      friendly_name: Raffstore jetzt hoch (nur OG)
+    script.coversatnight_covers_up_dg:
+      friendly_name: Raffstore jetzt hoch (nur DG)
     script.coversatnight_covers_down:
       friendly_name: Raffstore jetzt runter (alle)
-    script.coversatnight_covers_down_egog:
-      friendly_name: Raffstore jetzt runter (nur EG/OG)
+    script.coversatnight_covers_down_eg:
+      friendly_name: Raffstore jetzt runter (nur EG)
+    script.coversatnight_covers_down_og:
+      friendly_name: Raffstore jetzt runter (nur OG)
+    script.coversatnight_covers_down_dg:
+      friendly_name: Raffstore jetzt runter (nur DG)
     group.coversatnight_automations:
       friendly_name: Raffstore nachts autom.
       icon: mdi:home-automation

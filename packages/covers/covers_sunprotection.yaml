@@ -138,6 +138,8 @@ sensor:
 
 
 input_boolean:
+  covers_use_terrasse_markise_for_sunprotection:
+    initial: on
   sunprot_eastface_active:
     icon: mdi:weather-sunny
   sunprot_southface_active:
@@ -244,6 +246,9 @@ group:
 homeassistant:
 
   customize:
+
+    input_boolean.covers_use_terrasse_markise_for_sunprotection:
+      friendly_name: Markise Terrasse für Sonnenschutz verwenden
 
     group.sunprot_automations:
       friendly_name: Sonnenschutz autom.

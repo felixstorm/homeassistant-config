@@ -28,6 +28,7 @@ group:
       - sensor.sunprot_wiga_klx_limit_current
       - sensor.sunprot_wiga_klx_limit_current_off
       - input_boolean.sunprot_wiga_active
+      - binary_sensor.aqara_winsens_terrassentur_contact
 
   force_state_updates_daily:
     entities:
