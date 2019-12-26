@@ -1,0 +1,14 @@
+automation:
+
+  - alias: taster_8fach_eg_off
+    trigger: { platform: event, event_type: deconz_event, event_data: { id: taster_8fach_eg, event: 1002 }}
+    action: { service: cover.open_cover, entity_id: group.shutters_eg }
+  - alias: taster_8fach_eg_on
+    trigger: { platform: event, event_type: deconz_event, event_data: { id: taster_8fach_eg, event: 2002 }}
+    action: { service: cover.close_cover, entity_id: group.shutters_eg }
+  - alias: taster_8fach_eg_1
+    trigger: { platform: event, event_type: deconz_event, event_data: { id: taster_8fach_eg, event: 3002 }}
+    action: { service: cover.open_cover, entity_id: group.shutters_og }
+  - alias: taster_8fach_eg_2
+    trigger: { platform: event, event_type: deconz_event, event_data: { id: taster_8fach_eg, event: 4002 }}
+    action: { service: cover.close_cover, entity_id: group.shutters_og }
