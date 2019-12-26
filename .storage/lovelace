@@ -965,7 +965,7 @@
                     "badges": [],
                     "cards": [
                         {
-                            "entity": "media_player.play_1",
+                            "entity": "media_player.bad",
                             "type": "media-control"
                         },
                         {
