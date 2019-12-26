@@ -10,8 +10,7 @@ homeassistant:
   packages: !include_dir_named packages
   customize: !include customize.yaml
   auth_providers:
-   - type: legacy_api_password
-     api_password: !secret http_password
+    - type: homeassistant
 
 group: !include groups.yaml
 automation: !include automations.yaml
