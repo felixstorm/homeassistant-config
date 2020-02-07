@@ -117,8 +117,14 @@ group:
 
 automation:
   - alias: cov_wohnzimmer_terrassentur_add
-    trigger: { platform: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact, to: 'off' }
+    trigger:
+      - { platform: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact }
+      - { platform: time_pattern, minutes: /60 }
+    condition: { condition: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact, state: 'off' }
     action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.cov_wohnzimmer_sitzfenster_cover, cover.cov_wohnzimmer_terrassentur_cover, cover.cov_kuche_terrassentur_cover, cover.cov_kuche_fenster_cover, cover.cov_windfang_cover ]}}
   - alias: cov_wohnzimmer_terrassentur_remove
-    trigger: { platform: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact, to: 'on' }
+    trigger:
+      - { platform: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact }
+      - { platform: time_pattern, minutes: /60 }
+    condition: { condition: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact, state: 'on' }
     action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.cov_wohnzimmer_sitzfenster_cover, cover.cov_kuche_terrassentur_cover, cover.cov_kuche_fenster_cover, cover.cov_windfang_cover ]}}
