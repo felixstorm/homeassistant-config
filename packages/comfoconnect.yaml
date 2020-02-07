@@ -20,3 +20,4 @@ sensor:
       - air_flow_exhaust
       - days_to_replace_filter
       - bypass_state
+      - power_usage
