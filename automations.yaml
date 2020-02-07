@@ -3,6 +3,5 @@
 - action: []
   id: DUMMY
   alias: DUMMY Can Be Deleted After First Automation Has Been Added
-  hide_entity: yes # default no, hide from UI
   condition: []
   trigger: []
