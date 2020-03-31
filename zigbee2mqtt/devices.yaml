@@ -1,0 +1,70 @@
+'0x001fee0000002415':
+  friendly_name: cov_wohnzimmer_sitzfenster
+'0xccccccfffe8b59a6':
+  friendly_name: wohnzimmer
+'0x001fee00000024db':
+  friendly_name: cov_wohnzimmer_terrassentur
+'0x00158d0003ef378e':
+  friendly_name: aqara_winsens_terrassentur
+'0x001fee0000003d46':
+  friendly_name: cov_terrasse_markise
+  homeassistant:
+    tilt_command_topic: null
+    tilt_status_topic: null
+'0x001fee000000243d':
+  friendly_name: cov_wintergarten_markise
+  homeassistant:
+    tilt_command_topic: null
+    tilt_status_topic: null
+'0x00158d00022c6a81':
+  friendly_name: aqara_thp_wiga
+  debounce: 1
+'0x001fee0000002c8c':
+  friendly_name: cov_kuche_terrassentur
+'0x001fee0000000dc6':
+  friendly_name: cov_kuche_fenster
+'0x001fee0000001a89':
+  friendly_name: herd_links
+'0x001fee0000001a95':
+  friendly_name: herd_rechts
+'0x001fee0000001110':
+  friendly_name: cov_windfang
+'0x000f17124102098f':
+  friendly_name: taster_eg_1
+'0x001fee0000000df3':
+  friendly_name: cov_florian
+'0x001fee0000000ded':
+  friendly_name: cov_jonathan_links
+'0x001fee00000024aa':
+  friendly_name: cov_jonathan_rechts
+'0x001fee000000255e':
+  friendly_name: cov_schlafzimmer
+'0x001fee0000000dec':
+  friendly_name: cov_bad_og
+'0x001fee000000243e':
+  friendly_name: cov_flur_og
+'0x001fee0000001d41':
+  friendly_name: flur_og
+'0x001fee0000002cc0':
+  friendly_name: cov_studio_dg_links
+'0x001fee000000240d':
+  friendly_name: cov_studio_dg_rechts
+'0x0017880102481a1c':
+  friendly_name: studio_dg
+'0x00158d00022c93ee':
+  friendly_name: aqara_thp_dg
+  debounce: 1
+'0x001fee0000000dba':
+  friendly_name: cov_dachfenster_gross
+  homeassistant:
+    tilt_command_topic: null
+    tilt_status_topic: null
+'0x001fee0000002cec':
+  friendly_name: cov_bad_dg
+  homeassistant:
+    set_position_topic: null
+    position_topic: null
+    tilt_command_topic: null
+    tilt_status_topic: null
+'0x00178801020db019':
+  friendly_name: philips_fb
