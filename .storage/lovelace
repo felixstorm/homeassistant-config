@@ -133,7 +133,16 @@
                         {
                             "entities": [
                                 "switch.bewaesserung_timer",
-                                "switch.bewaesserung"
+                                "switch.bewaesserung",
+                                {
+                                    "type": "divider"
+                                },
+                                "sensor.sum_rain_24h",
+                                "sensor.sum_rain_3d",
+                                "sensor.sum_rain_7d",
+                                "sensor.sum_rain_14d",
+                                "sensor.sum_rain_21d",
+                                "sensor.sum_rain_30d"
                             ],
                             "show_header_toggle": false,
                             "title": "Garten",
@@ -875,6 +884,16 @@
                             "type": "vertical-stack"
                         },
                         {
+                            "aspect_ratio": "100%",
+                            "type": "iframe",
+                            "url": "/api/hassio_ingress/hDeAoG_phgmZCGzyvWVTG7zqw2ABiJ0sN5esK2yqkOY/d/4k_mpAvWk/regen?orgId=1&panelId=4&refresh=60s&kiosk&fullscreen"
+                        },
+                        {
+                            "aspect_ratio": "100%",
+                            "type": "iframe",
+                            "url": "/api/hassio_ingress/hDeAoG_phgmZCGzyvWVTG7zqw2ABiJ0sN5esK2yqkOY/d/4k_mpAvWk/regen?orgId=1&panelId=2&refresh=60s&kiosk&fullscreen"
+                        },
+                        {
                             "entities": [
                                 {
                                     "entity": "sensor.esp_weathersensor_multisensor_temp"
@@ -924,18 +943,19 @@
                             "cards": [
                                 {
                                     "entities": [
+                                        "switch.bewaesserung_timer",
+                                        "switch.bewaesserung",
+                                        "switch.bewaesserung_triggervalveopen",
+                                        "switch.bewaesserung_triggervalveclose",
                                         {
-                                            "entity": "switch.bewaesserung_timer"
+                                            "type": "divider"
                                         },
-                                        {
-                                            "entity": "switch.bewaesserung"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveopen"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveclose"
-                                        }
+                                        "sensor.sum_rain_24h",
+                                        "sensor.sum_rain_3d",
+                                        "sensor.sum_rain_7d",
+                                        "sensor.sum_rain_14d",
+                                        "sensor.sum_rain_21d",
+                                        "sensor.sum_rain_30d"
                                     ],
                                     "show_header_toggle": false,
                                     "title": "Garten",

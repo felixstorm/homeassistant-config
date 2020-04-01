@@ -10,37 +10,37 @@ sensor:
     password: !secret influxdb_password
     queries:
       - name: sum_rain_24h
-        where: 'entity_id = ''raingauge'' and time > now() - 24h'
+        where: 'entity_id = ''esp_weathersensor_tipping_bucket_precipitation'' and time > now() - 24h'
         measurement: 'mm'
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
       - name: sum_rain_3d
-        where: 'entity_id = ''raingauge'' and time > now() - 3d'
+        where: 'entity_id = ''esp_weathersensor_tipping_bucket_precipitation'' and time > now() - 3d'
         measurement: 'mm'
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
       - name: sum_rain_7d
-        where: 'entity_id = ''raingauge'' and time > now() - 7d'
+        where: 'entity_id = ''esp_weathersensor_tipping_bucket_precipitation'' and time > now() - 7d'
         measurement: 'mm'
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
       - name: sum_rain_14d
-        where: 'entity_id = ''raingauge'' and time > now() - 14d'
+        where: 'entity_id = ''esp_weathersensor_tipping_bucket_precipitation'' and time > now() - 14d'
         measurement: 'mm'
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
       - name: sum_rain_21d
-        where: 'entity_id = ''raingauge'' and time > now() - 21d'
+        where: 'entity_id = ''esp_weathersensor_tipping_bucket_precipitation'' and time > now() - 21d'
         measurement: 'mm'
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
       - name: sum_rain_30d
-        where: 'entity_id = ''raingauge'' and time > now() - 30d'
+        where: 'entity_id = ''esp_weathersensor_tipping_bucket_precipitation'' and time > now() - 30d'
         measurement: 'mm'
         group_function: sum
         value_template: '{{ value | round(1) }}'
