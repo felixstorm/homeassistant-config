@@ -1,3 +1,7 @@
+'0x7cb03eaa00b112eb':
+  friendly_name: f1_lig_treppe_1
+'0x7cb03eaa00b11047':
+  friendly_name: f1_lig_treppe_2
 '0x001fee0000002415':
   friendly_name: cov_wohnzimmer_sitzfenster
 '0xccccccfffe8b59a6':
@@ -31,6 +35,14 @@
   friendly_name: cov_windfang
 '0x000f17124102098f':
   friendly_name: taster_eg_1
+'0x000f171241020ab0':
+  friendly_name: f2_but_flur_1
+'0x001fee0000001bcf':
+  friendly_name: f2_but_uv_1
+'0x7cb03eaa00b11f11':
+  friendly_name: f2_lig_treppe_1
+'0x7cb03eaa00b0f523':
+  friendly_name: f2_lig_treppe_2
 '0x001fee0000000df3':
   friendly_name: cov_florian
 '0x001fee0000000ded':

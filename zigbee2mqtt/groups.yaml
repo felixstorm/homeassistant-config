@@ -1,1 +1,10 @@
-{}
+'42100':
+  friendly_name: f1_grp_licht_treppe
+  devices:
+    - 0x7cb03eaa00b112eb/3
+    - 0x7cb03eaa00b11047/3
+'42200':
+  friendly_name: f2_grp_licht_treppe
+  devices:
+    - 0x7cb03eaa00b11f11/3
+    - 0x7cb03eaa00b0f523/3

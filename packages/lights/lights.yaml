@@ -3,7 +3,19 @@ homeassistant:
   customize:
     light.wohnzimmer_light:
       friendly_name: Wohnzimmer
+    light.f1_grp_licht_treppe_light:
+      friendly_name: Treppe EG-OG
+    light.f1_lig_treppe_1_light:
+      friendly_name: Treppe EG-OG 1
+    light.f1_lig_treppe_2_light:
+      friendly_name: Treppe EG-OG 2
     light.flur_og_light:
       friendly_name: Flur OG
+    light.f2_grp_licht_treppe_light:
+      friendly_name: Treppe OG-DG
+    light.f2_lig_treppe_1_light:
+      friendly_name: Treppe OG-DG 1
+    light.f2_lig_treppe_2_light:
+      friendly_name: Treppe OG-DG 2
     light.studio_dg_light:
       friendly_name: Studio DG
