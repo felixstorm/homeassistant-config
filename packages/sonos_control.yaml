@@ -1,20 +1,48 @@
 automation:
 
   - alias: sonos_bad_play
-    trigger: { platform: state, entity_id: sensor.philips_fb_action, to: on-hold }
-    action: { service: media_player.media_play, entity_id: media_player.bad }
+    trigger:
+      - {platform: state, entity_id: sensor.philips_fb_action, to: on-hold}
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: up}
+    action: {service: media_player.media_play, entity_id: media_player.bad}
   - alias: sonos_bad_pause
-    trigger: { platform: state, entity_id: sensor.philips_fb_action, to: off-hold  }
-    action: { service: media_player.media_pause, entity_id: media_player.bad }
+    trigger:
+      - {platform: state, entity_id: sensor.philips_fb_action, to: off-hold }
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: down}
+    action: {service: media_player.media_pause, entity_id: media_player.bad}
   - alias: sonos_bad_volume_up
-    trigger: { platform: state, entity_id: sensor.philips_fb_action, to: on-press }
-    action: { service: media_player.volume_up, entity_id: media_player.bad }
+    trigger:
+      - {platform: state, entity_id: sensor.philips_fb_action, to: on-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: 'on'}
+    action: {service: media_player.volume_up, entity_id: media_player.bad}
   - alias: sonos_bad_volume_down
-    trigger: { platform: state, entity_id: sensor.philips_fb_action, to: off-press }
-    action: { service: media_player.volume_down, entity_id: media_player.bad }
+    trigger:
+      - {platform: state, entity_id: sensor.philips_fb_action, to: off-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: 'off'}
+    action: {service: media_player.volume_down, entity_id: media_player.bad}
   - alias: sonos_bad_next_track
-    trigger: { platform: state, entity_id: sensor.philips_fb_action, to: up-press }
-    action: { service: media_player.media_next_track, entity_id: media_player.bad }
+    trigger:
+      - {platform: state, entity_id: sensor.philips_fb_action, to: up-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_1}
+    action: {service: media_player.media_next_track, entity_id: media_player.bad}
   - alias: sonos_bad_previous_track
-    trigger: { platform: state, entity_id: sensor.philips_fb_action, to: down-press }
-    action: { service: media_player.media_previous_track, entity_id: media_player.bad }
+    trigger:
+      - {platform: state, entity_id: sensor.philips_fb_action, to: down-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_0}
+    action: {service: media_player.media_previous_track, entity_id: media_player.bad}
+  - alias: sonos_bad_spotify_playlist_0
+    trigger:
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_2}
+    action: {service: media_player.select_source, entity_id: media_player.bad, data: {source: 'Sommerhits'}}
+  - alias: sonos_bad_spotify_playlist_1
+    trigger:
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_3}
+    action: {service: media_player.select_source, entity_id: media_player.bad, data: {source: 'Stimmungsmacher'}}
+  - alias: sonos_bad_spotify_playlist_2
+    trigger:
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_4}
+    action: {service: media_player.select_source, entity_id: media_player.bad, data: {source: 'Feelgood Indie'}}
+  - alias: sonos_bad_spotify_playlist_3
+    trigger:
+      - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_5}
+    action: {service: media_player.select_source, entity_id: media_player.bad, data: {source: 'Swag!'}}
