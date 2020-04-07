@@ -1,0 +1,17 @@
+automation:
+  - alias: heizung_notify_aus
+    trigger:
+    - { platform: state, entity_id: sensor.heizung_kesselstatus, to: '0' } # aus
+    - { platform: state, entity_id: sensor.heizung_kesselstatus, to: '8' } # Störung
+    - { platform: state, entity_id: sensor.heizung_kesselstatus, to: '35' } # aus
+    action: 
+    - service: notify.mobile_app_iphone_felix
+      data_template:
+        title: "Heizung aus!"
+        message: "Heizung Status: {{ states('sensor.heizung_kesselstatus_anzeige') }}"
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
