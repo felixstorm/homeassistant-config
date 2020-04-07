@@ -31,11 +31,11 @@ automation:
       - { condition: state, entity_id: input_boolean.coverprot_wind_active, state: 'on' }
     action:
       - service: cover.open_cover
-        entity_id: cover.cov_terrasse_markise_cover
+        entity_id: cover.f1_cov_terrasse_markise_cover
       - service: cover.open_cover
-        entity_id: cover.cov_wintergarten_markise_cover
+        entity_id: cover.f1_cov_wintergarten_markise_cover
       - service: cover.open_cover
-        entity_id: cover.cov_dachfenster_gross_cover
+        entity_id: cover.f3_cov_dachfenster_gross_cover
 
   - alias: coverprot_rain_execute
     trigger:
@@ -45,10 +45,10 @@ automation:
       - { condition: state, entity_id: input_boolean.coverprot_rain_active, state: 'on' }
     action:
       - service: cover.open_cover
-        entity_id: cover.cov_terrasse_markise_cover
+        entity_id: cover.f1_cov_terrasse_markise_cover
       - service: cover.open_cover
-        entity_id: cover.cov_wintergarten_markise_cover
-      # cov_dachfenster_gross_cover dient auch der Verdunkelung und bleibt bei Regen draußen.
+        entity_id: cover.f1_cov_wintergarten_markise_cover
+      # f3_cov_dachfenster_gross_cover dient auch der Verdunkelung und bleibt bei Regen draußen.
 
   - alias: coverprot_off_timer_start
     trigger: {platform: state, entity_id: group.coverprot_automations, to: 'off'}

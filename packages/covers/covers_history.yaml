@@ -2,54 +2,54 @@ sensor:
 
   - platform: template
     sensors:
-      cover_lift_pos_wohnzimmer_sitzfenster:
-        value_template: "{{ state_attr('cover.cov_wohnzimmer_sitzfenster_cover', 'current_position') }}"
+      liftpos_f1_cov_wohnzimmer_sitzfenster:
+        value_template: "{{ state_attr('cover.f1_cov_wohnzimmer_sitzfenster_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_wohnzimmer_terrassentur:
-        value_template: "{{ state_attr('cover.cov_wohnzimmer_terrassentur_cover', 'current_position') }}"
+      liftpos_f1_cov_wohnzimmer_terrassentur:
+        value_template: "{{ state_attr('cover.f1_cov_wohnzimmer_terrassentur_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_terrasse_markise:
-        value_template: "{{ state_attr('cover.cov_terrasse_markise_cover', 'current_position') }}"
+      liftpos_f1_cov_terrasse_markise:
+        value_template: "{{ state_attr('cover.f1_cov_terrasse_markise_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_wintergarten_markise:
-        value_template: "{{ state_attr('cover.cov_wintergarten_markise_cover', 'current_position') }}"
+      liftpos_f1_cov_wintergarten_markise:
+        value_template: "{{ state_attr('cover.f1_cov_wintergarten_markise_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_kuche_terrassentur:
-        value_template: "{{ state_attr('cover.cov_kuche_terrassentur_cover', 'current_position') }}"
+      liftpos_f1_cov_kuche_terrassentur:
+        value_template: "{{ state_attr('cover.f1_cov_kuche_terrassentur_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_kuche_fenster:
-        value_template: "{{ state_attr('cover.cov_kuche_fenster_cover', 'current_position') }}"
+      liftpos_f1_cov_kuche_fenster:
+        value_template: "{{ state_attr('cover.f1_cov_kuche_fenster_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_windfang:
-        value_template: "{{ state_attr('cover.cov_windfang_cover', 'current_position') }}"
+      liftpos_f1_cov_windfang:
+        value_template: "{{ state_attr('cover.f1_cov_windfang_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_florian:
-        value_template: "{{ state_attr('cover.cov_florian_cover', 'current_position') }}"
+      liftpos_f2_cov_florian:
+        value_template: "{{ state_attr('cover.f2_cov_florian_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_jonathan_links:
-        value_template: "{{ state_attr('cover.cov_jonathan_links_cover', 'current_position') }}"
+      liftpos_f2_cov_jonathan_links:
+        value_template: "{{ state_attr('cover.f2_cov_jonathan_links_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_jonathan_rechts:
-        value_template: "{{ state_attr('cover.cov_jonathan_rechts_cover', 'current_position') }}"
+      liftpos_f2_cov_jonathan_rechts:
+        value_template: "{{ state_attr('cover.f2_cov_jonathan_rechts_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_schlafzimmer:
-        value_template: "{{ state_attr('cover.cov_schlafzimmer_cover', 'current_position') }}"
+      liftpos_f2_cov_schlafzimmer:
+        value_template: "{{ state_attr('cover.f2_cov_schlafzimmer_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_bad_og:
-        value_template: "{{ state_attr('cover.cov_bad_og_cover', 'current_position') }}"
+      liftpos_f2_cov_bad:
+        value_template: "{{ state_attr('cover.f2_cov_bad_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_flur_og:
-        value_template: "{{ state_attr('cover.cov_flur_og_cover', 'current_position') }}"
+      liftpos_f2_cov_flur:
+        value_template: "{{ state_attr('cover.f2_cov_flur_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_studio_dg_links:
-        value_template: "{{ state_attr('cover.cov_studio_dg_links_cover', 'current_position') }}"
+      liftpos_f3_cov_studio_links:
+        value_template: "{{ state_attr('cover.f3_cov_studio_links_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_studio_dg_rechts:
-        value_template: "{{ state_attr('cover.cov_studio_dg_rechts_cover', 'current_position') }}"
+      liftpos_f3_cov_studio_rechts:
+        value_template: "{{ state_attr('cover.f3_cov_studio_rechts_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_dachfenster_gross:
-        value_template: "{{ state_attr('cover.cov_dachfenster_gross_cover', 'current_position') }}"
+      liftpos_f3_cov_dachfenster_gross:
+        value_template: "{{ state_attr('cover.f3_cov_dachfenster_gross_cover', 'current_position') }}"
         unit_of_measurement: "%"
-      cover_lift_pos_bad_dg:
-        value_template: "{{ state_attr('cover.cov_bad_dg_cover', 'current_position') }}"
+      liftpos_f3_cov_bad:
+        value_template: "{{ state_attr('cover.f3_cov_bad_cover', 'current_position') }}"
         unit_of_measurement: "%"

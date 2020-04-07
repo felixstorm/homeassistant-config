@@ -2,32 +2,32 @@ automation:
 
   - alias: sonos_bad_play
     trigger:
-      - {platform: state, entity_id: sensor.philips_fb_action, to: on-hold}
+      - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: on-hold}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: up}
     action: {service: media_player.media_play, entity_id: media_player.bad}
   - alias: sonos_bad_pause
     trigger:
-      - {platform: state, entity_id: sensor.philips_fb_action, to: off-hold }
+      - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: off-hold }
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: down}
     action: {service: media_player.media_pause, entity_id: media_player.bad}
   - alias: sonos_bad_volume_up
     trigger:
-      - {platform: state, entity_id: sensor.philips_fb_action, to: on-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: on-press}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: 'on'}
     action: {service: media_player.volume_up, entity_id: media_player.bad}
   - alias: sonos_bad_volume_down
     trigger:
-      - {platform: state, entity_id: sensor.philips_fb_action, to: off-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: off-press}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: 'off'}
     action: {service: media_player.volume_down, entity_id: media_player.bad}
   - alias: sonos_bad_next_track
     trigger:
-      - {platform: state, entity_id: sensor.philips_fb_action, to: up-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: up-press}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_1}
     action: {service: media_player.media_next_track, entity_id: media_player.bad}
   - alias: sonos_bad_previous_track
     trigger:
-      - {platform: state, entity_id: sensor.philips_fb_action, to: down-press}
+      - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: down-press}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: select_0}
     action: {service: media_player.media_previous_track, entity_id: media_player.bad}
   - alias: sonos_bad_spotify_playlist_0

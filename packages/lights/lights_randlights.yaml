@@ -33,7 +33,7 @@ automation:
     action:
     - delay: '00:{{ (range(0, 29)|random|int) }}:00'
     - service: light.turn_on
-      entity_id: light.flur_og_light
+      entity_id: light.f2_lig_flur_light
 
   - alias: 'Zufallslicht Flur OG abends aus'
     trigger:
@@ -42,7 +42,7 @@ automation:
     action:
     - delay: '00:{{ (range(0, 59)|random|int) }}:00'
     - service: light.turn_off
-      entity_id: light.flur_og_light
+      entity_id: light.f2_lig_flur_light
 
   - alias: 'Zufallslichter abends sicher aus'
     trigger:
@@ -50,7 +50,7 @@ automation:
       at: '00:00:00'
     action:
       - service: light.turn_off
-        entity_id: light.flur_og_light
+        entity_id: light.f2_lig_flur_light
       - service: light.turn_off
         entity_id: light.studio_dg_light
 

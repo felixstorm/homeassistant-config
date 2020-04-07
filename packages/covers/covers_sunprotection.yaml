@@ -39,7 +39,7 @@ sensor:
         value_template: "{{ state_attr('sensor.sunprot_forecast_12h_temperature_stats', 'max_value')|float }}"
         unit_of_measurement: "°C"
       sunprot_wiga_inside_temp_ref:
-        value_template: "{{ states('sensor.aqara_thp_wiga_temperature') | float | round(1) }}"
+        value_template: "{{ states('sensor.f1_senthp_wiga_temperature') | float | round(1) }}"
         unit_of_measurement: "°C"
   - platform: statistics
     name: wettersensor_sun_east_mean

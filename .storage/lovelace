@@ -20,8 +20,8 @@
                                     "type": "divider"
                                 },
                                 "sensor.comfoairq_inside_temperature",
-                                "sensor.aqara_thp_wiga_temperature",
-                                "sensor.aqara_thp_dg_temperature"
+                                "sensor.f1_senthp_wiga_temperature",
+                                "sensor.f3_senthp_studio_temperature"
                             ],
                             "show_header_toggle": false,
                             "title": "Wetter / Innentemperaturen aktuell",
@@ -119,7 +119,7 @@
                                 {
                                     "type": "divider"
                                 },
-                                "light.flur_og_light",
+                                "light.f2_lig_flur_light",
                                 "light.studio_dg_light",
                                 {
                                     "type": "divider"
@@ -156,28 +156,28 @@
                     "cards": [
                         {
                             "entities": [
-                                "binary_sensor.aqara_winsens_terrassentur_contact",
+                                "binary_sensor.f1_senwin_terrassentur_contact",
                                 "input_boolean.covers_include_kuechentuer_in_automations",
                                 {
                                     "type": "divider"
                                 },
-                                "cover.cov_wohnzimmer_sitzfenster_cover",
-                                "cover.cov_wohnzimmer_terrassentur_cover",
-                                "cover.cov_terrasse_markise_cover",
-                                "cover.cov_wintergarten_markise_cover",
-                                "cover.cov_kuche_terrassentur_cover",
-                                "cover.cov_kuche_fenster_cover",
-                                "cover.cov_windfang_cover",
-                                "cover.cov_florian_cover",
-                                "cover.cov_jonathan_links_cover",
-                                "cover.cov_jonathan_rechts_cover",
-                                "cover.cov_schlafzimmer_cover",
-                                "cover.cov_bad_og_cover",
-                                "cover.cov_flur_og_cover",
-                                "cover.cov_studio_dg_links_cover",
-                                "cover.cov_studio_dg_rechts_cover",
-                                "cover.cov_dachfenster_gross_cover",
-                                "cover.cov_bad_dg_cover",
+                                "cover.f1_cov_wohnzimmer_sitzfenster_cover",
+                                "cover.f1_cov_wohnzimmer_terrassentur_cover",
+                                "cover.f1_cov_terrasse_markise_cover",
+                                "cover.f1_cov_wintergarten_markise_cover",
+                                "cover.f1_cov_kuche_terrassentur_cover",
+                                "cover.f1_cov_kuche_fenster_cover",
+                                "cover.f1_cov_windfang_cover",
+                                "cover.f2_cov_florian_cover",
+                                "cover.f2_cov_jonathan_links_cover",
+                                "cover.f2_cov_jonathan_rechts_cover",
+                                "cover.f2_cov_schlafzimmer_cover",
+                                "cover.f2_cov_bad_cover",
+                                "cover.f2_cov_flur_cover",
+                                "cover.f3_cov_studio_links_cover",
+                                "cover.f3_cov_studio_rechts_cover",
+                                "cover.f3_cov_dachfenster_gross_cover",
+                                "cover.f3_cov_bad_cover",
                                 {
                                     "type": "divider"
                                 },
@@ -245,23 +245,23 @@
                         },
                         {
                             "entities": [
-                                "sensor.cover_lift_pos_wohnzimmer_sitzfenster",
-                                "sensor.cover_lift_pos_wohnzimmer_terrassentur",
-                                "sensor.cover_lift_pos_terrasse_markise",
-                                "sensor.cover_lift_pos_wintergarten_markise",
-                                "sensor.cover_lift_pos_kuche_terrassentur",
-                                "sensor.cover_lift_pos_kuche_fenster",
-                                "sensor.cover_lift_pos_windfang",
-                                "sensor.cover_lift_pos_florian",
-                                "sensor.cover_lift_pos_jonathan_links",
-                                "sensor.cover_lift_pos_jonathan_rechts",
-                                "sensor.cover_lift_pos_schlafzimmer",
-                                "sensor.cover_lift_pos_bad_og",
-                                "sensor.cover_lift_pos_flur_og",
-                                "sensor.cover_lift_pos_studio_dg_links",
-                                "sensor.cover_lift_pos_studio_dg_rechts",
-                                "sensor.cover_lift_pos_dachfenster_gross",
-                                "sensor.cover_lift_pos_bad_dg"
+                                "sensor.liftpos_f1_cov_wohnzimmer_sitzfenster",
+                                "sensor.liftpos_f1_cov_wohnzimmer_terrassentur",
+                                "sensor.liftpos_f1_cov_terrasse_markise",
+                                "sensor.liftpos_f1_cov_wintergarten_markise",
+                                "sensor.liftpos_f1_cov_kuche_terrassentur",
+                                "sensor.liftpos_f1_cov_kuche_fenster",
+                                "sensor.liftpos_f1_cov_windfang",
+                                "sensor.liftpos_f2_cov_florian",
+                                "sensor.liftpos_f2_cov_jonathan_links",
+                                "sensor.liftpos_f2_cov_jonathan_rechts",
+                                "sensor.liftpos_f2_cov_schlafzimmer",
+                                "sensor.liftpos_f2_cov_bad",
+                                "sensor.liftpos_f2_cov_flur",
+                                "sensor.liftpos_f3_cov_studio_links",
+                                "sensor.liftpos_f3_cov_studio_rechts",
+                                "sensor.liftpos_f3_cov_dachfenster_gross",
+                                "sensor.liftpos_f3_cov_bad"
                             ],
                             "hours_to_show": 72,
                             "refresh_interval": 60,
@@ -449,10 +449,10 @@
                     "cards": [
                         {
                             "entities": [
-                                "switch.herd_links_switch",
-                                "sensor.herd_links_power",
-                                "switch.herd_rechts_switch",
-                                "sensor.herd_rechts_power"
+                                "switch.f1_swi_herd_links_switch",
+                                "sensor.f1_swi_herd_links_power",
+                                "switch.f1_swi_herd_rechts_switch",
+                                "sensor.f1_swi_herd_rechts_power"
                             ],
                             "show_header_toggle": true,
                             "title": "Kochfeld",
@@ -461,7 +461,7 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "light.wohnzimmer_light"
+                                    "entity": "light.f1_lig_wohnzimmer_1_light"
                                 },
                                 {
                                     "entity": "light.f1_grp_licht_treppe_light"
@@ -473,7 +473,7 @@
                                     "entity": "light.f1_lig_treppe_2_light"
                                 },
                                 {
-                                    "entity": "light.flur_og_light"
+                                    "entity": "light.f2_lig_flur_light"
                                 },
                                 {
                                     "entity": "light.f2_grp_licht_treppe_light"
@@ -505,7 +505,7 @@
                         },
                         {
                             "entities": [
-                                "light.flur_og_light",
+                                "light.f2_lig_flur_light",
                                 "light.studio_dg_light"
                             ],
                             "hours_to_show": 72,
@@ -990,25 +990,25 @@
                                     "entity": "sensor.comfoairq_inside_temperature"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_wiga_temperature"
+                                    "entity": "sensor.f1_senthp_wiga_temperature"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_dg_temperature"
+                                    "entity": "sensor.f3_senthp_studio_temperature"
                                 },
                                 {
                                     "entity": "sensor.comfoairq_inside_humidity"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_wiga_humidity"
+                                    "entity": "sensor.f1_senthp_wiga_humidity"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_dg_humidity"
+                                    "entity": "sensor.f3_senthp_studio_humidity"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_wiga_pressure"
+                                    "entity": "sensor.f1_senthp_wiga_pressure"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_dg_pressure"
+                                    "entity": "sensor.f3_senthp_studio_pressure"
                                 }
                             ],
                             "show_header_toggle": true,
@@ -1043,16 +1043,16 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "sensor.aqara_winsens_terrassentur_battery"
+                                    "entity": "sensor.f1_senwin_terrassentur_battery"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_wiga_battery"
+                                    "entity": "sensor.f1_senthp_wiga_battery"
                                 },
                                 {
-                                    "entity": "sensor.aqara_thp_dg_battery"
+                                    "entity": "sensor.f3_senthp_studio_battery"
                                 },
                                 {
-                                    "entity": "sensor.philips_fb_battery"
+                                    "entity": "sensor.f2_but_bad_dusche_battery"
                                 }
                             ],
                             "title": "Battery Levels",

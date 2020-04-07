@@ -1,17 +1,17 @@
 # Zigbee Devices
-binary_sensor.aqara_winsens_terrassentur_contact:
+binary_sensor.f1_senwin_terrassentur_contact:
   friendly_name: Wohnzimmer Terrassentür
-sensor.aqara_winsens_terrassentur_battery:
+sensor.f1_senwin_terrassentur_battery:
   friendly_name: Aqara WinSens Terrassentür Battery
-sensor.aqara_thp_wiga_temperature:
+sensor.f1_senthp_wiga_temperature:
   friendly_name: Temperatur WiGa
-sensor.aqara_thp_wiga_battery:
+sensor.f1_senthp_wiga_battery:
   friendly_name: Aqara THP WiGa Battery
-sensor.aqara_thp_dg_temperature:
+sensor.f3_senthp_studio_temperature:
   friendly_name: Temperatur DG
-sensor.aqara_thp_dg_battery:
+sensor.f3_senthp_studio_battery:
   friendly_name: Aqara THP DG Battery
-sensor.philips_fb_battery:
+sensor.f2_but_bad_dusche_battery:
   friendly_name: Hue Dimmer Battery
 
 # Wettersensor

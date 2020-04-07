@@ -5,81 +5,81 @@ homeassistant:
     # EG
     group.shutters_eg:
       friendly_name: Verdunkelung EG
-    cover.cov_wohnzimmer_sitzfenster_cover:
+    cover.f1_cov_wohnzimmer_sitzfenster_cover:
       friendly_name: Wohnzimmer Sitzfenster
-    sensor.cover_lift_pos_wohnzimmer_sitzfenster:
+    sensor.liftpos_f1_cov_wohnzimmer_sitzfenster:
       friendly_name: Wohnzimmer Sitzfenster
-    cover.cov_wohnzimmer_terrassentur_cover:
+    cover.f1_cov_wohnzimmer_terrassentur_cover:
       friendly_name: Wohnzimmer Terrassentür
-    sensor.cover_lift_pos_wohnzimmer_terrassentur:
+    sensor.liftpos_f1_cov_wohnzimmer_terrassentur:
       friendly_name: Wohnzimmer Terrassentür
-    cover.cov_terrasse_markise_cover:
+    cover.f1_cov_terrasse_markise_cover:
       friendly_name: Terrasse Markise
-    sensor.cover_lift_pos_terrasse_markise:
+    sensor.liftpos_f1_cov_terrasse_markise:
       friendly_name: Terrasse Markise
-    cover.cov_wintergarten_markise_cover:
+    cover.f1_cov_wintergarten_markise_cover:
       friendly_name: Wintergarten Markise
-    sensor.cover_lift_pos_wintergarten_markise:
+    sensor.liftpos_f1_cov_wintergarten_markise:
       friendly_name: Wintergarten Markise
-    cover.cov_kuche_terrassentur_cover:
+    cover.f1_cov_kuche_terrassentur_cover:
       friendly_name: Küche Terrassentür
-    sensor.cover_lift_pos_kuche_terrassentur:
+    sensor.liftpos_f1_cov_kuche_terrassentur:
       friendly_name: Küche Terrassentür
-    cover.cov_kuche_fenster_cover:
+    cover.f1_cov_kuche_fenster_cover:
       friendly_name: Küche Fenster
-    sensor.cover_lift_pos_kuche_fenster:
+    sensor.liftpos_f1_cov_kuche_fenster:
       friendly_name: Küche Fenster
-    cover.cov_windfang_cover:
+    cover.f1_cov_windfang_cover:
       friendly_name: Windfang
-    sensor.cover_lift_pos_windfang:
+    sensor.liftpos_f1_cov_windfang:
       friendly_name: Windfang
 
     # OG
     group.shutters_og:
       friendly_name: Verdunkelung OG
-    cover.cov_florian_cover:
+    cover.f2_cov_florian_cover:
       friendly_name: Florian
-    sensor.cover_lift_pos_florian:
+    sensor.liftpos_f2_cov_florian:
       friendly_name: Florian
-    cover.cov_jonathan_links_cover:
+    cover.f2_cov_jonathan_links_cover:
       friendly_name: Jonathan links
-    sensor.cover_lift_pos_jonathan_links:
+    sensor.liftpos_f2_cov_jonathan_links:
       friendly_name: Jonathan links
-    cover.cov_jonathan_rechts_cover:
+    cover.f2_cov_jonathan_rechts_cover:
       friendly_name: Jonathan rechts
-    sensor.cover_lift_pos_jonathan_rechts:
+    sensor.liftpos_f2_cov_jonathan_rechts:
       friendly_name: Jonathan rechts
-    cover.cov_schlafzimmer_cover:
+    cover.f2_cov_schlafzimmer_cover:
       friendly_name: Schlafzimmer
-    sensor.cover_lift_pos_schlafzimmer:
+    sensor.liftpos_f2_cov_schlafzimmer:
       friendly_name: Schlafzimmer
-    cover.cov_bad_og_cover:
+    cover.f2_cov_bad_cover:
       friendly_name: Bad OG
-    sensor.cover_lift_pos_bad_og:
+    sensor.liftpos_f2_cov_bad:
       friendly_name: Bad OG
-    cover.cov_flur_og_cover:
+    cover.f2_cov_flur_cover:
       friendly_name: Flur OG
-    sensor.cover_lift_pos_flur_og:
+    sensor.liftpos_f2_cov_flur:
       friendly_name: Flur OG
 
     # DG
     group.shutters_dg:
       friendly_name: Verdunkelung DG
-    cover.cov_studio_dg_links_cover:
+    cover.f3_cov_studio_links_cover:
       friendly_name: Studio DG links
-    sensor.cover_lift_pos_studio_dg_links:
+    sensor.liftpos_f3_cov_studio_links:
       friendly_name: Studio DG links
-    cover.cov_studio_dg_rechts_cover:
+    cover.f3_cov_studio_rechts_cover:
       friendly_name: Studio DG rechts
-    sensor.cover_lift_pos_studio_dg_rechts:
+    sensor.liftpos_f3_cov_studio_rechts:
       friendly_name: Studio DG rechts
-    cover.cov_dachfenster_gross_cover:
+    cover.f3_cov_dachfenster_gross_cover:
       friendly_name: Dachfenster groß
-    sensor.cover_lift_pos_dachfenster_gross:
+    sensor.liftpos_f3_cov_dachfenster_gross:
       friendly_name: Dachfenster groß
-    cover.cov_bad_dg_cover:
+    cover.f3_cov_bad_cover:
       friendly_name: Bad DG
-    sensor.cover_lift_pos_bad_dg:
+    sensor.liftpos_f3_cov_bad:
       friendly_name: Bad DG
 
 
@@ -94,37 +94,37 @@ group:
 
   shutters_eg:
     entities:
-      - cover.cov_wohnzimmer_sitzfenster_cover
-      - cover.cov_kuche_terrassentur_cover
-      - cover.cov_kuche_fenster_cover
-      - cover.cov_windfang_cover
+      - cover.f1_cov_wohnzimmer_sitzfenster_cover
+      - cover.f1_cov_kuche_terrassentur_cover
+      - cover.f1_cov_kuche_fenster_cover
+      - cover.f1_cov_windfang_cover
 
   shutters_og:
     entities:
-      - cover.cov_florian_cover
-      - cover.cov_jonathan_links_cover
-      - cover.cov_jonathan_rechts_cover
-      - cover.cov_schlafzimmer_cover
-      - cover.cov_bad_og_cover
-      - cover.cov_flur_og_cover
+      - cover.f2_cov_florian_cover
+      - cover.f2_cov_jonathan_links_cover
+      - cover.f2_cov_jonathan_rechts_cover
+      - cover.f2_cov_schlafzimmer_cover
+      - cover.f2_cov_bad_cover
+      - cover.f2_cov_flur_cover
 
   shutters_dg:
     entities:
-      - cover.cov_studio_dg_links_cover
-      - cover.cov_studio_dg_rechts_cover
-      - cover.cov_dachfenster_gross_cover
-      - cover.cov_bad_dg_cover
+      - cover.f3_cov_studio_links_cover
+      - cover.f3_cov_studio_rechts_cover
+      - cover.f3_cov_dachfenster_gross_cover
+      - cover.f3_cov_bad_cover
 
 automation:
-  - alias: cov_wohnzimmer_terrassentur_add
+  - alias: f1_cov_wohnzimmer_terrassentur_add
     trigger:
-      - { platform: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact }
+      - { platform: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact }
       - { platform: time_pattern, minutes: /60 }
-    condition: { condition: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact, state: 'off' }
-    action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.cov_wohnzimmer_sitzfenster_cover, cover.cov_wohnzimmer_terrassentur_cover, cover.cov_kuche_terrassentur_cover, cover.cov_kuche_fenster_cover, cover.cov_windfang_cover ]}}
-  - alias: cov_wohnzimmer_terrassentur_remove
+    condition: { condition: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact, state: 'off' }
+    action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.f1_cov_wohnzimmer_sitzfenster_cover, cover.f1_cov_wohnzimmer_terrassentur_cover, cover.f1_cov_kuche_terrassentur_cover, cover.f1_cov_kuche_fenster_cover, cover.f1_cov_windfang_cover ]}}
+  - alias: f1_cov_wohnzimmer_terrassentur_remove
     trigger:
-      - { platform: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact }
+      - { platform: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact }
       - { platform: time_pattern, minutes: /60 }
-    condition: { condition: state, entity_id: binary_sensor.aqara_winsens_terrassentur_contact, state: 'on' }
-    action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.cov_wohnzimmer_sitzfenster_cover, cover.cov_kuche_terrassentur_cover, cover.cov_kuche_fenster_cover, cover.cov_windfang_cover ]}}
+    condition: { condition: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact, state: 'on' }
+    action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.f1_cov_wohnzimmer_sitzfenster_cover, cover.f1_cov_kuche_terrassentur_cover, cover.f1_cov_kuche_fenster_cover, cover.f1_cov_windfang_cover ]}}
