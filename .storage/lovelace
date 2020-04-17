@@ -12,10 +12,11 @@
                     "cards": [
                         {
                             "entities": [
-                                "sensor.wettersensor_temperature",
+                                "sensor.esp_weathersensor_multisensor_temp",
                                 "sensor.heizung_aussen_temperatur",
-                                "sensor.wettersensor_wind_speed_gusts",
-                                "sensor.wettersensor_is_raining",
+                                "sensor.esp_weathersensor_multisensor_gusts",
+                                "sensor.esp_weathersensor_multisensor_rain_disp",
+                                "sensor.esp_weathersensor_tipping_bucket_precipitation_rate",
                                 {
                                     "type": "divider"
                                 },
@@ -217,9 +218,9 @@
                         },
                         {
                             "entities": [
-                                "sensor.wettersensor_wind_speed_gusts",
+                                "sensor.esp_weathersensor_multisensor_gusts",
                                 "input_boolean.coverprot_wind_active",
-                                "sensor.wettersensor_is_raining",
+                                "sensor.esp_weathersensor_multisensor_rain_disp",
                                 "input_boolean.coverprot_rain_active",
                                 {
                                     "type": "divider"
@@ -552,10 +553,10 @@
                                     "type": "divider"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_east"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_east"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_east_mean"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_east_mean"
                                 },
                                 {
                                     "entity": "sensor.sunprot_sun_east_ref"
@@ -573,10 +574,10 @@
                                     "type": "divider"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_south"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_south_mean"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south_mean"
                                 },
                                 {
                                     "entity": "sensor.sunprot_sun_south_ref"
@@ -594,10 +595,10 @@
                                     "type": "divider"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_west"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_west"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_west_mean"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_west_mean"
                                 },
                                 {
                                     "entity": "sensor.sunprot_sun_west_ref"
@@ -624,10 +625,10 @@
                                     "entity": "sensor.sunprot_wiga_klx_limit_current_off"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_south"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south"
                                 },
                                 {
-                                    "entity": "sensor.wettersensor_sun_south_mean"
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south_mean"
                                 },
                                 {
                                     "entity": "sensor.sunprot_wiga_sun_above_on_limit"
@@ -733,16 +734,16 @@
                                 "sensor.sunprot_outside_temp_ref",
                                 "sensor.sunprot_klx_limit_current",
                                 "sensor.sunprot_klx_limit_current_off",
-                                "sensor.wettersensor_sun_east",
-                                "sensor.wettersensor_sun_east_mean",
+                                "sensor.esp_weathersensor_multisensor_sun_east",
+                                "sensor.esp_weathersensor_multisensor_sun_east_mean",
                                 "sensor.sunprot_sun_east_ref",
                                 "input_boolean.sunprot_eastface_active",
-                                "sensor.wettersensor_sun_south",
-                                "sensor.wettersensor_sun_south_mean",
+                                "sensor.esp_weathersensor_multisensor_sun_south",
+                                "sensor.esp_weathersensor_multisensor_sun_south_mean",
                                 "sensor.sunprot_sun_south_ref",
                                 "input_boolean.sunprot_southface_active",
-                                "sensor.wettersensor_sun_west",
-                                "sensor.wettersensor_sun_west_mean",
+                                "sensor.esp_weathersensor_multisensor_sun_west",
+                                "sensor.esp_weathersensor_multisensor_sun_west_mean",
                                 "sensor.sunprot_sun_west_ref",
                                 "input_boolean.sunprot_westface_active"
                             ],
@@ -756,8 +757,8 @@
                                 "sensor.sunprot_wiga_inside_temp_ref",
                                 "sensor.sunprot_wiga_klx_limit_current",
                                 "sensor.sunprot_wiga_klx_limit_current_off",
-                                "sensor.wettersensor_sun_south",
-                                "sensor.wettersensor_sun_south_mean",
+                                "sensor.esp_weathersensor_multisensor_sun_south",
+                                "sensor.esp_weathersensor_multisensor_sun_south_mean",
                                 "input_boolean.sunprot_wiga_active"
                             ],
                             "hours_to_show": 72,
@@ -842,19 +843,20 @@
                             "cards": [
                                 {
                                     "entities": [
-                                        "sensor.wettersensor_temperature",
+                                        "sensor.esp_weathersensor_multisensor_temp",
                                         "sensor.heizung_aussen_temperatur",
-                                        "sensor.wettersensor_sun_east",
-                                        "sensor.wettersensor_sun_south",
-                                        "sensor.wettersensor_sun_west",
-                                        "sensor.wettersensor_daylight",
-                                        "sensor.wettersensor_is_dark",
-                                        "sensor.wettersensor_wind_speed",
-                                        "sensor.wettersensor_wind_speed_gusts",
-                                        "sensor.wettersensor_is_raining",
-                                        "sensor.wettersensor_coverprot1_is_active",
-                                        "sensor.wettersensor_coverprot2_is_active",
-                                        "sensor.wettersensor_reading_age"
+                                        "sensor.esp_weathersensor_multisensor_sun_east",
+                                        "sensor.esp_weathersensor_multisensor_sun_south",
+                                        "sensor.esp_weathersensor_multisensor_sun_west",
+                                        "sensor.esp_weathersensor_multisensor_daylight",
+                                        "sensor.esp_weathersensor_multisensor_is_dark_disp",
+                                        "sensor.esp_weathersensor_multisensor_windspeed",
+                                        "sensor.esp_weathersensor_multisensor_gusts",
+                                        "sensor.esp_weathersensor_multisensor_rain_disp",
+                                        "sensor.esp_weathersensor_cover_protection_1_disp",
+                                        "sensor.esp_weathersensor_cover_protection_2_disp",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
                                     ],
                                     "show_header_toggle": false,
                                     "title": "Wetter lokal",
@@ -862,18 +864,20 @@
                                 },
                                 {
                                     "entities": [
-                                        "sensor.wettersensor_temperature",
+                                        "sensor.esp_weathersensor_multisensor_temp",
                                         "sensor.heizung_aussen_temperatur",
-                                        "sensor.wettersensor_sun_east",
-                                        "sensor.wettersensor_sun_south",
-                                        "sensor.wettersensor_sun_west",
-                                        "sensor.wettersensor_wind_speed",
-                                        "sensor.wettersensor_wind_speed_gusts",
-                                        "sensor.wettersensor_daylight",
-                                        "sensor.wettersensor_is_raining",
-                                        "sensor.wettersensor_coverprot1_is_active",
-                                        "sensor.wettersensor_coverprot2_is_active",
-                                        "sensor.wettersensor_is_dark"
+                                        "sensor.esp_weathersensor_multisensor_sun_east",
+                                        "sensor.esp_weathersensor_multisensor_sun_south",
+                                        "sensor.esp_weathersensor_multisensor_sun_west",
+                                        "sensor.esp_weathersensor_multisensor_windspeed",
+                                        "sensor.esp_weathersensor_multisensor_gusts",
+                                        "sensor.esp_weathersensor_multisensor_daylight",
+                                        "sensor.esp_weathersensor_multisensor_rain_disp",
+                                        "sensor.esp_weathersensor_cover_protection_1_disp",
+                                        "sensor.esp_weathersensor_cover_protection_2_disp",
+                                        "sensor.esp_weathersensor_multisensor_is_dark_disp",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
                                     ],
                                     "hours_to_show": 72,
                                     "refresh_interval": 60,
@@ -892,52 +896,6 @@
                             "aspect_ratio": "100%",
                             "type": "iframe",
                             "url": "/api/hassio_ingress/hDeAoG_phgmZCGzyvWVTG7zqw2ABiJ0sN5esK2yqkOY/d/4k_mpAvWk/regen?orgId=1&panelId=2&refresh=60s&kiosk&fullscreen"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_temp"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_windspeed"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_gusts"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_east"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_west"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_daylight"
-                                },
-                                {
-                                    "entity": "binary_sensor.esp_weathersensor_multisensor_is_dark"
-                                },
-                                {
-                                    "entity": "binary_sensor.esp_weathersensor_multisensor_rain"
-                                },
-                                {
-                                    "entity": "binary_sensor.esp_weathersensor_cover_protection_1"
-                                },
-                                {
-                                    "entity": "binary_sensor.esp_weathersensor_cover_protection_2"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_tipping_bucket_precipitation"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Wetter lokal MQTT",
-                            "type": "entities"
                         },
                         {
                             "cards": [

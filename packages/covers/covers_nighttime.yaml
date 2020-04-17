@@ -16,10 +16,10 @@ automation:
   - alias: coversatnight_down_at_dusk
     trigger:
       - platform: numeric_state
-        entity_id: sensor.wettersensor_daylight
+        entity_id: sensor.esp_weathersensor_multisensor_daylight
         below: '500'
         for: { minutes: 10 }
-      - platform: sun # just as a safety measure in case wettersensor_daylight is not working correctly
+      - platform: sun # just as a safety measure in case esp_weathersensor_multisensor_daylight is not working correctly
         event: sunset
         offset: '+00:30:00'
     action:

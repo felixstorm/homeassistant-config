@@ -1,4 +1,5 @@
 weather:
+
   - platform: met
 
 
@@ -45,3 +46,72 @@ sensor:
         group_function: sum
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
+
+  - platform: template
+    sensors:
+      esp_weathersensor_multisensor_is_dark_disp:
+        value_template: "{% if is_state('binary_sensor.esp_weathersensor_multisensor_is_dark', 'off') %} nein {% elif is_state('binary_sensor.esp_weathersensor_multisensor_is_dark', 'on') %} ja {% else %} Invalid: '{{ states('binary_sensor.esp_weathersensor_multisensor_is_dark') }}' {% endif %}"
+        icon_template: "{% if is_state('binary_sensor.esp_weathersensor_multisensor_is_dark', 'off') %} mdi:weather-sunny {% elif is_state('binary_sensor.esp_weathersensor_multisensor_is_dark', 'on') %} mdi:weather-night {% else %} mdi:map-marker-question-outline {% endif %}"
+      esp_weathersensor_multisensor_rain_disp:
+        value_template: "{% if is_state('binary_sensor.esp_weathersensor_multisensor_rain', 'off') %} nein {% elif is_state('binary_sensor.esp_weathersensor_multisensor_rain', 'on') %} ja {% else %} Invalid: '{{ states('binary_sensor.esp_weathersensor_multisensor_rain') }}' {% endif %}"
+        icon_template: "{% if is_state('binary_sensor.esp_weathersensor_multisensor_rain', 'off') %} mdi:weather-sunny {% elif is_state('binary_sensor.esp_weathersensor_multisensor_rain', 'on') %} mdi:weather-pouring {% else %} mdi:map-marker-question-outline {% endif %}"
+      esp_weathersensor_cover_protection_1_disp:
+        value_template: "{% if is_state('binary_sensor.esp_weathersensor_cover_protection_1', 'off') %} nein {% elif is_state('binary_sensor.esp_weathersensor_cover_protection_1', 'on') %} ja {% else %} Invalid: '{{ states('binary_sensor.esp_weathersensor_cover_protection_1') }}' {% endif %}"
+        icon_template: "{% if is_state('binary_sensor.esp_weathersensor_cover_protection_1', 'off') %} mdi:weather-sunny {% elif is_state('binary_sensor.esp_weathersensor_cover_protection_1', 'on') %} mdi:weather-windy {% else %} mdi:map-marker-question-outline {% endif %}"
+      esp_weathersensor_cover_protection_2_disp:
+        value_template: "{% if is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'off') %} nein {% elif is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'on') %} ja {% else %} Invalid: '{{ states('binary_sensor.esp_weathersensor_cover_protection_2') }}' {% endif %}"
+        icon_template: "{% if is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'off') %} mdi:weather-sunny {% elif is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'on') %} mdi:weather-windy {% else %} mdi:map-marker-question-outline {% endif %}"
+
+
+homeassistant:
+
+  customize:
+
+    # ESP Weather Sensor
+    sensor.esp_weathersensor_multisensor_temp:
+      friendly_name: Außentemperatur
+    sensor.esp_weathersensor_multisensor_sun_east:
+      friendly_name: Sonne von Osten
+      device_class: illuminance
+    sensor.esp_weathersensor_multisensor_sun_south:
+      friendly_name: Sonne von Süden
+      device_class: illuminance
+    sensor.esp_weathersensor_multisensor_sun_west:
+      friendly_name: Sonne von Westen
+      device_class: illuminance
+    sensor.esp_weathersensor_multisensor_daylight:
+      friendly_name: Helligkeit
+      device_class: illuminance
+    sensor.esp_weathersensor_multisensor_is_dark_disp:
+      friendly_name: dunkel
+    sensor.esp_weathersensor_multisensor_windspeed:
+      friendly_name: Windgeschwindigkeit
+      icon: mdi:weather-windy-variant
+    sensor.esp_weathersensor_multisensor_gusts:
+      friendly_name: Böen
+      icon: mdi:weather-windy
+    sensor.esp_weathersensor_multisensor_rain_disp:
+      friendly_name: Regen
+    sensor.esp_weathersensor_cover_protection_1_disp:
+      friendly_name: Cover Protection 1 aktiv
+    sensor.esp_weathersensor_cover_protection_2_disp:
+      friendly_name: Cover Protection 2 aktiv
+    sensor.esp_weathersensor_tipping_bucket_precipitation:
+      friendly_name: Niederschlag Wippe
+    sensor.esp_weathersensor_tipping_bucket_precipitation_rate:
+      friendly_name: Niederschlag
+
+    # Regen
+    sensor.sum_rain_24h:
+      friendly_name: Regen 24h
+    sensor.sum_rain_3d:
+      friendly_name: Regen 3d
+    sensor.sum_rain_7d:
+      friendly_name: Regen 7d
+    sensor.sum_rain_14d:
+      friendly_name: Regen 14d
+    sensor.sum_rain_21d:
+      friendly_name: Regen 21d
+    sensor.sum_rain_30d:
+      friendly_name: Regen 30d
+

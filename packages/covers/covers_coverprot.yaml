@@ -10,17 +10,17 @@ timer:
 automation:
 
   - alias: coverprot_wind_active_on
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_wind_speed_gusts, above: 30 }
+    trigger: { platform: numeric_state, entity_id: sensor.esp_weathersensor_multisensor_gusts, above: 30 }
     action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.coverprot_wind_active } }
   - alias: coverprot_wind_active_off
-    trigger: { platform: numeric_state, entity_id: sensor.wettersensor_wind_speed_gusts, below: 25, for: { minutes: 10 } }
+    trigger: { platform: numeric_state, entity_id: sensor.esp_weathersensor_multisensor_gusts, below: 25, for: { minutes: 10 } }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.coverprot_wind_active } }
 
   - alias: coverprot_rain_active_on
-    trigger: { platform: template, value_template: "{{ is_state_attr('sensor.wettersensor', 'isRain', 1) }}" }
+    trigger: { platform: state, entity_id: binary_sensor.esp_weathersensor_multisensor_rain, to: 'on' }
     action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.coverprot_rain_active } }
   - alias: coverprot_rain_active_off
-    trigger: { platform: template, value_template: "{{ is_state_attr('sensor.wettersensor', 'isRain', 0) }}" }
+    trigger: { platform: state, entity_id: binary_sensor.esp_weathersensor_multisensor_rain, to: 'off' }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.coverprot_rain_active } }
 
   - alias: coverprot_wind_execute

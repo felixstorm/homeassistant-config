@@ -14,52 +14,6 @@ sensor.f3_senthp_studio_battery:
 sensor.f2_but_bad_dusche_battery:
   friendly_name: Hue Dimmer Battery
 
-# Wettersensor
-sensor.wettersensor_reading_age:
-  friendly_name: Alter d. Messung
-sensor.wettersensor_temperature:
-  friendly_name: Außentemperatur
-sensor.wettersensor_sun_east:
-  friendly_name: Sonne von Osten
-  device_class: illuminance
-sensor.wettersensor_sun_south:
-  friendly_name: Sonne von Süden
-  device_class: illuminance
-sensor.wettersensor_sun_west:
-  friendly_name: Sonne von Westen
-  device_class: illuminance
-sensor.wettersensor_daylight:
-  friendly_name: Helligkeit
-  device_class: illuminance
-sensor.wettersensor_is_dark:
-  friendly_name: dunkel
-sensor.wettersensor_wind_speed:
-  friendly_name: Windgeschwindigkeit
-  icon: mdi:weather-windy-variant
-sensor.wettersensor_wind_speed_gusts:
-  friendly_name: Böen
-  icon: mdi:weather-windy
-sensor.wettersensor_is_raining:
-  friendly_name: Regen
-sensor.wettersensor_coverprot1_is_active:
-  friendly_name: Cover Protection 1 aktiv
-sensor.wettersensor_coverprot2_is_active:
-  friendly_name: Cover Protection 2 aktiv
-
-# Regen
-sensor.sum_rain_24h:
-  friendly_name: Regen 24h
-sensor.sum_rain_3d:
-  friendly_name: Regen 3d
-sensor.sum_rain_7d:
-  friendly_name: Regen 7d
-sensor.sum_rain_14d:
-  friendly_name: Regen 14d
-sensor.sum_rain_21d:
-  friendly_name: Regen 21d
-sensor.sum_rain_30d:
-  friendly_name: Regen 30d
-
 # Bewässerung
 switch.bewaesserung_timer:
   friendly_name: Bewässerung Timer

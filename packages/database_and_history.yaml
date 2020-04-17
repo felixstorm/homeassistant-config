@@ -8,7 +8,6 @@ recorder:
       - sensor.date
       - sensor.power_4
       - sensor.time
-      - sensor.wettersensor
       - sun.sun
 
 influxdb:
@@ -22,7 +21,6 @@ influxdb:
       - sensor.date
       - sensor.power_4
       - sensor.time
-      - sensor.wettersensor
       - sun.sun
 
 history:
