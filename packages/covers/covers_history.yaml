@@ -50,6 +50,9 @@ sensor:
       liftpos_f3_cov_dachfenster_gross:
         value_template: "{{ state_attr('cover.f3_cov_dachfenster_gross_cover', 'current_position') }}"
         unit_of_measurement: "%"
+      liftpos_f3_cov_dachfenster_gross_aussen:
+        value_template: "{{ state_attr('cover.f3_cov_dachfenster_gross_aussen_cover', 'current_position') }}"
+        unit_of_measurement: "%"
       liftpos_f3_cov_bad:
         value_template: "{{ state_attr('cover.f3_cov_bad_cover', 'current_position') }}"
         unit_of_measurement: "%"

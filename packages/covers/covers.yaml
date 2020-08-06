@@ -74,9 +74,13 @@ homeassistant:
     sensor.liftpos_f3_cov_studio_rechts:
       friendly_name: Studio DG rechts
     cover.f3_cov_dachfenster_gross_cover:
-      friendly_name: Dachfenster groß
+      friendly_name: Dachfenster groß innen
     sensor.liftpos_f3_cov_dachfenster_gross:
-      friendly_name: Dachfenster groß
+      friendly_name: Dachfenster groß innen
+    cover.f3_cov_dachfenster_gross_aussen_cover:
+      friendly_name: Dachfenster groß Markise
+    sensor.liftpos_f3_cov_dachfenster_gross_aussen:
+      friendly_name: Dachfenster groß Markise
     cover.f3_cov_bad_cover:
       friendly_name: Bad DG
     sensor.liftpos_f3_cov_bad:
@@ -113,6 +117,7 @@ group:
       - cover.f3_cov_studio_links_cover
       - cover.f3_cov_studio_rechts_cover
       - cover.f3_cov_dachfenster_gross_cover
+      - cover.f3_cov_dachfenster_gross_aussen_cover
       - cover.f3_cov_bad_cover
 
 automation:

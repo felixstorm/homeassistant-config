@@ -1,4 +1,6 @@
 *
+!_backup_addons_local
+!_backup_addons_local/**
 !*.yaml
 !scenes
 !custom_components

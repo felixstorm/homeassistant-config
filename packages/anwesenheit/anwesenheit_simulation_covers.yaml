@@ -1,0 +1,27 @@
+automation:
+
+  - alias: anwesenheit_simulieren_covers_up_mornings
+    trigger:
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake}
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight}
+    condition:
+      - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake, state: 'on'}
+      - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight, state: 'on'}
+    action:
+      - {service: script.turn_on, entity_id: script.coversatnight_covers_up_simulation}
+
+  - alias: anwesenheit_simulieren_covers_down_evenings
+    trigger:
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight, to: 'off'}
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake, to: 'off'}
+    action:
+      - {service: script.turn_on, entity_id: script.coversatnight_covers_down_simulation}
+
+
+homeassistant:
+
+  customize:
+    light.anwesenheit_simulieren_covers_up_mornings:
+      friendly_name: Beschattung morgens hoch
+    light.anwesenheit_simulieren_covers_down_evenings:
+      friendly_name: Beschattung abends runter

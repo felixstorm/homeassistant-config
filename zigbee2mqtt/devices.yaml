@@ -6,6 +6,8 @@
   friendly_name: f1_cov_wohnzimmer_terrassentur
 '0x00158d0003ef378e':
   friendly_name: f1_senwin_terrassentur
+  homeassistant:
+    expire_after: 3600
 '0x001fee0000003d46':
   friendly_name: f1_cov_terrasse_markise
   homeassistant:
@@ -19,6 +21,8 @@
 '0x00158d00022c6a81':
   friendly_name: f1_senthp_wiga
   debounce: 1
+  homeassistant:
+    expire_after: 3600
 '0x001fee0000002c8c':
   friendly_name: f1_cov_kuche_terrassentur
 '0x001fee0000000dc6':
@@ -59,19 +63,26 @@
   friendly_name: f2_but_uv_1
 '0x000f171241020ab1':
   friendly_name: f2_but_bad_1
-'0x00178801020db019':
+'0x680ae2fffec1fdb8':
   friendly_name: f2_but_bad_dusche
 '0x001fee0000002cc0':
   friendly_name: f3_cov_studio_links
 '0x001fee000000240d':
   friendly_name: f3_cov_studio_rechts
 '0x0017880102481a1c':
-  friendly_name: studio_dg
+  friendly_name: f2_lig_studio
 '0x00158d00022c93ee':
   friendly_name: f3_senthp_studio
   debounce: 1
-'0x001fee0000000dba':
+  homeassistant:
+    expire_after: 3600
+'0x001fee000000528c':
   friendly_name: f3_cov_dachfenster_gross
+  homeassistant:
+    tilt_command_topic: null
+    tilt_status_topic: null
+'0x001fee0000000dba':
+  friendly_name: f3_cov_dachfenster_gross_aussen
   homeassistant:
     tilt_command_topic: null
     tilt_status_topic: null
@@ -82,3 +93,16 @@
     position_topic: null
     tilt_command_topic: null
     tilt_status_topic: null
+'0x00158d000245a90e':
+  friendly_name: f3_senthp_bad
+  debounce: 1
+  homeassistant:
+    expire_after: 3600
+'0x7cb03eaa0a081975':
+  friendly_name: test_osram_plug
+'0x0017880102314d75':
+  friendly_name: test_hue_gu10
+'0x001fee0000001b93':
+  friendly_name: test_c4
+'0x00178801020db019':
+  friendly_name: test_hue_remote

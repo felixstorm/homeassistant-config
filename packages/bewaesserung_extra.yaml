@@ -1,0 +1,27 @@
+# zusätzliche Bewässerung (z. B. für Neuanpflanzungen etc.)
+
+switch:
+  - platform: mqtt
+    name: bewaesserung_timer
+    command_topic: sonoff/bewaesserung/cmnd/timers
+    payload_on: 1
+    payload_off: 0
+    availability_topic: sonoff/bewaesserung/tele/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+automation:
+  - alias: bewaesserung_timer_reenable
+    trigger: { platform: state, entity_id: switch.bewaesserung_timer, to: "off", for: { hours: 24 } }
+    action: { service: switch.turn_on, data: { entity_id: switch.bewaesserung_timer } }
+
+homeassistant:
+  customize:
+    switch.bewaesserung_timer:
+      friendly_name: Zusatzbewässerung Timer
+    switch.bewaesserung:
+      friendly_name: Zusatzbewässerung Wasser läuft
+    switch.bewaesserung_triggervalveopen:
+      friendly_name: Zusatzbewässerung Ventil öffnen
+    switch.bewaesserung_triggervalveclose:
+      friendly_name: Zusatzbewässerung Ventil schließen

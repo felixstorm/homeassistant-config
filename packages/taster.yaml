@@ -1,22 +1,32 @@
 automation:
 
-  - alias: group_shutters_eg_open
+  - alias: button_shutters_eg_open
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'off' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'off' }
-    action: { service: cover.open_cover, entity_id: group.shutters_eg }
-  - alias: group_shutters_eg_close
+    action: { service: script.turn_on, entity_id: script.coversatnight_covers_up_eg }
+  - alias: button_shutters_eg_close
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'on' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'on' }
-    action: { service: cover.close_cover, entity_id: group.shutters_eg }
-  - alias: group_shutters_og_open
+    action: { service: script.turn_on, entity_id: script.coversatnight_covers_down_eg }
+  - alias: button_shutters_og_open
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_0' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_0' }
-    action: { service: cover.open_cover, entity_id: group.shutters_og }
-  - alias: group_shutters_og_close
+    action: { service: script.turn_on, entity_id: script.coversatnight_covers_up_og }
+  - alias: button_shutters_og_close
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_1' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_1' }
-    action: { service: cover.close_cover, entity_id: group.shutters_og }
+    action: { service: script.turn_on, entity_id: script.coversatnight_covers_down_og }
+  - alias: button_shutters_dg_open
+    trigger:
+    - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_2' }
+    - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_2' }
+    action: { service: script.turn_on, entity_id: script.coversatnight_covers_up_dg }
+  - alias: button_shutters_dg_close
+    trigger:
+    - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_3' }
+    - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_3' }
+    action: { service: script.turn_on, entity_id: script.coversatnight_covers_down_dg }

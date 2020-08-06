@@ -1,0 +1,115 @@
+input_boolean:
+
+  anwesenheit_somebody_home:
+    name: Jemand zu Hause
+  anwesenheit_simulieren:
+    name: Anwesenheit simulieren
+  anwesenheit_simulieren_is_so_awake:
+    name: 'Simulation: Jemand wach'
+  anwesenheit_simulieren_is_daylight:
+    name: 'Simulation: Hell draußen'
+
+
+input_number:
+
+  anwesenheit_simulieren_wakeup_hours:       { min:  6, max:  9, step: 1, unit_of_measurement: hrs }  # initial: 06
+  anwesenheit_simulieren_wakeup_mins:        { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 30
+  anwesenheit_simulieren_wakeup_rand_delay:  { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 30
+  anwesenheit_simulieren_tobed_hours:        { min: 20, max: 23, step: 1, unit_of_measurement: hrs }  # initial: 21
+  anwesenheit_simulieren_tobed_mins:         { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 30
+  anwesenheit_simulieren_tobed_rand_delay:   { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 60
+
+
+automation:
+
+  - alias: anwesenheit_simulieren_toggle_workers
+    trigger:
+      - {platform: state, entity_id: input_boolean.anwesenheit_somebody_home}
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren}
+    condition:
+    action:
+      - choose:
+          - conditions:
+              - {condition: state, entity_id: input_boolean.anwesenheit_somebody_home, state: 'off'}
+              - {condition: state, entity_id: input_boolean.anwesenheit_simulieren, state: 'on'}
+            sequence:
+              - {service: homeassistant.turn_on, entity_id: group.anwesenheit_simulieren_workers}
+        default:
+          - {service: homeassistant.turn_off, entity_id: group.anwesenheit_simulieren_workers}
+
+  - alias: anwesenheit_simulieren_sunrise
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.esp_weathersensor_multisensor_daylight
+        above: '500'
+        for: { minutes: 10 }
+      - platform: sun # just as a safety measure in case esp_weathersensor_multisensor_daylight is not working correctly
+        event: sunrise
+        offset: '+00:30:00'
+    action:
+      - {service: input_boolean.turn_on, entity_id: input_boolean.anwesenheit_simulieren_is_daylight}
+
+  - alias: anwesenheit_simulieren_wakeup
+    trigger:
+      platform: time
+      at: '06:00:00'
+    action:
+      - delay: '{{ states("input_number.anwesenheit_simulieren_wakeup_hours")|int - 6 }}:{{ states("input_number.anwesenheit_simulieren_wakeup_mins")|int }}:00'
+      - delay: '00:{{ range(0, states("input_number.anwesenheit_simulieren_wakeup_rand_delay")|int + 1)|random }}:00'
+      - {service: input_boolean.turn_on, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake}
+
+  - alias: anwesenheit_simulieren_sunset
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.esp_weathersensor_multisensor_daylight
+        below: '500'
+        for: {minutes: 10}
+      - platform: sun # just as a safety measure in case esp_weathersensor_multisensor_daylight is not working correctly
+        event: sunset
+        offset: '+00:30:00'
+    action:
+      - {service: input_boolean.turn_off, entity_id: input_boolean.anwesenheit_simulieren_is_daylight}
+
+  - alias: anwesenheit_simulieren_tobed
+    trigger:
+      platform: time
+      at: '20:00:00'
+    action:
+      - delay: '{{ states("input_number.anwesenheit_simulieren_tobed_hours")|int - 20 }}:{{ states("input_number.anwesenheit_simulieren_tobed_mins")|int }}:00'
+      - delay: '00:{{ range(0, states("input_number.anwesenheit_simulieren_tobed_rand_delay")|int + 1)|random }}:00'
+      - {service: input_boolean.turn_off, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake}
+
+
+group:
+  anwesenheit_simulieren_workers:
+    all: true
+    entities:
+      - automation.anwesenheit_simulieren_covers_up_mornings
+      - automation.anwesenheit_simulieren_covers_down_evenings
+      - automation.anwesenheit_simulieren_lights_flure_on
+      - automation.anwesenheit_simulieren_lights_random_on_off
+      - automation.anwesenheit_simulieren_lights_all_off
+
+
+homeassistant:
+
+  customize:
+    group.anwesenheit_simulieren_workers:
+      friendly_name: Anwesenheitssimulation.
+      icon: mdi:home-automation
+    input_number.anwesenheit_simulieren_wakeup_hours:
+      friendly_name: Uhrzeit morg. wach (hrs)
+    input_number.anwesenheit_simulieren_wakeup_mins:
+      friendly_name: Uhrzeit morg. wach (min)
+    input_number.anwesenheit_simulieren_wakeup_rand_delay:
+      friendly_name: morg. zus. Zufallsverz.
+    input_number.anwesenheit_simulieren_tobed_hours:
+      friendly_name: Uhrzeit abends Bett (hrs)
+    input_number.anwesenheit_simulieren_tobed_mins:
+      friendly_name: Uhrzeit abends Bett (min)
+    input_number.anwesenheit_simulieren_tobed_rand_delay:
+      friendly_name: abends zus. Zufallsverz.
+
+  customize_glob:
+    "input_number.anwesenheit_simulieren_*":
+      icon: mdi:timer-sand

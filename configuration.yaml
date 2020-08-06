@@ -38,7 +38,6 @@ frontend:
 config:
 
 http:
-  base_url: !secret http_base_url
   ssl_certificate: !secret http_ssl_certificate
   ssl_key: !secret http_ssl_key
 

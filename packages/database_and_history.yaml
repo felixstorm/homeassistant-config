@@ -1,26 +1,30 @@
 recorder:
-  db_url: !secret recorder_db_url
-  purge_keep_days: 3
+  # db_url: !secret recorder_db_url
+  purge_keep_days: 7
   exclude:
+    entity_globs:
+      - '*.iphone_felix*'
+      - media_player.*
+      - sensor.*_linkquality
+      - sensor.*_power
+      - sensor.*_power_2
     entities:
-      - media_player.play_1
-      - media_player.wohnzimmer
       - sensor.date
-      - sensor.power_4
       - sensor.time
-      - sun.sun
 
 influxdb:
   host: a0d7b954-influxdb
   username: homeassistant
   password: !secret influxdb_password
   exclude:
+    entity_globs:
+      - '*.iphone_felix*'
+      - media_player.*
+      - sensor.*_linkquality
+      - sensor.*_power
+      - sensor.*_power_2
     entities:
-      - media_player.play_1
-      - media_player.wohnzimmer
       - sensor.date
-      - sensor.power_4
       - sensor.time
-      - sun.sun
 
 history:

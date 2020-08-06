@@ -1,0 +1,87 @@
+automation:
+
+  - alias: anwesenheit_simulieren_lights_flure_on
+    trigger:
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake}
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight}
+    condition:
+      - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake, state: 'on'}
+      - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight, state: 'off'}
+    action:
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.f2_lig_flur_light
+          brightness_pct: 100
+
+  - alias: anwesenheit_simulieren_lights_random_on_off
+    trigger: { platform: time_pattern, minutes: /10, seconds: 0 }
+    condition:
+      - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake, state: 'on'}
+      - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight, state: 'off'}
+    action:
+      - service_template: >
+          {% if (range(0, 10)|random|int) > 8 %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        data:
+          entity_id: light.f1_lig_wohnzimmer_1_light
+          brightness_pct: 50
+      - service_template: >
+          {% if (range(0, 10)|random|int) > 2 %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        data:
+          entity_id: light.f1_grp_licht_treppe_light
+          brightness_pct: 100
+      - service_template: >
+          {% if (range(0, 10)|random|int) > 2 %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        data:
+          entity_id: light.f2_grp_licht_treppe_light
+          brightness_pct: 100
+      - service_template: >
+          {% if (range(0, 10)|random|int) > 5 %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {% endif %}
+        data:
+          entity_id: light.studio_dg_light
+          brightness_pct: 100
+
+  - alias: anwesenheit_simulieren_lights_all_off
+    trigger:
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake}
+      - {platform: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight}
+    condition:
+      condition: or
+      conditions:
+        - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake, state: 'off'}
+        - {condition: state, entity_id: input_boolean.anwesenheit_simulieren_is_daylight, state: 'on'}
+    action:
+      - service: light.turn_off
+        entity_id:
+          - light.f1_lig_wohnzimmer_1_light
+          - light.f1_grp_licht_treppe_light
+          - light.f2_lig_flur_light
+          - light.f2_grp_licht_treppe_light
+          - light.studio_dg_light
+
+
+homeassistant:
+
+  customize:
+    light.anwesenheit_simulieren_lights_flure_on:
+      friendly_name: Licht Flur(e) einschalten
+    light.anwesenheit_simulieren_lights_random_on_off:
+      friendly_name: andere Licht zufällig an/aus
+    light.anwesenheit_simulieren_lights_all_off:
+      friendly_name: alle Lichter aus

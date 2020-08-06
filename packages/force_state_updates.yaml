@@ -1,8 +1,10 @@
 # Forcefully update certain states that change rarely every hour / every day in HA / InfluxDB to aid visualization in Grafana
 
 group:
+
   force_state_updates_hourly:
     entities:
+      # Heizung
       - sensor.heizung_kesseltemp_soll
       - sensor.heizung_brennerleistung
       - sensor.heizung_pelletsverbrauch
@@ -11,6 +13,9 @@ group:
       - sensor.heizung_puffer_brauchwassertemp_min
       - sensor.heizung_hk1_vorlauf_temperatur_soll
       - sensor.heizung_hk2_vorlauf_temperatur_soll
+      # Beschattung
+      - binary_sensor.f1_senwin_terrassentur_contact
+      # Sonnenschutz
       - sensor.sunprot_klx_limit_current
       - sensor.sunprot_klx_limit_current_off
       - sensor.esp_weathersensor_multisensor_sun_east
@@ -27,11 +32,15 @@ group:
       - input_boolean.sunprot_westface_active
       - sensor.sunprot_wiga_klx_limit_current
       - sensor.sunprot_wiga_klx_limit_current_off
+      - sensor.sunprot_wiga_sun_ref
       - input_boolean.sunprot_wiga_active
-      - binary_sensor.f1_senwin_terrassentur_contact
 
   force_state_updates_daily:
     entities:
+      # Heizung
+      - sensor.heizung_alarme_anzeige
+      - sensor.heizung_alarme_offen
+      - sensor.heizung_alarme_total
       - sensor.heizung_kesselstatus
       - sensor.heizung_kesselstatus_anzeige
       - sensor.heizung_hk1_programm
@@ -42,6 +51,73 @@ group:
       - sensor.heizung_hk2_programm_anzeige
       - sensor.heizung_hk2_status
       - sensor.heizung_hk2_status_anzeige
+      # Lüftung
+      - fan.comfoairq
+      - sensor.comfoairq_bypass_state
+      # Beschattung
+      - sensor.liftpos_f1_cov_wohnzimmer_sitzfenster
+      - sensor.liftpos_f1_cov_wohnzimmer_terrassentur
+      - sensor.liftpos_f1_cov_terrasse_markise
+      - sensor.liftpos_f1_cov_wintergarten_markise
+      - sensor.liftpos_f1_cov_kuche_terrassentur
+      - sensor.liftpos_f1_cov_kuche_fenster
+      - sensor.liftpos_f1_cov_windfang
+      - sensor.liftpos_f2_cov_florian
+      - sensor.liftpos_f2_cov_jonathan_links
+      - sensor.liftpos_f2_cov_jonathan_rechts
+      - sensor.liftpos_f2_cov_schlafzimmer
+      - sensor.liftpos_f2_cov_bad
+      - sensor.liftpos_f2_cov_flur
+      - sensor.liftpos_f3_cov_studio_links
+      - sensor.liftpos_f3_cov_studio_rechts
+      - sensor.liftpos_f3_cov_dachfenster_gross
+      - sensor.liftpos_f3_cov_dachfenster_gross_aussen
+      - sensor.liftpos_f3_cov_bad
+      - input_boolean.coverprot_rain_active
+      - input_boolean.coverprot_wind_active
+      - input_boolean.covers_include_kuechentuer_in_automations
+      - input_boolean.covers_use_terrasse_markise_for_sunprotection
+      # Licht
+      - light.f1_grp_licht_treppe_light
+      - light.f2_grp_licht_treppe_light
+      # Wettersensor
+      - binary_sensor.esp_weathersensor_cover_protection_1
+      - binary_sensor.esp_weathersensor_cover_protection_2
+      - binary_sensor.esp_weathersensor_multisensor_rain
+      - sensor.esp_weathersensor_cover_protection_1_disp
+      - sensor.esp_weathersensor_cover_protection_2_disp
+      - sensor.esp_weathersensor_multisensor_rain_disp
+      - sensor.esp_weathersensor_tipping_bucket_precipitation
+      - sensor.esp_weathersensor_tipping_bucket_precipitation_rate
+      - input_number.sum_rain_forever
+      - sensor.rain_daily
+      - sensor.sum_rain_3d
+      - sensor.sum_rain_7d
+      - sensor.sum_rain_14d
+      - sensor.sum_rain_21d
+      - sensor.sum_rain_24d
+      - sensor.sum_rain_30d
+      # Zähler
+      - sensor.wasserzaehler_h2o_count
+      # Anwesenheit
+      - input_boolean.anwesenheit_simulieren
+      - input_boolean.anwesenheit_somebody_home
+      - input_boolean.anwesenheit_simulieren_is_so_awake
+      - input_boolean.anwesenheit_simulieren_is_daylight
+      # Batteriestand
+      - sensor.f1_senthp_wiga_battery
+      - sensor.f1_senwin_terrassentur_battery
+      - sensor.f2_but_bad_dusche_battery
+      - sensor.f3_senthp_bad_battery
+      - sensor.f3_senthp_studio_battery
+      # SSD
+      - sensor.hdd_endurance_remaining
+      - sensor.hdd_temp
+      # Bewässerung
+      - switch.garten
+      - switch.garten_standard
+      - switch.master_valve
+      - switch.zone_2
       - switch.bewaesserung_timer
       - switch.bewaesserung
       - switch.bewaesserung_triggervalveopen

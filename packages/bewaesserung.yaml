@@ -1,14 +1,46 @@
-switch:
-  - platform: mqtt
-    name: bewaesserung_timer
-    command_topic: sonoff/bewaesserung/cmnd/timers
-    payload_on: 1
-    payload_off: 0
-    availability_topic: sonoff/bewaesserung/tele/LWT
-    payload_available: Online
-    payload_not_available: Offline
+# RainMachine, Regen pro Tag
+
+rainmachine:
+  controllers:
+    - ip_address: 192.168.0.12
+      password: !secret rainmachine_password
 
 automation:
-  - alias: bewaesserung_timer_reenable
-    trigger: { platform: state, entity_id: switch.bewaesserung_timer, to: "off", for: { hours: 36 } }
-    action: { service: switch.turn_on, data: { entity_id: switch.bewaesserung_timer } }
+  - alias: rainmachine_post_weather
+    trigger: { platform: time_pattern, minutes: 59, seconds: 55 }
+    action: { service: rest_command.rainmachine_post_weather }
+  - alias: sum_rain_update
+    trigger: { platform: state, entity_id: sensor.esp_weathersensor_tipping_bucket_precipitation }
+    action:
+      - { service: input_number.set_value, data_template: { entity_id: input_number.sum_rain_forever, value: "{{ (states('input_number.sum_rain_forever') | float) + (states('sensor.esp_weathersensor_tipping_bucket_precipitation') | float) }}" } }
+
+rest_command:
+  rainmachine_post_weather:
+    url: !secret rainmachine_post_data_url # http://a.b.c.d:8081/api/4/parser/data?access_token=apitokenhere
+    method: post
+    payload: >-
+      { "weather": [{
+        "rain": {{ states("sensor.rain_daily") }}
+      }] }
+    # payload: >-
+    #   { "weather": [{
+    #     "temperature": {{ states("sensor.rainmachine_temp_1h_mean") }},
+    #     "rain": {{ states("input_number.sum_rain_today") }}
+    #   }] }
+
+# Temperatur scheint auch nur als Mittelwert für den gesamten Tag zu funktionieren :-(
+# sensor:
+#   - platform: statistics
+#     name: rainmachine_temp_1h_mean
+#     entity_id: sensor.esp_weathersensor_multisensor_temp
+#     sampling_size: 90
+#     max_age: { minutes: 60 }
+#     precision: 1
+
+input_number:
+  sum_rain_forever: { min: 0, max: 99999, step: 0.1, unit_of_measurement: mm }
+
+utility_meter:
+  rain_daily:
+    source: input_number.sum_rain_forever
+    cycle: daily

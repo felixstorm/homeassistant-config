@@ -1,25 +1,35 @@
+# Der Sonnensensor steht richtig in Bezug auf die Himmelsrichtungen, dadurch jedoch leicht gedreht zum Haus (First ca.
+# 207° SSW statt 180° S). Dadurch steigen die gemessenen Sonnenstrahlungswerte früher an, was aber die Verzögerung durch
+# die Mittelwertbildung gut ausgleicht. Und durch die Azimuth-Begrenzungen werden die Strahlungswerte trotzdem passend
+# zur Fassadenrichtung geformt. Wenn der Sonnensensor parallel zur Hausachse steht, dann schaltet sich der Sonnenschutz
+# subjektiv zu spät ein.
+
 input_number:
-  sunprot_east_end_azimuth:     { min: 162, max: 252, step: 1, unit_of_measurement: "°" }   # initial: 207
-  sunprot_east_end_range:       { min:   0, max:  90, step: 1, unit_of_measurement: "°" }   # initial:  30
-  sunprot_south_begin_azimuth:  { min:  72, max: 162, step: 1, unit_of_measurement: "°" }   # initial: 117
-  sunprot_south_begin_range:    { min:   0, max:  90, step: 1, unit_of_measurement: "°" }   # initial:  30
-  sunprot_south_end_azimuth:    { min: 252, max: 342, step: 1, unit_of_measurement: "°" }   # initial: 297
-  sunprot_south_end_range:      { min:   0, max:  90, step: 1, unit_of_measurement: "°" }   # initial:  30
-  sunprot_west_begin_azimuth:   { min: 162, max: 252, step: 1, unit_of_measurement: "°" }   # initial: 207
-  sunprot_west_begin_range:     { min:   0, max:  90, step: 1, unit_of_measurement: "°" }   # initial:  30
-  sunprot_temp_0:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C" } # initial:  20
-  sunprot_klx_0:          { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial: 100
-  sunprot_temp_1:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C" } # initial:  24
-  sunprot_klx_1:          { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial:  80
-  sunprot_temp_2:         { min: -5, max:  40, step: 1, unit_of_measurement: "°C" } # initial:  35
-  sunprot_klx_2:          { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial:  40
-  sunprot_klx_off_factor: { min: 50, max:  90, step: 5, unit_of_measurement: "%" }  # initial:  70
-  sunprot_delay_on:       { min:  0, max:  60, step: 5, unit_of_measurement: Min }  # initial:   0
-  sunprot_delay_off:      { min:  0, max:  60, step: 5, unit_of_measurement: Min }  # initial:  20
-  sunprot_wiga_temp_0:    { min: 15, max:  35, step: 1, unit_of_measurement: "°C" } # initial:  24
-  sunprot_wiga_klx_0:     { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial: 100
-  sunprot_wiga_temp_1:    { min: 15, max:  35, step: 1, unit_of_measurement: "°C" } # initial:  28
-  sunprot_wiga_klx_1:     { min:  0, max: 100, step: 5, unit_of_measurement: klx }  # initial:  40
+  sunprot_east_end_azimuth:     { min: 162, max: 252, step: 1, unit_of_measurement: "°"  }  # initial: 207
+  sunprot_east_end_range:       { min:   0, max:  90, step: 1, unit_of_measurement: "°"  }  # initial:  30
+  sunprot_south_begin_azimuth:  { min:  72, max: 162, step: 1, unit_of_measurement: "°"  }  # initial: 117
+  sunprot_south_begin_range:    { min:   0, max:  90, step: 1, unit_of_measurement: "°"  }  # initial:  30
+  sunprot_south_end_azimuth:    { min: 252, max: 342, step: 1, unit_of_measurement: "°"  }  # initial: 297
+  sunprot_south_end_range:      { min:   0, max:  90, step: 1, unit_of_measurement: "°"  }  # initial:  30
+  sunprot_west_begin_azimuth:   { min: 162, max: 252, step: 1, unit_of_measurement: "°"  }  # initial: 207
+  sunprot_west_begin_range:     { min:   0, max:  90, step: 1, unit_of_measurement: "°"  }  # initial:  30
+  sunprot_west_end_elevation:   { min:   0, max:  60, step: 1, unit_of_measurement: "°"  }  # initial:  15
+  sunprot_west_end_range:       { min:   0, max:  30, step: 1, unit_of_measurement: "°"  }  # initial:  15
+  sunprot_temp_0:               { min:   5, max:  40, step: 1, unit_of_measurement: "°C" }  # initial:  20
+  sunprot_klx_0:                { min:   0, max: 100, step: 5, unit_of_measurement: klx  }  # initial: 100
+  sunprot_temp_1:               { min:   5, max:  40, step: 1, unit_of_measurement: "°C" }  # initial:  25
+  sunprot_klx_1:                { min:   0, max: 100, step: 5, unit_of_measurement: klx  }  # initial:  70
+  sunprot_temp_2:               { min:   5, max:  40, step: 1, unit_of_measurement: "°C" }  # initial:  33
+  sunprot_klx_2:                { min:   0, max: 100, step: 5, unit_of_measurement: klx  }  # initial:  40
+  sunprot_klx_off_factor:       { min:  50, max:  90, step: 5, unit_of_measurement: "%"  }  # initial:  70
+  sunprot_delay_on:             { min:   0, max:  60, step: 5, unit_of_measurement: Min  }  # initial:   0
+  sunprot_delay_off:            { min:   0, max:  60, step: 5, unit_of_measurement: Min  }  # initial:  20
+  sunprot_wiga_elevation_min:   { min:   0, max:  60, step: 1, unit_of_measurement: "°"  }  # initial:  15
+  sunprot_wiga_elevation_range: { min:   0, max:  30, step: 1, unit_of_measurement: "°"  }  # initial:  15
+  sunprot_wiga_temp_0:          { min:  15, max:  35, step: 1, unit_of_measurement: "°C" }  # initial:  24
+  sunprot_wiga_klx_0:           { min:   0, max: 100, step: 5, unit_of_measurement: klx  }  # initial: 100
+  sunprot_wiga_temp_1:          { min:  15, max:  35, step: 1, unit_of_measurement: "°C" }  # initial:  27
+  sunprot_wiga_klx_1:           { min:   0, max: 100, step: 5, unit_of_measurement: klx  }  # initial:  40
 
 sensor:
   - platform: yr
@@ -31,7 +41,7 @@ sensor:
     name: sunprot_forecast_12h_temperature_stats
     entity_id: sensor.sunprot_forecast_12h_temperature
     sampling_size: 24
-    max_age: { hours: 12 }
+    max_age: { hours: 18 } # damit auch Abends noch der Max-Wert des abgelaufenen Tages zählt
     precision: 1
   - platform: template
     sensors:
@@ -63,6 +73,9 @@ sensor:
     sensors:
       sunprot_sun_azimuth:
         value_template: "{{ state_attr('sun.sun', 'azimuth')|int }}"
+        unit_of_measurement: "°"
+      sunprot_sun_elevation:
+        value_template: "{{ state_attr('sun.sun', 'elevation')|int }}"
         unit_of_measurement: "°"
       sunprot_klx_limit_current:
         value_template: >
@@ -103,7 +116,7 @@ sensor:
       sunprot_sun_south_below_off_limit:
         value_template: "{{ states('sensor.sunprot_sun_south_ref')|int < states('sensor.sunprot_klx_limit_current_off')|int }}"
       sunprot_sun_west_ref:
-        value_template: "{{ (states('sensor.esp_weathersensor_multisensor_sun_west_mean')|int * [[0, (state_attr('sun.sun', 'azimuth')|int - states('input_number.sunprot_west_begin_azimuth')|int) / states('input_number.sunprot_west_begin_range')|int]|max, 1]|min)|int }}"
+        value_template: "{{ (states('sensor.esp_weathersensor_multisensor_sun_west_mean')|int * [[0, (state_attr('sun.sun', 'azimuth')|int - states('input_number.sunprot_west_begin_azimuth')|int) / states('input_number.sunprot_west_begin_range')|int]|max, 1]|min * [[0, (state_attr('sun.sun', 'elevation')|int - states('input_number.sunprot_west_end_elevation')|int) / states('input_number.sunprot_west_end_range')|int]|max, 1]|min)|int }}"
         unit_of_measurement: klx
       sunprot_sun_west_above_on_limit:
         value_template: "{{ states('sensor.sunprot_sun_west_ref')|int > states('sensor.sunprot_klx_limit_current')|int }}"
@@ -128,6 +141,9 @@ sensor:
         unit_of_measurement: klx
       sunprot_wiga_klx_limit_current_off:
         value_template: "{{ (states('sensor.sunprot_wiga_klx_limit_current') | int * states.input_number.sunprot_klx_off_factor.state | int / 100) | round(0) }}"
+        unit_of_measurement: klx
+      sunprot_wiga_sun_ref:
+        value_template: "{{ (states('sensor.esp_weathersensor_multisensor_sun_south_mean')|int * [[0, (state_attr('sun.sun', 'elevation')|int - states('input_number.sunprot_wiga_elevation_min')|int) / states('input_number.sunprot_wiga_elevation_range')|int]|max, 1]|min)|int }}"
         unit_of_measurement: klx
       sunprot_wiga_sun_above_on_limit:
         value_template: "{{ states('sensor.esp_weathersensor_multisensor_sun_south_mean') | int > states('sensor.sunprot_wiga_klx_limit_current') | int }}"
@@ -180,24 +196,32 @@ automation:
 
   - alias: sunprot_off_before_sunset
     trigger:
-      - { platform: sun, event: sunset, offset: "-01:30:00" }
+      - { platform: sun, event: sunset, offset: "-00:30:00" } # hauptsächlich für Bedienungsfehler
     action:
       - { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_eastface_active } }
       - { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_southface_active } }
       - { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_westface_active } }
       - { service: input_boolean.turn_off, data: { entity_id: input_boolean.sunprot_wiga_active } }
 
-  - alias: sunprot_update_covers
+  - alias: sunprot_update_covers_on_change
     trigger:
       - { platform: state, entity_id: input_boolean.sunprot_eastface_active }
       - { platform: state, entity_id: input_boolean.sunprot_southface_active }
       - { platform: state, entity_id: input_boolean.sunprot_westface_active }
       - { platform: state, entity_id: input_boolean.sunprot_wiga_active }
-      - { platform: time_pattern, minutes: /15, seconds: 0 }
     condition:
-      - { condition: sun, after: sunrise, after_offset: "02:00:00" }
-      - { condition: time, after: '08:00:00' }
-      - { condition: sun, before: sunset, before_offset: "-00:30:00" }
+      - { condition: time, after: '08:00:00' } # damit die Kinder nicht zu früh von der Markise wach werden
+    action:
+      - service: script.turn_on
+        entity_id: script.sunprot_update_covers
+
+  - alias: sunprot_update_covers_recurring
+    trigger:
+      - { platform: time_pattern, minutes: 0, seconds: 0 }
+    condition:
+      - { condition: sun, after: sunrise, after_offset: "03:00:00" }
+      - { condition: time, after: '08:00:00' } # damit die Kinder nicht zu früh von der Markise wach werden
+      - { condition: sun, before: sunset, before_offset: "03:00:00" }
     action:
       - service: script.turn_on
         entity_id: script.sunprot_update_covers
@@ -237,7 +261,8 @@ group:
       - automation.sunprot_wiga_active_on
       - automation.sunprot_wiga_active_off
       - automation.sunprot_off_before_sunset
-      - automation.sunprot_update_covers
+      - automation.sunprot_update_covers_on_change
+      - automation.sunprot_update_covers_recurring
       - automation.sunprot_evening_routine
 
 
@@ -245,41 +270,153 @@ homeassistant:
 
   customize:
 
-    input_boolean.covers_use_terrasse_markise_for_sunprotection:
-      friendly_name: Markise Terrasse für Sonnenschutz verwenden
-
     group.sunprot_automations:
       friendly_name: Sonnenschutz autom.
       icon: mdi:home-automation
+    input_boolean.covers_use_terrasse_markise_for_sunprotection:
+      friendly_name: Markise Terrasse für Sonnenschutz verwenden
 
+    sensor.sunprot_sun_azimuth:
+      friendly_name: Sonnenrichtung
+    sensor.sunprot_sun_elevation:
+      friendly_name: Sonnehöhe
+    sensor.sunprot_forecast_12h_temperature:
+      friendly_name: Außentemperatur Vorhersage in 12 Std.
+    sensor.sunprot_forecast_12h_temperature_stats:
+      friendly_name: Außentemperatur Vorhersage Stats
+    sensor.sunprot_outside_temp_ref:
+      friendly_name: Ost/Süd/West Außentemp. Referenz (12h-Maximum)
+    sensor.sunprot_klx_limit_current:
+      friendly_name: Ost/Süd/West Sonne Grenze ein
+    sensor.sunprot_klx_limit_current_off:
+      friendly_name: Ost/Süd/West Sonne Grenze (wieder) aus
+
+    sensor.esp_weathersensor_multisensor_sun_east_mean:
+      friendly_name: Sonne von Osten Durchschnitt
+    sensor.sunprot_sun_east_ref:
+      friendly_name: Ostseite Sonne Referenz
+    sensor.sunprot_sun_east_above_on_limit:
+      friendly_name: Ostseite Sonne über Grenze ein
+    sensor.sunprot_sun_east_below_off_limit:
+      friendly_name: Ostseite Sonne (wieder) unter Grenze aus
     input_boolean.sunprot_eastface_active:
-      friendly_name: Sonnenschutz nötig Ostseite
-    automation.sunprot_eastface_active_on:
-      friendly_name: Sonnenschutz nötig Ostseite einschalten
-    automation.sunprot_eastface_active_off:
-      friendly_name: Sonnenschutz nötig Ostseite ausschalten
+      friendly_name: Ostseite Sonnenschutz aktiv
 
+
+    sensor.esp_weathersensor_multisensor_sun_south_mean:
+      friendly_name: Sonne von Süden Durchschnitt
+    sensor.sunprot_sun_south_ref:
+      friendly_name: Südseite Sonne Referenz
+    sensor.sunprot_sun_south_above_on_limit:
+      friendly_name: Südseite Sonne über Grenze ein
+    sensor.sunprot_sun_south_below_off_limit:
+      friendly_name: Südseite Sonne (wieder) unter Grenze aus
     input_boolean.sunprot_southface_active:
-      friendly_name: Sonnenschutz nötig Südseite
-    automation.sunprot_southface_active_on:
-      friendly_name: Sonnenschutz nötig Südseite einschalten
-    automation.sunprot_southface_active_off:
-      friendly_name: Sonnenschutz nötig Südseite ausschalten
+      friendly_name: Südseite Sonnenschutz aktiv
 
+    sensor.esp_weathersensor_multisensor_sun_west_mean:
+      friendly_name: Sonne von Westen Durchschnitt
+    sensor.sunprot_sun_west_ref:
+      friendly_name: Westseite Sonne Referenz
+    sensor.sunprot_sun_west_above_on_limit:
+      friendly_name: Westseite Sonne über Grenze ein
+    sensor.sunprot_sun_west_below_off_limit:
+      friendly_name: Westseite Sonne (wieder) unter Grenze aus
     input_boolean.sunprot_westface_active:
-      friendly_name: Sonnenschutz nötig Westseite
-    automation.sunprot_westface_active_on:
-      friendly_name: Sonnenschutz nötig Westseite einschalten
-    automation.sunprot_westface_active_off:
-      friendly_name: Sonnenschutz nötig Westseite ausschalten
+      friendly_name: Westseite Sonnenschutz aktiv
 
-    automation.sunprot_update_covers:
-      friendly_name: Beschattung jetzt aktualisieren
+    sensor.sunprot_wiga_inside_temp_ref:
+      friendly_name: WiGa Innentemp. Referenz
+    sensor.sunprot_wiga_klx_limit_current:
+      friendly_name: WiGa Sonne Grenze ein
+    sensor.sunprot_wiga_klx_limit_current_off:
+      friendly_name: WiGa Sonne Grenze (wieder) aus
+    sensor.sunprot_wiga_sun_ref:
+      friendly_name: WiGa Sonne Referenz
+    sensor.sunprot_wiga_sun_above_on_limit:
+      friendly_name: WiGa Sonne über Grenze ein
+    sensor.sunprot_wiga_sun_below_off_limit:
+      friendly_name: WiGa Sonne (wieder) unter Grenze aus
+    input_boolean.sunprot_wiga_active:
+      friendly_name: WiGa Sonnenschutz aktiv
+
+    input_number.sunprot_east_end_azimuth:
+      friendly_name: Ost Sonnenricht. Ende
+    input_number.sunprot_east_end_range:
+      friendly_name: Ost S-Richt. Überg. Ende
+    input_number.sunprot_south_begin_azimuth:
+      friendly_name: Süd Sonnenricht. Anfang
+    input_number.sunprot_south_begin_range:
+      friendly_name: Süd S-Richt. Überg. Anfang
+    input_number.sunprot_south_end_azimuth:
+      friendly_name: Süd Sonnenricht. Ende
+    input_number.sunprot_south_end_range:
+      friendly_name: Süd S-Richt. Überg. Ende
+    input_number.sunprot_west_begin_azimuth:
+      friendly_name: West Sonnenricht. Anfang
+    input_number.sunprot_west_begin_range:
+      friendly_name: West S-Richt. Überg. Anfang
+    input_number.sunprot_west_end_elevation:
+      friendly_name: West Sonnenhöhe Ende
+    input_number.sunprot_west_end_range:
+      friendly_name: West S-Höhe Überg. Ende
+    input_number.sunprot_temp_0:
+      friendly_name: Kurve P0 Außentemp.
+    input_number.sunprot_klx_0:
+      friendly_name: Kurve P0 Grenze ein
+    input_number.sunprot_temp_1:
+      friendly_name: Kurve P1 Außentemp.
+    input_number.sunprot_klx_1:
+      friendly_name: Kurve P1 Grenze ein
+    input_number.sunprot_temp_2:
+      friendly_name: Kurve P2 Außentemp.
+    input_number.sunprot_klx_2:
+      friendly_name: Kurve P2 Grenze ein
+    input_number.sunprot_klx_off_factor:
+      friendly_name: Faktor Grenze aus
+    input_number.sunprot_delay_on:
+      friendly_name: ein nach Verzögerung
+    input_number.sunprot_delay_off:
+      friendly_name: aus nach Verzögerung
+    input_number.sunprot_wiga_elevation_min:
+      friendly_name: WiGa Sonnenh. mindestens
+    input_number.sunprot_wiga_elevation_range:
+      friendly_name: WiGa Sonnenh. Überg.
+    input_number.sunprot_wiga_temp_0:
+      friendly_name: WiGa KP0 Innentemp.
+    input_number.sunprot_wiga_klx_0:
+      friendly_name: WiGa KP0 Grenze ein
+    input_number.sunprot_wiga_temp_1:
+      friendly_name: WiGa KP1 Innentemp.
+    input_number.sunprot_wiga_klx_1:
+      friendly_name: WiGa KP1 Grenze ein
+
+    automation.sunprot_eastface_active_on:
+      friendly_name: Schutz Ostseite aktivieren bei Bedarf
+    automation.sunprot_eastface_active_off:
+      friendly_name: Schutz Ostseite wieder deaktivieren
+    automation.sunprot_southface_active_on:
+      friendly_name: Schutz Südseite aktivieren bei Bedarf
+    automation.sunprot_southface_active_off:
+      friendly_name: Schutz Südseite wieder deaktivieren
+    automation.sunprot_westface_active_on:
+      friendly_name: Schutz Westseite aktivieren bei Bedarf
+    automation.sunprot_westface_active_off:
+      friendly_name: Schutz Westseite wieder deaktivieren
+    automation.sunprot_wiga_active_on:
+      friendly_name: Schutz WiGa aktivieren bei Bedarf
+    automation.sunprot_wiga_active_off:
+      friendly_name: Schutz WiGa wieder deaktivieren
+    automation.sunprot_off_before_sunset:
+      friendly_name: Schutz vor Sonnenuntergang überall deaktivieren
+    automation.sunprot_update_covers_on_change:
+      friendly_name: Beschattung bei Änderung aktualisieren
+    automation.sunprot_update_covers_recurring:
+      friendly_name: Beschattung regelmäßig aktualisieren
     script.sunprot_update_covers:
       friendly_name: Beschattung jetzt aktualisieren
       icon: mdi:home-automation
       can_cancel: false
-
     automation.sunprot_evening_routine:
       friendly_name: Abends alle Markisen einfahren
     script.sunprot_evening_routine:

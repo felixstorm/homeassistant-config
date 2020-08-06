@@ -5,9 +5,21 @@
             "views": [
                 {
                     "badges": [
-                        "sensor.date",
-                        "sensor.time",
-                        "sun.sun"
+                        {
+                            "entity": "sensor.date"
+                        },
+                        {
+                            "entity": "sensor.time"
+                        },
+                        {
+                            "entity": "sun.sun"
+                        },
+                        {
+                            "entity": "sensor.hdd_endurance_remaining"
+                        },
+                        {
+                            "entity": "sensor.hdd_temp"
+                        }
                     ],
                     "cards": [
                         {
@@ -16,41 +28,49 @@
                                 "sensor.heizung_aussen_temperatur",
                                 "sensor.esp_weathersensor_multisensor_gusts",
                                 "sensor.esp_weathersensor_multisensor_rain_disp",
+                                "sensor.esp_weathersensor_tipping_bucket_precipitation",
                                 "sensor.esp_weathersensor_tipping_bucket_precipitation_rate",
+                                "sensor.sum_rain_24h",
+                                "sensor.sum_rain_3d",
+                                "sensor.sum_rain_7d",
+                                "sensor.sum_rain_14d",
+                                {
+                                    "type": "divider"
+                                },
+                                "switch.garten",
+                                "switch.zone_2",
+                                "switch.garten_standard",
+                                "switch.bewaesserung_timer",
+                                "switch.bewaesserung",
                                 {
                                     "type": "divider"
                                 },
                                 "sensor.comfoairq_inside_temperature",
                                 "sensor.f1_senthp_wiga_temperature",
-                                "sensor.f3_senthp_studio_temperature"
+                                "sensor.f3_senthp_studio_temperature",
+                                "sensor.f3_senthp_bad_temperature",
+                                {
+                                    "type": "divider"
+                                },
+                                "sensor.heizung_alarme_anzeige",
+                                "sensor.heizung_kesselstatus_anzeige",
+                                "sensor.heizung_puffer_temperatur_1"
                             ],
                             "show_header_toggle": false,
-                            "title": "Wetter / Innentemperaturen aktuell",
+                            "title": "Sommer",
                             "type": "entities"
                         },
                         {
                             "entities": [
                                 {
-                                    "entity": "sensor.heizung_alarme_anzeige"
+                                    "entity": "input_boolean.anwesenheit_somebody_home"
                                 },
                                 {
-                                    "entity": "sensor.heizung_kesselstatus_anzeige"
-                                },
-                                {
-                                    "entity": "sensor.heizung_puffer_temperatur_1"
-                                },
-                                {
-                                    "entity": "sensor.heizung_puffer_temperatur_5"
-                                },
-                                {
-                                    "entity": "sensor.heizung_hk2_vorlauf_temperatur"
-                                },
-                                {
-                                    "entity": "sensor.heizung_hk1_vorlauf_temperatur"
+                                    "entity": "input_boolean.anwesenheit_simulieren"
                                 }
                             ],
                             "show_header_toggle": false,
-                            "title": "Heizung",
+                            "title": "Anwesenheit",
                             "type": "entities"
                         },
                         {
@@ -83,19 +103,22 @@
                                     "type": "divider"
                                 },
                                 {
-                                    "entity": "group.coversatnight_automations"
-                                },
-                                {
                                     "entity": "script.coversatnight_covers_up_eg"
                                 },
                                 {
                                     "entity": "script.coversatnight_covers_up_og"
                                 },
                                 {
+                                    "entity": "script.coversatnight_covers_up_dg"
+                                },
+                                {
                                     "entity": "script.coversatnight_covers_down_eg"
                                 },
                                 {
                                     "entity": "script.coversatnight_covers_down_og"
+                                },
+                                {
+                                    "entity": "script.coversatnight_covers_down_dg"
                                 },
                                 {
                                     "type": "divider"
@@ -116,37 +139,82 @@
                         },
                         {
                             "entities": [
-                                "group.switches_kochfeld",
+                                {
+                                    "entity": "sensor.wasserzaehler_h2o_count"
+                                },
+                                {
+                                    "entity": "sensor.wasserzaehler_status"
+                                },
                                 {
                                     "type": "divider"
                                 },
-                                "light.f2_lig_flur_light",
-                                "light.studio_dg_light",
                                 {
-                                    "type": "divider"
+                                    "entity": "sensor.stromzaehler_haus_total_in"
                                 },
-                                "group.randlights_automations"
+                                {
+                                    "entity": "sensor.stromzaehler_haus_power_curr"
+                                },
+                                {
+                                    "entity": "sensor.stromzaehler_haus_power_p1"
+                                },
+                                {
+                                    "entity": "sensor.stromzaehler_haus_power_p2"
+                                },
+                                {
+                                    "entity": "sensor.stromzaehler_haus_power_p3"
+                                },
+                                {
+                                    "entity": "sensor.stromzaehler_e_auto_total"
+                                },
+                                {
+                                    "entity": "sensor.stromzaehler_e_auto_power_curr"
+                                },
+                                {
+                                    "entity": "sensor.stromzaehler_status"
+                                }
                             ],
-                            "show_header_toggle": false,
-                            "title": "Beleuchtung",
+                            "title": "Z\u00e4hler",
                             "type": "entities"
                         },
                         {
                             "entities": [
-                                "switch.bewaesserung_timer",
-                                "switch.bewaesserung",
+                                {
+                                    "entity": "sensor.heizung_alarme_anzeige"
+                                },
+                                {
+                                    "entity": "sensor.heizung_kesselstatus_anzeige"
+                                },
+                                {
+                                    "entity": "sensor.heizung_puffer_temperatur_1"
+                                },
+                                {
+                                    "entity": "sensor.heizung_puffer_temperatur_5"
+                                },
+                                {
+                                    "entity": "sensor.heizung_hk2_vorlauf_temperatur"
+                                },
+                                {
+                                    "entity": "sensor.heizung_hk1_vorlauf_temperatur"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Heizung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "group.switches_kochfeld",
                                 {
                                     "type": "divider"
                                 },
-                                "sensor.sum_rain_24h",
-                                "sensor.sum_rain_3d",
-                                "sensor.sum_rain_7d",
-                                "sensor.sum_rain_14d",
-                                "sensor.sum_rain_21d",
-                                "sensor.sum_rain_30d"
+                                "light.f1_lig_wohnzimmer_1_light",
+                                "light.f1_grp_licht_treppe_light",
+                                "light.f2_lig_flur_light",
+                                "light.f2_grp_licht_treppe_light",
+                                "light.studio_dg_light"
                             ],
                             "show_header_toggle": false,
-                            "title": "Garten",
+                            "title": "Beleuchtung",
                             "type": "entities"
                         }
                     ],
@@ -178,13 +246,8 @@
                                 "cover.f3_cov_studio_links_cover",
                                 "cover.f3_cov_studio_rechts_cover",
                                 "cover.f3_cov_dachfenster_gross_cover",
-                                "cover.f3_cov_bad_cover",
-                                {
-                                    "type": "divider"
-                                },
-                                "group.shutters_eg",
-                                "group.shutters_og",
-                                "group.shutters_dg"
+                                "cover.f3_cov_dachfenster_gross_aussen_cover",
+                                "cover.f3_cov_bad_cover"
                             ],
                             "show_header_toggle": false,
                             "title": "Beschattung",
@@ -192,17 +255,6 @@
                         },
                         {
                             "entities": [
-                                "automation.coversatnight_up_in_the_morning",
-                                "automation.coversatnight_down_at_dusk",
-                                {
-                                    "type": "divider"
-                                },
-                                "input_number.coversatnight_up_hours",
-                                "input_number.coversatnight_up_mins",
-                                "input_number.coversatnight_up_rand_delay",
-                                {
-                                    "type": "divider"
-                                },
                                 "script.coversatnight_covers_up",
                                 "script.coversatnight_covers_up_eg",
                                 "script.coversatnight_covers_up_og",
@@ -212,8 +264,8 @@
                                 "script.coversatnight_covers_down_og",
                                 "script.coversatnight_covers_down_dg"
                             ],
-                            "show_header_toggle": true,
-                            "title": "Raffstore (nachts) autom.",
+                            "show_header_toggle": false,
+                            "title": "Raffstore hoch/runter",
                             "type": "entities"
                         },
                         {
@@ -231,14 +283,7 @@
                                 "automation.coverprot_rain_active_on",
                                 "automation.coverprot_rain_active_off",
                                 "automation.coverprot_wind_execute",
-                                "automation.coverprot_rain_execute",
-                                {
-                                    "type": "divider"
-                                },
-                                "timer.coverprot_off_reset",
-                                "automation.coverprot_off_timer_start",
-                                "automation.coverprot_off_timer_cancel",
-                                "automation.coverprot_off_timer_expired"
+                                "automation.coverprot_rain_execute"
                             ],
                             "show_header_toggle": false,
                             "title": "Markisenschutz autom.",
@@ -262,15 +307,541 @@
                                 "sensor.liftpos_f3_cov_studio_links",
                                 "sensor.liftpos_f3_cov_studio_rechts",
                                 "sensor.liftpos_f3_cov_dachfenster_gross",
+                                "sensor.liftpos_f3_cov_dachfenster_gross_aussen",
                                 "sensor.liftpos_f3_cov_bad"
                             ],
                             "hours_to_show": 72,
                             "refresh_interval": 60,
                             "title": "Beschattung Position",
                             "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "group.shutters_eg",
+                                "group.shutters_og",
+                                "group.shutters_dg"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Gruppen",
+                            "type": "entities"
                         }
                     ],
                     "title": "Beschattung"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.sunprot_automations"
+                                },
+                                {
+                                    "entity": "input_boolean.covers_use_terrasse_markise_for_sunprotection"
+                                },
+                                {
+                                    "entity": "script.sunprot_update_covers"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_azimuth"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_elevation"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_forecast_12h_temperature"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_forecast_12h_temperature_stats"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_outside_temp_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_klx_limit_current"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_klx_limit_current_off"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Sonnenschutz",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_east"
+                                },
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_east_mean"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_east_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_east_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_east_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_eastface_active"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south"
+                                },
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south_mean"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_south_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_south_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_south_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_southface_active"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_west"
+                                },
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_west_mean"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_west_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_west_ref2"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_west_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_sun_west_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_westface_active"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Sonnenschutz Osten/S\u00fcden/Westen",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.sunprot_wiga_inside_temp_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_klx_limit_current"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_klx_limit_current_off"
+                                },
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south"
+                                },
+                                {
+                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south_mean"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_sun_ref"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_sun_above_on_limit"
+                                },
+                                {
+                                    "entity": "sensor.sunprot_wiga_sun_below_off_limit"
+                                },
+                                {
+                                    "entity": "input_boolean.sunprot_wiga_active"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Sonnenschutz WiGa",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.sunprot_outside_temp_ref",
+                                "sensor.sunprot_klx_limit_current",
+                                "sensor.sunprot_klx_limit_current_off",
+                                "sensor.esp_weathersensor_multisensor_sun_east",
+                                "sensor.esp_weathersensor_multisensor_sun_east_mean",
+                                "sensor.sunprot_sun_east_ref",
+                                "input_boolean.sunprot_eastface_active",
+                                "sensor.esp_weathersensor_multisensor_sun_south",
+                                "sensor.esp_weathersensor_multisensor_sun_south_mean",
+                                "sensor.sunprot_sun_south_ref",
+                                "input_boolean.sunprot_southface_active",
+                                "sensor.esp_weathersensor_multisensor_sun_west",
+                                "sensor.esp_weathersensor_multisensor_sun_west_mean",
+                                "sensor.sunprot_sun_west_ref",
+                                "sensor.sunprot_sun_west_ref2",
+                                "input_boolean.sunprot_westface_active",
+                                "input_boolean.sunprot_wiga_active"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Sonnenschutz Historie",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.sunprot_wiga_inside_temp_ref",
+                                "sensor.sunprot_wiga_klx_limit_current",
+                                "sensor.sunprot_wiga_klx_limit_current_off",
+                                "sensor.esp_weathersensor_multisensor_sun_south",
+                                "sensor.esp_weathersensor_multisensor_sun_south_mean",
+                                "sensor.sunprot_wiga_sun_ref",
+                                "input_boolean.sunprot_wiga_active"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Sonnenschutz WiGa Historie",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "input_number.sunprot_east_end_azimuth"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_east_end_range"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_south_begin_azimuth"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_south_begin_range"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_south_end_azimuth"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_south_end_range"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_west_begin_azimuth"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_west_begin_range"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_west_end_elevation"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_west_end_range"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_elevation_min"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_elevation_range"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_temp_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_temp_1"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_1"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_temp_2"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_2"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_temp_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_klx_0"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_temp_1"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_wiga_klx_1"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_klx_off_factor"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_delay_on"
+                                },
+                                {
+                                    "entity": "input_number.sunprot_delay_off"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Sonnenschutz Settings",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "automation.sunprot_eastface_active_on",
+                                "automation.sunprot_eastface_active_off",
+                                "automation.sunprot_southface_active_on",
+                                "automation.sunprot_southface_active_off",
+                                "automation.sunprot_westface_active_on",
+                                "automation.sunprot_westface_active_off",
+                                "automation.sunprot_wiga_active_on",
+                                "automation.sunprot_wiga_active_off",
+                                "automation.sunprot_off_before_sunset",
+                                "automation.sunprot_update_covers_on_change",
+                                "automation.sunprot_update_covers_recurring",
+                                "automation.sunprot_evening_routine"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Sonnenschutz autom.",
+                            "type": "entities"
+                        }
+                    ],
+                    "title": "Sonnenschutz"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "fan.comfoairq",
+                                "sensor.comfoairq_supply_temperature",
+                                "sensor.comfoairq_supply_humidity",
+                                "sensor.comfoairq_inside_temperature",
+                                "sensor.comfoairq_inside_humidity",
+                                "sensor.comfoairq_exhaust_temperature",
+                                "sensor.comfoairq_exhaust_humidity",
+                                "sensor.comfoairq_outside_temperature",
+                                "sensor.comfoairq_outside_humidity",
+                                "sensor.comfoairq_supply_airflow",
+                                "sensor.comfoairq_exhaust_airflow",
+                                "sensor.comfoairq_days_to_replace_filter",
+                                "sensor.comfoairq_bypass_state",
+                                "sensor.comfoairq_power_usage"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "L\u00fcftung",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "fan.comfoairq",
+                                "sensor.comfoairq_supply_temperature",
+                                "sensor.comfoairq_supply_humidity",
+                                "sensor.comfoairq_inside_temperature",
+                                "sensor.comfoairq_inside_humidity",
+                                "sensor.comfoairq_exhaust_temperature",
+                                "sensor.comfoairq_exhaust_humidity",
+                                "sensor.comfoairq_outside_temperature",
+                                "sensor.comfoairq_outside_humidity",
+                                "sensor.comfoairq_supply_airflow",
+                                "sensor.comfoairq_exhaust_airflow",
+                                "sensor.comfoairq_days_to_replace_filter",
+                                "sensor.comfoairq_bypass_state",
+                                "sensor.comfoairq_power_usage"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "L\u00fcftung",
+                            "type": "history-graph"
+                        }
+                    ],
+                    "title": "L\u00fcftung"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        "sensor.esp_weathersensor_multisensor_temp",
+                                        "sensor.heizung_aussen_temperatur",
+                                        "sensor.esp_weathersensor_multisensor_sun_east",
+                                        "sensor.esp_weathersensor_multisensor_sun_south",
+                                        "sensor.esp_weathersensor_multisensor_sun_west",
+                                        "sensor.esp_weathersensor_multisensor_daylight",
+                                        "sensor.esp_weathersensor_multisensor_is_dark_disp",
+                                        "sensor.esp_weathersensor_multisensor_windspeed",
+                                        "sensor.esp_weathersensor_multisensor_gusts",
+                                        "sensor.esp_weathersensor_multisensor_rain_disp",
+                                        "sensor.esp_weathersensor_cover_protection_1_disp",
+                                        "sensor.esp_weathersensor_cover_protection_2_disp",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
+                                    ],
+                                    "show_header_toggle": false,
+                                    "title": "Wetter lokal",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        "sensor.esp_weathersensor_multisensor_temp",
+                                        "sensor.heizung_aussen_temperatur",
+                                        "sensor.esp_weathersensor_multisensor_sun_east",
+                                        "sensor.esp_weathersensor_multisensor_sun_south",
+                                        "sensor.esp_weathersensor_multisensor_sun_west",
+                                        "sensor.esp_weathersensor_multisensor_windspeed",
+                                        "sensor.esp_weathersensor_multisensor_gusts",
+                                        "sensor.esp_weathersensor_multisensor_daylight",
+                                        "sensor.esp_weathersensor_multisensor_rain_disp",
+                                        "sensor.esp_weathersensor_cover_protection_1_disp",
+                                        "sensor.esp_weathersensor_cover_protection_2_disp",
+                                        "sensor.esp_weathersensor_multisensor_is_dark_disp",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation",
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
+                                    ],
+                                    "hours_to_show": 72,
+                                    "refresh_interval": 60,
+                                    "title": "Wetter lokal",
+                                    "type": "history-graph"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "aspect_ratio": "100%",
+                            "type": "iframe",
+                            "url": "/api/hassio_ingress/hDeAoG_phgmZCGzyvWVTG7zqw2ABiJ0sN5esK2yqkOY/d/4k_mpAvWk/regen?orgId=1&viewPanel=4&refresh=60s&kiosk&fullscreen"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        "switch.garten",
+                                        "switch.zone_2",
+                                        "switch.garten_standard",
+                                        {
+                                            "type": "divider"
+                                        },
+                                        "switch.bewaesserung_timer",
+                                        "switch.bewaesserung",
+                                        "switch.bewaesserung_triggervalveopen",
+                                        "switch.bewaesserung_triggervalveclose",
+                                        {
+                                            "type": "divider"
+                                        },
+                                        "sensor.sum_rain_24h",
+                                        "sensor.sum_rain_3d",
+                                        "sensor.sum_rain_7d",
+                                        "sensor.sum_rain_14d",
+                                        "sensor.sum_rain_21d",
+                                        "sensor.sum_rain_30d",
+                                        {
+                                            "type": "divider"
+                                        },
+                                        "input_number.sum_rain_forever",
+                                        "sensor.rain_daily"
+                                    ],
+                                    "title": "Garten",
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        "switch.garten",
+                                        "switch.garten_standard",
+                                        "switch.bewaesserung_timer",
+                                        "switch.bewaesserung",
+                                        "switch.bewaesserung_triggervalveopen",
+                                        "switch.bewaesserung_triggervalveclose"
+                                    ],
+                                    "hours_to_show": 72,
+                                    "refresh_interval": 60,
+                                    "title": "Garten",
+                                    "type": "history-graph"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                "sensor.comfoairq_inside_temperature",
+                                "sensor.f1_senthp_wiga_temperature",
+                                "sensor.f3_senthp_studio_temperature",
+                                "sensor.f3_senthp_bad_temperature",
+                                "sensor.comfoairq_inside_humidity",
+                                "sensor.f1_senthp_wiga_humidity",
+                                "sensor.f3_senthp_studio_humidity",
+                                "sensor.f3_senthp_bad_humidity",
+                                "sensor.f1_senthp_wiga_pressure",
+                                "sensor.f3_senthp_studio_pressure",
+                                "sensor.f3_senthp_bad_pressure"
+                            ],
+                            "title": "Innen",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "weather.met_no",
+                            "name": "Vorhersage (met.no)",
+                            "type": "weather-forecast"
+                        }
+                    ],
+                    "title": "Wetter"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "switch.f1_swi_herd_links_switch",
+                                "sensor.f1_swi_herd_links_power",
+                                "switch.f1_swi_herd_rechts_switch",
+                                "sensor.f1_swi_herd_rechts_power"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Kochfeld",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.f1_lig_wohnzimmer_1_light",
+                                "light.f1_grp_licht_treppe_light",
+                                "light.f2_lig_flur_light",
+                                "light.f2_grp_licht_treppe_light",
+                                "light.studio_dg_light",
+                                {
+                                    "type": "divider"
+                                },
+                                "light.f1_lig_treppe_1_light",
+                                "light.f1_lig_treppe_2_light",
+                                "light.f2_lig_treppe_1_light",
+                                "light.f2_lig_treppe_2_light"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Beleuchtung",
+                            "type": "entities"
+                        }
+                    ],
+                    "title": "Beleuchtung"
                 },
                 {
                     "badges": [],
@@ -449,542 +1020,6 @@
                     "badges": [],
                     "cards": [
                         {
-                            "entities": [
-                                "switch.f1_swi_herd_links_switch",
-                                "sensor.f1_swi_herd_links_power",
-                                "switch.f1_swi_herd_rechts_switch",
-                                "sensor.f1_swi_herd_rechts_power"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Kochfeld",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "light.f1_lig_wohnzimmer_1_light"
-                                },
-                                {
-                                    "entity": "light.f1_grp_licht_treppe_light"
-                                },
-                                {
-                                    "entity": "light.f1_lig_treppe_1_light"
-                                },
-                                {
-                                    "entity": "light.f1_lig_treppe_2_light"
-                                },
-                                {
-                                    "entity": "light.f2_lig_flur_light"
-                                },
-                                {
-                                    "entity": "light.f2_grp_licht_treppe_light"
-                                },
-                                {
-                                    "entity": "light.f2_lig_treppe_1_light"
-                                },
-                                {
-                                    "entity": "light.f2_lig_treppe_2_light"
-                                },
-                                {
-                                    "entity": "light.studio_dg_light"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Beleuchtung",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "automation.zufallslicht_flur_og_abends_ein",
-                                "automation.zufallslicht_flur_og_abends_aus",
-                                "automation.zufallslicht_studio_ein_aus",
-                                "automation.zufallslichter_abends_sicher_aus"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Zufallslicht autom.",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "light.f2_lig_flur_light",
-                                "light.studio_dg_light"
-                            ],
-                            "hours_to_show": 72,
-                            "refresh_interval": 60,
-                            "title": "Zufallslicht Historie",
-                            "type": "history-graph"
-                        }
-                    ],
-                    "title": "Beleuchtung"
-                },
-                {
-                    "badges": [],
-                    "cards": [
-                        {
-                            "entities": [
-                                {
-                                    "entity": "group.sunprot_automations"
-                                },
-                                {
-                                    "entity": "input_boolean.covers_use_terrasse_markise_for_sunprotection"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_azimuth"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_forecast_12h_temperature"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_forecast_12h_temperature_stats"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_outside_temp_ref"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_klx_limit_current"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_klx_limit_current_off"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_east"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_east_mean"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_east_ref"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_east_above_on_limit"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_east_below_off_limit"
-                                },
-                                {
-                                    "entity": "input_boolean.sunprot_eastface_active"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south_mean"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_south_ref"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_south_above_on_limit"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_south_below_off_limit"
-                                },
-                                {
-                                    "entity": "input_boolean.sunprot_southface_active"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_west"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_west_mean"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_west_ref"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_west_above_on_limit"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_west_below_off_limit"
-                                },
-                                {
-                                    "entity": "input_boolean.sunprot_westface_active"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_wiga_inside_temp_ref"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_wiga_klx_limit_current"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_wiga_klx_limit_current_off"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south"
-                                },
-                                {
-                                    "entity": "sensor.esp_weathersensor_multisensor_sun_south_mean"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_wiga_sun_above_on_limit"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_wiga_sun_below_off_limit"
-                                },
-                                {
-                                    "entity": "input_boolean.sunprot_wiga_active"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "script.sunprot_update_covers"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Sonnenschutz",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "input_number.sunprot_east_end_azimuth"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_east_end_range"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_south_begin_azimuth"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_south_begin_range"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_south_end_azimuth"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_south_end_range"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_west_begin_azimuth"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_west_begin_range"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_temp_0"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_klx_0"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_temp_1"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_klx_1"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_temp_2"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_klx_2"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_klx_off_factor"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_delay_on"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_delay_off"
-                                },
-                                {
-                                    "type": "divider"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_wiga_temp_0"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_wiga_klx_0"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_wiga_temp_1"
-                                },
-                                {
-                                    "entity": "input_number.sunprot_wiga_klx_1"
-                                }
-                            ],
-                            "show_header_toggle": false,
-                            "title": "Sonnenschutz Settings",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "sensor.sunprot_outside_temp_ref",
-                                "sensor.sunprot_klx_limit_current",
-                                "sensor.sunprot_klx_limit_current_off",
-                                "sensor.esp_weathersensor_multisensor_sun_east",
-                                "sensor.esp_weathersensor_multisensor_sun_east_mean",
-                                "sensor.sunprot_sun_east_ref",
-                                "input_boolean.sunprot_eastface_active",
-                                "sensor.esp_weathersensor_multisensor_sun_south",
-                                "sensor.esp_weathersensor_multisensor_sun_south_mean",
-                                "sensor.sunprot_sun_south_ref",
-                                "input_boolean.sunprot_southface_active",
-                                "sensor.esp_weathersensor_multisensor_sun_west",
-                                "sensor.esp_weathersensor_multisensor_sun_west_mean",
-                                "sensor.sunprot_sun_west_ref",
-                                "input_boolean.sunprot_westface_active"
-                            ],
-                            "hours_to_show": 72,
-                            "refresh_interval": 60,
-                            "title": "Sonnenschutz Historie",
-                            "type": "history-graph"
-                        },
-                        {
-                            "entities": [
-                                "sensor.sunprot_wiga_inside_temp_ref",
-                                "sensor.sunprot_wiga_klx_limit_current",
-                                "sensor.sunprot_wiga_klx_limit_current_off",
-                                "sensor.esp_weathersensor_multisensor_sun_south",
-                                "sensor.esp_weathersensor_multisensor_sun_south_mean",
-                                "input_boolean.sunprot_wiga_active"
-                            ],
-                            "hours_to_show": 72,
-                            "refresh_interval": 60,
-                            "title": "Sonnenschutz WiGa Historie",
-                            "type": "history-graph"
-                        },
-                        {
-                            "entities": [
-                                "automation.sunprot_eastface_active_on",
-                                "automation.sunprot_eastface_active_off",
-                                "automation.sunprot_southface_active_on",
-                                "automation.sunprot_southface_active_off",
-                                "automation.sunprot_westface_active_on",
-                                "automation.sunprot_westface_active_off",
-                                "automation.sunprot_wiga_active_on",
-                                "automation.sunprot_wiga_active_off",
-                                "automation.sunprot_off_before_sunset",
-                                "automation.sunprot_update_covers",
-                                "automation.sunprot_evening_routine"
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Sonnenschutz autom.",
-                            "type": "entities"
-                        }
-                    ],
-                    "title": "Sonnenschutz"
-                },
-                {
-                    "badges": [],
-                    "cards": [
-                        {
-                            "entities": [
-                                "fan.comfoairq",
-                                "sensor.comfoairq_supply_temperature",
-                                "sensor.comfoairq_supply_humidity",
-                                "sensor.comfoairq_inside_temperature",
-                                "sensor.comfoairq_inside_humidity",
-                                "sensor.comfoairq_exhaust_temperature",
-                                "sensor.comfoairq_exhaust_humidity",
-                                "sensor.comfoairq_outside_temperature",
-                                "sensor.comfoairq_outside_humidity",
-                                "sensor.comfoairq_supply_airflow",
-                                "sensor.comfoairq_exhaust_airflow",
-                                "sensor.comfoairq_days_to_replace_filter",
-                                "sensor.comfoairq_bypass_state",
-                                "sensor.comfoairq_power_usage"
-                            ],
-                            "show_header_toggle": false,
-                            "title": "L\u00fcftung",
-                            "type": "entities"
-                        },
-                        {
-                            "entities": [
-                                "fan.comfoairq",
-                                "sensor.comfoairq_supply_temperature",
-                                "sensor.comfoairq_supply_humidity",
-                                "sensor.comfoairq_inside_temperature",
-                                "sensor.comfoairq_inside_humidity",
-                                "sensor.comfoairq_exhaust_temperature",
-                                "sensor.comfoairq_exhaust_humidity",
-                                "sensor.comfoairq_outside_temperature",
-                                "sensor.comfoairq_outside_humidity",
-                                "sensor.comfoairq_supply_airflow",
-                                "sensor.comfoairq_exhaust_airflow",
-                                "sensor.comfoairq_days_to_replace_filter",
-                                "sensor.comfoairq_bypass_state",
-                                "sensor.comfoairq_power_usage"
-                            ],
-                            "hours_to_show": 72,
-                            "refresh_interval": 60,
-                            "title": "L\u00fcftung",
-                            "type": "history-graph"
-                        }
-                    ],
-                    "title": "L\u00fcftung"
-                },
-                {
-                    "badges": [],
-                    "cards": [
-                        {
-                            "cards": [
-                                {
-                                    "entities": [
-                                        "sensor.esp_weathersensor_multisensor_temp",
-                                        "sensor.heizung_aussen_temperatur",
-                                        "sensor.esp_weathersensor_multisensor_sun_east",
-                                        "sensor.esp_weathersensor_multisensor_sun_south",
-                                        "sensor.esp_weathersensor_multisensor_sun_west",
-                                        "sensor.esp_weathersensor_multisensor_daylight",
-                                        "sensor.esp_weathersensor_multisensor_is_dark_disp",
-                                        "sensor.esp_weathersensor_multisensor_windspeed",
-                                        "sensor.esp_weathersensor_multisensor_gusts",
-                                        "sensor.esp_weathersensor_multisensor_rain_disp",
-                                        "sensor.esp_weathersensor_cover_protection_1_disp",
-                                        "sensor.esp_weathersensor_cover_protection_2_disp",
-                                        "sensor.esp_weathersensor_tipping_bucket_precipitation",
-                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
-                                    ],
-                                    "show_header_toggle": false,
-                                    "title": "Wetter lokal",
-                                    "type": "entities"
-                                },
-                                {
-                                    "entities": [
-                                        "sensor.esp_weathersensor_multisensor_temp",
-                                        "sensor.heizung_aussen_temperatur",
-                                        "sensor.esp_weathersensor_multisensor_sun_east",
-                                        "sensor.esp_weathersensor_multisensor_sun_south",
-                                        "sensor.esp_weathersensor_multisensor_sun_west",
-                                        "sensor.esp_weathersensor_multisensor_windspeed",
-                                        "sensor.esp_weathersensor_multisensor_gusts",
-                                        "sensor.esp_weathersensor_multisensor_daylight",
-                                        "sensor.esp_weathersensor_multisensor_rain_disp",
-                                        "sensor.esp_weathersensor_cover_protection_1_disp",
-                                        "sensor.esp_weathersensor_cover_protection_2_disp",
-                                        "sensor.esp_weathersensor_multisensor_is_dark_disp",
-                                        "sensor.esp_weathersensor_tipping_bucket_precipitation",
-                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
-                                    ],
-                                    "hours_to_show": 72,
-                                    "refresh_interval": 60,
-                                    "title": "Wetter lokal",
-                                    "type": "history-graph"
-                                }
-                            ],
-                            "type": "vertical-stack"
-                        },
-                        {
-                            "aspect_ratio": "100%",
-                            "type": "iframe",
-                            "url": "/api/hassio_ingress/hDeAoG_phgmZCGzyvWVTG7zqw2ABiJ0sN5esK2yqkOY/d/4k_mpAvWk/regen?orgId=1&panelId=4&refresh=60s&kiosk&fullscreen"
-                        },
-                        {
-                            "aspect_ratio": "100%",
-                            "type": "iframe",
-                            "url": "/api/hassio_ingress/hDeAoG_phgmZCGzyvWVTG7zqw2ABiJ0sN5esK2yqkOY/d/4k_mpAvWk/regen?orgId=1&panelId=2&refresh=60s&kiosk&fullscreen"
-                        },
-                        {
-                            "cards": [
-                                {
-                                    "entities": [
-                                        "switch.bewaesserung_timer",
-                                        "switch.bewaesserung",
-                                        "switch.bewaesserung_triggervalveopen",
-                                        "switch.bewaesserung_triggervalveclose",
-                                        {
-                                            "type": "divider"
-                                        },
-                                        "sensor.sum_rain_24h",
-                                        "sensor.sum_rain_3d",
-                                        "sensor.sum_rain_7d",
-                                        "sensor.sum_rain_14d",
-                                        "sensor.sum_rain_21d",
-                                        "sensor.sum_rain_30d"
-                                    ],
-                                    "show_header_toggle": false,
-                                    "title": "Garten",
-                                    "type": "entities"
-                                },
-                                {
-                                    "entities": [
-                                        {
-                                            "entity": "switch.bewaesserung_timer"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveopen"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveclose"
-                                        }
-                                    ],
-                                    "hours_to_show": 72,
-                                    "refresh_interval": 60,
-                                    "title": "Garten",
-                                    "type": "history-graph"
-                                }
-                            ],
-                            "type": "vertical-stack"
-                        },
-                        {
-                            "entities": [
-                                {
-                                    "entity": "sensor.comfoairq_inside_temperature"
-                                },
-                                {
-                                    "entity": "sensor.f1_senthp_wiga_temperature"
-                                },
-                                {
-                                    "entity": "sensor.f3_senthp_studio_temperature"
-                                },
-                                {
-                                    "entity": "sensor.comfoairq_inside_humidity"
-                                },
-                                {
-                                    "entity": "sensor.f1_senthp_wiga_humidity"
-                                },
-                                {
-                                    "entity": "sensor.f3_senthp_studio_humidity"
-                                },
-                                {
-                                    "entity": "sensor.f1_senthp_wiga_pressure"
-                                },
-                                {
-                                    "entity": "sensor.f3_senthp_studio_pressure"
-                                }
-                            ],
-                            "show_header_toggle": true,
-                            "title": "Innen",
-                            "type": "entities"
-                        },
-                        {
-                            "entity": "weather.met_no",
-                            "name": "Vorhersage (met.no)",
-                            "type": "weather-forecast"
-                        }
-                    ],
-                    "title": "Wetter"
-                },
-                {
-                    "badges": [],
-                    "cards": [
-                        {
                             "entity": "media_player.bad",
                             "type": "media-control"
                         },
@@ -1000,20 +1035,187 @@
                     "cards": [
                         {
                             "entities": [
+                                "input_boolean.anwesenheit_somebody_home",
+                                "input_boolean.anwesenheit_simulieren",
                                 {
-                                    "entity": "sensor.f1_senwin_terrassentur_battery"
+                                    "type": "divider"
+                                },
+                                "input_boolean.anwesenheit_simulieren_is_so_awake",
+                                "input_boolean.anwesenheit_simulieren_is_daylight"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Anwesenheit",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.f1_lig_wohnzimmer_1_light",
+                                "light.f1_grp_licht_treppe_light",
+                                "light.f2_lig_flur_light",
+                                "light.f2_grp_licht_treppe_light",
+                                "light.studio_dg_light"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Licht Historie",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "sensor.liftpos_f1_cov_wohnzimmer_sitzfenster",
+                                "sensor.liftpos_f1_cov_wohnzimmer_terrassentur",
+                                "sensor.liftpos_f1_cov_kuche_terrassentur",
+                                "sensor.liftpos_f1_cov_kuche_fenster",
+                                "sensor.liftpos_f1_cov_windfang",
+                                "sensor.liftpos_f2_cov_florian",
+                                "sensor.liftpos_f2_cov_jonathan_links",
+                                "sensor.liftpos_f2_cov_jonathan_rechts",
+                                "sensor.liftpos_f2_cov_schlafzimmer",
+                                "sensor.liftpos_f2_cov_bad",
+                                "sensor.liftpos_f2_cov_flur",
+                                "sensor.liftpos_f3_cov_studio_links",
+                                "sensor.liftpos_f3_cov_studio_rechts",
+                                "sensor.liftpos_f3_cov_dachfenster_gross",
+                                "sensor.liftpos_f3_cov_dachfenster_gross_aussen",
+                                "sensor.liftpos_f3_cov_bad"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Beschattung Position",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.liftpos_f1_cov_terrasse_markise"
                                 },
                                 {
-                                    "entity": "sensor.f1_senthp_wiga_battery"
-                                },
-                                {
-                                    "entity": "sensor.f3_senthp_studio_battery"
-                                },
-                                {
-                                    "entity": "sensor.f2_but_bad_dusche_battery"
+                                    "entity": "sensor.liftpos_f1_cov_wintergarten_markise"
                                 }
                             ],
-                            "title": "Battery Levels",
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Beschattung Markisen",
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                "switch.garten",
+                                "switch.zone_2",
+                                "switch.garten_standard",
+                                "switch.bewaesserung",
+                                "switch.bewaesserung_timer"
+                            ],
+                            "hours_to_show": 72,
+                            "refresh_interval": 60,
+                            "title": "Garten",
+                            "type": "history-graph"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.esp_weathersensor_multisensor_temp"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_multisensor_gusts"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_multisensor_rain_disp"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_multisensor_daylight"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_tipping_bucket_precipitation"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_multisensor_sun_east"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_multisensor_sun_south"
+                                        },
+                                        {
+                                            "entity": "sensor.esp_weathersensor_multisensor_sun_west"
+                                        },
+                                        {
+                                            "entity": "sensor.comfoairq_inside_temperature"
+                                        },
+                                        {
+                                            "entity": "sensor.f1_senthp_wiga_temperature"
+                                        },
+                                        {
+                                            "entity": "sensor.f3_senthp_studio_temperature"
+                                        }
+                                    ],
+                                    "hours_to_show": 72,
+                                    "refresh_interval": 60,
+                                    "title": "Wetter",
+                                    "type": "history-graph"
+                                },
+                                {
+                                    "entities": [
+                                        "sensor.rain_daily"
+                                    ],
+                                    "hours_to_show": 168,
+                                    "refresh_interval": 60,
+                                    "type": "history-graph"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                "input_number.anwesenheit_simulieren_wakeup_hours",
+                                "input_number.anwesenheit_simulieren_wakeup_mins",
+                                "input_number.anwesenheit_simulieren_wakeup_rand_delay",
+                                "input_number.anwesenheit_simulieren_tobed_hours",
+                                "input_number.anwesenheit_simulieren_tobed_mins",
+                                "input_number.anwesenheit_simulieren_tobed_rand_delay"
+                            ],
+                            "title": "Parameter",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "automation.anwesenheit_simulieren_covers_up_mornings",
+                                "automation.anwesenheit_simulieren_covers_down_evenings",
+                                "automation.anwesenheit_simulieren_lights_flure_on",
+                                "automation.anwesenheit_simulieren_lights_random_on_off",
+                                "automation.anwesenheit_simulieren_lights_all_off"
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Simulation Worker",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "automatik",
+                    "title": "Automatik"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "sensor.hdd_endurance_remaining",
+                                "sensor.hdd_temp"
+                            ],
+                            "title": "Home Server",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "sensor.f1_senwin_terrassentur_battery",
+                                "sensor.f1_senthp_wiga_battery",
+                                "sensor.f3_senthp_studio_battery",
+                                "sensor.f3_senthp_bad_battery",
+                                "sensor.f2_but_bad_dusche_battery"
+                            ],
+                            "title": "Senor Battery Levels",
                             "type": "entities"
                         },
                         {

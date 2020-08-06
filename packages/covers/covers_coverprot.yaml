@@ -2,10 +2,6 @@ input_boolean:
   coverprot_wind_active:
   coverprot_rain_active:
 
-timer:
-  coverprot_off_reset:
-    duration: '01:00:00'
-
 
 automation:
 
@@ -34,8 +30,8 @@ automation:
         entity_id: cover.f1_cov_terrasse_markise_cover
       - service: cover.open_cover
         entity_id: cover.f1_cov_wintergarten_markise_cover
-      - service: cover.open_cover
-        entity_id: cover.f3_cov_dachfenster_gross_cover
+      # - service: cover.open_cover
+      #   entity_id: cover.f3_cov_dachfenster_gross_aussen_cover
 
   - alias: coverprot_rain_execute
     trigger:
@@ -48,16 +44,10 @@ automation:
         entity_id: cover.f1_cov_terrasse_markise_cover
       - service: cover.open_cover
         entity_id: cover.f1_cov_wintergarten_markise_cover
-      # f3_cov_dachfenster_gross_cover dient auch der Verdunkelung und bleibt bei Regen draußen.
+      # f3_cov_dachfenster_gross_aussen_cover dient auch der Verdunkelung und bleibt bei Regen draußen.
 
-  - alias: coverprot_off_timer_start
-    trigger: {platform: state, entity_id: group.coverprot_automations, to: 'off'}
-    action: {service: timer.start, data: {entity_id: timer.coverprot_off_reset}}
-  - alias: coverprot_off_timer_cancel
-    trigger: {platform: state, entity_id: group.coverprot_automations, to: 'on'}
-    action: {service: timer.cancel, data: {entity_id: timer.coverprot_off_reset}}
-  - alias: coverprot_off_timer_expired
-    trigger: {platform: event, event_type: timer.finished, event_data: {entity_id: timer.coverprot_off_reset}}
+  - alias: coverprot_reenable
+    trigger: { platform: state, entity_id: group.coverprot_automations, to: "off", for: { hours: 1 } }
     action: {service: homeassistant.turn_on, data: {entity_id: group.coverprot_automations}}
 
 
@@ -99,11 +89,5 @@ homeassistant:
       friendly_name: Markisen einf. wenn Windschutz aktiv
     automation.coverprot_rain_execute:
       friendly_name: Markisen einf. wenn Regenschutz aktiv
-    timer.coverprot_off_reset:
-      friendly_name: Markisenschutz erneut ein
-    automation.coverprot_off_timer_start:
-      friendly_name: Markisenschutz Timer starten
-    automation.coverprot_off_timer_cancel:
-      friendly_name: Markisenschutz Timer abbr.
-    automation.coverprot_off_timer_expired:
+    automation.coverprot_reenable:
       friendly_name: Markisenschutz erneut ein

@@ -7,19 +7,13 @@ sensor.f1_senthp_wiga_temperature:
   friendly_name: Temperatur WiGa
 sensor.f1_senthp_wiga_battery:
   friendly_name: Aqara THP WiGa Battery
+sensor.f2_but_bad_dusche_battery:
+  friendly_name: Hue Dimmer Battery
 sensor.f3_senthp_studio_temperature:
   friendly_name: Temperatur DG
 sensor.f3_senthp_studio_battery:
   friendly_name: Aqara THP DG Battery
-sensor.f2_but_bad_dusche_battery:
-  friendly_name: Hue Dimmer Battery
-
-# Bewässerung
-switch.bewaesserung_timer:
-  friendly_name: Bewässerung Timer
-switch.bewaesserung:
-  friendly_name: Bewässerung Wasser läuft
-switch.bewaesserung_triggervalveopen:
-  friendly_name: Bewässerung Ventil öffnen
-switch.bewaesserung_triggervalveclose:
-  friendly_name: Bewässerung Ventil schließen
+sensor.f3_senthp_bad_temperature:
+  friendly_name: Temperatur DG Bad
+sensor.f3_senthp_bad_battery:
+  friendly_name: Aqara THP DG Bad Battery
