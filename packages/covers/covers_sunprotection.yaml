@@ -205,10 +205,15 @@ automation:
 
   - alias: sunprot_update_covers_on_change
     trigger:
-      - { platform: state, entity_id: input_boolean.sunprot_eastface_active }
-      - { platform: state, entity_id: input_boolean.sunprot_southface_active }
-      - { platform: state, entity_id: input_boolean.sunprot_westface_active }
-      - { platform: state, entity_id: input_boolean.sunprot_wiga_active }
+      # Inputs werden stündlich forciert geschrieben (für InfluxDB), deswegen Trigger explizit nur bei Statuswechsel
+      - { platform: state, entity_id: input_boolean.sunprot_eastface_active, from: 'off', to: 'on' }
+      - { platform: state, entity_id: input_boolean.sunprot_eastface_active, from: 'on', to: 'off' }
+      - { platform: state, entity_id: input_boolean.sunprot_southface_active, from: 'off', to: 'on' }
+      - { platform: state, entity_id: input_boolean.sunprot_southface_active, from: 'on', to: 'off' }
+      - { platform: state, entity_id: input_boolean.sunprot_westface_active, from: 'off', to: 'on' }
+      - { platform: state, entity_id: input_boolean.sunprot_westface_active, from: 'on', to: 'off' }
+      - { platform: state, entity_id: input_boolean.sunprot_wiga_active, from: 'off', to: 'on' }
+      - { platform: state, entity_id: input_boolean.sunprot_wiga_active, from: 'on', to: 'off' }
     condition:
       - { condition: time, after: '08:00:00' } # damit die Kinder nicht zu früh von der Markise wach werden
     action:
