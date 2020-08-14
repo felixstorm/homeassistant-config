@@ -43,7 +43,9 @@ def ensure_state(sunprot_is_active, entity_id):
     skip_if_closed_completely = False
 
     if situation in ['morning', 'daytime']:
-        skip_if_closed_completely = situation != 'morning'
+        # tagsüber (manuell) komplett geschlossene Raffstore in Ruhe lassen (Mittagsschlaf, Blendschutz etc.) und
+        # Markisen auch morgens (falls sie dann schon manuell komplett ausgefahren worden sind)
+        skip_if_closed_completely = (situation != 'morning') or ('markise' in entity_id)
         if sunprot_is_active:
             target_lift = 5
             target_tilt = 50
