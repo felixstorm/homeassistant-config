@@ -47,6 +47,13 @@ sensor:
         value_template: '{{ value | round(1) }}'
         unit_of_measurement: 'mm'
 
+  - platform: scrape
+    name: oberursel_wasserampel_raw
+    resource: https://www.stadtwerke-oberursel.de/Wasserampel
+    select: 'img[src*="Header-Wasserampel"]'
+    attribute: src
+    value_template: '{{ value|regex_findall_index("gruen|gelb|rot", ignorecase=True) }}'
+
   - platform: template
     sensors:
       esp_weathersensor_multisensor_is_dark_disp:
@@ -61,6 +68,9 @@ sensor:
       esp_weathersensor_cover_protection_2_disp:
         value_template: "{% if is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'off') %} nein {% elif is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'on') %} ja {% else %} Invalid: '{{ states('binary_sensor.esp_weathersensor_cover_protection_2') }}' {% endif %}"
         icon_template: "{% if is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'off') %} mdi:weather-sunny {% elif is_state('binary_sensor.esp_weathersensor_cover_protection_2', 'on') %} mdi:weather-windy {% else %} mdi:map-marker-question-outline {% endif %}"
+      oberursel_wasserampel:
+        value_template: '{{ states("sensor.oberursel_wasserampel_raw")|regex_replace(find="gruen", replace="grün")|regex_replace(find="gelb", replace="GELB")|regex_replace(find="rot", replace="ROT") }}'
+        icon_template: '{{ states("sensor.oberursel_wasserampel_raw")|regex_replace(find="gruen", replace="mdi:cup")|regex_replace(find="gelb", replace="mdi:cup-outline")|regex_replace(find="rot", replace="mdi:cup-off-outline") }}'
 
 
 homeassistant:
@@ -115,3 +125,6 @@ homeassistant:
     sensor.sum_rain_30d:
       friendly_name: Regen 30d
 
+    # Oberursel Wasserampel
+    sensor.oberursel_wasserampel:
+      friendly_name: Wasserampel Oberursel
