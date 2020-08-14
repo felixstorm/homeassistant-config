@@ -17,5 +17,5 @@ homeassistant:
       friendly_name: Treppe OG-DG 1
     light.f2_lig_treppe_2_light:
       friendly_name: Treppe OG-DG 2
-    light.studio_dg_light:
+    light.f3_lig_studio_stehleuchte_light:
       friendly_name: Studio DG

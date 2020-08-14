@@ -54,7 +54,7 @@ automation:
             light.turn_off
           {% endif %}
         data:
-          entity_id: light.studio_dg_light
+          entity_id: light.f3_lig_studio_stehleuchte_light
           brightness_pct: 100
 
   - alias: anwesenheit_simulieren_lights_all_off
@@ -73,7 +73,7 @@ automation:
           - light.f1_grp_licht_treppe_light
           - light.f2_lig_flur_light
           - light.f2_grp_licht_treppe_light
-          - light.studio_dg_light
+          - light.f3_lig_studio_stehleuchte_light
 
 
 homeassistant:

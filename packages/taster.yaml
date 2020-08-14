@@ -4,29 +4,46 @@ automation:
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'off' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'off' }
+    - { platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'off' }
     action: { service: script.turn_on, entity_id: script.coversatnight_covers_up_eg }
   - alias: button_shutters_eg_close
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'on' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'on' }
+    - { platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'on' }
     action: { service: script.turn_on, entity_id: script.coversatnight_covers_down_eg }
   - alias: button_shutters_og_open
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_0' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_0' }
+    - { platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'select_0' }
     action: { service: script.turn_on, entity_id: script.coversatnight_covers_up_og }
   - alias: button_shutters_og_close
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_1' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_1' }
+    - { platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'select_1' }
     action: { service: script.turn_on, entity_id: script.coversatnight_covers_down_og }
   - alias: button_shutters_dg_open
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_2' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_2' }
+    - { platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'select_2' }
     action: { service: script.turn_on, entity_id: script.coversatnight_covers_up_dg }
   - alias: button_shutters_dg_close
     trigger:
     - { platform: state, entity_id: sensor.f1_but_flur_1_action, to: 'select_3' }
     - { platform: state, entity_id: sensor.f2_but_flur_1_action, to: 'select_3' }
+    - { platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'select_3' }
     action: { service: script.turn_on, entity_id: script.coversatnight_covers_down_dg }
+  - alias: button_shutters_dg_rechts_open
+    trigger:
+    - {platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'select_4'}
+    action: {service: cover.open_cover, entity_id: cover.f3_cov_studio_rechts_cover}
+  - alias: button_shutters_dg_rechts_sunprot100
+    trigger:
+    - {platform: state, entity_id: sensor.f3_but_studio_1_action, to: 'select_5'}
+    action:
+    - {service: cover.set_cover_tilt_position, entity_id: cover.f3_cov_studio_rechts_cover, data: {tilt_position: 40}}
+    - delay: '00:00:05'
+    - {service: cover.set_cover_position, entity_id: cover.f3_cov_studio_rechts_cover, data: {position: 0}}

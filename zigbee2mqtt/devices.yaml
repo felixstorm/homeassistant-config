@@ -61,7 +61,7 @@
   friendly_name: f2_lig_flur
 '0x001fee0000001bcf':
   friendly_name: f2_but_uv_1
-'0x000f171241020ab1':
+'0x680ae2fffe80fa84':
   friendly_name: f2_but_bad_1
 '0x680ae2fffec1fdb8':
   friendly_name: f2_but_bad_dusche
@@ -69,8 +69,10 @@
   friendly_name: f3_cov_studio_links
 '0x001fee000000240d':
   friendly_name: f3_cov_studio_rechts
+'0x000f171241020ab1':
+  friendly_name: f3_but_studio_1
 '0x0017880102481a1c':
-  friendly_name: f2_lig_studio
+  friendly_name: f3_lig_studio_stehleuchte
 '0x00158d00022c93ee':
   friendly_name: f3_senthp_studio
   debounce: 1
