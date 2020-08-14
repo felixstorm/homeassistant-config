@@ -34,12 +34,14 @@
                                 "sensor.sum_rain_3d",
                                 "sensor.sum_rain_7d",
                                 "sensor.sum_rain_14d",
+                                "sensor.oberursel_wasserampel",
                                 {
                                     "type": "divider"
                                 },
                                 "switch.garten",
                                 "switch.zone_2",
-                                "switch.garten_standard",
+                                "switch.zone_3",
+                                "switch.zone_4",
                                 "switch.bewaesserung_timer",
                                 "switch.bewaesserung",
                                 {
@@ -211,7 +213,7 @@
                                 "light.f1_grp_licht_treppe_light",
                                 "light.f2_lig_flur_light",
                                 "light.f2_grp_licht_treppe_light",
-                                "light.studio_dg_light"
+                                "light.f3_lig_studio_stehleuchte_light"
                             ],
                             "show_header_toggle": false,
                             "title": "Beleuchtung",
@@ -423,9 +425,6 @@
                                 },
                                 {
                                     "entity": "sensor.sunprot_sun_west_ref"
-                                },
-                                {
-                                    "entity": "sensor.sunprot_sun_west_ref2"
                                 },
                                 {
                                     "entity": "sensor.sunprot_sun_west_above_on_limit"
@@ -697,7 +696,8 @@
                                         "sensor.esp_weathersensor_cover_protection_1_disp",
                                         "sensor.esp_weathersensor_cover_protection_2_disp",
                                         "sensor.esp_weathersensor_tipping_bucket_precipitation",
-                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate"
+                                        "sensor.esp_weathersensor_tipping_bucket_precipitation_rate",
+                                        "sensor.oberursel_wasserampel"
                                     ],
                                     "show_header_toggle": false,
                                     "title": "Wetter lokal",
@@ -739,7 +739,10 @@
                                     "entities": [
                                         "switch.garten",
                                         "switch.zone_2",
+                                        "switch.zone_3",
+                                        "switch.zone_4",
                                         "switch.garten_standard",
+                                        "switch.schotterrasen",
                                         {
                                             "type": "divider"
                                         },
@@ -768,7 +771,11 @@
                                 {
                                     "entities": [
                                         "switch.garten",
+                                        "switch.zone_2",
+                                        "switch.zone_3",
+                                        "switch.zone_4",
                                         "switch.garten_standard",
+                                        "switch.schotterrasen",
                                         "switch.bewaesserung_timer",
                                         "switch.bewaesserung",
                                         "switch.bewaesserung_triggervalveopen",
@@ -800,9 +807,25 @@
                             "type": "entities"
                         },
                         {
-                            "entity": "weather.met_no",
-                            "name": "Vorhersage (met.no)",
-                            "type": "weather-forecast"
+                            "cards": [
+                                {
+                                    "entity": "weather.met_no",
+                                    "type": "weather-forecast"
+                                },
+                                {
+                                    "entity": "weather.dwd_weather_altenstadt",
+                                    "type": "weather-forecast"
+                                },
+                                {
+                                    "entity": "weather.dwd_weather_bad_homburg",
+                                    "type": "weather-forecast"
+                                },
+                                {
+                                    "entity": "weather.dwd_weather_homburg_bad_filter",
+                                    "type": "weather-forecast"
+                                }
+                            ],
+                            "type": "vertical-stack"
                         }
                     ],
                     "title": "Wetter"
@@ -827,7 +850,7 @@
                                 "light.f1_grp_licht_treppe_light",
                                 "light.f2_lig_flur_light",
                                 "light.f2_grp_licht_treppe_light",
-                                "light.studio_dg_light",
+                                "light.f3_lig_studio_stehleuchte_light",
                                 {
                                     "type": "divider"
                                 },
@@ -1053,7 +1076,7 @@
                                 "light.f1_grp_licht_treppe_light",
                                 "light.f2_lig_flur_light",
                                 "light.f2_grp_licht_treppe_light",
-                                "light.studio_dg_light"
+                                "light.f3_lig_studio_stehleuchte_light"
                             ],
                             "hours_to_show": 72,
                             "refresh_interval": 60,
@@ -1100,11 +1123,24 @@
                         },
                         {
                             "entities": [
-                                "switch.garten",
-                                "switch.zone_2",
-                                "switch.garten_standard",
-                                "switch.bewaesserung",
-                                "switch.bewaesserung_timer"
+                                {
+                                    "entity": "switch.garten"
+                                },
+                                {
+                                    "entity": "switch.zone_2"
+                                },
+                                {
+                                    "entity": "switch.zone_3"
+                                },
+                                {
+                                    "entity": "switch.zone_4"
+                                },
+                                {
+                                    "entity": "switch.bewaesserung"
+                                },
+                                {
+                                    "entity": "switch.bewaesserung_timer"
+                                }
                             ],
                             "hours_to_show": 72,
                             "refresh_interval": 60,
@@ -1170,6 +1206,9 @@
                         },
                         {
                             "entities": [
+                                "input_number.anwesenheit_simulieren_sunrise_lx",
+                                "input_number.anwesenheit_simulieren_sunset_lx",
+                                "input_number.anwesenheit_simulieren_sunriseset_delay",
                                 "input_number.anwesenheit_simulieren_wakeup_hours",
                                 "input_number.anwesenheit_simulieren_wakeup_mins",
                                 "input_number.anwesenheit_simulieren_wakeup_rand_delay",

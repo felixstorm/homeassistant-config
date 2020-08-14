@@ -12,12 +12,16 @@ input_boolean:
 
 input_number:
 
-  anwesenheit_simulieren_wakeup_hours:       { min:  6, max:  9, step: 1, unit_of_measurement: hrs }  # initial: 06
-  anwesenheit_simulieren_wakeup_mins:        { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 30
-  anwesenheit_simulieren_wakeup_rand_delay:  { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 30
-  anwesenheit_simulieren_tobed_hours:        { min: 20, max: 23, step: 1, unit_of_measurement: hrs }  # initial: 21
-  anwesenheit_simulieren_tobed_mins:         { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 30
-  anwesenheit_simulieren_tobed_rand_delay:   { min:  0, max: 59, step: 5, unit_of_measurement: min }  # initial: 60
+  anwesenheit_simulieren_sunrise_lx:         { min:  0, max: 999, step: 10, unit_of_measurement: lx  }  # initial: 600
+  anwesenheit_simulieren_sunset_lx:          { min:  0, max: 999, step: 10, unit_of_measurement: lx  }  # initial: 400
+  anwesenheit_simulieren_sunriseset_delay:   { min:  0, max:  59, step:  5, unit_of_measurement: min }  # initial: 10
+
+  anwesenheit_simulieren_wakeup_hours:       { min:  6, max:   9, step:  1, unit_of_measurement: hrs }  # initial: 06
+  anwesenheit_simulieren_wakeup_mins:        { min:  0, max:  59, step:  5, unit_of_measurement: min }  # initial: 30
+  anwesenheit_simulieren_wakeup_rand_delay:  { min:  0, max:  59, step:  5, unit_of_measurement: min }  # initial: 30
+  anwesenheit_simulieren_tobed_hours:        { min: 20, max:  23, step:  1, unit_of_measurement: hrs }  # initial: 21
+  anwesenheit_simulieren_tobed_mins:         { min:  0, max:  59, step:  5, unit_of_measurement: min }  # initial: 30
+  anwesenheit_simulieren_tobed_rand_delay:   { min:  0, max:  59, step:  5, unit_of_measurement: min }  # initial: 60
 
 
 automation:
@@ -39,10 +43,9 @@ automation:
 
   - alias: anwesenheit_simulieren_sunrise
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.esp_weathersensor_multisensor_daylight
-        above: '500'
-        for: { minutes: 10 }
+      - platform: template
+        value_template: "{{ states('sensor.esp_weathersensor_multisensor_daylight') | int > states('input_number.anwesenheit_simulieren_sunrise_lx') | int }}"
+        for: { minutes: "{{ states('input_number.anwesenheit_simulieren_sunriseset_delay') | int }}" }
       - platform: sun # just as a safety measure in case esp_weathersensor_multisensor_daylight is not working correctly
         event: sunrise
         offset: '+00:30:00'
@@ -60,10 +63,9 @@ automation:
 
   - alias: anwesenheit_simulieren_sunset
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.esp_weathersensor_multisensor_daylight
-        below: '500'
-        for: {minutes: 10}
+      - platform: template
+        value_template: "{{ states('sensor.esp_weathersensor_multisensor_daylight') | int < states('input_number.anwesenheit_simulieren_sunset_lx') | int }}"
+        for: { minutes: "{{ states('input_number.anwesenheit_simulieren_sunriseset_delay') | int }}" }
       - platform: sun # just as a safety measure in case esp_weathersensor_multisensor_daylight is not working correctly
         event: sunset
         offset: '+00:30:00'
@@ -97,6 +99,12 @@ homeassistant:
     group.anwesenheit_simulieren_workers:
       friendly_name: Anwesenheitssimulation.
       icon: mdi:home-automation
+    input_number.anwesenheit_simulieren_sunrise_lx:
+      friendly_name: Helligkeit Sonnenaufgang
+    input_number.anwesenheit_simulieren_sunset_lx:
+      friendly_name: Helligkeit Sonnenuntergang
+    input_number.anwesenheit_simulieren_sunriseset_delay:
+      friendly_name: Verzögerung Sonnenauf/-untergang
     input_number.anwesenheit_simulieren_wakeup_hours:
       friendly_name: Uhrzeit morg. wach (hrs)
     input_number.anwesenheit_simulieren_wakeup_mins:
