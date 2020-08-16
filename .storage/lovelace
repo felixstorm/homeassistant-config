@@ -34,7 +34,13 @@
                                 "sensor.sum_rain_3d",
                                 "sensor.sum_rain_7d",
                                 "sensor.sum_rain_14d",
-                                "sensor.oberursel_wasserampel",
+                                {
+                                    "entity": "sensor.oberursel_wasserampel",
+                                    "tap_action": {
+                                        "action": "url",
+                                        "url_path": "https://www.stadtwerke-oberursel.de/Wasserampel"
+                                    }
+                                },
                                 {
                                     "type": "divider"
                                 },
@@ -143,6 +149,12 @@
                             "entities": [
                                 {
                                     "entity": "sensor.wasserzaehler_h2o_count"
+                                },
+                                {
+                                    "entity": "sensor.wasserzaehler_zisterne_fuellstand"
+                                },
+                                {
+                                    "entity": "sensor.wasserzaehler_analog_range"
                                 },
                                 {
                                     "entity": "sensor.wasserzaehler_status"
@@ -697,7 +709,13 @@
                                         "sensor.esp_weathersensor_cover_protection_2_disp",
                                         "sensor.esp_weathersensor_tipping_bucket_precipitation",
                                         "sensor.esp_weathersensor_tipping_bucket_precipitation_rate",
-                                        "sensor.oberursel_wasserampel"
+                                        {
+                                            "entity": "sensor.oberursel_wasserampel",
+                                            "tap_action": {
+                                                "action": "url",
+                                                "url_path": "https://www.stadtwerke-oberursel.de/Wasserampel"
+                                            }
+                                        }
                                     ],
                                     "show_header_toggle": false,
                                     "title": "Wetter lokal",
