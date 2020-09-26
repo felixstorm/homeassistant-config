@@ -30,31 +30,50 @@ automation:
       - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: arrow_right_click}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: arrow_right_click}
     action: {entity_id: media_player.bad, service: media_player.media_next_track}
-  - alias: sonos_bad_spotify_playlist_0
+  - alias: sonos_bad_spotify_playlist_1
     trigger:
       - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: brightness_up_hold}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: brightness_up_hold}
     action:
-      - {entity_id: media_player.bad, service: media_player.shuffle_set, data: {shuffle: true}}
-      - {entity_id: media_player.bad, service: media_player.select_source, data: {source: 'Sommerhits'}}
-  - alias: sonos_bad_spotify_playlist_1
+      - {service: script.sonos_play_playlist_by_number, data: {target: bad, shuffle: 1, playlist_num: 1}}
+  - alias: sonos_bad_spotify_playlist_2
     trigger:
       - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: arrow_right_hold}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: arrow_right_hold}
     action:
-      - {entity_id: media_player.bad, service: media_player.shuffle_set, data: {shuffle: true}}
-      - {entity_id: media_player.bad, service: media_player.select_source, data: {source: 'Stimmungsmacher'}}
-  - alias: sonos_bad_spotify_playlist_2
+      - {service: script.sonos_play_playlist_by_number, data: {target: bad, shuffle: 1, playlist_num: 2}}
+  - alias: sonos_bad_spotify_playlist_3
     trigger:
       - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: brightness_down_hold}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: brightness_down_hold}
     action:
-      - {entity_id: media_player.bad, service: media_player.shuffle_set, data: {shuffle: true}}
-      - {entity_id: media_player.bad, service: media_player.select_source, data: {source: 'Feelgood Indie'}}
-  - alias: sonos_bad_spotify_playlist_3
+      - {service: script.sonos_play_playlist_by_number, data: {target: bad, shuffle: 1, playlist_num: 3}}
+  - alias: sonos_bad_spotify_playlist_4
     trigger:
       - {platform: state, entity_id: sensor.f2_but_bad_dusche_action, to: arrow_left_hold}
       - {platform: state, entity_id: sensor.f2_but_bad_1_action, to: arrow_left_hold}
     action:
-      - {entity_id: media_player.bad, service: media_player.shuffle_set, data: {shuffle: true}}
-      - {entity_id: media_player.bad, service: media_player.select_source, data: {source: 'Swag!'}}
+      - {service: script.sonos_play_playlist_by_number, data: {target: bad, shuffle: 1, playlist_num: 4}}
+
+
+script:
+  sonos_play_playlist_by_number:
+    fields:
+      target: {description: Media player to control, example: bad}
+      shuffle: {description: Shuffle 0/1, example: 1}
+      playlist_num: {description: Playlist number, example: 1}
+    sequence:
+      - service: media_player.shuffle_set
+        data_template:
+          entity_id: "{{ 'media_player.' ~ target }}"
+          shuffle: "{% if shuffle == 1 %} true {% else %} false {% endif %}"
+      - service: media_player.select_source
+        data_template:
+          entity_id: "{{ 'media_player.' ~ target }}"
+          source: >
+            {% set playlist_regex = '^' ~ target ~ ' ' ~ playlist_num ~ ' ' -%}
+            {% for source in state_attr('media_player.' ~ target, 'source_list') -%}
+              {% if (source|regex_match(playlist_regex, ignorecase=True)) -%}
+                {{ source }}
+              {%- endif %}
+            {%- endfor %}
