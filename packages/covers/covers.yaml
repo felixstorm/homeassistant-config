@@ -124,12 +124,12 @@ automation:
   - alias: f1_cov_wohnzimmer_terrassentur_add
     trigger:
       - { platform: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact, from: 'on', to: 'off' }
-      - { platform: time_pattern, minutes: /60 }
+      - { platform: time_pattern, minutes: 0 }
     condition: { condition: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact, state: 'off' }
     action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.f1_cov_wohnzimmer_sitzfenster_cover, cover.f1_cov_wohnzimmer_terrassentur_cover, cover.f1_cov_kuche_terrassentur_cover, cover.f1_cov_kuche_fenster_cover, cover.f1_cov_windfang_cover ]}}
   - alias: f1_cov_wohnzimmer_terrassentur_remove
     trigger:
       - { platform: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact, from: 'off', to: 'on' }
-      - { platform: time_pattern, minutes: /60 }
+      - { platform: time_pattern, minutes: 0 }
     condition: { condition: state, entity_id: binary_sensor.f1_senwin_terrassentur_contact, state: 'on' }
     action: { service: group.set, data: { object_id: shutters_eg, entities: [ cover.f1_cov_wohnzimmer_sitzfenster_cover, cover.f1_cov_kuche_terrassentur_cover, cover.f1_cov_kuche_fenster_cover, cover.f1_cov_windfang_cover ]}}
