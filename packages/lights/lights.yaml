@@ -1,3 +1,21 @@
+# groups are not advertised for auto discovery in z2m
+light:
+  - name: f1_grp_licht_treppe_light
+    platform: mqtt
+    schema: json
+    command_topic: "zigbee2mqtt/f1_grp_licht_treppe/set"
+    state_topic: "zigbee2mqtt/f1_grp_licht_treppe"
+    color_temp: true
+    brightness: true
+  - name: f2_grp_licht_treppe_light
+    platform: mqtt
+    schema: json
+    command_topic: "zigbee2mqtt/f2_grp_licht_treppe/set"
+    state_topic: "zigbee2mqtt/f2_grp_licht_treppe"
+    color_temp: true
+    brightness: true
+
+
 homeassistant:
 
   customize:
