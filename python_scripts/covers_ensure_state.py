@@ -19,23 +19,29 @@ coverprot_wind_is_active = hass.states.get('input_boolean.coverprot_wind_active'
 coverprot_rain_is_active = hass.states.get('input_boolean.coverprot_rain_active').state != 'off'
 terrassentuer_is_closed = hass.states.get('binary_sensor.f1_senwin_terrassentur_contact').state == 'off'
 include_kuechentuer_in_automations = hass.states.get('input_boolean.covers_include_kuechentuer_in_automations').state == 'on'
+now = datetime.datetime.now()
+freezing_is_possible = now.month >= 11 or now.month <= 2 or (now.month == 3 and now.day < 15)
 
 
 
 def ensure_state(sunprot_is_active, entity_id):
 
     global hass, logger, situation, is_simulation
-    global coverprot_wind_is_active, coverprot_rain_is_active, terrassentuer_is_closed, include_kuechentuer_in_automations
+    global coverprot_wind_is_active, coverprot_rain_is_active, terrassentuer_is_closed, include_kuechentuer_in_automations, freezing_is_possible
 
     current_state = hass.states.get(entity_id)
     if current_state is None:
         logger.error('Error getting current state for entity_id \'{}\' - aborting.'.format(entity_id))
         return
-    message_prefix = '*** ENSURE_STATE for {}:'.format(entity_id).ljust(61)
+    message_prefix = '*** ENSURE_STATE for {}:'.format(entity_id[6:]).ljust(22 + 37 + 1)
 
 
     if terrassentuer_is_closed == False and 'wohnzimmer_terrassentur' in entity_id:
         logger.debug(message_prefix + 'Door Terrassentuer is not closed, aborting.')
+        return
+
+    if freezing_is_possible and ('markise' in entity_id or 'dachfenster_gross_aussen_cover' in entity_id or 'f3_cov_bad_cover' in entity_id):
+        logger.debug(message_prefix + 'Freezing possible, aborting.')
         return
 
     target_lift = None
