@@ -1,3 +1,18 @@
+input_datetime:
+  dg_markisen_needed_at_night_sunrise:
+    has_time: true
+  dg_markisen_needed_at_night_sunset:
+    has_time: true
+
+binary_sensor:
+  - platform: template
+    sensors:
+      dg_markisen_needed_at_night:
+        value_template: >-
+          {{ as_timestamp(state_attr('sun.sun', 'next_rising')) | timestamp_custom('%H:%M:%S') <= states('input_datetime.dg_markisen_needed_at_night_sunrise')
+          or as_timestamp(state_attr('sun.sun', 'next_setting')) | timestamp_custom('%H:%M:%S') >= states('input_datetime.dg_markisen_needed_at_night_sunset') }}
+        icon_template: "mdi:window-shutter{{ '' if is_state('binary_sensor.dg_markisen_needed_at_night','on') else '-open' }}"
+
 script:
   coversatnight_covers_down:
     sequence:
@@ -43,6 +58,12 @@ script:
 
 homeassistant:
   customize:
+    input_datetime.dg_markisen_needed_at_night_sunrise:
+      friendly_name: wenn Sonnenaufgang vor
+    input_datetime.dg_markisen_needed_at_night_sunset:
+      friendly_name: wenn Sonnenuntergang nach
+    binary_sensor.dg_markisen_needed_at_night:
+      friendly_name: Außenmarkisen DG nachts runter
     script.coversatnight_covers_up:
       friendly_name: Raffstore jetzt hoch (alle)
     script.coversatnight_covers_up_eg:

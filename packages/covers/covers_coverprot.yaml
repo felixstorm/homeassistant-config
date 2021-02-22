@@ -1,6 +1,7 @@
 input_boolean:
   coverprot_wind_active:
   coverprot_rain_active:
+  coverprot_freeze_active:
 
 
 automation:
@@ -19,6 +20,13 @@ automation:
     trigger: { platform: state, entity_id: binary_sensor.esp_weathersensor_multisensor_rain, to: 'off' }
     action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.coverprot_rain_active } }
 
+  - alias: coverprot_freeze_active_on
+    trigger: { platform: numeric_state, entity_id: sensor.esp_weathersensor_multisensor_temp, below: 0 }
+    action: { service: input_boolean.turn_on, data: { entity_id: input_boolean.coverprot_freeze_active } }
+  - alias: coverprot_freeze_active_off
+    trigger: { platform: numeric_state, entity_id: sensor.esp_weathersensor_multisensor_temp, above: 2 }
+    action: { service: input_boolean.turn_off, data: { entity_id: input_boolean.coverprot_freeze_active } }
+
   - alias: coverprot_wind_execute
     trigger:
       - { platform: state, entity_id: input_boolean.coverprot_wind_active, to: 'on' }
@@ -30,8 +38,8 @@ automation:
         entity_id: cover.f1_cov_terrasse_markise_cover
       - service: cover.open_cover
         entity_id: cover.f1_cov_wintergarten_markise_cover
-      # - service: cover.open_cover
-      #   entity_id: cover.f3_cov_dachfenster_gross_aussen_cover
+      - service: cover.open_cover
+        entity_id: cover.f3_cov_dachfenster_gross_aussen_cover
 
   - alias: coverprot_rain_execute
     trigger:
@@ -44,7 +52,23 @@ automation:
         entity_id: cover.f1_cov_terrasse_markise_cover
       - service: cover.open_cover
         entity_id: cover.f1_cov_wintergarten_markise_cover
-      # f3_cov_dachfenster_gross_aussen_cover dient auch der Verdunkelung und bleibt bei Regen draußen.
+      # f3_cov_dachfenster_gross_aussen_cover dient im Sommer auch zusätzlich der Verdunkelung und bleibt daher auch bei Regen draußen.
+
+  - alias: coverprot_freeze_execute
+    trigger:
+      - { platform: state, entity_id: input_boolean.coverprot_freeze_active, to: 'on' }
+      - { platform: time_pattern, minutes: /2, seconds: 0 }
+    condition:
+      - { condition: state, entity_id: input_boolean.coverprot_freeze_active, state: 'on' }
+    action:
+      - service: cover.open_cover
+        entity_id: cover.f1_cov_terrasse_markise_cover
+      - service: cover.open_cover
+        entity_id: cover.f1_cov_wintergarten_markise_cover
+      - service: cover.open_cover
+        entity_id: cover.f3_cov_bad_cover
+      - service: cover.open_cover
+        entity_id: cover.f3_cov_dachfenster_gross_aussen_cover
 
   - alias: coverprot_reenable
     trigger: { platform: state, entity_id: group.coverprot_automations, to: "off", for: { hours: 1 } }
@@ -60,8 +84,11 @@ group:
       - automation.coverprot_wind_active_off
       - automation.coverprot_rain_active_on
       - automation.coverprot_rain_active_off
+      - automation.coverprot_freeze_active_on
+      - automation.coverprot_freeze_active_off
       - automation.coverprot_wind_execute
       - automation.coverprot_rain_execute
+      - automation.coverprot_freeze_execute
 
 
 homeassistant:
@@ -77,6 +104,9 @@ homeassistant:
     input_boolean.coverprot_rain_active:
       friendly_name: Markisenschutz Regen aktiv
       icon: mdi:weather-rainy
+    input_boolean.coverprot_freeze_active:
+      friendly_name: Markisenschutz Frost aktiv
+      icon: mdi:weather-snowy
     automation.coverprot_wind_active_on:
       friendly_name: Markisenschutz Wind ein bei Bedarf
     automation.coverprot_wind_active_off:
@@ -85,9 +115,15 @@ homeassistant:
       friendly_name: Markisenschutz Regen ein bei Bedarf
     automation.coverprot_rain_active_off:
       friendly_name: Markisenschutz Regen aus bei Ruhe
+    automation.coverprot_freeze_active_on:
+      friendly_name: Markisenschutz Frost ein bei Bedarf
+    automation.coverprot_freeze_active_off:
+      friendly_name: Markisenschutz Frost aus bei Ruhe
     automation.coverprot_wind_execute:
       friendly_name: Markisen einf. wenn Windschutz aktiv
     automation.coverprot_rain_execute:
       friendly_name: Markisen einf. wenn Regenschutz aktiv
+    automation.coverprot_freeze_execute:
+      friendly_name: Markisen einf. wenn Frostschutz aktiv
     automation.coverprot_reenable:
       friendly_name: Markisenschutz erneut ein

@@ -17,17 +17,17 @@ if level is not None:
 
 coverprot_wind_is_active = hass.states.get('input_boolean.coverprot_wind_active').state != 'off'
 coverprot_rain_is_active = hass.states.get('input_boolean.coverprot_rain_active').state != 'off'
+coverprot_freeze_is_active = hass.states.get('input_boolean.coverprot_freeze_active').state != 'off'
 terrassentuer_is_closed = hass.states.get('binary_sensor.f1_senwin_terrassentur_contact').state == 'off'
 include_kuechentuer_in_automations = hass.states.get('input_boolean.covers_include_kuechentuer_in_automations').state == 'on'
-now = datetime.datetime.now()
-freezing_is_possible = now.month >= 11 or now.month <= 2 or (now.month == 3 and now.day < 15)
+dg_markisen_needed_at_night = hass.states.get('binary_sensor.dg_markisen_needed_at_night').state == 'on'
 
 
 
 def ensure_state(sunprot_is_active, entity_id):
 
     global hass, logger, situation, is_simulation
-    global coverprot_wind_is_active, coverprot_rain_is_active, terrassentuer_is_closed, include_kuechentuer_in_automations, freezing_is_possible
+    global coverprot_wind_is_active, coverprot_rain_is_active, coverprot_freeze_is_active, terrassentuer_is_closed, include_kuechentuer_in_automations, dg_markisen_needed_at_night
 
     current_state = hass.states.get(entity_id)
     if current_state is None:
@@ -38,10 +38,6 @@ def ensure_state(sunprot_is_active, entity_id):
 
     if terrassentuer_is_closed == False and 'wohnzimmer_terrassentur' in entity_id:
         logger.debug(message_prefix + 'Door Terrassentuer is not closed, aborting.')
-        return
-
-    if freezing_is_possible and ('markise' in entity_id or 'dachfenster_gross_aussen_cover' in entity_id or 'f3_cov_bad_cover' in entity_id):
-        logger.debug(message_prefix + 'Freezing possible, aborting.')
         return
 
     target_lift = None
@@ -68,6 +64,9 @@ def ensure_state(sunprot_is_active, entity_id):
         # den Rest nachts ausfahren (abends ignorieren)
         elif situation == 'nighttime':
             if is_simulation == False:
+                if dg_markisen_needed_at_night == False and ('dachfenster_gross_aussen_cover' in entity_id or 'f3_cov_bad_cover' in entity_id):
+                    logger.debug(message_prefix + 'Markisen DG are not needed at this time of the year, aborting.')
+                    return
                 target_lift = 0
             else:
                 # bei Simulation nur EG/OG und Markise DG runter und den Rest hochfahren, damit man Licht im DG von
@@ -78,11 +77,14 @@ def ensure_state(sunprot_is_active, entity_id):
                     target_lift = 100
 
     if target_lift is not None and target_lift != 100:
-        if coverprot_wind_is_active and 'markise' in entity_id:
+        if coverprot_wind_is_active and ('markise' in entity_id or 'dachfenster_gross_aussen_cover' in entity_id):
             logger.info(message_prefix + 'Cover protection wind is active, aborting.')
             return
         if coverprot_rain_is_active and 'markise' in entity_id:
             logger.info(message_prefix + 'Cover protection rain is active, aborting.')
+            return
+        if coverprot_freeze_is_active and ('markise' in entity_id or 'dachfenster_gross_aussen_cover' in entity_id or 'f3_cov_bad_cover' in entity_id):
+            logger.info(message_prefix + 'Cover protection freeze is active, aborting.')
             return
         if include_kuechentuer_in_automations == False and 'kuche_terrassentur' in entity_id:
             logger.debug(message_prefix + 'Cover Kuechentuer is not supposed to be controlled automatically, aborting.')
@@ -99,8 +101,8 @@ def ensure_state(sunprot_is_active, entity_id):
         # (e.g. in the morning or pure sun shades)
         and (current_lift != 0 or not skip_if_closed_completely)
         # set if current lift state is not known or if cover does not support lift position or if it is known and
-        # deviates by more than 3% from target
-        and (current_lift in ['unknown', None] or abs(current_lift - target_lift) > 3)
+        # deviates by more than 3% from target or if cover should close completely but is not tilted completely
+        and (current_lift in ['unknown', None] or abs(current_lift - target_lift) > 3 or (target_lift == 0 and current_tilt not in [None, 0]))
     )
     set_tilt = (
         target_tilt is not None

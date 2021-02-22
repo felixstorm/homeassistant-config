@@ -75,8 +75,10 @@ group:
       - sensor.liftpos_f3_cov_bad
       - input_boolean.coverprot_rain_active
       - input_boolean.coverprot_wind_active
+      - input_boolean.coverprot_freeze_active
       - input_boolean.covers_include_kuechentuer_in_automations
       - input_boolean.covers_use_terrasse_markise_for_sunprotection
+      - binary_sensor.dg_markisen_needed_at_night
       # Licht
       - light.f1_grp_licht_treppe_light
       - light.f2_grp_licht_treppe_light
