@@ -1,0 +1,47 @@
+homeassistant:
+
+  customize:
+
+    sensor.wasserzaehler_1_status:
+      friendly_name: Tasmota Status Wasserzähler 1
+    sensor.wasserzaehler_1_h2ogabw_count:
+      friendly_name: Zählerstand Garten Brauchwasser
+      unit_of_measurement: m³
+    sensor.wasserzaehler_1_h2ohaus_count:
+      friendly_name: Zählerstand Haus Trinkwasser
+      unit_of_measurement: m³
+    sensor.wasserzaehler_1_zisterne_strom:
+      friendly_name: Zisterne Fühler Strom
+    sensor.wasserzaehler_1_zisterne_fuellstand:
+      friendly_name: Zisterne Füllstand
+    sensor.wasserzaehler_1_zisterne_fuellstand_volumen:
+      friendly_name: Zisterne Füllstand
+
+    sensor.wasserzaehler_2_status:
+      friendly_name: Tasmota Status Wasserzähler 2
+    sensor.wasserzaehler_2_h2ogatw_count:
+      friendly_name: Zählerstand Garten Trinkwasser
+      unit_of_measurement: m³
+
+    sensor.stromzaehler_status:
+      friendly_name: Tasmota Status Stromzähler
+    sensor.stromzaehler_haus_total_in:
+      friendly_name: Stromzähler Haus
+      unit_of_measurement: kWh
+    sensor.stromzaehler_haus_power_curr:
+      friendly_name: Stromverbrauch Haus aktuell
+      unit_of_measurement: W
+    sensor.stromzaehler_haus_power_p1:
+      friendly_name: Stromverbrauch Haus akt. L1
+      unit_of_measurement: W
+    sensor.stromzaehler_haus_power_p2:
+      friendly_name: Stromverbrauch Haus akt. L2
+      unit_of_measurement: W
+    sensor.stromzaehler_haus_power_p3:
+      friendly_name: Stromverbrauch Haus akt. L3
+      unit_of_measurement: W
+    sensor.stromzaehler_e_auto_total:
+      friendly_name: Stromzähler E-Auto
+    sensor.stromzaehler_e_auto_power_curr:
+      friendly_name: Stromverbrauch E-Auto aktuell
+      unit_of_measurement: W

@@ -54,12 +54,7 @@ sensor:
     attribute: src
     value_template: '{{ value|regex_findall_index("gruen|gelb|rot", ignorecase=True) }}'
 
-  - platform: statistics
-    name: wasserzaehler_zisterne_fuellstand
-    entity_id: sensor.wasserzaehler_analog_range
-    sampling_size: 1000 # multiple MQTT messages increase number of values
-    max_age: { minutes: 120 }
-    precision: 1
+  - platform: rest
 
   - platform: template
     sensors:
@@ -135,8 +130,3 @@ homeassistant:
     # Oberursel Wasserampel
     sensor.oberursel_wasserampel:
       friendly_name: Wasserampel Oberursel
-
-    # Wasserzähler/Zisterne
-    sensor.wasserzaehler_zisterne_fuellstand:
-      friendly_name: Zisterne Füllstand
-      unit_of_measurement: '%'
