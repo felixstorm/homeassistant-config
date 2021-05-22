@@ -214,8 +214,11 @@ automation:
       - { platform: state, entity_id: input_boolean.sunprot_westface_active, from: 'on', to: 'off' }
       - { platform: state, entity_id: input_boolean.sunprot_wiga_active, from: 'off', to: 'on' }
       - { platform: state, entity_id: input_boolean.sunprot_wiga_active, from: 'on', to: 'off' }
-    condition:
-      - { condition: time, after: '08:00:00' } # damit die Kinder nicht zu früh von der Markise wach werden
+      - { platform: state, entity_id: input_boolean.coverprot_wind_active, from: 'on', to: 'off' }
+      - { platform: state, entity_id: input_boolean.coverprot_rain_active, from: 'on', to: 'off' }
+      - { platform: state, entity_id: input_boolean.coverprot_freeze_active, from: 'on', to: 'off' }
+    # condition:
+    #   - { condition: time, after: '08:00:00' } # damit die Kinder nicht zu früh von der Markise wach werden
     action:
       - service: script.turn_on
         entity_id: script.sunprot_update_covers
@@ -226,7 +229,7 @@ automation:
     condition:
       - { condition: sun, after: sunrise, after_offset: "03:00:00" }
       - { condition: time, after: '08:00:00' } # damit die Kinder nicht zu früh von der Markise wach werden
-      - { condition: sun, before: sunset, before_offset: "03:00:00" }
+      - { condition: sun, before: sunset, before_offset: "-03:00:00" }
     action:
       - service: script.turn_on
         entity_id: script.sunprot_update_covers
@@ -244,7 +247,7 @@ script:
   sunprot_update_covers:
     sequence:
       - service: python_script.covers_ensure_state
-        data: { "situation": "daytime" }
+        data: { "situation": "default" }
 
   sunprot_evening_routine:
     sequence:
