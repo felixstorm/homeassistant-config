@@ -11,6 +11,13 @@ recorder:
     entities:
       - sensor.date
       - sensor.time
+      - sensor.comfoairq_power_usage
+      - sensor.comfoairq_supply_airflow
+      - sensor.comfoairq_exhaust_airflow
+      - sensor.comfoairq_supply_humidity
+      - sensor.comfoairq_inside_humidity
+      - sensor.comfoairq_exhaust_humidity
+      - sensor.comfoairq_outside_humidity
 
 influxdb:
   host: a0d7b954-influxdb
@@ -26,5 +33,12 @@ influxdb:
     entities:
       - sensor.date
       - sensor.time
+      - sensor.comfoairq_power_usage
+      - sensor.comfoairq_supply_airflow
+      - sensor.comfoairq_exhaust_airflow
+      - sensor.comfoairq_supply_humidity
+      - sensor.comfoairq_inside_humidity
+      - sensor.comfoairq_exhaust_humidity
+      - sensor.comfoairq_outside_humidity
 
 history:

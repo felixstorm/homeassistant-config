@@ -21,3 +21,58 @@ sensor:
       - days_to_replace_filter
       - bypass_state
       - power_usage
+
+  # ComfoConnects reports almost every second, so we filter here to make data manageable in Recorder and InfluxDB
+  - platform: filter
+    name: comfoairq_power_usage_filtered
+    entity_id: sensor.comfoairq_power_usage
+    filters: [{ filter: time_simple_moving_average, window_size: '00:01' }, { filter: time_throttle, window_size: '00:01', precision: 0 }]
+  - platform: filter
+    name: comfoairq_supply_airflow_filtered
+    entity_id: sensor.comfoairq_supply_airflow
+    filters: [{ filter: time_simple_moving_average, window_size: '00:01' }, { filter: time_throttle, window_size: '00:01', precision: 0 }]
+  - platform: filter
+    name: comfoairq_exhaust_airflow_filtered
+    entity_id: sensor.comfoairq_exhaust_airflow
+    filters: [{ filter: time_simple_moving_average, window_size: '00:01' }, { filter: time_throttle, window_size: '00:01', precision: 0 }]
+  - platform: filter
+    name: comfoairq_supply_humidity_filtered
+    entity_id: sensor.comfoairq_supply_humidity
+    filters: [{ filter: time_simple_moving_average, window_size: '00:01' }, { filter: time_throttle, window_size: '00:01', precision: 0 }]
+  - platform: filter
+    name: comfoairq_inside_humidity_filtered
+    entity_id: sensor.comfoairq_inside_humidity
+    filters: [{ filter: time_simple_moving_average, window_size: '00:01' }, { filter: time_throttle, window_size: '00:01', precision: 0 }]
+  - platform: filter
+    name: comfoairq_exhaust_humidity_filtered
+    entity_id: sensor.comfoairq_exhaust_humidity
+    filters: [{ filter: time_simple_moving_average, window_size: '00:01' }, { filter: time_throttle, window_size: '00:01', precision: 0 }]
+  - platform: filter
+    name: comfoairq_outside_humidity_filtered
+    entity_id: sensor.comfoairq_outside_humidity
+    filters: [{ filter: time_simple_moving_average, window_size: '00:01' }, { filter: time_throttle, window_size: '00:01', precision: 0 }]
+
+
+# Watch for availablity
+automation:
+  - alias: comfoairq_watch
+    trigger: { platform: time_pattern, minutes: 1, seconds: 0 }
+    action: { service: python_script.comfoairq_watch }
+
+
+homeassistant:
+  customize:
+    sensor.comfoairq_power_usage_filtered:
+      friendly_name: ComfoAirQ Power Usage
+    sensor.comfoairq_supply_airflow_filtered:
+      friendly_name: ComfoAirQ Supply Airflow
+    sensor.comfoairq_exhaust_airflow_filtered:
+      friendly_name: ComfoAirQ Exhaust Airflow
+    sensor.comfoairq_supply_humidity_filtered:
+      friendly_name: ComfoAirQ Supply Humidity
+    sensor.comfoairq_inside_humidity_filtered:
+      friendly_name: ComfoAirQ Inside Humidity
+    sensor.comfoairq_exhaust_humidity_filtered:
+      friendly_name: ComfoAirQ Exhaust Humidity
+    sensor.comfoairq_outside_humidity_filtered:
+      friendly_name: ComfoAirQ Outside Humidity
