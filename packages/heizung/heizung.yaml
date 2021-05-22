@@ -1,0 +1,117 @@
+homeassistant:
+
+  customize:
+
+    # KWB Excel Tab "Universal"
+    sensor.heizung_sw_version_anzeige:
+      friendly_name: Softwareversion
+    sensor.heizung_alarme_anzeige:
+      friendly_name: Alarme
+    sensor.heizung_kesselstatus_anzeige:
+      friendly_name: Kesselstatus
+
+    # KWB Excel Tab "KWB Easyfire" etc.
+    sensor.heizung_kesseltemp_ist:
+      friendly_name: Kesseltemperatur
+    sensor.heizung_kesseltemp_soll:
+      friendly_name: Kesseltemperatur Soll
+    sensor.heizung_kesselpumpe_anzeige:
+      friendly_name: Kesselpumpe
+    sensor.heizung_kessel_ruecklauftemp_ist:
+      friendly_name: Kessel Rücklauftemperatur
+    sensor.heizung_verbraucher_anforderung_anzeige:
+      friendly_name: Kessel Anforderung Verbraucher
+    sensor.heizung_brennerleistung:
+      friendly_name: Brennerleistung
+    sensor.heizung_betriebsstunden_summe:
+      friendly_name: Volllaststunden
+    sensor.heizung_serviceintervallreststunden:
+      friendly_name: nächste Wartung in
+    sensor.heizung_motor_foerdersystem_anzeige:
+      friendly_name: Antrieb Fördersystem
+    sensor.heizung_rauchgastemp_ist:
+      friendly_name: Abgastemperatur
+    sensor.heizung_pelletsverbrauch:
+      friendly_name: Verbrauch Pellets
+    sensor.heizung_pelletssauger_anzeige:
+      friendly_name: Saugturbine Pellets
+    sensor.heizung_zuendung_heizung_anzeige:
+      friendly_name: Brenner Zündung
+    sensor.heizung_aussen_temperatur:
+      friendly_name: Außentemp. (Fühler Heizung)
+    sensor.heizung_anlage_ein_anzeige:
+      friendly_name: Kessel eingeschaltet
+    sensor.heizung_kesseltempsoll1:
+      friendly_name: Kesseltemp. Soll normal
+    sensor.heizung_kesseltempsoll2:
+      friendly_name: Kesseltemp. Soll extern
+    sensor.heizung_kesseltempsoll1_mf2:
+      friendly_name: Kesseltemp. MF2 Soll 1
+    sensor.heizung_kesseltempsoll2_mf2:
+      friendly_name: Kesseltemp. MF2 Soll 2
+    sensor.heizung_kessel_ruecklauftempmin:
+      friendly_name: Kessel Rücklauftemp. min.
+    sensor.heizung_kesselprogramm_anzeige:
+      friendly_name: Kesselprogramm
+    sensor.heizung_kesseltempsoll1_cf2:
+      friendly_name: Kesseltemp. CF2 Soll 1
+
+    # KWB Excel Tab "PUF"
+    sensor.heizung_puffer_temperatur_1:
+      friendly_name: Puffertemp. oben
+    sensor.heizung_puffer_temperatur_3:
+      friendly_name: Puffertemp. mitte
+    sensor.heizung_puffer_temperatur_5:
+      friendly_name: Puffertemp. unten
+    sensor.heizung_puffer_pumpe_anzeige:
+      friendly_name: Pufferpumpe
+    sensor.heizung_puffer_anforderung_anzeige:
+      friendly_name: Puffer Anforderung
+    sensor.heizung_puffer_programm_anzeige:
+      friendly_name: Pufferprogramm
+    sensor.heizung_puffer_temperatur_grenzen_min:
+      friendly_name: Puffertemp. min.
+    sensor.heizung_puffer_temperatur_grenzen_max:
+      friendly_name: Puffertemp. max.
+    sensor.heizung_puffer_brauchwassertemp_min:
+      friendly_name: Brauchwassertemp. min.
+
+    # KWB Excel Tab "HK" - HK1
+    sensor.heizung_hk1_status_anzeige:
+      friendly_name: HZK Status
+    sensor.heizung_hk1_raum_temperatur_soll:
+      friendly_name: HZK Raumtemp. Soll
+    sensor.heizung_hk1_aussen_temperatur:
+      friendly_name: HZK Außentemp.
+    sensor.heizung_hk1_vorlauf_temperatur_soll:
+      friendly_name: HZK Vorlauftemp. Soll
+    sensor.heizung_hk1_vorlauf_temperatur:
+      friendly_name: HZK Vorlauftemperatur
+    sensor.heizung_hk1_pumpe_anzeige:
+      friendly_name: HZK Pumpe
+    sensor.heizung_hk1_programm_anzeige:
+      friendly_name: HZK Programm
+    sensor.heizung_hk1_raum_temperatur_soll_tag:
+      friendly_name: HZK Raumtemp. Soll Tag
+    sensor.heizung_hk1_raum_temperatur_soll_nacht:
+      friendly_name: HZK Raumtemp. Soll Nacht
+
+    # KWB Excel Tab "HK" - HK2
+    sensor.heizung_hk2_status_anzeige:
+      friendly_name: FBH Status
+    sensor.heizung_hk2_raum_temperatur_soll:
+      friendly_name: FBH Raumtemp. Soll
+    sensor.heizung_hk2_aussen_temperatur:
+      friendly_name: FBH Außentemp.
+    sensor.heizung_hk2_vorlauf_temperatur_soll:
+      friendly_name: FBH Vorlauftemp. Soll
+    sensor.heizung_hk2_vorlauf_temperatur:
+      friendly_name: FBH Vorlauftemperatur
+    sensor.heizung_hk2_pumpe_anzeige:
+      friendly_name: FBH Pumpe
+    sensor.heizung_hk2_programm_anzeige:
+      friendly_name: FBH Programm
+    sensor.heizung_hk2_raum_temperatur_soll_tag:
+      friendly_name: FBH Raumtemp. Soll Tag
+    sensor.heizung_hk2_raum_temperatur_soll_nacht:
+      friendly_name: FBH Raumtemp. Soll Nacht

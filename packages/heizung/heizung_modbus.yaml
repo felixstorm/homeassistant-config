@@ -4,6 +4,291 @@
 
 
 modbus:
-  type: tcp
-  host: 192.168.42.50
-  port: 502
+  - type: tcp
+    host: 192.168.42.50
+    port: 502
+    sensors:
+
+    # KWB Excel Tab "Universal"
+      - name: heizung_sw_version_major
+        address: 8192
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_sw_version_minor
+        address: 8193
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_sw_version_patch
+        address: 8194
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_anlage_keine_stoerung
+        address: 8204
+        scan_interval: !secret heizung_scan_interval_fast
+      - name: heizung_anlage_stoerung
+        address: 8205
+        scan_interval: !secret heizung_scan_interval_fast
+      - name: heizung_kesselstatus
+        address: 8208
+        scan_interval: !secret heizung_scan_interval_fast
+      - name: heizung_alarme_total
+        address: 8252
+        count: 2
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_alarme_offen
+        address: 8254
+        count: 2
+        scan_interval: !secret heizung_scan_interval_slow
+
+    # KWB Excel Tab "KWB Easyfire" etc.
+      - name: heizung_sw_revision
+        address: 8195
+        count: 2
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesseltemp_ist
+        address: 8197
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesseltemp_soll
+        address: 8199
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesselpumpe
+        address: 8200
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kessel_ruecklauftemp_ist
+        address: 8202
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_verbraucher_anforderung
+        address: 8206
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_brennerleistung
+        address: 8207
+        scale: 0.1
+        unit_of_measurement: "%"
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_betriebsstunden_summe
+        address: 8209
+        count: 2
+        scale: 0.0166667
+        unit_of_measurement: h
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_serviceintervallreststunden
+        address: 8224
+        unit_of_measurement: h
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_motor_foerdersystem
+        address: 8226
+        scan_interval: !secret heizung_scan_interval_fast
+      - name: heizung_rauchgastemp_ist
+        address: 8231
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_pelletsverbrauch
+        address: 8233
+        count: 2
+        scale: 0.001
+        precision: 3
+        unit_of_measurement: t
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_pelletssauger
+        address: 8238
+        scan_interval: !secret heizung_scan_interval_fast
+      - name: heizung_zuendung_heizung
+        address: 8247
+        scan_interval: !secret heizung_scan_interval_fast
+      - name: heizung_aussen_temperatur
+        address: 8250
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_anlage_ein
+        address: 24576
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesseltempsoll1
+        address: 24577
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesseltempsoll2
+        address: 24578
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesseltempsoll1_mf2
+        address: 24579
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesseltempsoll2_mf2
+        address: 24580
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kessel_ruecklauftempmin
+        address: 24581
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesselprogramm
+        address: 24584
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_kesseltempsoll1_cf2
+        address: 24585
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      # fehlend: "EF2``[0``].AI_Fotozelle*"
+
+    # KWB Excel Tab "PUF"
+      - name: heizung_puffer_temperatur_1
+        address: 8710
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_temperatur_3
+        address: 8778
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_temperatur_5
+        address: 8846
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_pumpe
+        address: 8879
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_anforderung
+        address: 8896
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_programm
+        address: 24761
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_temperatur_grenzen_min
+        address: 24779
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_temperatur_grenzen_max
+        address: 24780
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_puffer_brauchwassertemp_min
+        address: 24812
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+
+    # KWB Excel Tab "HK" - HK1
+      - name: heizung_hk1_status
+        address: 8573
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_raum_temperatur_soll
+        address: 8538
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_aussen_temperatur
+        address: 8435
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_vorlauf_temperatur_soll
+        address: 8328
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_vorlauf_temperatur
+        address: 8260
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_pumpe
+        address: 8503
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_programm
+        address: 24589
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_raum_temperatur_soll_tag
+        address: 24624
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk1_raum_temperatur_soll_nacht
+        address: 24659
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+
+    # KWB Excel Tab "HK" - HK2
+      - name: heizung_hk2_status
+        address: 8574
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_raum_temperatur_soll
+        address: 8539
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_aussen_temperatur
+        address: 8437
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_vorlauf_temperatur_soll
+        address: 8329
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_vorlauf_temperatur
+        address: 8262
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_pumpe
+        address: 8504
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_programm
+        address: 24590
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_raum_temperatur_soll_tag
+        address: 24625
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
+      - name: heizung_hk2_raum_temperatur_soll_nacht
+        address: 24660
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: °C
+        scan_interval: !secret heizung_scan_interval_slow
