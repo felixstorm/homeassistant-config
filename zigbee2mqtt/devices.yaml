@@ -100,8 +100,6 @@
   debounce: 1
   homeassistant:
     expire_after: 3600
-'0x7cb03eaa0a081975':
-  friendly_name: test_osram_plug
 '0x0017880102314d75':
   friendly_name: test_hue_gu10
 '0x001fee0000001b93':

@@ -1,10 +1,5 @@
 # RainMachine, Regen pro Tag
 
-rainmachine:
-  controllers:
-    - ip_address: 192.168.0.12
-      password: !secret rainmachine_password
-
 automation:
   - alias: rainmachine_post_weather
     trigger: { platform: time_pattern, minutes: 59, seconds: 55 }

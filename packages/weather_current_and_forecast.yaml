@@ -50,7 +50,7 @@ sensor:
   - platform: scrape
     name: oberursel_wasserampel_raw
     resource: https://www.stadtwerke-oberursel.de/Wasserampel
-    select: 'img[src*="Header-Wasserampel"]'
+    select: 'img[src*="/Wasserampel/Kopfbild/"]'
     attribute: src
     value_template: '{{ value|regex_findall_index("gruen|gelb|rot", ignorecase=True) }}'
 

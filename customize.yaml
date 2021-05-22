@@ -17,3 +17,9 @@ sensor.f3_senthp_bad_temperature:
   friendly_name: Temperatur DG Bad
 sensor.f3_senthp_bad_battery:
   friendly_name: Aqara THP DG Bad Battery
+
+# System
+sensor.hdd_temp:
+  friendly_name: HDD Temperature
+sensor.hdd_endurance_remaining:
+  friendly_name: HDD Endurance Remaining

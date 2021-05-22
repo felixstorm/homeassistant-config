@@ -2,3 +2,9 @@
   display_options:
     - 'time'
     - 'date'
+
+- platform: template
+  sensors:
+    hdd_endurance_remaining:
+      value_template: "{{ state_attr('sensor.hdd_temp', 'table') | selectattr('name', 'eq', 'Wear_Leveling_Count') | map(attribute='value') | first | default('') }}"
+      unit_of_measurement: "%"
