@@ -7,13 +7,16 @@ input_boolean:
   anwesenheit_simulieren_is_so_awake:
     name: 'Simulation: Jemand wach'
   anwesenheit_simulieren_is_daylight:
-    name: 'Simulation: Hell draußen'
+    name: 'Simulation: Tageslicht draußen'
+  anwesenheit_simulieren_is_bright_outside:
+    name: 'Simulation: Wirklich hell draußen'
 
 
 input_number:
 
   anwesenheit_simulieren_sunrise_lx:         { min:  0, max: 999, step: 10, unit_of_measurement: lx  }  # initial: 600
   anwesenheit_simulieren_sunset_lx:          { min:  0, max: 999, step: 10, unit_of_measurement: lx  }  # initial: 400
+  anwesenheit_simulieren_bright_min_klx:     { min:  0, max:  99, step:  1, unit_of_measurement: klx }  # initial: 20
   anwesenheit_simulieren_sunriseset_delay:   { min:  0, max:  59, step:  5, unit_of_measurement: min }  # initial: 10
 
   anwesenheit_simulieren_wakeup_hours:       { min:  6, max:   9, step:  1, unit_of_measurement: hrs }  # initial: 06
@@ -48,7 +51,7 @@ automation:
         for: { minutes: "{{ states('input_number.anwesenheit_simulieren_sunriseset_delay') | int }}" }
       - platform: sun # just as a safety measure in case esp_weathersensor_multisensor_daylight is not working correctly
         event: sunrise
-        offset: '+00:30:00'
+        offset: '+01:00:00'
     action:
       - {service: input_boolean.turn_on, entity_id: input_boolean.anwesenheit_simulieren_is_daylight}
 
@@ -61,6 +64,22 @@ automation:
       - delay: '00:{{ range(0, states("input_number.anwesenheit_simulieren_wakeup_rand_delay")|int + 1)|random }}:00'
       - {service: input_boolean.turn_on, entity_id: input_boolean.anwesenheit_simulieren_is_so_awake}
 
+  - alias: anwesenheit_simulieren_bright_outside_on
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.esp_weathersensor_multisensor_sun_south_mean') | int > states('input_number.anwesenheit_simulieren_bright_min_klx') | int }}"
+        # needs for
+    action:
+      - {service: input_boolean.turn_on, entity_id: input_boolean.anwesenheit_simulieren_is_bright_outside}
+
+  - alias: anwesenheit_simulieren_bright_outside_off
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.esp_weathersensor_multisensor_sun_south_mean') | int < states('input_number.anwesenheit_simulieren_bright_min_klx') | int }}"
+        # needs for
+    action:
+      - {service: input_boolean.turn_off, entity_id: input_boolean.anwesenheit_simulieren_is_bright_outside}
+
   - alias: anwesenheit_simulieren_sunset
     trigger:
       - platform: template
@@ -68,8 +87,9 @@ automation:
         for: { minutes: "{{ states('input_number.anwesenheit_simulieren_sunriseset_delay') | int }}" }
       - platform: sun # just as a safety measure in case esp_weathersensor_multisensor_daylight is not working correctly
         event: sunset
-        offset: '+00:30:00'
+        offset: '+01:00:00'
     action:
+      - {service: input_boolean.turn_off, entity_id: input_boolean.anwesenheit_simulieren_is_bright_outside} # just as a safety measure
       - {service: input_boolean.turn_off, entity_id: input_boolean.anwesenheit_simulieren_is_daylight}
 
   - alias: anwesenheit_simulieren_tobed
@@ -100,9 +120,11 @@ homeassistant:
       friendly_name: Anwesenheitssimulation.
       icon: mdi:home-automation
     input_number.anwesenheit_simulieren_sunrise_lx:
-      friendly_name: Helligkeit Sonnenaufgang
+      friendly_name: Tageslicht ab
     input_number.anwesenheit_simulieren_sunset_lx:
-      friendly_name: Helligkeit Sonnenuntergang
+      friendly_name: Tageslicht bis
+    input_number.anwesenheit_simulieren_bright_min_klx:
+      friendly_name: Wirklich hell ab
     input_number.anwesenheit_simulieren_sunriseset_delay:
       friendly_name: Verzögerung Sonnenauf/-untergang
     input_number.anwesenheit_simulieren_wakeup_hours:
