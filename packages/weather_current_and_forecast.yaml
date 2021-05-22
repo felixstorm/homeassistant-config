@@ -1,8 +1,3 @@
-weather:
-
-  - platform: met
-
-
 sensor:
 
   - platform: influxdb
@@ -55,6 +50,14 @@ sensor:
     value_template: '{{ value|regex_findall_index("gruen|gelb|rot", ignorecase=True) }}'
 
   - platform: rest
+    name: weather_met_no_rest
+    resource_template: !secret met_no_home_url
+    value_template: '{{ value_json.properties.meta.updated_at }}'
+    json_attributes_path: '$.properties'
+    json_attributes:
+      - meta
+      - timeseries
+    scan_interval: 600
 
   - platform: template
     sensors:

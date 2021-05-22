@@ -32,21 +32,21 @@ input_number:
   sunprot_wiga_klx_1:           { min:   0, max: 100, step: 5, unit_of_measurement: klx  }  # initial:  40
 
 sensor:
-  - platform: yr
-    name: sunprot_forecast_12h
-    forecast: 12
-    monitored_conditions:
-      - temperature
+  - platform: template
+    sensors:
+      sunprot_air_temp_forecast_12h:
+        value_template: "{{ states.sensor.weather_met_no_rest.attributes.timeseries | selectattr('time', 'ge', (utcnow() + timedelta(hours=11)).isoformat()) | selectattr('time', 'le', (utcnow() + timedelta(hours=13)).isoformat()) | map(attribute='data.instant.details.air_temperature') | max(default=None) }}"
+        unit_of_measurement: °C
   - platform: statistics
-    name: sunprot_forecast_12h_temperature_stats
-    entity_id: sensor.sunprot_forecast_12h_temperature
+    name: sunprot_air_temp_forecast_12h_stats
+    entity_id: sensor.sunprot_air_temp_forecast_12h
     sampling_size: 24
     max_age: { hours: 18 } # damit auch Abends noch der Max-Wert des abgelaufenen Tages zählt
     precision: 1
   - platform: template
     sensors:
       sunprot_outside_temp_ref:
-        value_template: "{{ state_attr('sensor.sunprot_forecast_12h_temperature_stats', 'max_value')|float }}"
+        value_template: "{{ state_attr('sensor.sunprot_air_temp_forecast_12h_stats', 'max_value')|float }}"
         unit_of_measurement: "°C"
       sunprot_wiga_inside_temp_ref:
         value_template: "{{ states('sensor.f1_senthp_wiga_temperature') | float | round(1) }}"
@@ -288,9 +288,9 @@ homeassistant:
       friendly_name: Sonnenrichtung
     sensor.sunprot_sun_elevation:
       friendly_name: Sonnehöhe
-    sensor.sunprot_forecast_12h_temperature:
+    sensor.sunprot_air_temp_forecast_12h:
       friendly_name: Außentemperatur Vorhersage in 12 Std.
-    sensor.sunprot_forecast_12h_temperature_stats:
+    sensor.sunprot_air_temp_forecast_12h_stats:
       friendly_name: Außentemperatur Vorhersage Stats
     sensor.sunprot_outside_temp_ref:
       friendly_name: Ost/Süd/West Außentemp. Referenz (12h-Maximum)
