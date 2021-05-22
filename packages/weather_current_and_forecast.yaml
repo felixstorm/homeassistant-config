@@ -77,6 +77,69 @@ sensor:
         value_template: '{{ states("sensor.oberursel_wasserampel_raw")|regex_replace(find="gruen", replace="grün")|regex_replace(find="gelb", replace="GELB")|regex_replace(find="rot", replace="ROT") }}'
         icon_template: '{{ states("sensor.oberursel_wasserampel_raw")|regex_replace(find="gruen", replace="mdi:cup")|regex_replace(find="gelb", replace="mdi:cup-outline")|regex_replace(find="rot", replace="mdi:cup-off-outline") }}'
 
+      weather_temp_met_no_temp:
+        value_template: "{{ state_attr('weather.met_no', 'temperature') | float }}"
+        unit_of_measurement: °C
+      weather_temp_met_no_forecast_0_temp:
+        value_template: "{% if state_attr('weather.met_no', 'forecast')[0] is defined and state_attr('weather.met_no', 'forecast')[0].temperature is defined %}{{ state_attr('weather.met_no', 'forecast')[0].temperature | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_met_no_forecast_0_templow:
+        value_template: "{% if state_attr('weather.met_no', 'forecast')[0] is defined and state_attr('weather.met_no', 'forecast')[0].templow is defined %}{{ state_attr('weather.met_no', 'forecast')[0].templow | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_met_no_forecast_0_prec:
+        value_template: "{% if state_attr('weather.met_no', 'forecast')[0] is defined and state_attr('weather.met_no', 'forecast')[0].precipitation is defined %}{{ state_attr('weather.met_no', 'forecast')[0].precipitation | float }}{% endif %}"
+        unit_of_measurement: mm
+      weather_temp_met_no_forecast_0_datetime:
+        value_template: "{% if state_attr('weather.met_no', 'forecast')[0] is defined and state_attr('weather.met_no', 'forecast')[0].datetime is defined %}{{ state_attr('weather.met_no', 'forecast')[0].datetime }}{% endif %}"
+      weather_temp_meteo_fr_temp:
+        value_template: "{{ state_attr('weather.friedrichsdorf', 'temperature') | float }}"
+        unit_of_measurement: °C
+      weather_temp_meteo_fr_forecast_0_temp:
+        value_template: "{% if state_attr('weather.friedrichsdorf', 'forecast')[1] is defined and state_attr('weather.friedrichsdorf', 'forecast')[1].temperature is defined %}{{ state_attr('weather.friedrichsdorf', 'forecast')[1].temperature | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_meteo_fr_forecast_0_templow:
+        value_template: "{% if state_attr('weather.friedrichsdorf', 'forecast')[1] is defined and state_attr('weather.friedrichsdorf', 'forecast')[1].templow is defined %}{{ state_attr('weather.friedrichsdorf', 'forecast')[1].templow | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_meteo_fr_forecast_0_prec:
+        value_template: "{% if state_attr('weather.friedrichsdorf', 'forecast')[1] is defined and state_attr('weather.friedrichsdorf', 'forecast')[1].precipitation is defined %}{{ state_attr('weather.friedrichsdorf', 'forecast')[1].precipitation | float }}{% endif %}"
+        unit_of_measurement: mm
+      weather_temp_meteo_fr_forecast_0_datetime:
+        value_template: "{% if state_attr('weather.friedrichsdorf', 'forecast')[1] is defined and state_attr('weather.friedrichsdorf', 'forecast')[1].datetime is defined %}{{ state_attr('weather.friedrichsdorf', 'forecast')[1].datetime }}{% endif %}"
+      weather_temp_dwd_l732_temp:
+        value_template: "{{ state_attr('weather.dwd_weather_homburg_bad_filter', 'temperature') | float }}"
+        unit_of_measurement: °C
+      weather_temp_dwd_l732_forecast_0_temp:
+        value_template: "{% if state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1] is defined and state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].temperature is defined %}{{ state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].temperature | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_dwd_l732_forecast_0_templow:
+        value_template: "{% if state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1] is defined and state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].templow is defined %}{{ state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].templow | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_dwd_l732_forecast_0_prec:
+        value_template: "{% if state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1] is defined and state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].precipitation is defined %}{{ state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].precipitation | float }}{% endif %}"
+        unit_of_measurement: mm
+      weather_temp_dwd_l732_forecast_0_prec_prob:
+        value_template: "{% if state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1] is defined and state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].precipitation_probability is defined %}{{ state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].precipitation_probability | float }}{% endif %}"
+        unit_of_measurement: "%"
+      weather_temp_dwd_l732_forecast_0_datetime:
+        value_template: "{% if state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1] is defined and state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].datetime is defined %}{{ state_attr('weather.dwd_weather_homburg_bad_filter', 'forecast')[1].datetime }}{% endif %}"
+      weather_temp_dwd_n4333_temp:
+        value_template: "{{ state_attr('weather.dwd_weather_bad_homburg', 'temperature') | float }}"
+        unit_of_measurement: °C
+      weather_temp_dwd_n4333_forecast_0_temp:
+        value_template: "{%if state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1] is defined and state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].temperature is defined %}{{ state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].temperature | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_dwd_n4333_forecast_0_templow:
+        value_template: "{%if state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1] is defined and state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].templow is defined %}{{ state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].templow | float }}{% endif %}"
+        unit_of_measurement: °C
+      weather_temp_dwd_n4333_forecast_0_prec:
+        value_template: "{%if state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1] is defined and state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].precipitation is defined %}{{ state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].precipitation | float }}{% endif %}"
+        unit_of_measurement: mm
+      weather_temp_dwd_n4333_forecast_0_prec_prob:
+        value_template: "{%if state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1] is defined and state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].precipitation_probability is defined %}{{ state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].precipitation_probability | float }}{% endif %}"
+        unit_of_measurement: "%"
+      weather_temp_dwd_n4333_forecast_0_datetime:
+        value_template: "{%if state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1] is defined and state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].datetime is defined %}{{ state_attr('weather.dwd_weather_bad_homburg', 'forecast')[1].datetime }}{% endif %}"
+
 
 homeassistant:
 
