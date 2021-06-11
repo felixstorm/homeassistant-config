@@ -39,3 +39,11 @@ utility_meter:
   rain_daily:
     source: input_number.sum_rain_forever
     cycle: daily
+
+
+# Düngerpumpe
+
+homeassistant:
+  customize:
+    switch.f0_bewaesserung_dual_plug_left:
+      friendly_name: Pumpe Flüssigdünger

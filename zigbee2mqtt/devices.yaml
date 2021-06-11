@@ -13,11 +13,13 @@
   homeassistant:
     tilt_command_topic: null
     tilt_status_topic: null
+    tilt_status_template: null
 '0x001fee000000243d':
   friendly_name: f1_cov_wintergarten_markise
   homeassistant:
     tilt_command_topic: null
     tilt_status_topic: null
+    tilt_status_template: null
 '0x00158d00022c6a81':
   friendly_name: f1_senthp_wiga
   debounce: 1
@@ -83,26 +85,27 @@
   homeassistant:
     tilt_command_topic: null
     tilt_status_topic: null
+    tilt_status_template: null
 '0x001fee0000000dba':
   friendly_name: f3_cov_dachfenster_gross_aussen
   homeassistant:
     tilt_command_topic: null
     tilt_status_topic: null
+    tilt_status_template: null
 '0x001fee0000002cec':
   friendly_name: f3_cov_bad
   homeassistant:
     set_position_topic: null
+    set_position_template: null
     position_topic: null
+    position_template: null
     tilt_command_topic: null
     tilt_status_topic: null
+    tilt_status_template: null
 '0x00158d000245a90e':
   friendly_name: f3_senthp_bad
   debounce: 1
   homeassistant:
     expire_after: 3600
-'0x0017880102314d75':
-  friendly_name: test_hue_gu10
-'0x001fee0000001b93':
-  friendly_name: test_c4
-'0x00178801020db019':
-  friendly_name: test_hue_remote
+'0x00158d0006b237ac':
+  friendly_name: f0_senwat_brunnen

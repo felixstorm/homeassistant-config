@@ -1,0 +1,44 @@
+# Vogeltränke
+
+input_datetime:
+  vogeltraenke_pumpe_start:
+    has_time: true
+  vogeltraenke_pumpe_stop:
+    has_time: true
+
+automation:
+  - alias: vogeltraenke_wasser_weg
+    trigger: { platform: state, entity_id: binary_sensor.f0_senwat_brunnen_water_leak, from: 'on', to: 'off' }
+    action:
+      - { service: switch.turn_off, target: { entity_id: switch.f0_bewaesserung_dual_plug_right } }
+      - { service: automation.turn_off, target: { entity_id: automation.vogeltraenke_pumpe_by_time_start } }
+      - { service: automation.turn_off, target: { entity_id: automation.vogeltraenke_pumpe_by_time_stop } }
+  - alias: vogeltraenke_wasser_wieder_da
+    trigger: { platform: state, entity_id: binary_sensor.f0_senwat_brunnen_water_leak, from: 'off', to: 'on' }
+    action: 
+      - { service: automation.turn_on, target: { entity_id: automation.vogeltraenke_pumpe_by_time_start } }
+      - { service: automation.turn_on, target: { entity_id: automation.vogeltraenke_pumpe_by_time_stop } }
+  - alias: vogeltraenke_pumpe_on
+    trigger: { platform: state, entity_id: switch.f0_bewaesserung_dual_plug_right, from: 'off', to: 'on' }
+    action: { service: automation.turn_on, target: { entity_id: automation.vogeltraenke_pumpe_by_time_stop } }
+  - alias: vogeltraenke_pumpe_by_time_start
+    trigger: { platform: time, at: input_datetime.vogeltraenke_pumpe_start }
+    action: { service: switch.turn_on, target: { entity_id: switch.f0_bewaesserung_dual_plug_right } }
+  - alias: vogeltraenke_pumpe_by_time_stop
+    trigger: { platform: time, at: input_datetime.vogeltraenke_pumpe_stop }
+    action: { service: switch.turn_off, target: { entity_id: switch.f0_bewaesserung_dual_plug_right } }
+
+homeassistant:
+  customize:
+    input_datetime.vogeltraenke_pumpe_start:
+      friendly_name: Vogeltränke Pumpe an
+    input_datetime.vogeltraenke_pumpe_stop:
+      friendly_name: Vogeltränke Pumpe aus
+    automation.vogeltraenke_pumpe_by_time_start:
+      friendly_name: Vogeltränke Pumpe autom. an
+    automation.vogeltraenke_pumpe_by_time_stop:
+      friendly_name: Vogeltränke Pumpe autom. aus
+    switch.f0_bewaesserung_dual_plug_right:
+      friendly_name: Vogeltränke Pumpe
+    binary_sensor.f0_senwat_brunnen_water_leak:
+      friendly_name: Vogeltränke Wasserstand

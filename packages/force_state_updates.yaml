@@ -116,10 +116,15 @@ group:
       - sensor.hdd_endurance_remaining
       - sensor.hdd_temp
       # Bewässerung
-      - switch.garten
-      - switch.garten_standard
       - switch.master_valve
-      - switch.zone_2
+      - switch.prog_1_pflanzen
+      - switch.prog_2_schotterrasen
+      - switch.zone_1_terrasse_gemuese
+      - switch.zone_2_terrasse_stauden
+      - switch.zone_3_garten_no
+      - switch.zone_4_schotterrasen
+      - switch.zone_5_garten_sw
+      - switch.zone_6_rasen_w 
       - switch.bewaesserung_timer
       - switch.bewaesserung
       - switch.bewaesserung_triggervalveopen

@@ -67,6 +67,15 @@
                                     "type": "divider"
                                 },
                                 {
+                                    "entity": "switch.f0_bewaesserung_dual_plug_right"
+                                },
+                                {
+                                    "entity": "binary_sensor.f0_senwat_brunnen_water_leak"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
                                     "entity": "switch.zone_1_terrasse_gemuese"
                                 },
                                 {
@@ -83,12 +92,6 @@
                                 },
                                 {
                                     "entity": "switch.zone_6_rasen_w"
-                                },
-                                {
-                                    "entity": "switch.bewaesserung_timer"
-                                },
-                                {
-                                    "entity": "switch.bewaesserung"
                                 },
                                 {
                                     "type": "divider"
@@ -232,13 +235,7 @@
                                 "sensor.stromzaehler_haus_power_p2",
                                 "sensor.stromzaehler_haus_power_p3",
                                 "sensor.stromzaehler_e_auto_total",
-                                "sensor.stromzaehler_e_auto_power_curr",
-                                {
-                                    "type": "divider"
-                                },
-                                "sensor.wasserzaehler_1_status",
-                                "sensor.wasserzaehler_2_status",
-                                "sensor.stromzaehler_status"
+                                "sensor.stromzaehler_e_auto_power_curr"
                             ],
                             "title": "Z\u00e4hler & Zisterne",
                             "type": "entities"
@@ -762,6 +759,7 @@
                     "title": "L\u00fcftung"
                 },
                 {
+                    "title": "Wetter/Garten",
                     "badges": [],
                     "cards": [
                         {
@@ -827,123 +825,76 @@
                         {
                             "cards": [
                                 {
+                                    "type": "entities",
+                                    "title": "Bew\u00e4sserung",
+                                    "show_header_toggle": false,
                                     "entities": [
-                                        {
-                                            "entity": "switch.zone_1_terrasse_gemuese"
-                                        },
-                                        {
-                                            "entity": "switch.zone_2_terrasse_stauden"
-                                        },
-                                        {
-                                            "entity": "switch.zone_3_garten_no"
-                                        },
-                                        {
-                                            "entity": "switch.zone_4_schotterrasen"
-                                        },
-                                        {
-                                            "entity": "switch.zone_5_garten_sw"
-                                        },
-                                        {
-                                            "entity": "switch.zone_6_rasen_w"
-                                        },
-                                        {
-                                            "entity": "switch.prog_1_pflanzen"
-                                        },
-                                        {
-                                            "entity": "switch.prog_2_schotterrasen"
-                                        },
+                                        "switch.zone_1_terrasse_gemuese",
+                                        "switch.zone_2_terrasse_stauden",
+                                        "switch.zone_3_garten_no",
+                                        "switch.zone_4_schotterrasen",
+                                        "switch.zone_5_garten_sw",
+                                        "switch.zone_6_rasen_w",
+                                        "switch.prog_1_pflanzen",
+                                        "switch.prog_2_schotterrasen",
+                                        "switch.f0_bewaesserung_dual_plug_left",
                                         {
                                             "type": "divider"
                                         },
-                                        {
-                                            "entity": "switch.bewaesserung_timer"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveopen"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveclose"
-                                        },
+                                        "switch.bewaesserung_timer",
+                                        "switch.bewaesserung",
+                                        "switch.bewaesserung_triggervalveopen",
+                                        "switch.bewaesserung_triggervalveclose",
                                         {
                                             "type": "divider"
                                         },
-                                        {
-                                            "entity": "sensor.sum_rain_24h"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_3d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_7d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_14d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_21d"
-                                        },
-                                        {
-                                            "entity": "sensor.sum_rain_30d"
-                                        },
+                                        "sensor.sum_rain_24h",
+                                        "sensor.sum_rain_3d",
+                                        "sensor.sum_rain_7d",
+                                        "sensor.sum_rain_14d",
+                                        "sensor.sum_rain_21d",
+                                        "sensor.sum_rain_30d",
                                         {
                                             "type": "divider"
                                         },
-                                        {
-                                            "entity": "input_number.sum_rain_forever"
-                                        },
-                                        {
-                                            "entity": "sensor.rain_daily"
-                                        }
-                                    ],
-                                    "title": "Garten",
-                                    "type": "entities"
+                                        "input_number.sum_rain_forever",
+                                        "sensor.rain_daily"
+                                    ]
                                 },
                                 {
+                                    "type": "entities",
+                                    "title": "Vogeltr\u00e4nke",
+                                    "show_header_toggle": false,
                                     "entities": [
-                                        {
-                                            "entity": "switch.zone_1_terrasse_gemuese"
-                                        },
-                                        {
-                                            "entity": "switch.zone_2_terrasse_stauden"
-                                        },
-                                        {
-                                            "entity": "switch.zone_3_garten_no"
-                                        },
-                                        {
-                                            "entity": "switch.zone_4_schotterrasen"
-                                        },
-                                        {
-                                            "entity": "switch.zone_5_garten_sw"
-                                        },
-                                        {
-                                            "entity": "switch.zone_6_rasen_w"
-                                        },
-                                        {
-                                            "entity": "switch.prog_1_pflanzen"
-                                        },
-                                        {
-                                            "entity": "switch.prog_2_schotterrasen"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_timer"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveopen"
-                                        },
-                                        {
-                                            "entity": "switch.bewaesserung_triggervalveclose"
-                                        }
-                                    ],
+                                        "switch.f0_bewaesserung_dual_plug_right",
+                                        "binary_sensor.f0_senwat_brunnen_water_leak",
+                                        "input_datetime.vogeltraenke_pumpe_start",
+                                        "input_datetime.vogeltraenke_pumpe_stop",
+                                        "automation.vogeltraenke_pumpe_by_time_start",
+                                        "automation.vogeltraenke_pumpe_by_time_stop"
+                                    ]
+                                },
+                                {
+                                    "type": "history-graph",
+                                    "title": "Garten",
                                     "hours_to_show": 72,
                                     "refresh_interval": 60,
-                                    "title": "Garten",
-                                    "type": "history-graph"
+                                    "entities": [
+                                        "switch.zone_1_terrasse_gemuese",
+                                        "switch.zone_2_terrasse_stauden",
+                                        "switch.zone_3_garten_no",
+                                        "switch.zone_4_schotterrasen",
+                                        "switch.zone_5_garten_sw",
+                                        "switch.zone_6_rasen_w",
+                                        "switch.prog_1_pflanzen",
+                                        "switch.prog_2_schotterrasen",
+                                        "switch.f0_bewaesserung_dual_plug_right",
+                                        "binary_sensor.f0_senwat_brunnen_water_leak",
+                                        "switch.bewaesserung_timer",
+                                        "switch.bewaesserung",
+                                        "switch.bewaesserung_triggervalveopen",
+                                        "switch.bewaesserung_triggervalveclose"
+                                    ]
                                 }
                             ],
                             "type": "vertical-stack"
@@ -1013,8 +964,7 @@
                             ],
                             "type": "vertical-stack"
                         }
-                    ],
-                    "title": "Wetter"
+                    ]
                 },
                 {
                     "badges": [],
@@ -1514,6 +1464,7 @@
                                 "sensor.f1_senthp_wiga_battery",
                                 "sensor.f3_senthp_studio_battery",
                                 "sensor.f3_senthp_bad_battery",
+                                "sensor.f0_senwat_brunnen_battery",
                                 "sensor.f2_but_bad_dusche_battery"
                             ],
                             "title": "Senor Battery Levels",
@@ -1522,15 +1473,30 @@
                         {
                             "type": "entities",
                             "entities": [
+                                "sensor.f0_senwat_brunnen_linkquality",
                                 "sensor.f1_but_flur_1_linkquality",
                                 "sensor.f2_but_flur_1_linkquality",
                                 "sensor.f2_but_bad_1_linkquality",
                                 "sensor.f2_but_bad_dusche_linkquality",
                                 "sensor.f3_but_studio_1_linkquality"
                             ],
-                            "title": "Button Link Quality / Availability",
+                            "title": "Link Quality / Availability",
                             "state_color": false,
                             "show_header_toggle": false
+                        },
+                        {
+                            "type": "entities",
+                            "title": "System Status / Uptimes",
+                            "entities": [
+                                "sensor.wasserzaehler_1_status",
+                                "sensor.wasserzaehler_2_status",
+                                "sensor.stromzaehler_status",
+                                {
+                                    "type": "divider"
+                                },
+                                "sensor.f0_bewaesserung_dual_plug_uptime",
+                                "sensor.f0_bewaesserung_dual_plug_wifi_signal"
+                            ]
                         }
                     ],
                     "title": "System"

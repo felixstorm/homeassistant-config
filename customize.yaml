@@ -1,6 +1,8 @@
 # Zigbee Devices
 binary_sensor.f1_senwin_terrassentur_contact:
   friendly_name: Wohnzimmer Terrassentür
+sensor.f0_senwat_brunnen_battery:
+  friendly_name: Aqara WatSens Vogeltränke Battery
 sensor.f1_senwin_terrassentur_battery:
   friendly_name: Aqara WinSens Terrassentür Battery
 sensor.f1_senthp_wiga_temperature:
@@ -17,6 +19,12 @@ sensor.f3_senthp_bad_temperature:
   friendly_name: Temperatur DG Bad
 sensor.f3_senthp_bad_battery:
   friendly_name: Aqara THP DG Bad Battery
+
+# WLAN
+sensor.f0_bewaesserung_dual_plug_uptime:
+  friendly_name: Doppelsteckdose Bewässerung Uptime
+sensor.f0_bewaesserung_dual_plug_wifi_signal:
+  friendly_name: Doppelsteckdose Bewässerung WLAN Signal
 
 # System
 sensor.hdd_temp:
